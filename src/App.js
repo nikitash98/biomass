@@ -1,23 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import ThreePointViz from './ThreePointViz';
+import React from 'react';
+function sayHello() {
+  alert('You clicked me!');
+}
+/*
+
+
+*/
 
 function App() {
+  const [playing, setPlaying] = React.useState(true);
+  const [counter, setCounter] = React.useState(0)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div class = "game_container">
+        <div className="vis-container">
+          <ThreePointViz playing = {playing} counter = {counter}/>
+        </div>
+      </div>
+      <button type="button" onClick={()=>setCounter(counter - 1)}>RIGHT!</button>
+
+      <button type="button" onClick={()=>setCounter(counter + 1)}>LEFT!</button>
+
     </div>
   );
 }

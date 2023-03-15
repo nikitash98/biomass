@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+canvas{
+}
+
+.App {
+}
+.game_container {
+  height:80vh;
+  position: relative;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.vis-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+
+}
