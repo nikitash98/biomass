@@ -1,0 +1,112 @@
+{
+    "Plants" : {
+        
+        "image": "images/Plants.png",
+        "src": "Plants are predominantly photosynthetic eukaryotes, forming the kingdom Plantae. Most of them are multicellular. Historically, the plant kingdom encompassed all living things that were not animals, and included algae and fungi. All current definitions exclude the fungi and some of the algae. ",
+        "link": "https://en.wikipedia.org/wiki/Plant",
+        "value": 450
+      },
+    "Archaea": {
+      "image": "images/Archaea.png",
+      "src": "Archaea is a domain of single-celled organisms. These microorganisms lack cell nuclei and are therefore prokaryotes. Archaea were initially classified as bacteria, receiving the name archaebacteria (in the Archaebacteria kingdom), but this term has fallen out of use.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 7
+    },
+    "Animals": {
+      "image": "images/Animals.png",
+      "src": "Animals are multicellular, eukaryotic organisms in the biological kingdom Animalia. With few exceptions, animals consume organic material, breathe oxygen, are able to move, can reproduce sexually, and grow from a hollow sphere of cells, the blastula, during embryonic development.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 2.6
+    },
+    "Protists": {
+      "image": "images/Protists.png",
+      "src": "A protist is any eukaryotic organism (that is, an organism whose cells contain a cell nucleus) that is not an animal, plant, or fungus.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 4
+    },
+    "Fungi": {
+      "image": "images/Fungi.png",
+      "src": "A fungus is any member of the group of eukaryotic organisms that includes microorganisms such as yeasts and molds, as well as the more familiar mushrooms.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 12
+    },
+    "Bacteria": {
+      "image": "images/Bacteria.png",
+      "src": "Bacteria are ubiquitous, mostly free-living organisms often consisting of one biological cell. They constitute a large domain of prokaryotic microorganisms. Typically a few micrometres in length, bacteria were among the first life forms to appear on Earth, and are present in most of its habitats.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 70
+    },
+    "Nematodes": {
+      "image": "images/Nematodes.png",
+      "src": "The nematodes or roundworms constitute the phylum Nematoda with plant-parasitic nematodes also known as eelworms. They are a diverse animal phylum inhabiting a broad range of environments.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.02
+    },
+    "Wild Birds": {
+      "image": "images/Birds.png",
+      "src": "Birds are a group of warm-blooded vertebrates constituting the class Aves, characterised by feathers, toothless beaked jaws, the laying of hard-shelled eggs, a high metabolic rate, a four-chambered heart, and a strong yet lightweight skeleton.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.002
+    },
+    "Wild Mammals": {
+      "image": "images/Wild-Mammals.png",
+      "src": "A mammal is a vertebrate animal of the class Mammalia. Mammals are characterized by the presence of milk-producing mammary glands for feeding their young, a neocortex region of the brain, fur or hair, and three middle ear bones.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.007
+    },
+    "Mollusks": {
+      "image": "images/Mollusk.png",
+      "src": "Mollusca is the second-largest phylum of invertebrate animals after the Arthropoda, the members of which are known as molluscs or mollusks. Around 85,000 extant species of molluscs are recognized.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.2
+    },
+      "Marine Arthropods": {
+      "image": "images/Arthropods.png",
+      "src": "Arthropods are invertebrate animals with an exoskeleton, a segmented body, and paired jointed appendages. Arthropods form the phylum Arthropoda.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.9
+    },
+    "Livestock": {
+      "image": "images/Livestock.png",
+      "src": "Livestock are the domesticated animals raised in an agricultural setting to provide labor and produce diversified products for consumption such as meat, eggs, milk, fur, leather, and wool. ",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.1
+    },
+    "Humans": {
+      "image": "images/Humans.png",
+      "src": "Humans are the most common and widespread species of primate in the great ape family Hominidae, and also the most common species of primate overall. Humans are broadly characterized by their bipedalism and high intelligence.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.06 
+    },
+    "Fish": {
+      "image": "images/Fish.png",
+      "src": "Fish are aquatic, craniate, gill-bearing animals that lack limbs with digits. Included in this definition are the living hagfish, lampreys, and cartilaginous and bony fish as well as various extinct related groups.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.7
+    },
+
+    "Arthropods": {
+      "image": "images/Arthropods.png",
+      "src": "Arthropods are invertebrate animals with an exoskeleton, a segmented body, and paired jointed appendages. Arthropods form the phylum Arthropoda.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.2
+    },
+    "Annelids": {
+      "image": "images/Annelids.png",
+      "src": "The annelids, also known as the segmented worms, are a large phylum, with over 22,000 extant species including ragworms, earthworms, and leeches. ",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.2
+    },
+      "Cnidarians": {
+      "image": "images/Cnidaria.png",
+      "src": "Cnidaria is a phylum under kingdom Animalia containing over 11,000 species of aquatic animals found both in freshwater and marine environments, predominantly the latter.",
+      "link": "https://en.wikipedia.org/wiki/Archaea",
+      "value": 0.1
+    },
+    "Virus": {
+    "image": "images/Virus.png",
+    "src": "A virus is a submicroscopic infectious agent that replicates only inside the living cells of an organism. Viruses infect all life forms, from animals and plants to microorganisms, including bacteria and archaea.",
+    "link": "https://en.wikipedia.org/wiki/Archaea",
+    "value": 0.1
+  }
+  }

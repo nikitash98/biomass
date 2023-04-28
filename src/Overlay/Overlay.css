@@ -1,0 +1,102 @@
+.game_overlay {
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .game_overlay > * {
+    pointer-events: none; 
+  }
+  
+  .game_overlay > .title {
+    position: relative;
+    text-align: right;
+    width: 40%;
+    float: right;
+  }
+
+  .title > h1 {
+    font-family: "aktiv-grotesk", serif;
+    font-weight: 700;
+
+    font-size: 3.3vw;
+    margin: 0px;
+  }
+  .title > h2 {
+    text-align: justify;
+    margin: 0px;
+    font-size: .9vw;
+
+  }
+  .copyrights {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  .copyrights_text {
+    font-size: 9pt;
+    text-align: left;
+  }
+  .click_button {
+    position: relative;
+    z-index: 5;
+    background-color: transparent !important;
+    width: 10%;
+    height: 100%;
+    pointer-events: auto; 
+
+  }
+  
+  .click_button:hover {
+    background-color: rgba(255, 255, 255, 0.448) !important;
+  }
+  
+  .button-set {
+    position: absolute;
+    bottom: 10%;
+    height: 30%;
+    left: 0%;
+    width: 100%;
+    text-align: left;
+  }
+
+
+  .credit_title {
+    text-align: right;
+  }
+  .credit_content {
+    display: none;
+  }
+  
+  .credits {
+    pointer-events: auto;
+  }
+
+  .credits:hover .credit_content {
+    display: block;
+  }
+
+  .table_of_contents {
+    text-align: left;
+  }
+
+  .content_item {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .content_item:hover {
+    font-weight: 800;
+  }
+
+
+
+  .slider_container {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*background: linear-gradient(0deg, rgb(255, 255, 255), rgba(255, 255, 255, 0));*/
+  }
+
