@@ -18,7 +18,7 @@ const ContentSlider = (props) => {
     }
     var keys = Object.keys(slides);
     let less_keys = keys.slice(0,-1)
-    let show = [0, 4, 8, 10, 15]
+    let show = [0, 2, 6, 10, 12, 17]
 
     let diffs = []
     let mul = 1
@@ -39,10 +39,7 @@ const ContentSlider = (props) => {
         if(i == 0) {
             return 0
         }
-        
-        console.log(value)
-        console.log(show[i-1])
-        console.log(diffs[i-1])
+
 
         let total = ((value - show[i-1])/diffs[i-1]) * mul + (i-1) * mul
         //let total = (i-1) * mul
@@ -53,7 +50,6 @@ const ContentSlider = (props) => {
         return show[set]
     }
 
-    console.log(convertCounter(val, show, mul))
     const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
 
     
@@ -71,7 +67,7 @@ const ContentSlider = (props) => {
                                 );           
                         } else {
                             return (
-                                <div className="slider__labels-label lab">
+                                <div key = {i} className="slider__labels-label lab">
                                     
                                 </div>
                                 );         

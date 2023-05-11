@@ -11,7 +11,6 @@ function ClickInfo(props) {
         name.current = props.hovered
     }
 
-    console.log()
     //
     if(props.hovered){
         return (
@@ -20,15 +19,16 @@ function ClickInfo(props) {
                     <div className = "header">
 
                     <img src={myData[name.current].image}></img>
+                    <Divider></Divider>
 
                     <Grid>
                         <Grid.Row columns={2}>
-                            <Grid.Column width = {8}>
+                            <Grid.Column width = {10}>
                                 <div className='info_title'>
                                     <h3>{name.current} </h3>
                                 </div>
                             </Grid.Column>
-                            <Grid.Column width = {8}>
+                            <Grid.Column width = {6}>
                                 <div className='info_value'>
 
                                     <h3>{myData[name.current].value} Gt C</h3>

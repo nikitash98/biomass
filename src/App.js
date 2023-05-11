@@ -4,7 +4,7 @@ import ThreePointViz from './3D_Components/ThreePointViz';
 import HoverInfo from './HoverInfo';
 import React from 'react';
 import Overlay from './Overlay/Overlay';
-
+import { Suspense } from 'react';
 
 function App() {
   const [counter, setCounter] = React.useState(0)
@@ -25,11 +25,12 @@ function App() {
           */
         }
 
+
         <div className="vis-container">
           <ThreePointViz counter = {counter} 
-          setInfo = {setInfo} setInfoPage= {setInfoPage} 
-          setPlaying = {setPlaying} playing = {playing} 
-          hovered = {hovered} setHovered = {setHovered}/>
+            setInfo = {setInfo} setInfoPage= {setInfoPage} 
+            setPlaying = {setPlaying} playing = {playing} 
+            hovered = {hovered} setHovered = {setHovered}/>
         </div>
         <Overlay setPlaying = {setPlaying} setCounter = {setCounter} 
         counter = {counter} info = {info_page} setInfoPage = {setInfoPage} 

@@ -108,5 +108,10 @@
     "src": "A virus is a submicroscopic infectious agent that replicates only inside the living cells of an organism. Viruses infect all life forms, from animals and plants to microorganisms, including bacteria and archaea.",
     "link": "https://en.wikipedia.org/wiki/Archaea",
     "value": 0.1
+  }, "LUCA": {
+    "image": "images/LUCA.png",
+    "src": "The last universal common ancestor (LUCA) or universal most recent common ancestor (UMRCA) is the most recent population from which all organisms now living on Earth share common descent—the most recent common ancestor of all current life on Earth.",
+    "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
+    "value": "?"
   }
   }

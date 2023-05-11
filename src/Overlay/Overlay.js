@@ -21,6 +21,24 @@ function Overlay(props) {
     }]
     return (
         <div className='game_overlay'> 
+        {props.counter == 0 && (
+
+        <div className='start_container'>
+        <div className = "start_caption">
+            
+            How much does life on earth weigh?
+        </div>
+        <div className='start_button'>
+            <Button onClick={()=>{props.setCounter(Math.min(props.counter + 1, 18))}}>
+            Click to find out.
+
+            </Button>
+        </div>
+    </div>
+        )
+
+        }
+
             <Grid >
                 <Grid.Row>
                     <Grid.Column width={5}>
@@ -28,10 +46,10 @@ function Overlay(props) {
                             <h1>Biomass on Earth</h1>
                     </div>
                     </Grid.Column>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                         
                     </Grid.Column>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={7}>
                         <ContentSlider counter = {props.counter} setCounter = {props.setCounter}/>
                         <div style = {{height: "20%"}}></div>
 
@@ -71,9 +89,9 @@ function Overlay(props) {
                 <img src="Icon/Left.svg" ></img>
             </Button>
             }
-            {props.counter != 16 &&
+            {props.counter != 18 && props.counter != 0 &&
 
-            <Button className = "click_button" style = {{float: "right"}} type="button" onClick={()=>{props.setCounter(Math.min(props.counter + 1, 16)); props.setPlaying(true)}}>
+            <Button className = "click_button" style = {{float: "right"}} type="button" onClick={()=>{props.setCounter(Math.min(props.counter + 1, 18)); props.setPlaying(true)}}>
                 <img src="Icon/Right.svg" ></img>
             </Button>
             }

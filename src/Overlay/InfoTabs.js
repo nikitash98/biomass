@@ -3,7 +3,7 @@ import { Tab, Button, Grid } from 'semantic-ui-react'
 import "./InfoTabs.css"
 
 const panes = [
-  { menuItem: 'Info', render: () => <Tab.Pane onMouseEnter = {() => {console.log("ABC")}}>
+  { menuItem: 'Info', render: () => <Tab.Pane onMouseEnter = {() => {}}>
     <p>These blocks represent the "dry" weight of each division. <br/>
   The units are in gigatons of carbon – abbreviated Gt C.</p>
 </Tab.Pane> },
