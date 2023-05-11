@@ -1,0 +1,186 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.HoverInfo {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  pointer-events: none;
+  background-color: rgba(128, 128, 128, 0.308);
+  padding: 10px;
+}
+
+.HoverInfo >h1 {
+  font-size: 15pt;
+  color: blue;
+}
+
+
+.ClickInfo {
+  border-radius: 10px;
+
+  z-index: 10;
+  background-color: white;
+  padding: 10px;
+}
+
+
+
+#download_button {
+  background-color: rgb(205, 205, 205);
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+#download_button:hover {
+  background-color: rgb(255, 255, 255);
+
+}
+.title >h1 {
+  font-size: 40pt;
+  font-family: "aktiv-grotesk", sans-serif;
+}
+
+.box_name > h1 {
+  font-size: 8pt;
+  font-family: "aktiv-grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  white-space: nowrap;
+  transition: opacity 0.1s;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+
+}
+.box_name > h1:hover {
+
+}
+
+.box_name {
+  padding: 4px;
+  z-index: -5;
+  border-radius: 3px;
+}
+
+.three_header {
+  color: black;
+  font-size: 15pt;
+  width: fit-content;
+  width: 300px;
+
+}
+.three_header > h1 {
+  font-size: 15pt;
+  text-align: left;
+}
+.three_header > p {
+  font-size: 8pt;
+  text-align: left;
+}
+
+.hidden h1{ 
+  opacity: 0;
+  transition: opacity 0.1s;
+  /*transition: opacity 0.3s linear 2s; */
+}
+
+.start_caption {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+/*
+.box_value>h1 {
+  font-size: 12pt;
+  background-color:white;
+  font-family: "aktiv-grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  white-space: nowrap;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+*/
+
+.box_value {
+  transform: translate(-50%, -50%);
+
+  width: 100px;
+  background-color: black;
+  color: #fff;
+  padding: 10px;
+  
+  position: relative;
+  float: left;
+  z-index: 12;
+  position: absolute;
+  pointer-events: none;
+  text-align: center;
+
+  border-radius: 10px;
+
+}
+.box_value >h1 {
+  font-size: 9pt;
+  font-family: "aktiv-grotesk", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  white-space: nowrap;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+
+}
+
+.box_value:after {
+  content: " ";
+  position: absolute;
+  right: 30px;
+  bottom: -14px;
+  border-top: 15px solid black;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: none;
+}

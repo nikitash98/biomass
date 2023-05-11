@@ -1,0 +1,50 @@
+
+
+.hoverText {
+    cursor: pointer;
+    background-color: rgb(219, 219, 219);
+    padding: 3px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  
+  .hoverText:hover {
+    background-color: rgb(239, 239, 239);
+  
+  }
+  #plant_text {
+    color: green;
+  }
+  #arthropod_text{
+    color: rgb(201, 34, 34);
+  }
+  #fish_text {
+    color: rgb(143, 7, 7)
+  }
+  
+  #protists_text {
+    color:rgb(227, 154, 231)
+  }
+  
+  #fungi_text {
+    color:rgb(189, 152, 118)
+  }
+  #virus_text {
+    color:rgb(81, 81, 81)
+  }
+  #animal_text {
+    color:rgb(194, 25, 16)
+  }
+  .ContentCaption {
+    text-align: left;
+    pointer-events: auto;
+    
+  }
+  .ContentCaption h3 {
+    font-size: 15pt;
+    line-height: 25pt;
+  }
+
+  #download_button {
+    background-color: red !important;
+  }

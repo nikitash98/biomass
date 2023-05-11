@@ -1,0 +1,76 @@
+:root {
+    --main-color: rgb(0, 0, 0);
+    --main-color-hover: rgb(104, 117, 217, 0.2);
+    --track-color: #e3e3e3;
+    --mark-color: #010101;
+
+  }
+  
+  .customSlider {
+    /* max width of your slider */
+    /* Optional: Only If you want to center your slider in the page */
+    margin: auto;
+    pointer-events: auto;
+
+    height: 30px;
+  }
+  
+  .customSlider-track {
+    /* Top value to align your track to the center of your thumb */
+    top: -2.5px;
+    /* thickness of the track */
+    height: 5px;
+   /* default color of your track */
+    background: var(--track-color);
+    border-radius: 10px;
+  }
+  
+  .customSlider-track.customSlider-track-0 {
+    /* color of the track before the thumb */
+    background: var(--main-color);
+  }
+
+  .customSlider-mark {
+    cursor: pointer;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    left: -5p;
+    border-radius: 20px;
+    background-color: var(--mark-color);
+  }
+
+  .selected_mark{
+    background-color: var(--track-color);
+  }
+  .customSlider-mark:hover {
+    background-color: white;
+  }
+  .slider__labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    position: relative;
+    height: 30px;
+    width: 100%;
+  }
+  
+  .slider__labels-label {
+    width: 190px;
+    text-align: left;
+    font-size: 12pt;
+    font-weight: bold;
+    box-sizing: border-box;
+    pointer-events: auto;
+  }
+  .lab {
+    cursor: pointer;
+
+  }
+  .slider__labels-label:hover {
+    color:red
+  }
+
+  .slider_mark {
+    font-size: 8pt;
+  }
