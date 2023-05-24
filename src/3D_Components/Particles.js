@@ -35,7 +35,9 @@ const Particles = (props) => {
         }),
         []
       );
-
+      function mod(n, m) {
+        return ((n % m) + m) % m;
+      }
     useEffect(() => {
         var geometry = newref.current.geometry;
         const poses = geometry.attributes.position;
@@ -63,14 +65,19 @@ const Particles = (props) => {
     })
 
 
-    useFrame(({ clock }) => {
+    useFrame(({ clock, delta }) => {
         //influence.current = Math.sin(clock.getElapsedTime()) * 0.5 + 0.5;
         if (newref) {
             if (newref.current) {
-                newref.current.morphTargetInfluences[0] = 1 - ((props.curTime - slide_start)/slide_length);
-                //newref.current.material.uniforms.uTime.value = ((props.curTime - slide_start)/slide_length);
-                console.log(newref.current.material.uniforms.uTime.value)
-                newref.current.material.uniforms.uTime.value = 0.0
+              
+                newref.current.morphTargetInfluences[0] = 1; //((props.curTime - slide_start)/slide_length);
+                if(props.counter == 2) {
+                  newref.current.material.uniforms.uTime.value = 0.99
+                } else {
+                  newref.current.material.uniforms.uTime.value += clock.getElapsedTime()/800//clock.getDelta() * 15//((props.curTime - slide_start)/slide_length);
+
+                }
+                  //newref.current.material.uniforms.uTime.value = 0.0
             }
         }
         newref.current.rotation.y += 0.01

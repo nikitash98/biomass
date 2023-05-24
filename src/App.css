@@ -52,13 +52,6 @@
 }
 
 
-.ClickInfo {
-  border-radius: 10px;
-
-  z-index: 10;
-  background-color: white;
-  padding: 10px;
-}
 
 
 
@@ -88,8 +81,13 @@
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+.artificial_name>h1 {
+  transform: translate(-120%, 0%);
+}
 
-
+.unhighlighted > h1{
+  color: rgb(113, 113, 113)
 }
 .box_name > h1:hover {
 
@@ -146,7 +144,8 @@
   transform: translate(-50%, -50%);
 
   width: 100px;
-  background-color: black;
+  background-color: rgb(76, 162, 201);
+
   color: #fff;
   padding: 10px;
   
@@ -156,10 +155,15 @@
   position: absolute;
   pointer-events: none;
   text-align: center;
-
   border-radius: 10px;
+}
+
+.wet_value {
+  background-color: black;
 
 }
+
+
 .box_value >h1 {
   font-size: 9pt;
   font-family: "aktiv-grotesk", sans-serif;
@@ -177,10 +181,43 @@
 .box_value:after {
   content: " ";
   position: absolute;
-  right: 30px;
+  right: 35px;
   bottom: -14px;
-  border-top: 15px solid black;
+  border-top: 15px solid rgb(76, 162, 201);
   border-right: 15px solid transparent;
   border-left: 15px solid transparent;
   border-bottom: none;
+}
+.wet_value::after{
+  border-top: 15px solid black;
+}
+.openBoxButton {
+  background-color: rgb(206, 206, 206);
+  width: 200px;
+  padding: 15pt;
+  border-radius: 5px;
+  font-weight: 800;
+
+  font-size: 15pt;
+  color:black;
+  font-family: "aktiv-grotesk", sans-serif;
+  cursor: pointer;
+
+}
+.openBoxButton:hover {
+  background-color: #61dafb;
+}
+.openBoxButton:hover::before{
+  border-right-color: #61dafb;
+}
+
+.openBoxButton:before {
+  content: ' ';
+  height: 0;
+  position: absolute;
+  width: 0;
+  left: -37px;
+  border: 20px solid transparent;
+  border-right-color: rgb(206, 206, 206);
+  top: 12px;
 }

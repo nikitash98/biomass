@@ -11,7 +11,7 @@ const ProprietaryCamera = (props) => {
     const to_vector = (a) => {
       return new Vector3(a[0], a[1], a[2])
     }
-
+    const boxref = useRef()
     let new_original_position = useRef(to_vector([7.433169999999995, 5.7117199999999935,24.999999999999822]))
     let current_look_position = useRef(to_vector(data[0]["lookPosition"]))
     let move_position = new Vector3(1.43317, 5.71172, -100)
@@ -99,7 +99,7 @@ const ProprietaryCamera = (props) => {
     if(!change){
       change = 0
     } else {
-      change = 5/(viewport.width/viewport.height)                                                
+      change = 20/Math.pow((viewport.width/viewport.height), 3.0)      
     }
 
     return(

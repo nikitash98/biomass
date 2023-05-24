@@ -13,6 +13,7 @@ const ContentSlider = (props) => {
         4: '4',
       };
     const handleSliderClick = (value) => {
+
         props.setCounter(convertSlider(value, show, mul))
 
     }
@@ -33,6 +34,7 @@ const ContentSlider = (props) => {
     
     const convertCounter = (value, show, mul) => {
         let i = 0
+        
         while(value > show[i]) {
             i++
         }
@@ -42,11 +44,15 @@ const ContentSlider = (props) => {
 
 
         let total = ((value - show[i-1])/diffs[i-1]) * mul + (i-1) * mul
-        //let total = (i-1) * mul
         return total
     }
     const convertSlider = (value, show, mul) => {
         let set = Math.round(value/mul)
+        let end_index = 20
+        if(set >= show.length) {
+            return keys.length-1
+        }
+
         return show[set]
     }
 

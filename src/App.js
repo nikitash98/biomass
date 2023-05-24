@@ -13,7 +13,7 @@ function App() {
   const [hoveringInfo, setHoveringInfo] = React.useState(null)
   const [playing, setPlaying] = React.useState(false)
   const shouldHide = !(info_page || hoveringInfo);
-  const [hovered, setHovered] = React.useState(null)
+  const [hovered, setHovered] = React.useState([null, 0])
 
     return (
     <div className="App">
@@ -30,7 +30,8 @@ function App() {
           <ThreePointViz counter = {counter} 
             setInfo = {setInfo} setInfoPage= {setInfoPage} 
             setPlaying = {setPlaying} playing = {playing} 
-            hovered = {hovered} setHovered = {setHovered}/>
+            hovered = {hovered} setHovered = {setHovered}
+            setCounter = {setCounter}/>
         </div>
         <Overlay setPlaying = {setPlaying} setCounter = {setCounter} 
         counter = {counter} info = {info_page} setInfoPage = {setInfoPage} 

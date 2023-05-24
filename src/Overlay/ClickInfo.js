@@ -7,19 +7,26 @@ import './ClickInfo.css';
 function ClickInfo(props) {
     const name = useRef("")
     const position = useRef(new Vector3(0, 0, 0))
-    if(props.hovered) {
-        name.current = props.hovered
+    let trans =  "translate(-120%, 0)"
+    if(props.hovered[0]) {
+        name.current = props.hovered[0]
+        if(props.hovered[1] < window.innerWidth/2) {
+            trans = ""
+        }
     }
 
     //
-    if(props.hovered){
+    if(props.hovered[0]){
+    //if(true){
         return (
-            <div className = "ClickInfo" style = {{left: 0, top: 0}}
-                onMouseEnter={e=> {props.setHoveringInfo(true)}} onMouseLeave = {e=> {props.setHoveringInfo(false)} }>
+            <div className = "ClickInfo" 
+                onMouseEnter={e=> {props.setHoveringInfo(true)}} onMouseLeave = {e=> {props.setHoveringInfo(false)} }
+                style={{left: props.hovered[1], transform: trans}}>
                     <div className = "header">
 
-                    <img src={myData[name.current].image}></img>
-                    <Divider></Divider>
+                        <img src={myData[name.current].image}></img>
+                    </div>
+                    <div className='content'>
 
                     <Grid>
                         <Grid.Row columns={2}>
@@ -29,9 +36,24 @@ function ClickInfo(props) {
                                 </div>
                             </Grid.Column>
                             <Grid.Column width = {6}>
-                                <div className='info_value'>
 
-                                    <h3>{myData[name.current].value} Gt C</h3>
+
+                                {/*
+                                
+                                    {props.counter < 20 && (
+                                         <div className='info_value'>
+
+                                            <h3>{myData[name.current].value} Gt C</h3>
+                                        </div>
+                                    )}\
+                                    
+                                    {props.counter >=20 && (
+
+                                    ) }
+                                */}
+
+                                <div className='info_value'>
+                                    <h3>{myData[name.current].value} Gt</h3>
                                 </div>
 
                             </Grid.Column>

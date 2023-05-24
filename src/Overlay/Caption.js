@@ -4,7 +4,7 @@ import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
     return(
-        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered(props.hover_id)}} onPointerOut={()=>{props.setHovered(null)}}>{props.children}</span>
+        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id, 0])}} onPointerOut={()=>{props.setHovered([null,0])}}>{props.children}</span>
     )
 }
 
@@ -13,14 +13,17 @@ function getText(sel, setHovered){
     switch(sel){
         case 0:
             return <div>
-                <h3 className ="start_caption">
+                <h3>
+                Click the globe to place the animals into a box. 
 
+                </h3>
+                <h3 className ="start_caption">
                 </h3>
             </div>
             case 1:
                 return <div>
                     <h3>
-                        Lets put all of the animals in a box. 
+                        There are 5 million animals in the world. They are now flowing into this container.
     
     
                     </h3>
@@ -80,13 +83,14 @@ The units are in gigatons of carbon – abbreviated Gt C.
         case 10:
             return <div>
                 <h3>
-                The last universal common ancestor (LUCA) is the most recent population from which all organisms now living on Earth share common descent.
+                
+                The <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA)</HoverSpan> is the most recent population from which all organisms now living on Earth share common descent.
                 </h3> 
             </div>
         case 11:
             return <div>
                 <h3>
-                <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered}>Animals</HoverSpan> are a diverse Kingdom. Click the next button to open the animal box.
+                <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered}>Animals</HoverSpan> are a diverse Kingdom.
                 </h3> 
             </div>
         case 12:
@@ -97,7 +101,7 @@ The units are in gigatons of carbon – abbreviated Gt C.
                 
                 <div>
                     <Divider/>
-                    <a id = "download_button" href = "Posters/Biomass_Poster.png" target="_blank" download>Download a poster</a>
+                    <a id = "download_button" href = "Posters/Biomass_Poster.png" target="_blank" download>Click to download a poster</a>
                 </div>
                 </h3> 
             </div>
@@ -139,9 +143,76 @@ The units are in gigatons of carbon – abbreviated Gt C.
                 To generate enough proteins, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
                 </h3>
             </div>
+        case 19:
+            return <div>
+                <h3>
+                    Humans have significantly affected their environment. Let's consider their effect on global mass.
+                </h3>
+            </div>
+        case 20:
+            return <div>
+                <h3>
+                    In order to better compare we will convert from "dry mass" to total mass. Humans are about 50% water, so the total mass is heavier.
+                </h3>
+            </div>
+        case 21:
+            return <div>
+                <h3>
+                <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>Cars</HoverSpan> are one of humankind's most successful and global inventions. It is estimated that there are almost 1.5 billion cars in the world.
+                </h3>
+            </div>
+        case 22:
+            return <div>
+                <h3>
+                    In creating structures, and cars, humans have created gigatons of artificial materials.
+                </h3>
+            </div>
+        case 23:
+            return <div>
+                <h3>
+                    Much of human production, including that of cars, uses <HoverSpan id = "metal_text" hover_id = "Metals" setHovered = {setHovered}>Metals</HoverSpan>.
+                </h3>
+            </div>
+        case 24:
+            return <div>
+                <h3>
+                <HoverSpan id = "asphalt_text" hover_id = "Asphalt" setHovered = {setHovered}>Asphalt</HoverSpan> is the next heaviest artifical material. It is a petroleum based material used to develop roads.
+                </h3>
+            </div>
+        case 25:
+            return <div>
+                <h3>
+                <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered}>Bricks</HoverSpan> have been used for thousands of years. They now outweigh the human mass by 700%.
+                </h3>
+            </div>
+        case 26:
+            return <div>
+                <h3>
+                <HoverSpan id = "aggregate_text" hover_id = "Aggregates" setHovered = {setHovered}>Aggregates</HoverSpan> are materials used in construction.
 
+                </h3>
+            </div>
+        case 27:
+            return <div>
+                <h3>
+                <HoverSpan id = "concrete_text" hover_id = "Concrete" setHovered = {setHovered}>Concrete</HoverSpan> is the second most used substance in the world after water.
 
-    }
+                </h3>
+            </div>
+        case 28:
+            return <div>
+                <h3>
+                    In 2020, for the first time, the mass of material manufactured by humans outweighs the total natural wet biomass.
+                </h3>
+            </div>
+        case 29:
+            return <div>
+                <h3>
+                The car is one of humankind's most successful and global inventions. It is estimated that there are almost 1.5 billion cars in the world.
+
+                </h3>
+            </div>
+}
 
 }
 

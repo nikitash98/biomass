@@ -23,6 +23,7 @@ canvas{
   padding: 16px;
   box-sizing: border-box;
   overflow: hidden;
+  padding: 0px;
 }
 .vis-container {
   position: absolute;

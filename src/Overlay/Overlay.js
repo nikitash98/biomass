@@ -7,6 +7,7 @@ import ClickInfo from './ClickInfo';
 import ContentSlider from './ContentSlider';
 import Caption from './Caption';
 import TabExampleBasic from './InfoTabs';
+import slides from '../slides.json'
 function Overlay(props) {
     const panels = [{
         key: 'credit',
@@ -25,25 +26,24 @@ function Overlay(props) {
 
         <div className='start_container'>
         <div className = "start_caption">
-            
-            How much does life on earth weigh?
+            How much does all life on earth weigh?
         </div>
+        
         <div className='start_button'>
-            <Button onClick={()=>{props.setCounter(Math.min(props.counter + 1, 18))}}>
-            Click to find out.
 
-            </Button>
         </div>
     </div>
         )
 
         }
-
+                    <ClickInfo info = {props.info} setInfoPage = {props.setInfoPage} 
+                    hovered = {props.hovered} setHoveringInfo = {props.setHoveringInfo}
+                    counter = {props.counter}/>
             <Grid >
                 <Grid.Row>
                     <Grid.Column width={5}>
                     <div className='title'>
-                            <h1>Biomass on Earth</h1>
+                    <h1>Biomass on Earth</h1>
                     </div>
                     </Grid.Column>
                     <Grid.Column width={4}>
@@ -61,7 +61,7 @@ function Overlay(props) {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column width={4}>
-                    <ClickInfo info = {props.info} setInfoPage = {props.setInfoPage} hovered = {props.hovered} setHoveringInfo = {props.setHoveringInfo}/>
+
 
                     </Grid.Column>
                 </Grid.Row>
@@ -72,11 +72,11 @@ function Overlay(props) {
 
             <Grid className='slider_container'>
                 <Grid.Row>
-                    <Grid.Column width={12}>
+                    <Grid.Column width={10}>
 
                     </Grid.Column>
 
-                    <Grid.Column width={4}>
+                    <Grid.Column width={6}>
                     <TabExampleBasic/>
 
                     </Grid.Column>
@@ -89,9 +89,9 @@ function Overlay(props) {
                 <img src="Icon/Left.svg" ></img>
             </Button>
             }
-            {props.counter != 18 && props.counter != 0 &&
+            {props.counter != 0 && props.counter != 11 && props.counter <  Object.keys(slides).length -1 &&
 
-            <Button className = "click_button" style = {{float: "right"}} type="button" onClick={()=>{props.setCounter(Math.min(props.counter + 1, 18)); props.setPlaying(true)}}>
+            <Button className = "click_button" style = {{float: "right"}} type="button" onClick={()=>{props.setCounter(Math.min(props.counter + 1, 30)); props.setPlaying(true)}}>
                 <img src="Icon/Right.svg" ></img>
             </Button>
             }

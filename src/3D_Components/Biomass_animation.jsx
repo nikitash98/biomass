@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.4 .\\public\\Biomass_animation.glb
 */
 
 import React, { useRef , useState, useEffect, Suspense} from 'react'
-import { Html, useGLTF, PerspectiveCamera, useAnimations } from '@react-three/drei'
+import { Html, useGLTF, PerspectiveCamera, useAnimations, Mask, useMask} from '@react-three/drei'
 import useMousePosition from '../useMousePosition'
 import * as THREE from 'three'
 import { act } from 'react-dom/test-utils'
@@ -13,59 +13,69 @@ import { Selection, Select, EffectComposer, Outline } from '@react-three/postpro
 import slides from "../slides.json"
 import { lerp } from 'three/src/math/MathUtils'
 import Particles from './Particles'
+import data from '../Overlay/data.json';
 
 
 function Anim(props) {
-  const group = useRef()
-  const { nodes, materials, animations } = useGLTF('Biomass_animation_v02.glb')
+  const groupRef = useRef()
+  const { nodes, materials, animations } = useGLTF('Biomass_animation_v03.glb')
   const { viewport } = useThree();
-
-  const { actions, mixer } = useAnimations(animations, group)
+  const { actions, mixer } = useAnimations(animations, groupRef)
   let stop_times = [0.1,1, 2.9]
+  const stencil = useMask(1, false)
+  console.log(stencil)
+  
+  Object.keys(stencil).forEach((e) => {
+
+    console.log(e)
+    console.log(stencil[e])
+    materials.Plants[e] = stencil[e]
+  })
+
+  console.log(materials.Plants)
   let names = []
+  let divRefs = useRef({});
   for(let i = 0; i < animations.length; i++){
     names.push(animations[i].name)
   }
-
   const current_counter = useRef(0);
   const globeRef = useRef()
-
+  const animationTime = useRef(0)
   let highlighted = slides[props.counter]["highlighted"]
   let quantities = slides[props.counter]["quantities"]
 
+  const nameFlattening= (entry_name) => {
+    let name = entry_name
+    if(entry_name == "Wild_Mammals") {
+      name = "Wild Mammals"
+    }
+    if(entry_name == "Marine_Arthropods") {
+      name = "Marine Arthropods"
+    }
+    if(entry_name == "Wild_Birds") {
+      name = "Wild Birds"
+    }
+    return name
+  }
+  const getRefName = (name) => {
+    
+    return divRefs.current[nameFlattening(name)]
+  }
+
+  if(props.hovered){
+    props.setSelectionSet(getRefName(props.hovered[0]))
+  } else {
+  }
 
   const handleHover = (e) => {
       e.stopPropagation()
-      console.log(e.object)
-      //setprops.hovered(true)
-
-      if(!e.object.parent.isGroup) {
-        props.setSelectionSet([e.object.parent])
-      } else {
-        props.setSelectionSet([e.object])
-
-      }
       document.body.style.cursor = 'pointer';
-      let name = e.eventObject.name
-      if(name == "Wild_Mammals") {
-        name = "Wild Mammals"
+      let posX = 0
+      if(e.offsetX < window.innerWidth/2) {
+        posX = window.innerWidth
       }
-      if(name == "Marine_Arthropods") {
-        name = "Marine Arthropods"
-      }
-      if(name == "Wild_Birds") {
-        name = "Wild Birds"
-      }
-
-      props.setHovered(name)
-
-      /*
-      var original_vectory = e.eventObject.position.clone()
-      var vector = original_vectory.project(props.camRef.current)
-
-      vector.x = (vector.x + 1) / 2 * window.innerWidth;
-      vector.y = -(vector.y - 1) / 2 * window.innerHeight;
-      */
+      props.setHovered([nameFlattening(e.eventObject.name), posX])
+      props.setSelectionSet(getRefName(e.eventObject.name))
 
   }
   const [curTime, setcurTime] = useState(0);
@@ -73,13 +83,21 @@ function Anim(props) {
   //plant_material.color = 'red'
   //const plant_material = materials.Plants
   const plant_material = new THREE.MeshStandardMaterial({color: 0x626967, opacity: 0.5, transparent: true})
-  
+  const globeHover = (e) => {
+    props.setSelectionSet([globeRef])
+    document.body.style.cursor = 'pointer';
+  }
+  const globeUnhover = (e) => {
+    props.setSelectionSet([])
+
+    document.body.style.cursor = 'auto';
+
+  }
   
   const handleUnhover = (e) => {
     props.setSelectionSet([])
     document.body.style.cursor = 'auto';
-    props.setHovered(null)
-
+    props.setHovered([null, 0])
     props.setInfoPage(null)
   }
 
@@ -89,10 +107,17 @@ function Anim(props) {
       actions[names[i]].paused = true;
     }   
   }
+  const animal_click = () => {
+    if(props.counter == 11) {
+      props.setCounter(props.counter + 1)
+
+    }
+  }
   useEffect( () =>{
-    console.log("IN HERE NOW")
     playAnimations()
+
   }, [])
+
   const playAnimations = () => {
     for(let i = 0; i<names.length;i++){
       actions[names[i]].play();
@@ -100,6 +125,7 @@ function Anim(props) {
     }
   }
 
+  
   //setAnimationTime(slides[props.counter]["animationTime"])
   
   
@@ -114,255 +140,618 @@ function Anim(props) {
   }
   */
   useFrame((state, delta)=> {
-    setcurTime(lerp(curTime, slides[props.counter]["animationTime"], 0.05))
-    setAnimationTime(curTime)
+    //setcurTime(lerp(curTime, slides[props.counter]["animationTime"], 0.05))
+    animationTime.current = lerp(animationTime.current, slides[props.counter]["animationTime"], 0.05)
+    setAnimationTime(animationTime.current)
     if(props.counter < 2) {
-      globeRef.current.rotation.z -= 0.01
+      globeRef.current.rotation.y -= 0.01
 
     }
   })
-  /*
-  useFrame((state, delta)=> {
-    if(props.counter < 2) {
-      globeRef.current.rotation.z -= 0.01
-    }
-  })
-  */
 
   const hiddenClass = false ? 'box_name hidden' : "box_name ";
-
+  const hiddenArtificial = "box_name artificial_name"
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null}>
       <group name="Scene">
       <Suspense>
         
       </Suspense>
-      <Particles curTime = {curTime}/>
+
+      {/*
+<mesh position={[0,5, 0]}>
+          <boxGeometry attach="geometry" args={[5, 5, 5]} />
+          <meshStandardMaterial attach="material" color={0x0ff000} />
+      </mesh>
 
 
 
-        <mesh name="Annelids" geometry={nodes.Annelids.geometry} material={highlighted.includes("Annelids") ? plant_material : materials.Bacteria} position={[-0.08, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+      */}  
+      {(props.counter == 1) && (
+        <Particles curTime = {0} counter = {props.counter}/>
+        
+      )}
+
+
+
+        <mesh name="Annelids" geometry={nodes.Annelids.geometry} 
+        material={highlighted.includes("Annelids") ? plant_material : materials["Material.005"]} 
+        position={[-0.08, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} 
+        onPointerOver = {handleHover} onPointerOut = {handleUnhover}
+        ref = {ref => divRefs.current["Annelids"] = ref} 
+        >
           <mesh name="Artboard_4_copy_7@3x" geometry={nodes['Artboard_4_copy_7@3x'].geometry} material={materials.Icons} position={[-0.02, 0.32, 0.01]} scale={-0.84} />
           <Html position = {[-0.3, .3, .3]} className={hiddenClass}><h1>Annelids</h1></Html>
-          {props.hovered == "Annelids" && 
-          <Html center = {true} position = {[0, 0, -.8]} className="box_value"><h1>0.2 Gt C</h1></Html>
+          {props.hovered[0] == "Annelids" && 
+          <Html center = {true} position = {[0, 0, -.8]} className="box_value" 
+          zIndexRange={[100, 100]}><h1>0.2 Gt C</h1></Html>
           }
         </mesh>
-        <mesh name="Arthropods" geometry={nodes.Arthropods.geometry} material={highlighted.includes("Arthropods") ? plant_material : materials.Bacteria} position={[0.16, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Arthropods"
+        ref = {ref => divRefs.current["Arthropods"] = ref}  
+        geometry={nodes.Arthropods.geometry} material={highlighted.includes("Arthropods") ? plant_material : materials["Material.005"]} position={[0.16, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_8@3x" geometry={nodes['Artboard_4_copy_8@3x'].geometry} material={materials.Icons} position={[0, 0.31, 0.01]} scale={0.79} />
           <Html position = {[-0.3, .3, .3]} className={hiddenClass}><h1>Arthropods</h1></Html>
-          {(props.hovered == "Arthropods" || quantities.includes("Arthropods")) && 
+          {(props.hovered[0] == "Arthropods" || quantities.includes("Arthropods")) && 
           <Html zIndexRange={[0, 100]} center = {true} position = {[0, 0, -.6]} className="box_value"><h1>0.2 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Cnidarians" geometry={nodes.Cnidarians.geometry} material={highlighted.includes("Cnidarians") ? plant_material : materials.Bacteria} position={[0, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Cnidarians" 
+         ref = {ref => divRefs.current["Cnidarians"] = ref}  
+         geometry={nodes.Cnidarians.geometry} material={highlighted.includes("Cnidarians") ? plant_material : materials["Material.002"]} position={[0, -100, -0.06]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh zIndexRange={[0,1]} name="Artboard_4_copy_15@3x" geometry={nodes['Artboard_4_copy_15@3x'].geometry} material={materials.Icons} position={[-0.01, 0.26, 0]} scale={0.75} />
-          <Html position = {[-.3, .3, .2]} className={hiddenClass}><h1>Cnidarians</h1></Html>
-          {props.hovered == "Cnidarians" && 
+          <Html position = {[-.3, .3, .32]} 
+          zIndexRange={[0, -20]}
+          className={hiddenClass}><h1>Cnidarians</h1></Html>
+          {props.hovered[0] == "Cnidarians" && 
           <Html center = {true} position = {[0, 0, -.8]} className="box_value"><h1>0.1 Gt C</h1></Html>
           }
         </mesh>
 
 
-        <mesh name="Fish" geometry={nodes.Fish.geometry} material={highlighted.includes("Fish") ? plant_material : materials.Bacteria} position={[-0.03, -100, -0.06]} rotation={[Math.PI / 2, Math.PI / 2, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Fish" 
+        ref = {ref => divRefs.current["Fish"] = ref}
+        geometry={nodes.Fish.geometry} material={highlighted.includes("Fish") ? plant_material : materials["Material.001"]} position={[-0.03, -100, -0.06]} rotation={[Math.PI / 2, Math.PI / 2, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_5@3x001" geometry={nodes['Artboard_4_copy_5@3x001'].geometry} material={materials.Icons} position={[0.03, 0.46, 0]} rotation={[0, -Math.PI / 2, 0]} scale={0.88} />
           <Html zIndexRange={[0,1]} position = {[-.5, .5, -.5]} className={hiddenClass}><h1>Fish</h1></Html>
-          {props.hovered == "Fish" && 
+          {props.hovered[0] == "Fish" && 
           <Html zIndexRange={[0,100]} center = {true} position = {[1, 0, 0]} className="box_value"><h1>0.7 Gt C</h1></Html>
           }
         </mesh>
 
         
-        <mesh name="Humans" geometry={nodes.Humans.geometry} material={highlighted.includes("Humans") ? plant_material : materials.Bacteria} position={[-0.17, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Humans" 
+        ref = {ref => divRefs.current["Humans"] = ref}
+        geometry={nodes.Humans.geometry} material={highlighted.includes("Humans") ? plant_material : materials["Material.003"]} position={[-0.17, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_10@3x" geometry={nodes['Artboard_4_copy_10@3x'].geometry} material={materials.Icons} position={[0, 0.21, -0.01]} scale={0.71} />
-          <Html position = {[-.3, .3, .2]} className={hiddenClass}><h1>Humans</h1></Html>
-          {(props.hovered == "Humans" || quantities.includes("Humans")) && 
-          <Html center = {true} position = {[0, 0, -.4]} className="box_value"><h1>0.06 Gt C</h1></Html>
+          <Html position = {[-.2, .2, .2]} className={hiddenClass}
+          zIndexRange={[0, -20]}
+          ><h1>Humans</h1></Html>
+          {(props.counter <= 19 && (props.hovered[0] == "Humans" || quantities.includes("Humans"))) && 
+
+          <Html position = {[0, 0, -.6]} 
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          className="box_value"><h1>0.06 Gt C</h1></Html>
           }
+
+          {(props.counter > 19 && (props.hovered[0] == "Humans" || quantities.includes("Humans"))) && (
+            <Html position = {[0, 0, -.6]}
+            style={{
+              transition: 'all 0.5s',
+              opacity: 1,
+              transform: 'translate(-50%, -100%)'
+            }}
+             className="box_value">
+              <h1>0.12 Gt</h1>
+            </Html>
+          )}
         </mesh>
 
-        <mesh name="Livestock" geometry={nodes.Livestock.geometry} material={highlighted.includes("Livestock") ? plant_material : materials.Bacteria} position={[0.29, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Livestock" 
+        ref = {ref => divRefs.current["Livestock"] = ref}
+        geometry={nodes.Livestock.geometry} material={highlighted.includes("Livestock") ? plant_material : materials["Material.003"]} position={[0.29, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_11@3x" geometry={nodes['Artboard_4_copy_11@3x'].geometry} material={materials.Icons} position={[-0.03, 0.24, -0.01]} scale={0.74} />
-          <Html position = {[-.3, .3, .2]} className={hiddenClass}><h1>Livestock</h1></Html>
-          {(props.hovered == "Livestock"|| quantities.includes("Livestock")) && 
-          <Html center = {true} position = {[0, 0, -.4]} className="box_value"><h1>0.1 Gt C</h1></Html>
+          <Html position = {[-.3, .3, .25]} className={hiddenClass}><h1>Livestock</h1></Html>
+          {(props.hovered[0] == "Livestock"|| quantities.includes("Livestock")) && 
+          <Html 
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          position = {[0, 0, -.4]} className="box_value"><h1>0.1 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Marine_Arthropods" geometry={nodes.Marine_Arthropods.geometry} material={highlighted.includes("Marine Arthropods") ? plant_material : materials.Bacteria} position={[0.03, -100, -0.08]} rotation={[Math.PI / 2, 0, 0]} scale={1.07} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Marine_Arthropods" 
+        ref = {ref => divRefs.current["Marine Arthropods"] = ref}
+        geometry={nodes.Marine_Arthropods.geometry} material={highlighted.includes("Marine Arthropods") ? plant_material : materials["Material.002"]} position={[0.03, -100, -0.08]} rotation={[Math.PI / 2, 0, 0]} scale={1.07} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_6@3x" geometry={nodes['Artboard_4_copy_6@3x'].geometry} material={materials.Icons} position={[-0.02, 0.46, 0]} scale={0.99} />
-          <Html zIndexRange={[0,1]} position = {[-.5, .5, .4]} className={hiddenClass}><h1>Marine Arthropods</h1></Html>
-          {props.hovered == "Marine Arthropods" && 
+          <Html zIndexRange={[0,1]} position = {[-.5, .7, .5]} className={hiddenClass}><h1>Marine Arthropods</h1></Html>
+          {props.hovered[0] == "Marine Arthropods" && 
           <Html center = {true} position = {[0, 0, -1]} className="box_value"><h1>0.9 Gt C</h1></Html>
           }
         </mesh>
 
 
-        <mesh name="Mollusks" geometry={nodes.Mollusks.geometry} material={highlighted.includes("Mollusks") ? plant_material : materials.Bacteria} position={[-0.08, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Mollusks"
+        ref = {ref => divRefs.current["Mollusks"] = ref}
+         geometry={nodes.Mollusks.geometry} material={highlighted.includes("Mollusks") ? plant_material : materials["Material.001"]} position={[-0.08, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_14@3x" geometry={nodes['Artboard_4_copy_14@3x'].geometry} material={materials.Icons} position={[0, 0.33, -0.01]} scale={0.86} />
           <Html position = {[-.3, .5, .3]} className={hiddenClass}><h1>Mollusks</h1></Html>
-          {props.hovered == "Mollusks" && 
+          {props.hovered[0] == "Mollusks" && 
           <Html  center = {true} position = {[0, 0, -0.7]} className="box_value"><h1>0.2 Gt C</h1></Html>
           }
         </mesh>
 
 
-        <mesh name="Nematodes" geometry={nodes.Nematodes.geometry} material={highlighted.includes("Nematodes") ? plant_material : materials.Bacteria} position={[-0.01, -100, -0.4]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Nematodes" 
+        ref = {ref => divRefs.current["Nematodes"] = ref}
+        geometry={nodes.Nematodes.geometry} material={highlighted.includes("Nematodes") ? plant_material : materials["Material.005"]} position={[-0.01, -100, -0.4]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_9@3x001" geometry={nodes['Artboard_4_copy_9@3x001'].geometry} material={materials.Icons} position={[0, 0.15, -0.01]} scale={0.42} />
-          <Html position = {[-.3, .1, .1]} className={hiddenClass}><h1>Nematodes</h1></Html>
-          {props.hovered == "Nematodes" && 
-          <Html center = {true} position = {[0, 0, -.7]} className="box_value"><h1>0.02 Gt C</h1></Html>
+          <Html position = {[-.3, .1, .2]} 
+          zIndexRange={[0, -20]}
+          className={hiddenClass}><h1>Nematodes</h1></Html>
+          {props.hovered[0] == "Nematodes" && 
+          <Html 
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+           position = {[0, 0, -.4]} className="box_value"><h1>0.02 Gt C</h1></Html>
           }
 
         </mesh>
 
 
-        <mesh name="Wild_Birds" geometry={nodes.Wild_Birds.geometry} material={highlighted.includes("Wild Birds") ? plant_material : materials.Bacteria} position={[-0.07,-100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Wild_Birds" 
+        ref = {ref => divRefs.current["Wild Birds"] = ref}
+        geometry={nodes.Wild_Birds.geometry} material={highlighted.includes("Wild Birds") ? plant_material : materials["Material.003"]} position={[-0.07,-100, -0.07]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_13@3x001" geometry={nodes['Artboard_4_copy_13@3x001'].geometry} material={materials.Icons} position={[0, 0.08, 0]} scale={0.22} />
-          <Html position = {[0.0, .3, .2]} className={hiddenClass}><h1>Wild Birds</h1></Html>
-          {(props.hovered == "Wild Birds" || quantities.includes("Wild Birds")) && 
-          <Html center = {true} position = {[0, 0, -.4]} className="box_value"><h1>0.0002 Gt C</h1></Html>
+          <Html position = {[0.0, .3, .2]} className={hiddenClass}
+          zIndexRange={[0, -20]}
+          ><h1>Wild Birds</h1></Html>
+          {(props.hovered[0] == "Wild Birds" || quantities.includes("Wild Birds")) && 
+          <Html center = {true} position = {[0, 0, -.4]} 
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          className="box_value"><h1>0.0002 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Wild_Mammals" geometry={nodes.Wild_Mammals.geometry} material={highlighted.includes("Wild Mammals") ? plant_material : materials.Bacteria} position={[-0.32, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Wild_Mammals" 
+        ref = {ref => divRefs.current["Wild Mammals"] = ref}
+        geometry={nodes.Wild_Mammals.geometry} material={highlighted.includes("Wild Mammals") ? plant_material : materials["Material.003"]} position={[-0.32, -100, -0.07]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_12@3x001" geometry={nodes['Artboard_4_copy_12@3x001'].geometry} material={materials.Icons} position={[0, 0.11, -0.01]} scale={0.23} />
-          <Html position = {[-0.2, .2, .2]} className={hiddenClass}><h1>Wild Mammals</h1></Html>
-          {(props.hovered == "Wild Mammals" || quantities.includes("Wild Mammals")) && 
-          <Html center = {true} position = {[0, 0, -.3]} className="box_value"><h1>0.0007 Gt C</h1></Html>
+          <Html 
+          zIndexRange={[0, -20]}
+          position = {[-0.2, .2, .2]} className={highlighted.includes("Wild Mammals") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Wild Mammals</h1></Html>
+          {(props.hovered[0] == "Wild Mammals" || quantities.includes("Wild Mammals")) && 
+          <Html position = {[0, 0, -.3]} 
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          className="box_value"><h1>0.0007 Gt C</h1></Html>
           }
         </mesh>
 
 
-        <mesh name="Archaea" receiveShadow castShadow geometry={nodes.Archaea.geometry} material={highlighted.includes("Archaea") ? plant_material : materials.Bacteria} position={[6.42, 2, -31.01  + 30]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Archaea" 
+        ref = {ref => divRefs.current["Archaea"] = ref}
+        receiveShadow castShadow geometry={nodes.Archaea.geometry} material={highlighted.includes("Archaea") ? plant_material : materials.Bacteria} position={[6.42, 2, -31.01  + 30]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_2@3x" geometry={nodes['Artboard_4_copy_2@3x'].geometry} material={materials.Icons} position={[0.05, 0.98, -0.05]} rotation={[0, 0, -0.01]} scale={1.17} />
           { props.counter == 10 &&
-            <Html position = {[-0, 1, -1.4]} className={hiddenClass}><h1>Archaea</h1></Html>
+            <Html position = {[-0, 1, -1.4]} className={highlighted.includes("Archaea") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Archaea</h1></Html>
           }
           {
             props.counter != 10 &&
-            <Html position = {[-1, 1, 1]} className={hiddenClass}><h1>Archaea</h1></Html>
+            <Html position = {[-1, 1, 1]} className={highlighted.includes("Archaea") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Archaea</h1></Html>
 
           }
-          {props.hovered == "Archaea" && 
+          {props.hovered[0] == "Archaea" && 
           <Html center = {true} position = {[0, 0, -1.6]} className="box_value"><h1>7 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Bacteria" receiveShadow  castShadow geometry={nodes.Bacteria.geometry} material={highlighted.includes("Bacteria") ? plant_material : materials.Bacteria} position={[4.63, 3.14, -34.55  + 30]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Bacteria" 
+        ref = {ref => divRefs.current["Bacteria"] = ref}
+        receiveShadow  castShadow geometry={nodes.Bacteria.geometry} material={highlighted.includes("Bacteria") ? plant_material : materials.Bacteria} position={[4.63, 3.14, -34.55  + 30]} rotation={[Math.PI / 2, 0, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4@3x" geometry={nodes['Artboard_4@3x'].geometry} material={materials.Icons} position={[-0.02, 2.1, 0.09]} scale={1.87} />          
-          <Html position = {[-2, 2.2, 2.1]} className={hiddenClass}><h1>Bacteria</h1></Html>
-          {props.hovered == "Bacteria" && 
+          <Html position = {[-2, 2.2, 2.1]} className={highlighted.includes("Bacteria") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Bacteria</h1></Html>
+          {props.hovered[0] == "Bacteria" && 
           <Html center = {true} position = {[0,0,-2.7]} className="box_value"><h1>70 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Fungi" receiveShadow castShadow geometry={nodes.Fungi.geometry} material={highlighted.includes("Fungi") ? plant_material : materials.Bacteria} position={[-0.72, 2.19, -31.07  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Fungi" 
+        ref = {ref => divRefs.current["Fungi"] = ref}
+        receiveShadow castShadow geometry={nodes.Fungi.geometry} material={highlighted.includes("Fungi") ? plant_material : materials.Fungi} position={[-0.72, 2.19, -31.07  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_4@3x001" geometry={nodes['Artboard_4_copy_4@3x001'].geometry} material={materials.Icons} position={[0.03, 1.16, -0.02]} rotation={[0, Math.PI / 2, 0]} scale={1.26} />
-          <Html position = {[1.2, 1, 1]} className={hiddenClass}><h1>Fungi</h1></Html>
-          {props.hovered == "Fungi" && 
-          <Html center = {true} position = {[-1.8, 0, 0]} className="box_value"><h1>12 Gt C</h1></Html>
+
+          {props.counter == 10 && 
+            <Html position = {[-1.5, 1,-0.5]} className={highlighted.includes("Fungi") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Fungi</h1></Html>
+          }
+
+          {props.counter != 10 && 
+            <Html position = {[1.2, 1, 1]} className={highlighted.includes("Fungi") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Fungi</h1></Html>
+
+          }
+          {props.hovered[0] == "Fungi" && 
+            <Html center = {true} position = {[-1.8, 0, 0]} className="box_value"><h1>12 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Protists" receiveShadow castShadow geometry={nodes.Protists.geometry} material={highlighted.includes("Protists") ? plant_material : materials.Bacteria} position={[7.86, 1.83, -29.2  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Protists" 
+        ref = {ref => divRefs.current["Protists"] = ref}
+        receiveShadow castShadow geometry={nodes.Protists.geometry} material={highlighted.includes("Protists") ? plant_material : materials.Bacteria} position={[7.86, 1.83, -29.2  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]}  onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy_3@3x" geometry={nodes['Artboard_4_copy_3@3x'].geometry} material={materials.Icons} position={[-0.06, 0.81, 0.02]} rotation={[0, Math.PI / 2, 0]} scale={1.17} />
-          {props.counter >= 10 &&
+          {props.counter > 10 &&
 
-          <Html position = {[0, 0, -1.1]} className={hiddenClass}><h1>Protists</h1></Html>
+          <Html position = {[0, 0, -1.1]} className={highlighted.includes("Protists") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Protists</h1></Html>
 
           }
             {props.counter == 10 &&
 
-            <Html position = {[-1.2, 1, .2]} className={hiddenClass}><h1>Protists</h1></Html>
+            <Html position = {[-1.2, 1, -.5]} className={highlighted.includes("Protists") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Protists</h1></Html>
 
             }
           {
             props.counter < 10 &&
-            <Html position = {[+.75, 1, .8]} className={hiddenClass}><h1>Protists</h1></Html>
+            <Html position = {[+.75, 1, .8]} className={highlighted.includes("Protists") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Protists</h1></Html>
             
           }
-          {props.hovered == "Protists" && 
+          {props.hovered[0] == "Protists" && 
           <Html center = {true} position = {[-1.5, 0,0]} className="box_value"><h1>4 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="Plants" receiveShadow castShadow geometry={nodes.Plants.geometry} material={highlighted.includes("Plants") ? plant_material : materials.Bacteria} position={[-4.04, 4.81, -36.51  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} scale={3.36} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <mesh name="Plants" 
+        ref = {ref => divRefs.current["Plants"] = ref}
+        receiveShadow castShadow geometry={nodes.Plants.geometry} material={highlighted.includes("Plants") ? plant_material : materials.Plants} position={[-4.04, 4.81, -36.51  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} scale={3.36} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Artboard_4_copy@3x" geometry={nodes['Artboard_4_copy@3x'].geometry} material={materials.Icons} position={[-0.04, 1.18, 0]} rotation={[0, Math.PI / 2, 0]} scale={0.54} />
-          {props.counter >= 9 &&
-
-            <Html position = {[-1.3, 1, 1]}className={hiddenClass}><h1>Plants</h1></Html>
-
+          {props.counter >= 9 && props.counter < 27  &&
+            <Html position = {[-1.3, 1, 1]}className={highlighted.includes("Plants") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Plants</h1></Html>
           }
-          
+          {props.counter > 27 &&
+            <Html position = {[+1.2, +1, +1.2]}className={highlighted.includes("Plants") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Plants</h1></Html>
+          }
           {props.counter < 9 &&
-            <Html position = {[+1.2, +1, +1.2]}className={hiddenClass}><h1>Plants</h1></Html>
+            <Html position = {[+1.2, +1, +1.2]}className={highlighted.includes("Plants") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Plants</h1></Html>
           }
-          {props.hovered == "Plants" && 
-          <Html center = {true} position = {[-1.5, 0, 0]} className="box_value"><h1>450 Gt C</h1></Html>
+
+          {props.hovered[0] == "Plants" && props.counter <= 20 && 
+            <Html center = {true} position = {[-1.5, 0, 0]} className="box_value"><h1>450 Gt C</h1></Html>
           }
           
+          {props.hovered[0] == "Plants"  && props.counter >= 20 && 
+            <Html center = {true} position = {[-1.5, 0, 0]} className="box_value">
+              <h1>
+                {data["Plants"].wet_value} Gt
+              </h1>
+            </Html>
+          }
+
+
         </mesh>
 
-        <mesh  name="Animals" receiveShadow v castShadow geometry={nodes.Animals.geometry} material={highlighted.includes("Animals") ? plant_material : materials.Bacteria} position={[0.73, 1.75, -29.04  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} scale={0.63} onPointerOver = {handleHover} onPointerOut = {handleUnhover} frustumCulled = {false}>
-          <mesh name="Cube" geometry={nodes.Cube.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.14, -1.13, 0.02]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} scale={[1.1, 0.02, 0.57]} />
-          <mesh name="Cube001" geometry={nodes.Cube001.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.14, 1.13, 0.02]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[1.1, 0.02, 0.56]} />
-          <mesh name="Cube002" geometry={nodes.Cube002.geometry} material={highlighted.includes("Animals") ? plant_material : materials['Material.001']} position={[-1.17, 0, 1.1]} rotation={[Math.PI, 0, 1.57]} scale={[1.1, 0.02, 0.49]} />
-          <mesh name="Cube003" geometry={nodes.Cube003.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.17, 0, -1.1]} rotation={[0, 0, -1.57]} scale={[1.1, 0.02, 0.49]} />
+        <mesh  name="Animals" 
+        ref = {ref => divRefs.current["Animals"] = ref}
+        receiveShadow v castShadow geometry={nodes.Animals.geometry} material={highlighted.includes("Animals") ? plant_material : materials.Animals} position={[0.73, 1.75, -29.04  + 30]} rotation={[Math.PI / 2, -Math.PI / 2, 0]} scale={0.63} onPointerOver = {handleHover} onPointerOut = {handleUnhover} frustumCulled = {false} onClick={animal_click}>
 
+          <mesh name="Cube" geometry={nodes.Cube.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.08, -1.01, 0.02]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} scale={[1.03, 0.02, 0.57]} />
+          <mesh name="Cube001" geometry={nodes.Cube001.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.06, 1.08, 0.02]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[1.05, 0.02, 0.56]} />
+          <mesh name="Cube002" geometry={nodes.Cube002.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.1, 0, 1.04]} rotation={[Math.PI, 0, 1.57]} scale={[1.04, 0.02, 0.49]} />
+          <mesh name="Cube003" geometry={nodes.Cube003.geometry} material={highlighted.includes("Animals") ? plant_material :  materials['Material.001']} position={[-1.12, 0, -1.01]} rotation={[0, 0, -1.57]} scale={[1, 0.02, 0.49]} />
 
           {props.counter > 10 && 
-              <Html position = {[1.2, 1, -1.2]} className={hiddenClass}><h1>Animals</h1></Html>
+              <Html position = {[1.2, 1, -1.2]} className={highlighted.includes("Animals") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Animals</h1></Html>
 
           }
           {props.counter < 10 && 
-          <Html position = {[1.2, 1, 1.2]} className={hiddenClass}><h1>Animals</h1></Html>
+          <Html position = {[1.2, 1, 1.2]} className={highlighted.includes("Animals") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Animals</h1></Html>
 
           }
           {props.counter == 10 &&
-          <Html position = {[-1.9, 1, 1.2]} className={hiddenClass}><h1>Animals</h1></Html>
+          <Html position = {[-1.9, 1, 1.2]} className={highlighted.includes("Animals") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Animals</h1></Html>
           }
 
-          {props.counter != null  &&
-            <Html position = {[-1.9, 1, 1.2]} className={hiddenClass}><h1>Click me to open</h1></Html>
+          {props.counter == 11  &&
+            <Html position = {[-2.4, 1, 1.2]} className={"openBoxButton"} onClick={() => {props.setCounter(props.counter + 1); }}>Click to open</Html>
           }
-          {props.hovered == "Animals" && props.counter < 9 && 
-          <Html center = {true} position = {[-2, 0, 0]} className="box_value"><h1>2.6 Gt C</h1></Html>
+          {/* center = {true}  center = {true} */}
+          {props.hovered[0] == "Animals" && props.counter < 10 && 
+          <Html position = {[-1.4, 0, 0]} className="box_value"
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -50%)'
+          }}><h1>2.6 Gt C</h1></Html>
           }
-          {props.hovered == "Animals" && props.counter >= 9 && 
-          <Html center = {true} position = {[0, 0, 2]} className="box_value"><h1>2.6 Gt C</h1></Html>
+          {props.hovered[0] == "Animals" && props.counter >= 10 && 
+          <Html position = {[0, 0, 2]} className="box_value"><h1>2.6 Gt C</h1></Html>
           }
           <mesh name="Artboard_4_copy_4@3x002" geometry={nodes['Artboard_4_copy_4@3x002'].geometry} material={materials.Icons} position={[-0.03, 1.19, -0.03]} rotation={[0, Math.PI / 2, 0]} scale={[1.78, 0.73, 0.44]} />
 
         </mesh>
 
-        <mesh name="Virus" geometry={nodes.Virus.geometry} material={highlighted.includes("Viruses") ? plant_material : materials.Bacteria} position={[9.45, 1.43, 2.44]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}> 
+        <mesh name="Virus" 
+        ref = {ref => divRefs.current["Virus"] = ref}
+        geometry={nodes.Virus.geometry} material={highlighted.includes("Viruses") ? plant_material : materials.Material} position={[9.45, 1.43, 2.44]} rotation={[Math.PI / 2, 0, 0]} onPointerOver = {handleHover} onPointerOut = {handleUnhover}> 
           <mesh name="Plane003" geometry={nodes.Plane003.geometry} material={materials.Icons} position={[-0.01, 0.31, 0]} scale={0.22} />
-          <Html position = {[-.3, 0.31, 0.3]}className={hiddenClass}><h1>Viruses</h1></Html>
-          {props.hovered == "Virus" && 
+          <Html position = {[-.3, 0.31, 0.3]}className={highlighted.includes("Virus") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Viruses</h1></Html>
+          {props.hovered[0] == "Virus" && 
           <Html center = {true} position = {[0, 0, -.7]} className="box_value"><h1>0.1 Gt C</h1></Html>
           }
         </mesh>
 
-        <mesh name="LUNA" geometry={nodes.LUNA.geometry} material={materials['Material.004']} position={[1.83, -7.41, 1.37]} scale={0.51}>
+        <mesh name="LUCA" geometry={nodes.LUCA.geometry} 
+        ref = {ref => divRefs.current["LUCA"] = ref}
+        material={materials['Material.004']} position={[1.83, -7.41, 1.37]} scale={0.51} onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
           <mesh name="Plane002" geometry={nodes.Plane002.geometry} material={materials.Icons} position={[-0.02, -0.02, 1.06]} rotation={[Math.PI / 2, 0, 0]} scale={0.72} />
           <Html position = {[-1, -1, 0.9]}className="box_name"><h1>LUCA</h1></Html>
 
         </mesh>
 
-        {props.counter < 2 &&
-          <mesh name="Globe" ref = {globeRef} geometry={nodes.Globe.geometry} material={materials.Globe} position={[0.68, 13.43, 0]} rotation={[2.05, 0, 0]} scale={9.47} />
+        {props.counter < 2 && (
+        <group>
+
+        <group ref = {globeRef} >
+
+          <mesh name="Globe" geometry={nodes.Globe.geometry} material={materials.Globe} position={[0, 13.43, 0]} rotation={[1.96, -0.05, 0.02]} scale={9.47} 
+          onPointerOver={globeHover}  onPointerOut = {globeUnhover} onClick={()=>{props.setCounter(props.counter+1)}}>
+          </mesh>
+
+        </group>
+        <Html position={[5, 14, 0]} className={"openBoxButton"} onClick={() => {console.log("ABC")}}>
+                  Click me
+            </Html>
+        </group>
+        )
+
         }
         <mesh name="Plane001" geometry={nodes.Plane001.geometry} material={materials.Tree} position={[1.25, -4.05, 1.44]} rotation={[Math.PI / 2, 0, 0]} scale={[6.68, 3.04, 3.05]} />
         <mesh name="Plane"  geometry={nodes.Plane.geometry} material={materials.Rollout} position={[1.84, 17.04, -20.72]} rotation={[Math.PI / 2, 0, 0]} scale={0.72} />
 
+        <mesh name="Cube005" geometry={nodes.Cube005.geometry} material={nodes.Cube005.material} position={[67.83, 21.55, -4.09]} />
+
+
+        <mesh name="Plane005" geometry={nodes.Plane005.geometry} material={nodes.Plane005.material} position={[0.13, 1.02, 0.36]} scale={150.53} />
+
+
+
+        <mesh name="Concrete" 
+            ref = {ref => divRefs.current["Concrete"] = ref}
+          geometry={nodes.Concrete.geometry} 
+          material={highlighted.includes("Concrete") ? plant_material : materials.Concrete}
+          position={[-3.18, 4.89, 62.75]} rotation={[0, -Math.PI / 2, 0]} scale={8.19}
+          onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+          <mesh name="Plane011" geometry={nodes.Plane011.geometry} material={materials['Material.008']} position={[0, -0.01, 0.5]} rotation={[Math.PI / 2, 0, 0]} scale={0.66} />
+
+          <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Concrete</h1></Html>
+
+
+        {(props.hovered[0] == "Concrete"|| quantities.includes("Concrete")) && 
+          <Html position = {[0, 0.6, 0]} className="box_value "
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Concrete"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+        </mesh>
+
+
+        <mesh name="Bricks"
+            ref = {ref => divRefs.current["Bricks"] = ref}
+
+         geometry={nodes.Bricks.geometry} 
+         material={highlighted.includes("Bricks") ? plant_material : materials.Bricks}
+
+         position={[11.64, 3.1, 39.4]} rotation={[0, -Math.PI / 2, 0]} scale={4.51}
+         onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+          {props.counter < 28 && (
+            <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Bricks</h1></Html>
+          )}
+          {props.counter >=28 && (
+            <Html position = {[.5, .7, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Bricks</h1></Html>
+          )}
+          {(props.hovered[0] == "Bricks"|| quantities.includes("Bricks")) && 
+          <Html position = {[0, 0.6, 0]} className="box_value "
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Bricks"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+          <mesh name="Plane008" geometry={nodes.Plane008.geometry} material={materials['Material.008']} position={[0.03, -0.01, 0.51]} rotation={[Math.PI / 2, 0, 0]} scale={1.2} />
+        </mesh>
+
+
+        <mesh name="Cars"
+            ref = {ref => divRefs.current["Cars"] = ref}
+            geometry={nodes.Cars.geometry} 
+            material={materials['Material.006']} position={[27.17, 1.58, 14.23]} 
+            rotation={[0, -Math.PI / 2, 0]} scale={1.22}
+            onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+          <mesh name="Plane007" geometry={nodes.Plane007.geometry} material={materials['Material.008']} position={[0.04, -0.02, 0.52]} rotation={[Math.PI / 2, 0, 0]} scale={1.86} />
+          <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Cars</h1></Html>
+          {(props.hovered[0] == "Cars"|| quantities.includes("Cars")) && 
+          <Html position = {[0, 0.6, 0]} className="box_value "
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Cars"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+        </mesh>
+
+
+        <mesh name="Metals" 
+            ref = {ref => divRefs.current["Metals"] = ref}
+        geometry={nodes.Metals.geometry} 
+        material={highlighted.includes("Metals") ? plant_material : materials.Metal}
+
+        position={[21.42, 2.65, 22.85]} 
+        rotation={[0, -Math.PI / 2, 0]} scale={[3.39, 3.22, 3.22]}
+        onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+          <mesh name="Artboard_4_copy_6@3x001" geometry={nodes['Artboard_4_copy_6@3x001'].geometry} material={materials['Material.008']} position={[0, 0.02, 0.51]} rotation={[Math.PI / 2, 0, Math.PI]} scale={[0.68, 0.8, 0.71]} />
+
+          {props.counter < 28 && (
+            <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial }><h1>Metals</h1></Html>
+          )}
+          {props.counter >= 28 && (
+            <Html position = {[0, 0.7, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Metals</h1></Html>
+          )}
+          {(props.hovered[0] == "Metals"|| quantities.includes("Metals")) && 
+          <Html position = {[0, 0.6, 0]} className="box_value "
+          style={{
+            transition: 'all 0.5s',
+            opacity: 1,
+            transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Metals"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+        </mesh>
+
+
+
+
+        <mesh name="Aggregates" 
+        ref = {ref => divRefs.current["Aggregates"] = ref}
+        geometry={nodes.Aggregates.geometry} 
+        material={highlighted.includes("Aggregates") ? plant_material : materials.Aggregates}
+
+        position={[4.1, 4.48, 50.63]} rotation={[0, -Math.PI / 2, 0]} scale={7.28}
+        onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+        <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Aggregates</h1></Html>
+        <mesh name="Plane009_1" geometry={nodes.Plane009_1.geometry} material={materials['Material.008']} position={[0.02, -0.02, 0.59]} rotation={[Math.PI / 2, 0, 0]} scale={1.19} />
+
+        {(props.hovered[0] == "Aggregates"|| quantities.includes("Aggregates")) && 
+            <Html position = {[0, 0.6, 0]} className="box_value "
+            style={{
+              transition: 'all 0.5s',
+              opacity: 1,
+              transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Aggregates"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+        </mesh>
+        {/*
+        {props.counter > 10 && (
+          
+        )}
+        */}
+
+        <mesh name="Asphalt" 
+            ref = {ref => divRefs.current["Asphalt"] = ref}
+            geometry={nodes.Asphalt.geometry} 
+            material={highlighted.includes("Asphalt") ? plant_material : materials.Asphalt}
+            
+            position={[16.88, 2.98, 31.73]} rotation={[0, -Math.PI / 2, 0]} scale={4.02}
+            onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+                      {props.counter < 28 && (
+          <Html position = {[.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Asphalt</h1></Html>
+
+          )}
+          {props.counter >= 28 && (
+          <Html position = {[0, .7, .5]} className={highlighted.includes("Protists") ? hiddenArtificial + " unhighlighted" :hiddenArtificial}><h1>Asphalt</h1></Html>
+          )}
+
+
+          {(props.hovered[0] == "Asphalt"|| quantities.includes("Asphalt")) && 
+            <Html position = {[0, 0.6, 0]} className="box_value "
+            style={{
+              transition: 'all 0.5s',
+              opacity: 1,
+              transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Asphalt"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+                  <mesh name="Plane010" geometry={nodes.Plane011.geometry} material={materials['Material.008']} position={[0.02, 0.02, 0.55]} rotation={[Math.PI / 2, 0, 0]} scale={1.22} />
+
+        </mesh>
+
+
+
+        <mesh name="Other" 
+        ref = {ref => divRefs.current["Other"] = ref}
+        geometry={nodes.Other.geometry} material={materials.Asphalt} position={[13.95, 2.55, 64.74]} rotation={[0, -Math.PI / 2, 0]} scale={2.84}
+        onPointerOver = {handleHover} onPointerOut = {handleUnhover}>
+          {props.counter < 28 && (
+            <Html position = {[-.5, -.5, .5]} className={highlighted.includes("Protists") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Other</h1></Html>
+
+          )}
+          {props.counter >= 28 && (
+            <Html position = {[-.5, .7, .5]} className={highlighted.includes("Protists") ? hiddenClass + " unhighlighted" :hiddenClass}><h1>Other</h1></Html>
+          )}
+
+          {(props.hovered[0] == "Other"|| quantities.includes("Other")) && 
+            <Html position = {[0, 0.5, 0]} className="box_value"
+            style={{
+              transition: 'all 0.5s',
+              opacity: 1,
+              transform: 'translate(-50%, -100%)'
+          }}
+          >
+            <h1>
+            {data["Other"].wet_value} Gt
+
+            </h1>
+          </Html>
+        }
+          <mesh name="Plane004" geometry={nodes.Plane004.geometry} material={materials['Material.008']} position={[-0.01, 0.02, 0.51]} rotation={[Math.PI / 2, 0, 0]} scale={1.13} />
+        </mesh>
+        
       </group>
     </group>
   
   )
 }
 
-useGLTF.preload('Biomass_animation_v02.glb')
+useGLTF.preload('Biomass_animation_v03.glb')
 
 export default Anim

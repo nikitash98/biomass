@@ -35,6 +35,24 @@
   #animal_text {
     color:rgb(194, 25, 16)
   }
+  #metal_text {
+    color:rgb(132, 132, 132)
+  }
+  #asphalt_text {
+    color: rgb(57, 57, 57);
+  }
+
+  #brick_text {
+    color: rgb(179, 88, 75);
+  }
+
+  #aggregate_text {
+    color:rgb(76, 93, 99)
+  }
+
+  #concrete_text { 
+    color:rgb(68, 68, 68)
+  }
   .ContentCaption {
     text-align: left;
     pointer-events: auto;
@@ -43,8 +61,11 @@
   .ContentCaption h3 {
     font-size: 15pt;
     line-height: 25pt;
+    font-family: "aktiv-grotesk", sans-serif;
   }
 
   #download_button {
-    background-color: red !important;
+    background-color: white !important;
+    border: 1px solid black;
+    color: black;
   }

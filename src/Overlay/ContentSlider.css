@@ -22,7 +22,7 @@
     height: 5px;
    /* default color of your track */
     background: var(--track-color);
-    border-radius: 10px;
+    border-radius: 0px;
   }
   
   .customSlider-track.customSlider-track-0 {
@@ -57,11 +57,13 @@
   
   .slider__labels-label {
     width: 190px;
-    text-align: left;
+    text-align: center;
     font-size: 12pt;
     font-weight: bold;
     box-sizing: border-box;
     pointer-events: auto;
+    transform: translateX(-50%);
+    
   }
   .lab {
     cursor: pointer;
