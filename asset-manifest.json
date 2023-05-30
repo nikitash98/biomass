@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/biomass/static/css/main.a555f40e.css",
-    "main.js": "/biomass/static/js/main.5b584053.js",
+    "main.js": "/biomass/static/js/main.54e01a9a.js",
     "static/js/787.cf9fa95f.chunk.js": "/biomass/static/js/787.cf9fa95f.chunk.js",
     "static/media/brand-icons.svg": "/biomass/static/media/brand-icons.6729d29753e000c17489.svg",
     "static/media/icons.svg": "/biomass/static/media/icons.62d9dae4e0040e81c980.svg",
@@ -22,11 +22,11 @@
     "static/media/logo.svg": "/biomass/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/biomass/index.html",
     "main.a555f40e.css.map": "/biomass/static/css/main.a555f40e.css.map",
-    "main.5b584053.js.map": "/biomass/static/js/main.5b584053.js.map",
+    "main.54e01a9a.js.map": "/biomass/static/js/main.54e01a9a.js.map",
     "787.cf9fa95f.chunk.js.map": "/biomass/static/js/787.cf9fa95f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a555f40e.css",
-    "static/js/main.5b584053.js"
+    "static/js/main.54e01a9a.js"
   ]
 }
