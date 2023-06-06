@@ -23,14 +23,14 @@ const Particles = (props) => {
     const t = new THREE.Vector3();
     const radius = 3.0
     const slide_start = data[0]["animationTime"]
-    const slide_length = data[1]["animationTime"] - slide_start
+    const slide_length = data[2]["animationTime"] - slide_start
     const uniforms = useMemo(
         () => ({
           uTime: {
             value: 0.0,
           },
           endPosition: {
-            value: new Vector3(0, -12, 0),
+            value: new Vector3(0, -12, 1),
           }
         }),
         []
@@ -62,25 +62,33 @@ const Particles = (props) => {
 
         newref.current.updateMorphTargets();
 
-    })
+    }, [])
 
 
-    useFrame(({ clock, delta }) => {
+    useFrame((state, delta) => {
         //influence.current = Math.sin(clock.getElapsedTime()) * 0.5 + 0.5;
         if (newref) {
             if (newref.current) {
-              
-                newref.current.morphTargetInfluences[0] = 1; //((props.curTime - slide_start)/slide_length);
-                if(props.counter == 2) {
-                  newref.current.material.uniforms.uTime.value = 0.99
-                } else {
-                  newref.current.material.uniforms.uTime.value += clock.getElapsedTime()/800//clock.getDelta() * 15//((props.curTime - slide_start)/slide_length);
-
-                }
+                /*
+                newref.current.morphTargetInfluences[0] = ((props.curTime - slide_start)/slide_length);
+                */
+                //newref.current.morphTargetInfluences[0] = ((props.curTime - slide_start)/slide_length);
                   //newref.current.material.uniforms.uTime.value = 0.0
+                /*
+                  if(props.counter == 4) {
+                    newref.current.material.uniforms.uTime.value = 0.99
+                  } else {
+                    newref.current.material.uniforms.uTime.value += clock.getDelta() * 20//clock.getDelta() * 15//((props.curTime - slide_start)/slide_length);
+
+                  }
+                  */
+                  newref.current.material.uniforms.uTime.value += delta * 0.5//clock.getDelta() * 15//((props.curTime - slide_start)/slide_length);
+  
             }
         }
-        newref.current.rotation.y += 0.01
+        //newref.current.rotation.y += 0.01 
+        newref.current.rotation.y += 0.5 * delta
+
 
     });
     return(
@@ -88,13 +96,12 @@ const Particles = (props) => {
 
 
             <points ref={newref} position={[.7, 13.45, 0]} frustumCulled = {false}>
-                <sphereBufferGeometry args={[2.7, 70, 70]} />
+                <sphereBufferGeometry args={[2.7, 64, 64]} />
                 <shaderMaterial
                     depthWrite={true}
                     fragmentShader={fragmentShader}
                     vertexShader={vertexShader}
                     uniforms={uniforms}
-
                 />
 
                 {/*

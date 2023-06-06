@@ -17,7 +17,7 @@ const Fog = (props) => {
     const fogRef = useRef()
     useEffect(() => {
 
-    })
+    }, )
     let cur_fog_near = 50
     let cur_fog_far = 60
     if(props.counter > 20) {
@@ -31,9 +31,10 @@ const Fog = (props) => {
         fogRef.current.far = THREE.MathUtils.lerp(fogRef.current.far, fog_far, 0.1)
 
     }); 
-
+    const color_value = "#FFFFFF"
+    const other_value = "#555555"
     return(
-        <fog attach="fog" color="#FFFFFF" near={cur_fog_near} far={cur_fog_far} ref =  {fogRef}/>
+        <fog attach="fog" color= {color_value} near={cur_fog_near} far={cur_fog_far} ref =  {fogRef}/>
     )
 }
 export default Fog;

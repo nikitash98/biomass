@@ -1,10 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import ThreePointViz from './3D_Components/ThreePointViz';
+import Visualization from './3D_Components/Visualization';
 import HoverInfo from './HoverInfo';
 import React from 'react';
 import Overlay from './Overlay/Overlay';
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 
 function App() {
   const [counter, setCounter] = React.useState(0)
@@ -13,7 +13,13 @@ function App() {
   const [hoveringInfo, setHoveringInfo] = React.useState(null)
   const [playing, setPlaying] = React.useState(false)
   const shouldHide = !(info_page || hoveringInfo);
-  const [hovered, setHovered] = React.useState([null, 0])
+  const [hovered, setHovered] = React.useState([null])
+  const [yearPercentage, setYearPercentage] = React.useState(0)
+  const animation_position = useRef(0)
+  function increment_animation() {
+    animation_position.current += 1
+    
+  }
 
     return (
     <div className="App">
@@ -27,16 +33,35 @@ function App() {
 
 
         <div className="vis-container">
-          <ThreePointViz counter = {counter} 
-            setInfo = {setInfo} setInfoPage= {setInfoPage} 
-            setPlaying = {setPlaying} playing = {playing} 
+
+
+        <Visualization 
+            animation_position = {animation_position}
+            setCounter = {setCounter}
             hovered = {hovered} setHovered = {setHovered}
-            setCounter = {setCounter}/>
+            setInfo = {setInfo} setInfoPage= {setInfoPage} 
+            counter = {counter}
+            /*
+            setPlaying = {setPlaying} playing = {playing} 
+            */
+
+            setYearPercentage = {setYearPercentage} yearPercentage = {yearPercentage}
+            />
+          {/*
+          
+          
+          
+          */}
         </div>
+
+
         <Overlay setPlaying = {setPlaying} setCounter = {setCounter} 
+        increment_animation = {increment_animation}
         counter = {counter} info = {info_page} setInfoPage = {setInfoPage} 
         setHoveringInfo = {setHoveringInfo}
-        hovered = {hovered} setHovered = {setHovered}></Overlay>
+        hovered = {hovered} setHovered = {setHovered}
+        yearPercentage = {yearPercentage}
+        ></Overlay>
       
       </div>
 

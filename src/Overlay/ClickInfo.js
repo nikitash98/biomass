@@ -8,11 +8,9 @@ function ClickInfo(props) {
     const name = useRef("")
     const position = useRef(new Vector3(0, 0, 0))
     let trans =  "translate(-120%, 0)"
-    if(props.hovered[0]) {
-        name.current = props.hovered[0]
-        if(props.hovered[1] < window.innerWidth/2) {
-            trans = ""
-        }
+    if(props.hovered) {
+        name.current = props.hovered
+
     }
 
     //
@@ -21,7 +19,7 @@ function ClickInfo(props) {
         return (
             <div className = "ClickInfo" 
                 onMouseEnter={e=> {props.setHoveringInfo(true)}} onMouseLeave = {e=> {props.setHoveringInfo(false)} }
-                style={{left: props.hovered[1], transform: trans}}>
+                >
                     <div className = "header">
 
                         <img src={myData[name.current].image}></img>
@@ -53,7 +51,7 @@ function ClickInfo(props) {
                                 */}
 
                                 <div className='info_value'>
-                                    <h3>{myData[name.current].value} Gt</h3>
+                                    <h3>{myData[name.current].weight} Gt</h3>
                                 </div>
 
                             </Grid.Column>

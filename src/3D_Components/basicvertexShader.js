@@ -126,11 +126,12 @@ void main()	{
 
   // Add some randomness to the particle's movement
   //newPosition += normalize(transformed) * (sin(uTime) * 0.2);
-
+  //mod(uTime, 1.0)); 
   vec3 newPosition = mix(position, endPosition, mod(uTime * (random(uv)*2.0),1.0));
   //vec3 newPosition = mix(position, endPosition, mod(uTime,1.0));
 
-  newPosition += cnoise(newPosition * 2.0 ) * 0.6;
+  //newPosition += cnoise(newPosition * 2.0 ) * 0.6;
+  //newPosition += sin(mod(uTime * (random(uv)*2.0),1.0) * 4.0) ;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
   gl_PointSize = 6.0;
 

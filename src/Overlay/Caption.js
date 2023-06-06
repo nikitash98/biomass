@@ -4,7 +4,7 @@ import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
     return(
-        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id, 0])}} onPointerOut={()=>{props.setHovered([null,0])}}>{props.children}</span>
+        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered(props.hover_id)}} onPointerOut={()=>{props.setHovered([])}}>{props.children}</span>
     )
 }
 
@@ -14,33 +14,40 @@ function getText(sel, setHovered){
         case 0:
             return <div>
                 <h3>
-                Click the globe to place the animals into a box. 
 
                 </h3>
                 <h3 className ="start_caption">
                 </h3>
             </div>
-            case 1:
-                return <div>
-                    <h3>
-                        There are 5 million animals in the world. They are now flowing into this container.
-    
-    
-                    </h3>
-                </div>
+        case 1:
+            return <div>
+                <h3>
+                    Let's put all animals into a box.
+                </h3>
+            </div>
+
         case 2:
             return <div>
                 <h3>
-                    These cubes represent the biomass of the six biological kingdoms. They show the "dry" weight of each division.
-The units are in gigatons of carbon – abbreviated Gt C.
-
+                    There are billions upon billions of animals in the world. <br/>
+                    <Divider/>
+                    {/*
+                    <div className="instruction">
+                        Click the container to close the box.
+                    </div>
+                    */}
 
                 </h3>
             </div>
+
         case 3:
             return <div>
                 <h3>
-                    Most of the biomass is found in macro-organisms, which are organisms that can be seen by eye.
+                    These cubes represent the biomass of the six biological kingdoms. They show the <span className="extra_info"> "dry" weight </span>  of each division.
+                    <div className="hidden_info">
+                        <Divider/>
+                        Dry weight will provide a precise measurement of biomass eliminating fluctuations caused by water content.
+                    </div>
                 </h3>
             </div>
         case 4:
@@ -83,14 +90,17 @@ The units are in gigatons of carbon – abbreviated Gt C.
         case 10:
             return <div>
                 <h3>
-                
-                The <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA)</HoverSpan> is the most recent population from which all organisms now living on Earth share common descent.
+                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA)</HoverSpan>, about 4 billions years ago.
                 </h3> 
             </div>
         case 11:
             return <div>
                 <h3>
                 <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered}>Animals</HoverSpan> are a diverse Kingdom.
+                <Divider/>
+                <div className="instruction">
+                        Click the Animals container to explore.
+                    </div>
                 </h3> 
             </div>
         case 12:
@@ -98,11 +108,12 @@ The units are in gigatons of carbon – abbreviated Gt C.
                 <h3>
                 Animals are spread out across different environments on the earth.
                 <br/>
-                
+                {/* 
                 <div>
                     <Divider/>
                     <a id = "download_button" href = "Posters/Biomass_Poster.png" target="_blank" download>Click to download a poster</a>
                 </div>
+                */}
                 </h3> 
             </div>
         case 13:
@@ -118,94 +129,107 @@ The units are in gigatons of carbon – abbreviated Gt C.
                 We then find an abundance of life forms  underground (<HoverSpan id = "fish_text" hover_id = "Nematodes" setHovered = {setHovered}>nematodes</HoverSpan>, <HoverSpan id = "fish_text" hover_id = "Annelids" setHovered = {setHovered}>annelids </HoverSpan> and <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered}>arthropods</HoverSpan>).
                 </h3>
             </div>
-        case 15:
+        case 16:
             return <div>
                 <h3>
                 <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered}>Arthropods</HoverSpan> contribute more than three times the amount of biomass  <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>humans</HoverSpan>.
                 </h3>
             </div>
-        case 16:
+        case 15:
             return <div>
                 <h3>
                 <HoverSpan id = "fish_text" hover_id = "Wild Mammals" setHovered = {setHovered}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild Birds" setHovered = {setHovered}>birds</HoverSpan>
                 comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
                 </h3>
             </div>
-        case 17:
+        case 16:
             return <div>
                 <h3>
                 Today, <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>humans</HoverSpan> weigh about 10 times more than all <HoverSpan id = "fish_text" hover_id = "Wild Mammals" setHovered = {setHovered}>wild mammals</HoverSpan>. 
                 </h3>
             </div>
-        case 18:
+        case 19:
             return <div>
                 <h3>
                 To generate enough proteins, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
                 </h3>
             </div>
-        case 19:
-            return <div>
-                <h3>
-                    Humans have significantly affected their environment. Let's consider their effect on global mass.
-                </h3>
-            </div>
         case 20:
             return <div>
-                <h3>
-                    In order to better compare we will convert from "dry mass" to total mass. Humans are about 50% water, so the total mass is heavier.
-                </h3>
             </div>
         case 21:
             return <div>
                 <h3>
-                <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>Cars</HoverSpan> are one of humankind's most successful and global inventions. It is estimated that there are almost 1.5 billion cars in the world.
                 </h3>
             </div>
         case 22:
             return <div>
                 <h3>
-                    In creating structures, and cars, humans have created gigatons of artificial materials.
+                <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>Cars</HoverSpan> are one of humankind's most successful and global inventions. It is estimated that there are almost 1.5 billion cars in the world.
                 </h3>
             </div>
         case 23:
             return <div>
                 <h3>
-                    Much of human production, including that of cars, uses <HoverSpan id = "metal_text" hover_id = "Metals" setHovered = {setHovered}>Metals</HoverSpan>.
+                    In creating structures, and cars, humans have created gigatons of artificial materials. 
                 </h3>
             </div>
         case 24:
             return <div>
                 <h3>
+                    In the past 50 years, the rate of technomass production has accelerated to an exponential pace.
+                </h3>
+            </div>    
+        case 25:
+            return <div>
+                <h3>
+                    <HoverSpan id = "plastic_text" hover_id = "Plastics" setHovered = {setHovered}>Plastics</HoverSpan> were developed in the early 1900's and have become a staple material in human production. 
+                </h3>
+            </div>                       
+        case 26:
+            return <div>
+                <h3>
+                    Much of human production, including that of cars, uses <HoverSpan id = "metal_text" hover_id = "Metals" setHovered = {setHovered}>Metals</HoverSpan>.
+                </h3>
+            </div>
+        case 27:
+            return <div>
+                <h3>
                 <HoverSpan id = "asphalt_text" hover_id = "Asphalt" setHovered = {setHovered}>Asphalt</HoverSpan> is the next heaviest artifical material. It is a petroleum based material used to develop roads.
                 </h3>
             </div>
-        case 25:
+        case 28:
             return <div>
                 <h3>
                 <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered}>Bricks</HoverSpan> have been used for thousands of years. They now outweigh the human mass by 700%.
                 </h3>
             </div>
-        case 26:
+        case 29:
             return <div>
                 <h3>
                 <HoverSpan id = "aggregate_text" hover_id = "Aggregates" setHovered = {setHovered}>Aggregates</HoverSpan> are materials used in construction.
 
                 </h3>
             </div>
-        case 27:
+        case 30:
             return <div>
                 <h3>
                 <HoverSpan id = "concrete_text" hover_id = "Concrete" setHovered = {setHovered}>Concrete</HoverSpan> is the second most used substance in the world after water.
 
                 </h3>
             </div>
-        case 28:
+        case 31:
             return <div>
                 <h3>
-                    In 2020, for the first time, the mass of material manufactured by humans outweighs the total natural wet biomass.
+                    The mass of man-made structures now outweighs the dry-mass of the entire living world.
                 </h3>
+                <Divider/>
+
+                <div>
+                    <a id = "download_button" href = "Posters/Biomass_Poster.png" target="_blank" download>Click to download a poster</a>
+                </div>
             </div>
-        case 29:
+        case 32:
             return <div>
                 <h3>
                 The car is one of humankind's most successful and global inventions. It is estimated that there are almost 1.5 billion cars in the world.

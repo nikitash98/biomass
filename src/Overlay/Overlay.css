@@ -15,6 +15,11 @@
     float: right;
   }
 
+  .title {
+    padding: 20px;
+  }
+
+  
   .title > h1 {
     font-family: "larken", sans-serif;
     font-weight: 500;
@@ -26,9 +31,9 @@
   .title > h2 {
     text-align: justify;
     margin: 0px;
-    font-size: 1vw;
-
-    color: grey;
+    font-size: 2vw;
+    
+    color: black;
   }
   .copyrights {
     width: 100%;
@@ -46,6 +51,8 @@
     width: 7%;
     height: 100%;
     pointer-events: auto; 
+    border: 0px;
+    cursor: pointer;
 
   }
   
@@ -115,6 +122,8 @@
 
     width: 60vw;
     font-weight: bold;
+    font-family: "larken", sans-serif;
+
   }
 
   .start_button {
@@ -139,3 +148,47 @@
   .start_btn:hover {
     background-color: rgb(138, 197, 217);
   }
+
+  .yearCounter h1{
+    text-align: left;
+    font-size: 70pt;
+    color: grey;
+    font-weight: 800;
+
+  }
+
+  .years { 
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+  }
+
+  .chapter_title {
+    font-family: "larken", sans-serif;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    line-height: 5vw;
+    width: 50%;
+    opacity:1;
+     transition: width 0.3s, height 0.3s, opacity 0.3s 0.3s;
+  }
+
+
+
+.fadeOut{
+     opacity:0;
+     width:0;
+     transition: width 0.3s 0.3s, height 0.3s 0.3s, opacity 0.3s;
+
+}
+.fadeIn{
+     opacity:1;
+     width:100px;
+     height:100px;
+     transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
+}

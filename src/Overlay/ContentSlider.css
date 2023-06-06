@@ -65,6 +65,11 @@
     transform: translateX(-50%);
     
   }
+
+  .custom_slider_container {
+    padding: 0px;
+    padding-right: 60px;
+  }
   .lab {
     cursor: pointer;
 

@@ -144,11 +144,11 @@
   transform: translate(-50%, -50%);
 
   width: 100px;
-  background-color: rgb(76, 162, 201);
+  background-color: rgb(0, 0, 0);
 
   color: #fff;
   padding: 10px;
-  
+  opacity: 1;
   position: relative;
   float: left;
   z-index: 12;
@@ -157,6 +157,14 @@
   text-align: center;
   border-radius: 10px;
 }
+
+
+
+.hide_box {
+  opacity: 0;
+
+}
+
 
 .wet_value {
   background-color: black;
@@ -183,7 +191,7 @@
   position: absolute;
   right: 35px;
   bottom: -14px;
-  border-top: 15px solid rgb(76, 162, 201);
+  border-top: 15px solid rgb(0, 0, 0);
   border-right: 15px solid transparent;
   border-left: 15px solid transparent;
   border-bottom: none;
@@ -220,4 +228,10 @@
   border: 20px solid transparent;
   border-right-color: rgb(206, 206, 206);
   top: 12px;
+}
+
+.click_info_box {
+  width: 300px;
+  font-size: 20pt;
+  transform: translate(-50%, 0%);
 }

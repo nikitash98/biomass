@@ -19,7 +19,7 @@ const ContentSlider = (props) => {
     }
     var keys = Object.keys(slides);
     let less_keys = keys.slice(0,-1)
-    let show = [0, 2, 6, 10, 12, 17]
+    let show = [0, 10, 12, 20]
 
     let diffs = []
     let mul = 1
@@ -61,51 +61,53 @@ const ContentSlider = (props) => {
     
     return (
         <div>
-            <div className="">
-                <div className="slider__container">
-                    <div className="slider__labels">
-                    {show.map((l, i) => {
-                        if(curSliderHover == mul * i) {
-                            return (
-                                <div className="slider__labels-label lab" key={i} onClick={() => {handleSliderClick(i * mul)}}>
-                                    {slides[show[i]]["title"]}
-                                </div>
-                                );           
-                        } else {
-                            return (
-                                <div key = {i} className="slider__labels-label lab">
-                                    
-                                </div>
-                                );         
-                        }
 
-                       
-                    })}
-                    </div>
+
+<div className="custom_slider_container">
+
+            <div className="slider__container">
+                <div className="slider__labels">
+                {show.map((l, i) => {
+                    if(curSliderHover == mul * i) {
+                        return (
+                            <div className="slider__labels-label lab" key={i} onClick={() => {handleSliderClick(i * mul)}}>
+                                {slides[show[i]]["title"]}
+                            </div>
+                            );           
+                    } else {
+                        return (
+                            <div key = {i} className="slider__labels-label lab">
+                            </div>
+                            );         
+                    }
+                })}
                 </div>
             </div>
 
 
-<ReactSlider
-      min={0}
-      max={show.length * mul}
-      step={1}
-      className="customSlider"
-      trackClassName="customSlider-track"
-      thumbClassName="customSlider-thumb"
-      marks = {mul}
-      value={convertCounter(props.counter, show, mul)}
-      onAfterChange={handleSliderClick}
-      renderMark={(props) => {
-        if(Math.floor(props.key/mul > Math.floor(convertCounter(val, show, mul)/mul))) {
-            props.className = "customSlider-mark selected_mark"
 
-        }
-        return <span {...props}  onMouseEnter={()=>{setSliderHover(props.key)}} onMouseLeave={()=> {setSliderHover(null)}}/>;
-     }}
+                <ReactSlider
+                    min={0}
+                    max={show.length * mul}
+                    step={1}
+                    className="customSlider"
+                    trackClassName="customSlider-track"
+                    thumbClassName="customSlider-thumb"
+                    marks = {mul}
+                    value={convertCounter(props.counter, show, mul)}
+                    onAfterChange={handleSliderClick}
+                    renderMark={(props) => {
+                        if(Math.floor(props.key/mul > Math.floor(convertCounter(val, show, mul)/mul))) {
+                            props.className = "customSlider-mark selected_mark"
 
-    markClassName="customSlider-mark"
-    />
+                        }
+                        return <span {...props}  onMouseEnter={()=>{setSliderHover(props.key)}} onMouseLeave={()=> {setSliderHover(null)}}/>;
+                    }}
+
+                    markClassName="customSlider-mark"
+                    />
+            </div>
+
     </div>
 
 

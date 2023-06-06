@@ -8,10 +8,6 @@ import 'semantic-ui-css/semantic.min.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <head>
-      <link rel="stylesheet" href="https://use.typekit.net/sko6zbk.css"/>
-
-    </head>
     <App />
   </React.StrictMode>
 );

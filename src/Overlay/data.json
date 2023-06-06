@@ -5,118 +5,148 @@
         "src": "Plants are predominantly photosynthetic eukaryotes, forming the kingdom Plantae. Most of them are multicellular. Historically, the plant kingdom encompassed all living things that were not animals, and included algae and fungi. All current definitions exclude the fungi and some of the algae. ",
         "link": "https://en.wikipedia.org/wiki/Plant",
         "value": 450,
-        "wet_value": 900
+        "weight": 900
       },
     "Archaea": {
       "image": "images/Archaea.jpg",
       "src": "Archaea is a domain of single-celled organisms. These microorganisms lack cell nuclei and are therefore prokaryotes. Archaea were initially classified as bacteria, receiving the name archaebacteria (in the Archaebacteria kingdom), but this term has fallen out of use.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 7
+      "value": 7,
+      "weight": 14
+
     },
     "Animals": {
       "image": "images/Animals.jpg",
       "src": "Animals are multicellular, eukaryotic organisms in the biological kingdom Animalia. With few exceptions, animals consume organic material, breathe oxygen, are able to move, can reproduce sexually, and grow from a hollow sphere of cells, the blastula, during embryonic development.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 2.6
+      "value": 2.6,
+      "weight": 5.2
+
     },
     "Protists": {
       "image": "images/Protists.jpg",
       "src": "A protist is any eukaryotic organism (that is, an organism whose cells contain a cell nucleus) that is not an animal, plant, or fungus.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 4
+      "value": 4,
+      "weight": 8
+
     },
     "Fungi": {
       "image": "images/Fungi.jpg",
       "src": "A fungus is any member of the group of eukaryotic organisms that includes microorganisms such as yeasts and molds, as well as the more familiar mushrooms.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 12
+      "value": 12,
+      "weight": 24
+
     },
     "Bacteria": {
       "image": "images/Bacteria.jpg",
       "src": "Bacteria are ubiquitous, mostly free-living organisms often consisting of one biological cell. They constitute a large domain of prokaryotic microorganisms. Typically a few micrometres in length, bacteria were among the first life forms to appear on Earth, and are present in most of its habitats.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 70
+      "value": 70,
+      "weight": 140
+
     },
     "Nematodes": {
       "image": "images/Nematodes.jpg",
       "src": "The nematodes or roundworms constitute the phylum Nematoda with plant-parasitic nematodes also known as eelworms. They are a diverse animal phylum inhabiting a broad range of environments.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.02
+      "value": 0.02,
+      "weight": 0.04
+
     },
     "Wild Birds": {
       "image": "images/Birds.jpg",
       "src": "Birds are a group of warm-blooded vertebrates constituting the class Aves, characterised by feathers, toothless beaked jaws, the laying of hard-shelled eggs, a high metabolic rate, a four-chambered heart, and a strong yet lightweight skeleton.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.002
+      "value": 0.002,
+      "weight": 0.004
+
     },
     "Wild Mammals": {
       "image": "images/Wild-Mammals.jpg",
       "src": "A mammal is a vertebrate animal of the class Mammalia. Mammals are characterized by the presence of milk-producing mammary glands for feeding their young, a neocortex region of the brain, fur or hair, and three middle ear bones.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.007
+      "value": 0.007,
+      "weight": 0.014
+
     },
     "Mollusks": {
       "image": "images/Mollusk.jpg",
       "src": "Mollusca is the second-largest phylum of invertebrate animals after the Arthropoda, the members of which are known as molluscs or mollusks. Around 85,000 extant species of molluscs are recognized.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.2
+      "value": 0.2,
+      "weight": 0.4
+
     },
       "Marine Arthropods": {
       "image": "images/Arthropods.jpg",
       "src": "Arthropods are invertebrate animals with an exoskeleton, a segmented body, and paired jointed appendages. Arthropods form the phylum Arthropoda.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.9
+      "value": 0.9,
+      "weight": 1.8
+
     },
     "Livestock": {
       "image": "images/Livestock.jpg",
       "src": "Livestock are the domesticated animals raised in an agricultural setting to provide labor and produce diversified products for consumption such as meat, eggs, milk, fur, leather, and wool. ",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.1
+      "value": 0.1,
+      "weight": 0.2
+
     },
     "Humans": {
       "image": "images/Humans.jpg",
       "src": "Humans are the most common and widespread species of primate in the great ape family Hominidae, and also the most common species of primate overall. Humans are broadly characterized by their bipedalism and high intelligence.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
       "value": 0.06,
-      "wet_value": 0.12
+      "wet_value": 0.12,
+      "weight": 0.12
     },
     "Fish": {
       "image": "images/Fish.jpg",
       "src": "Fish are aquatic, craniate, gill-bearing animals that lack limbs with digits. Included in this definition are the living hagfish, lampreys, and cartilaginous and bony fish as well as various extinct related groups.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.7
+      "value": 0.7,
+      "weight": 1.4
     },
 
     "Arthropods": {
       "image": "images/Arthropods.jpg",
       "src": "Arthropods are invertebrate animals with an exoskeleton, a segmented body, and paired jointed appendages. Arthropods form the phylum Arthropoda.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.2
+      "value": 0.2,
+      "weight": 0.4
+
     },
     "Annelids": {
       "image": "images/Annelids.jpg",
       "src": "The annelids, also known as the segmented worms, are a large phylum, with over 22,000 extant species including ragworms, earthworms, and leeches. ",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.2
+      "value": 0.2,
+      "weight": 0.4
     },
       "Cnidarians": {
       "image": "images/Cnidaria.jpg",
       "src": "Cnidaria is a phylum under kingdom Animalia containing over 11,000 species of aquatic animals found both in freshwater and marine environments, predominantly the latter.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
-      "value": 0.1
+      "value": 0.1,
+      "weight": 0.2
     },
     "Virus": {
     "image": "images/Virus.jpg",
     "src": "A virus is a submicroscopic infectious agent that replicates only inside the living cells of an organism. Viruses infect all life forms, from animals and plants to microorganisms, including bacteria and archaea.",
     "link": "https://en.wikipedia.org/wiki/Archaea",
-    "value": 0.1
+    "value": 0.1,
+    "weight": 0.2
   },
    
   "LUCA": {
     "image": "images/LUCA.png",
     "src": "The last universal common ancestor (LUCA) or universal most recent common ancestor (UMRCA) is the most recent population from which all organisms now living on Earth share common descent—the most recent common ancestor of all current life on Earth.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
-    "value": "?"
+    "value": "?",
+    "weight": "?"
   },
 
   "Cars": {
@@ -124,7 +154,7 @@
     "src": "A car or automobile is a motor vehicle with wheels. Most definitions of cars say that they run primarily on roads, seat one to eight people, have four wheels, and mainly transport people, not cargo.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 1.81
+    "weight": 1.81
 
   },
   "Concrete": {
@@ -132,7 +162,7 @@
     "src": "Concrete is a composite material composed of fine and coarse aggregate bonded together with a fluid cement (cement paste) that hardens (cures) over time. Concrete is the second-most-used substance in the world after water, and is the most widely used building material.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 549
+    "weight": 549
 
   },
   "Asphalt": {
@@ -140,7 +170,7 @@
     "src": "Asphalt concrete is a composite material commonly used to surface roads, parking lots, airports, and the core of embankment dams. Asphalt mixtures have been used in pavement construction since the beginning of the twentieth century.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 65
+    "weight": 65
 
   },
   "Aggregates": {
@@ -148,7 +178,7 @@
     "src": "Construction aggregate, or simply aggregate, is a broad category of coarse- to medium-grained particulate material used in construction, including sand, gravel, crushed stone, slag, recycled concrete and geosynthetic aggregates. Aggregates are the most mined materials in the world. ",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 386
+    "weight": 386
 
   },
   "Metals": {
@@ -156,26 +186,25 @@
     "src": "A metal (from Ancient Greek μέταλλον métallon 'mine, quarry, metal') is a material that, when freshly prepared, polished, or fractured, shows a lustrous appearance, and conducts electricity and heat relatively well. Metals are typically ductile (can be drawn into wires) and malleable (they can be hammered into thin sheets). These properties are the result of the metallic bond between the atoms or molecules of the metal.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 39
+    "weight": 39
 
   },
-  "Other": {
-    "image": "images/LUCA.png",
-    "src": "Other components include wood, glass and plastic.",
-    "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
-    "value": "?",
-    "wet_value": 23
 
-  },
   "Bricks": {
     "image": "images/brick.jpg",
     "src": "A brick is a type of construction material used to build walls, pavements and other elements in masonry construction. Properly, the term brick denotes a unit primarily composed of clay, but is now also used informally to denote units made of other materials or other chemically cured construction blocks.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "wet_value": 92
+    "weight": 92
+  },
 
+  "Plastics": {
+    "image": "images/Plastics.jpg",
+    "src": "Plastics are a wide range of synthetic or semi-synthetic materials that use polymers as a main ingredient. Their plasticity makes it possible for plastics to be moulded, extruded or pressed into solid objects of various shapes.",
+    "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
+    "value": "?",
+    "weight": 10.0
   }
+}
 
 
-  
-  }
