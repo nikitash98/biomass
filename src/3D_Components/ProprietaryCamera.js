@@ -22,15 +22,15 @@ const ProprietaryCamera = (props) => {
     const cameraRef = useRef();
 
     const { camera } = useThree();
-
+    let moving = 0
 
     let fov = 20
+    const fovRef = useRef(0)
     /*
     const {fov} = useSpring({
       fov: (props.counter == 22) ? 30:80
     });
     */
-
     
     useEffect( () =>{
 
@@ -57,8 +57,6 @@ const ProprietaryCamera = (props) => {
         cameraControlRef.current.enableDamping = false;
         cameraControlRef.current.enableZoom = false;
         cameraControlRef.current?.disconnect()
-        cameraControlRef.current?.setLookAt(data[props.counter]["cameraPosition"][0], data[props.counter]["cameraPosition"][1], data[props.counter]["cameraPosition"][2], 
-        data[props.counter]["lookPosition"][0], data[props.counter]["lookPosition"][1], data[props.counter]["lookPosition"][2], true)
         //cameraControlRef.current?.zoom(0.1, true)
         /*
         if(props.counter == 24) {
@@ -68,13 +66,37 @@ const ProprietaryCamera = (props) => {
         else {
           camera.fov = fov + change;
           camera.updateProjectionMatrix();
+        cameraControlRef.current?.setLookAt(data[props.counter]["cameraPosition"][0], data[props.counter]["cameraPosition"][1], data[props.counter]["cameraPosition"][2], 
+        data[props.counter]["lookPosition"][0], data[props.counter]["lookPosition"][1], data[props.counter]["lookPosition"][2], true)
 
         }
         */
 
-      })
 
-      useFrame(()=> {
+
+        if(props.counter != 23) {
+          cameraControlRef.current?.setLookAt(data[props.counter]["cameraPosition"][0], data[props.counter]["cameraPosition"][1], data[props.counter]["cameraPosition"][2], 
+          data[props.counter]["lookPosition"][0], data[props.counter]["lookPosition"][1], data[props.counter]["lookPosition"][2], true)
+
+        }
+        camera.updateProjectionMatrix();
+
+      })
+      let zoom_speed = 30
+      useFrame((state, delta)=> {
+        if (props.counter == 30) {
+          camera.fov = fov  + fovRef.current + change;
+          camera.updateProjectionMatrix();
+          fovRef.current += zoom_speed *delta 
+          fovRef.current = Math.min(fovRef.current, 10 )
+        } else {
+          camera.fov = fov  + fovRef.current + change;
+          camera.updateProjectionMatrix();
+
+          fovRef.current -= zoom_speed * delta 
+          fovRef.current = Math.max(fovRef.current, 0 )
+
+        }
 
       })
     const move_positions = [[7.43317, 4.71172, 30], [1, 8, 38], [-2.43317, 5.71172, 43]]
@@ -82,7 +104,16 @@ const ProprietaryCamera = (props) => {
     const look_positions = [[1.8,  4.65505, 0], [0.29286,  7.05505, 0], [0.29286,  6.05505, 0]]
     let cont = anim_counter(props.counter) % 3 
     useFrame(() => {
-
+      if(props.counter == 23) {
+        cameraControlRef.current?.lerpLookAt(
+          ...data[22]["cameraPosition"],
+          ...data[22]["lookPosition"],
+          ...data[23]["cameraPosition"],
+          ...data[23]["lookPosition"],
+          Math.max(props.yearPercentage, 0),
+          false
+        )
+      }
     })
 
 

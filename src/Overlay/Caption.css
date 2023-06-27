@@ -60,14 +60,22 @@
     text-align: left;
     pointer-events: auto;
     padding-right: 30px;
-    
+    background-color: rgba(255, 255, 255, 0.381);
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
   }
   .ContentCaption h3 {
-    font-size: 15pt;
-    line-height: 25pt;
+    font-size: 25pt;
+    line-height: 34pt;
     font-family: "aktiv-grotesk", sans-serif;
   }
 
+
+  .caption_divider {
+    height: 15vh;
+    width: 100%;
+  }
   #download_button {
     background-color: white !important;
     border: 1px solid black;
@@ -90,8 +98,8 @@
 
   .hidden_info {
     color:grey;
-    font-size: 12pt;
-    line-height: 14pt;
+    font-size: 14pt;
+    line-height: 15pt;
 
   }
   .hidden_info {

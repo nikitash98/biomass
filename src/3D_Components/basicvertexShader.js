@@ -111,7 +111,8 @@ float cnoise(vec3 P){
 }
 
 uniform float uTime;
-
+uniform float maxValue;
+uniform bool stoplooping;
 uniform vec3 endPosition;
 float random (vec2 st) {
   return fract(sin(dot(st.xy,
@@ -127,9 +128,12 @@ void main()	{
   // Add some randomness to the particle's movement
   //newPosition += normalize(transformed) * (sin(uTime) * 0.2);
   //mod(uTime, 1.0)); 
-  vec3 newPosition = mix(position, endPosition, mod(uTime * (random(uv)*2.0),1.0));
+  //vec3 newPosition = mix(position, endPosition,  );
   //vec3 newPosition = mix(position, endPosition, mod(uTime,1.0));
-
+  vec3 newPosition = mix(position, endPosition,  min(1.0, mod(uTime * (random(uv)*1.0 + 0.5), maxValue)  ));
+  if(stoplooping) {
+    newPosition = mix(position, endPosition, min(1.0, mod(uTime * (random(uv)*1.0 + 0.5), 100000000000.0)));
+  }
   //newPosition += cnoise(newPosition * 2.0 ) * 0.6;
   //newPosition += sin(mod(uTime * (random(uv)*2.0),1.0) * 4.0) ;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );

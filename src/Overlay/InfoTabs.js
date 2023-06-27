@@ -11,7 +11,7 @@ const panes = [
     
     <div className = "copyrights_text">
         Data from Bar-On, Y.M., Phillips R., & Milo, R. The biomass distribution on Earth.(2018), 
-    <br/>
+    <br/> 
         Proceedings of the National Academy of Sciences. <br/>© Ménard and Shtarkman
     </div>
   </Tab.Pane> },
@@ -56,6 +56,16 @@ const TabExampleBasic = () => {
 
             Proceedings of the National Academy of Sciences.
             </a>
+            <br/>
+            <br/>
+
+            <a href = "https://www.pnas.org/doi/10.1073/pnas.1711842115">
+            Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R. 
+            Global human-made mass exceeds all living biomass. 
+            <br/>
+
+            Nature. 2020
+                        </a>
             
             <Divider/>
             Images courtesy of Wikimedia Commons License
@@ -68,32 +78,82 @@ const TabExampleBasic = () => {
           {
           showSegment == 2 && 
               <div>
+<Grid className='endgrid'>
+                <Grid.Row columns={2}>
+                    <Grid.Column >
+                        
+                        <div class = "poster-download">
+                            <img src="Posters/Biotech0.jpg" />
+                            <div class = "poster-download-section">
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/4dw6zo2pmvl0ecu5qchc8/Biotech0.jpg?dl=1&rlkey=s1bbdkniye3sn0vmcw5v0eukb?dl=1" download target="_blank" rel="noopener noreferrer">download</a>
+                                </div>
+                                {/* 
 
-                  <div class = "row">
-                      <div class = "dropdown-item">
+                                <div class = "row download-row vertical-row">
+                                <a class = "col"  href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-4k.png" download target="_blank" rel="noopener noreferrer">high (4k)</a>
+                                </div>
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-8k.png" download target="_blank" rel="noopener noreferrer">very high (8k)</a>
+                                </div>
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.redbubble.com/i/poster/Map-of-the-Universe-3-zoom-levels-by-scientific-viz/134357219.G7H47" target="_blank" rel="noopener noreferrer">                        
+                                    order a poster
+                                </a>
+                                </div>
+                                */}
 
-                        <img src='Posters/thumbnail.png'></img>
-                          <div class = "download-click-section">
-                            <div class = "row download-row vertical-row">
-                              <a class = "col" href="Posters/Biomass_Poster.png" download target="_blank" rel="noopener noreferrer">medium (2k)</a>
                             </div>
-
-                            <div class = "row download-row vertical-row">
-                              <a class = "col"  href="Posters/Biomass_Poster.png" download target="_blank" rel="noopener noreferrer">high (4k)</a>
-                            </div>
-
-                            <div class = "row download-row vertical-row">
-                              <a class = "col" href="Posters/Biomass_Poster.png" download target="_blank" rel="noopener noreferrer">very high (8k)</a>
-                            </div>
-
-                            <div class = "row download-row vertical-row">
-                              <a class = "col" href="https://www.redbubble.com/i/poster/Map-of-the-Universe-by-scientific-viz/132238837.G7H47" target="_blank" rel="noopener noreferrer">                        
-                                order a poster
-                              </a>
-                            </div>
-                          </div>
                         </div>
-                  </div>
+
+                     </Grid.Column>
+                    <Grid.Column >
+
+
+                    <div class = "poster-download">
+
+                            <img src="Posters/Biotech1.jpg" />
+                            <div class = "poster-download-section">
+
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/d0o2cahrsdwk4oon1pyll/Biotech1.jpg?dl=1&rlkey=7j5pbir30vd7g26clwhtkm0ao" download target="_blank" rel="noopener noreferrer">download</a>
+                                </div>
+                                {/* 
+
+                                <div class = "row download-row vertical-row">
+                                <a class = "col"  href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-4k.png" download target="_blank" rel="noopener noreferrer">high (4k)</a>
+                                </div>
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-8k.png" download target="_blank" rel="noopener noreferrer">very high (8k)</a>
+                                </div>
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.redbubble.com/i/poster/Map-of-the-Universe-3-zoom-levels-by-scientific-viz/134357219.G7H47" target="_blank" rel="noopener noreferrer">                        
+                                    order a poster
+                                </a>
+                                </div>
+                                */}
+
+                            </div>
+                        </div>
+
+                    </Grid.Column >
+                    <Grid.Column >
+
+
+                    <div class = "poster-download">
+
+                            <img src="Posters/Biotech4.jpg" />
+                            <div class = "poster-download-section">
+
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/t7lfvchnm3ybnc0mbec5b/Biotech4.jpg?dl=1&rlkey=wgochfw6varii01dwitnmgnct" download target="_blank" rel="noopener noreferrer">download</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
               </div>
                 
           }
@@ -103,7 +163,6 @@ const TabExampleBasic = () => {
       <ul>
       <li onMouseEnter={() => {handleTabHover(1)}} >Credits</li>
 
-        <li onMouseEnter={() => {handleTabHover(0)}} >Info</li>
 
 
         <li onMouseEnter={() => {handleTabHover(2)}} >Poster</li>

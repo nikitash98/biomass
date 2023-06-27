@@ -4,21 +4,12 @@ Command: npx gltfjsx@6.1.4 .\\public\\Biomass_animation.glb
 */
 
 import React, { useRef , useState, useEffect, Suspense} from 'react'
-import { Html, useGLTF, PerspectiveCamera, useAnimations, Mask, useMask} from '@react-three/drei'
-import useMousePosition from '../useMousePosition'
-import * as THREE from 'three'
-import { act } from 'react-dom/test-utils'
-import { useFrame, useThree } from 'react-three-fiber'
-import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
-import slides from "../slides.json"
-import { lerp } from 'three/src/math/MathUtils'
-import Particles from './Particles'
-import data from '../Overlay/data.json';
 import { Part01 } from '../Items/Part01'
 
 function Animation(props) {
  
     const handleHover = (e) => {
+        console.log(e)
         e.stopPropagation()
         document.body.style.cursor = 'pointer';
         props.setHovered([nameFlattening(e.eventObject.name)])
@@ -77,12 +68,15 @@ function Animation(props) {
       counter = {props.counter}
       setHovered = {props.setHovered}
       hovered = {props.hovered}
-      animation_position = {props.animation_position}
       handleHover = {handleHover} handleUnhover = {handleUnhover}
       divRefs = {divRefs}
       setSelectionSet = {props.setSelectionSet}
       setYearPercentage = {props.setYearPercentage} 
-
+      scrubbing = {props.scrubbing}
+      setScrubbing = {props.setScrubbing}
+      previousCounter = {props.previousCounter}
+      animationTime = {props.animationTime}
+      setcounterHit = {props.setcounterHit}
       ></Part01>
     </>
 

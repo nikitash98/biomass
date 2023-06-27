@@ -133,7 +133,7 @@
       "value": 0.1,
       "weight": 0.2
     },
-    "Virus": {
+    "Viruses": {
     "image": "images/Virus.jpg",
     "src": "A virus is a submicroscopic infectious agent that replicates only inside the living cells of an organism. Viruses infect all life forms, from animals and plants to microorganisms, including bacteria and archaea.",
     "link": "https://en.wikipedia.org/wiki/Archaea",
@@ -162,7 +162,9 @@
     "src": "Concrete is a composite material composed of fine and coarse aggregate bonded together with a fluid cement (cement paste) that hardens (cures) over time. Concrete is the second-most-used substance in the world after water, and is the most widely used building material.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "weight": 549
+    "weight": 549,
+    "weight": 598
+
 
   },
   "Asphalt": {
@@ -171,6 +173,7 @@
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
     "weight": 65
+    
 
   },
   "Aggregates": {
@@ -178,7 +181,9 @@
     "src": "Construction aggregate, or simply aggregate, is a broad category of coarse- to medium-grained particulate material used in construction, including sand, gravel, crushed stone, slag, recycled concrete and geosynthetic aggregates. Aggregates are the most mined materials in the world. ",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "weight": 386
+    "oldweight": 386,
+    "weight": 402
+
 
   },
   "Metals": {
@@ -186,7 +191,8 @@
     "src": "A metal (from Ancient Greek μέταλλον métallon 'mine, quarry, metal') is a material that, when freshly prepared, polished, or fractured, shows a lustrous appearance, and conducts electricity and heat relatively well. Metals are typically ductile (can be drawn into wires) and malleable (they can be hammered into thin sheets). These properties are the result of the metallic bond between the atoms or molecules of the metal.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "weight": 39
+    "oldweight": 39,
+    "weight": 41
 
   },
 
@@ -195,7 +201,9 @@
     "src": "A brick is a type of construction material used to build walls, pavements and other elements in masonry construction. Properly, the term brick denotes a unit primarily composed of clay, but is now also used informally to denote units made of other materials or other chemically cured construction blocks.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "weight": 92
+    "oldweight": 92,
+    "weight": 99
+
   },
 
   "Plastics": {

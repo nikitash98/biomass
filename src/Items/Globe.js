@@ -25,12 +25,24 @@ export function Globe(props) {
 
   return (
     <group ref = {globeRef} {...props} dispose={null}>
-      <mesh geometry={nodes.Globe.geometry} material={materials.Material_Test} position={[0, 13.43, 0]} 
-      rotation={[1.96, -0.05, 0.02]} scale={9.47} 
+      {/*
+      <mesh geometry={nodes.Globe.geometry} material={materials.Material_Test} 
+      position={[0, 15.606, 0]} rotation={[1.964, -0.055, 0.023]} scale={9.468} 
       onPointerOver={globeHover}  onPointerOut = {globeUnhover} 
-      onClick={()=>{props.setCounter(props.counter+1)}}
-      
+      onClick={()=>{props.setCounter(props.counter+1);
+      props.setScrubbing(false)}}
       />
+      */}
+
+      <mesh name="Globe001" geometry={nodes.Globe001.geometry} material={materials.Globe2} 
+      position={[0, 15.606, 0]} rotation={[1.964, -0.055, 0.023]} scale={9.468} 
+      
+      onPointerOver={globeHover}  onPointerOut = {globeUnhover} 
+      onClick={()=>{props.setCounter(props.counter+1);
+      props.setScrubbing(false)}}
+
+      />
+
     </group>
   )
 }

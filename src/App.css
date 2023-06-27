@@ -72,16 +72,19 @@
 }
 
 .box_name > h1 {
-  font-size: 8pt;
+  font-size: 14pt;
   font-family: "aktiv-grotesk", sans-serif;
   font-weight: 700;
   font-style: normal;
   white-space: nowrap;
-  transition: opacity 0.1s;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+  transition: opacity 0.3s;
+
 }
+
+
 .artificial_name>h1 {
   transform: translate(-120%, 0%);
 }
@@ -117,7 +120,7 @@
 
 .hidden h1{ 
   opacity: 0;
-  transition: opacity 0.1s;
+  transition: opacity 0.3s;
   /*transition: opacity 0.3s linear 2s; */
 }
 

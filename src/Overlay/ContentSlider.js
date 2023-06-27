@@ -15,6 +15,7 @@ const ContentSlider = (props) => {
     const handleSliderClick = (value) => {
 
         props.setCounter(convertSlider(value, show, mul))
+        props.setScrubbing(true)
 
     }
     var keys = Object.keys(slides);
@@ -41,7 +42,6 @@ const ContentSlider = (props) => {
         if(i == 0) {
             return 0
         }
-
 
         let total = ((value - show[i-1])/diffs[i-1]) * mul + (i-1) * mul
         return total
@@ -83,8 +83,6 @@ const ContentSlider = (props) => {
                 })}
                 </div>
             </div>
-
-
 
                 <ReactSlider
                     min={0}
