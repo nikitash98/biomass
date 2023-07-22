@@ -1,35 +1,67 @@
 
 .ClickInfo {
-    border-radius: 5px;
+    border-radius: 30px;
   
-    z-index: 10;
+    z-index: 30;
     background-color: white;
-    margin: 10px;
-    border:1px solid black;
-    position: absolute;
+    /* position: absolute;
     top: 20%;
     left: 5%;
     width: 20vw;
+    
+    box-shadow: 0 0 20px 20px #287ed430;
+    */
+    box-shadow: 0 0 20px 20px #00000030;
+    border: solid 2px var(--hover_blue);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
   }
 
 
 
 .ClickInfo > p {
-    text-align: justify;
-    font-size: 8pt;
+    text-align: left;
+    font-size: 10pt;
     white-space: pre-line;
+    
+}
+
+.ClickInfo_image {
+
+    position: relative;
+}
+.ClickInfo_image_overlay {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.ClickInfo_content { 
+    padding-left:  20px;
+    padding-right:  20px;
+    padding-bottom: 20px;
+}
+
+
+.ClickInfo_image > img {
 }
 
 .ClickInfo > img {
     width: 100px;
 }
+
 .ClickInfo > .read {
     width: 100%;
     height: 90%;
 }
+
 .read > img {
     width: 50%;
 }
+
 .read > p {
     text-align: justify;
     font-size: 8pt;
@@ -43,40 +75,67 @@ img {
 }
 p {
     text-align: left;
-    font-size: 10pt;
-    text-align: justify;
+    font-size: 13pt;
+    line-height: 15pt !important;
+    text-align: left;
+    font-style: italic;
+    color: grey;
 }
 
 
-.header h3 {
-    margin: 0px;
-    padding: 0%;
+.header {
+    text-align: center;
 }
 .content {
     padding: 10px;
 }
 
 .info_value{
-    background-color: black;
+    background-color: var(--hover_blue);
     color: white;
     line-height: 100px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    font-size: 15pt;
+    width: fit-content;
+    padding: 10px;
+    padding-right: 20px;
+
+    position: absolute;
+    top: -1%;
+    right: -2%;
+
+    /*
+    border-radius: 10px;
+
+    box-shadow: 0 0 10px 10px rgba(103, 137, 199, 0.7);
+    left:50%;
+    transform: translate(-50%, 0);
+
+    */
+
+
 }
 
 .wet  { 
     background-color: black;
 }
+
+.info_title {
+    padding-bottom: 5px;
+}
 .info_title h3 {
 text-align: left;
 font-size: 20pt;
 font-family: "aktiv-grotesk", sans-serif;
+padding-left: 20px;
+font-weight: 200;
 }
 
 .info_value h3 {
-    font-size: 10pt;
+    font-size: 15pt;
+    font-weight: 400;
+font-family: "aktiv-grotesk", sans-serif;
+
 }

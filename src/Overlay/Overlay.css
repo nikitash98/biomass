@@ -10,33 +10,45 @@
     pointer-events: none; 
   }
   
-  .game_overlay > .title {
-    position: relative;
-    text-align: right;
-    width: 40%;
-    float: right;
-
-  }
 
   .title {
-    padding: 20px;
-    white-space: nowrap;
     pointer-events: auto;
     cursor: pointer;
     user-select: none; 
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 20px
   }
 
+
+  .title img {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .title_selector {
+    color: var(--border_grey);
+    pointer-events: auto;
+    cursor: pointer;
+    font-size: 12pt;
+    font-weight: 200;
+    border-radius: 10px;
+
+  }
+  .title_selector:hover {
+    color: var(--hover_blue)
+  }
   .title:hover h1{
-    color: blue;
+    color: var(--hover_blue);
   }
   
   .title > h1 {
     font-family: "larken", sans-serif;
     font-weight: 500;
     font-style: normal;
-        font-size: 3.3vw;
-        text-align: left;
+    font-size: 3.5vw;
     margin: 0px;
+    padding: 0px;
   }
   .title > h2 {
     text-align: justify;
@@ -57,22 +69,34 @@
   .click_button {
     position: relative;
     z-index: 5;
-    background-color: transparent !important;
-    width: 5%;
-    height: 100%;
+    width: 100%;
+    aspect-ratio : 1 / 1;
+    margin: 20px;
     pointer-events: auto; 
-    border: 0px;
+    border: 1px solid var(--border_grey);
+    border-radius: 100px;
     cursor: pointer;
+    transition: all .1s;
 
   }
   
 
+  .click_button:hover {
+    /*background: radial-gradient(#e66465, #9198e5);(/
+    */
+
+    /*background-color: var(--hover_blue);*/
+    transition: all .1s;
+    box-shadow: 0 0 5px 5px var(--hover_blue);
+
+  }
   .button-set {
     position: absolute;
-    bottom: 40%;
+    bottom: 20%;
     height: 30%;
     left: 0%;
     width: 100%;
+    padding: 2%;
     text-align: left;
   }
 
@@ -126,14 +150,54 @@
     position: absolute;
     line-height: 40pt;
     left: 50%;
-    top:30%;
+    top: 30%;
     text-align: center;
     transform: translate(-50%, -50%);
 
     width: 60vw;
-    font-weight: bold;
+    font-weight: regular;
     font-family: "larken", sans-serif;
 
+  }
+
+ /* grids */
+  .header_grid {
+    height: 100%;
+
+  }
+
+  .header_grid_title_container {
+    position: relative;
+  }
+  .header_grid_info_box {
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+
+  }
+  .internal_grid{
+    height: 100%
+  }
+
+  .header_row {
+    height: 10%;
+    /*background-color: white;*/
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.428);
+
+  }
+  .info_row {
+    height: 100%;
+  }
+  .overlay_grid { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    margin: 0% !important;
   }
 
   .start_button {
@@ -159,10 +223,11 @@
     background-color: rgb(138, 197, 217);
   }
 
+
   .yearCounter h1{
     text-align: left;
-    font-size: 40pt;
-    color: grey;
+    font-size: 20pt;
+    color: rgb(172, 172, 172);
     font-weight: 800;
     font-family: "larken", sans-serif;
     user-select: none;
@@ -193,7 +258,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 3.2vw;
-    line-height: 4.5vw;
+    line-height: 3.2vw;
     width: 50%;
     opacity:1;
     transition: width 0.3s, height 0.3s, opacity 0.3s 0.3s;

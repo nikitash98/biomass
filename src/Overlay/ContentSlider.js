@@ -20,8 +20,8 @@ const ContentSlider = (props) => {
     }
     var keys = Object.keys(slides);
     let less_keys = keys.slice(0,-1)
-    let show = [0, 10, 12, 20]
-
+    let show = [0, 9, 11, 20]
+    let show_two = [0, 9, 11, 20, 30]
     let diffs = []
     let mul = 1
     for(let i = 0; i < show.length-1; i++) {
@@ -60,11 +60,11 @@ const ContentSlider = (props) => {
 
     
     return (
-        <div>
+        <div style={{width: "100%", height: "100%"}}>
 
 
 <div className="custom_slider_container">
-
+            {/*
             <div className="slider__container">
                 <div className="slider__labels">
                 {show.map((l, i) => {
@@ -77,12 +77,14 @@ const ContentSlider = (props) => {
                     } else {
                         return (
                             <div key = {i} className="slider__labels-label lab">
+                                {slides[show[i]]["title"]}
                             </div>
                             );         
                     }
                 })}
                 </div>
             </div>
+            */}
 
                 <ReactSlider
                     min={0}
@@ -95,11 +97,18 @@ const ContentSlider = (props) => {
                     value={convertCounter(props.counter, show, mul)}
                     onAfterChange={handleSliderClick}
                     renderMark={(props) => {
+                        console.log(props.key)
+                        console.log(props.key/mul)
+                        let tick_class = "tick_label_top"
                         if(Math.floor(props.key/mul > Math.floor(convertCounter(val, show, mul)/mul))) {
                             props.className = "customSlider-mark selected_mark"
-
+                            tick_class = "tick_label_top selected_tick"
                         }
-                        return <span {...props}  onMouseEnter={()=>{setSliderHover(props.key)}} onMouseLeave={()=> {setSliderHover(null)}}/>;
+                        return <span {...props}  onMouseEnter={()=>{setSliderHover(props.key)}} onMouseLeave={()=> {setSliderHover(null)}}>
+                            <div className={tick_class}>
+                                {slides[show_two[Math.floor(props.key/mul)]]["title"]}
+                            </div>
+                        </span>;
                     }}
 
                     markClassName="customSlider-mark"

@@ -17,6 +17,7 @@ import Particles from './Particles';
 import { Perf } from 'r3f-perf'
 import { ContactShadows } from '@react-three/drei';
 import { TestCamera } from './TestCamera';
+import * as THREE from "three";
 
 const ThreePointViz = (props) => {
     let WIDTH = window.innerWidth;
@@ -51,8 +52,11 @@ const ThreePointViz = (props) => {
 
     return (
         <>
-  
-        <Canvas shadows> 
+        
+        <Canvas shadows
+          gl={{ gammaInput: false, gammaOutput: false }}
+          
+        > 
         {debug && (
             <>
             <Perf
@@ -77,15 +81,16 @@ const ThreePointViz = (props) => {
                     patternTexture={null} // a pattern texture
                     edgeStrength={8.5} // the edge strength
                     pulseSpeed={0.0} // a pulse speed. A value of zero disables the pulse effect
-                    hiddenEdgeColor={0x5a9ced}  
-                    visibleEdgeColor={0x5a9ced}
+                    hiddenEdgeColor={0x287ed4}  
+                    visibleEdgeColor={0x287ed4}
                     blur={false} // whether the outline should be blurred
                     xRay={true} // indicates whether X-Ray outlines are enabled
                     kernelSize={KernelSize.SMALL} // blur kernel size
                 /> 
         </EffectComposer>        
-
+        {/*
         <fog attach="fog" color= {"white"} near={5} far={20}/>
+        */}
 
         <Suspense fallback={
             null
@@ -135,35 +140,40 @@ const ThreePointViz = (props) => {
             </group>
         </Suspense>
 
+        {/*}
+        <OrbitControls/>
 
+            */}
+        {/*
 
-        <directionalLight 
-        position={[6, 3, 5]} 
-        intensity={0.8} 
+        */}
+
+<directionalLight 
+        position={[4, 5, 5]} 
+        intensity={1} 
         shadow-mapSize={2048} 
         shadow-bias={-0.001}
         shadow-radius = {1000.0}>
             
         <orthographicCamera attach="shadow-camera" args={[-20, 20, 20, -20, 0.1, 60]} />
         </directionalLight>
-
+        {/*
         <directionalLight
         position={[0, 3, 5]} 
         intensity={0.3} 
         >
         </directionalLight>
-        {/*
-        <ambientLight intensity={0.1}/>
-
         */}
-v
+
+        <ambientLight intensity={0.3}/>
+    
 
         <Plane rotation={[ -Math.PI/2,0, -Math.PI/4]} position={[0, 1, 0]} args={[1000, 1000]} >
-            <meshBasicMaterial color="#ffffff" />
+            <meshBasicMaterial color="#ffffff"  toneMapped={false} />
         </Plane>
 
         <Plane  rotation={[0,0, -Math.PI / 2]} position={[0, 0, -80]} args={[1000, 1000]}>
-            <meshBasicMaterial color="#ffffff" />
+            <meshBasicMaterial color="#ffffff" toneMapped={false}  />
         </Plane>
 
         </Canvas>

@@ -1,3 +1,9 @@
+:root {
+  --hover_blue: #287ed4;
+  --border_grey: #999da0;
+}
+
+
 .App {
   text-align: center;
 }
@@ -48,7 +54,7 @@
 
 .HoverInfo >h1 {
   font-size: 15pt;
-  color: blue;
+  color: var(--hover_blue);
 }
 
 
@@ -69,24 +75,75 @@
 .title >h1 {
   font-size: 40pt;
   font-family: "aktiv-grotesk", sans-serif;
+  padding: 10px;
 }
 
 .box_name > h1 {
-  font-size: 14pt;
+  font-size: 12pt;
   font-family: "aktiv-grotesk", sans-serif;
-  font-weight: 700;
+  font-weight: 100;
   font-style: normal;
   white-space: nowrap;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  transition: opacity 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+  .box_name > h1 {
+    font-size: 5pt;
+  }
+}
+
+
+@media only screen and (max-width: 900px){
+  .box_name > h1 {
+    font-size: 8pt;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+
+  .box_name > h1 {
+    font-size: 10pt;
+  }
 
 }
 
 
-.artificial_name>h1 {
+@media only screen and (min-width: 1200px) {
+  .box_name > h1 {
+    font-size: 12pt;
+
+  }
+}
+
+
+
+
+
+.hovered_name {
+  color: var(--hover_blue);
+}
+
+.highlighted_name {
+  color: grey;
+}
+
+.all_humans_type {
+  color: red !important;
+  font-weight: 300;
+  border: solid 1px red
+}
+
+
+.artificial_name{
   transform: translate(-120%, 0%);
+  text-align: right;
+}
+
+.artificial_name h1 {
+
 }
 
 .unhighlighted > h1{
@@ -97,9 +154,14 @@
 }
 
 .box_name {
-  padding: 4px;
+  padding: 2px;
   z-index: -5;
-  border-radius: 3px;
+  border-radius: 5px;
+  /* border: solid 0.5px rgb(196, 196, 196); */
+  background-color: rgba(231, 231, 231, 0.176);
+  box-shadow: 0 0 3px 3px rgba(231, 231, 231, 0.176);
+  transition: opacity 0.3s;
+
 }
 
 .three_header {
@@ -118,7 +180,7 @@
   text-align: left;
 }
 
-.hidden h1{ 
+.hidden{ 
   opacity: 0;
   transition: opacity 0.3s;
   /*transition: opacity 0.3s linear 2s; */
@@ -147,7 +209,7 @@
   transform: translate(-50%, -50%);
 
   width: 100px;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--hover_blue);
 
   color: #fff;
   padding: 10px;
@@ -194,7 +256,7 @@
   position: absolute;
   right: 35px;
   bottom: -14px;
-  border-top: 15px solid rgb(0, 0, 0);
+  border-top: 15px solid var(--hover_blue);
   border-right: 15px solid transparent;
   border-left: 15px solid transparent;
   border-bottom: none;

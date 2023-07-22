@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF, useAnimations, Html, Image, Box, PerspectiveCamera, OrthographicCamera} from '@react-three/drei'
 import { playAnimations, setAnimationTime } from '../3D_Components/AnimationUtilities'
 import { useEffect } from 'react'
-import { useFrame } from 'react-three-fiber'
+import { useFrame, useThree } from 'react-three-fiber'
 import slides from "../slides.json"
 import { lerp } from 'three/src/math/MathUtils'
 import data from '../Overlay/data.json';
@@ -21,6 +21,7 @@ export function Part01(props) {
   const imageRef_one = useRef()
   const imageRef_two = useRef()
   let hiddenClass = (props.counter != props.previousCounter.current) ? 'box_name hidden' : "box_name ";
+  
   const hiddenArtificial = "box_name artificial_name"
   const percentage_of_animation_played = useRef(0)
   let highlighted = slides[props.counter]["highlighted"]
@@ -28,6 +29,8 @@ export function Part01(props) {
   let quantities = slides[props.counter]["quantities"]
   console.log(props.counter)
   console.log(props.previousCounter.current)
+
+  console.log([props.previousCounter.current, props.counter].sort().toString() == [22, 23].toString())
   const transp_material = new THREE.MeshStandardMaterial({color: 0x626967, opacity: 0.5, transparent: true})
 
   let animationSpeed = 1
@@ -42,6 +45,7 @@ export function Part01(props) {
     "end_view": [29,31,32,31,30]
 
     }
+  const { viewport } = useThree();
 
 
   const handleAnimalHover = (e) => {
@@ -65,30 +69,30 @@ export function Part01(props) {
   let title_positions = {
     "Annelids": [-0.3, .3, .3],
     "Arthropods": [-0.3, .3, .3],
-    "Animals": [1.2, 1, 1.2],
+    "Animals": [-.5, 0, 1.2],
     "Plants": [+1.2, +1, +1.2],
     "LUCA": [-1, -1, 0.9],
     "Viruses": [-.3, 0.31, 0.3],
     "Protists": [+.75, 1, .8],
     "Bacteria": [-2, 2.2, 2.1],
-    "Fungi": [1.2, 1, 1],
+    "Fungi": [1.4, 1, 1.2],
     "Archaea": [-1, 1, 1],
     "Cnidarians": [-.3, .3, .32],
     "Fish": [-.5, .5, -.5],
-    "Humans": [-.2, .2, .2],
+    "Humans": [-.2, .4, .2],
     "Livestock": [-.3, .3, .25],
     "Marine_Arthropods": [-.5, .7, .5],
     "Mollusks": [-.3, .5, .3],
     "Nematodes": [-.3, .1, .2],
     "Wild_Birds": [0.0, .3, .2],
     "Wild_Mammals": [-0.2, .2, .2],
-    "Concrete": [.5, -.5, .5],
-    "Bricks": [.5, -.5, .5],
+    "Concrete": [.5, -.55, .5],
+    "Bricks": [.5, -.55, .5],
     "Cars": [.5, -.5, .5],
-    "Metals": [.5, -.5, .5],
-    "Aggregates": [.5, -.5, .5],
-    "Asphalt": [.5, -.5, .5],
-    "Plastics": [.5, -.5, .5]
+    "Metals": [.5, -.55, .5],
+    "Aggregates": [.5, -.55, .5],
+    "Asphalt": [.5, -.55, .5],
+    "Plastics": [.5, -.55, .5]
   }
 
 
@@ -142,12 +146,12 @@ export function Part01(props) {
     "Nematodes":[0, 0, -.4],
     "Wild_Birds": [0, 0, -.2],
     "Wild_Mammals": [0, 0, -.2],
-    "Concrete": [0, 0.6, 0],
-    "Bricks": [0, 0.6, 0],
+    "Concrete": [0, 0.65, 0],
+    "Bricks": [0, 0.65, 0],
     "Cars": [0, 0.6, 0],
     "Metals": [0, 0.6, 0],
-    "Aggregates":[0, 0.6, 0],
-    "Asphalt": [0, 0.6, 0],
+    "Aggregates":[0, 0.65, 0],
+    "Asphalt": [0, 0.65, 0],
     "Plastics": [0, 0.6, 0]
   }
 
@@ -157,6 +161,13 @@ export function Part01(props) {
   }
 
 
+  let change = (viewport.width/viewport.height)
+
+  if(!change){
+    change = 0
+  } else {
+    change = 10/Math.pow((viewport.width/viewport.height), 3.0)      
+  }
   const quant_value = useRef(0)
   const asphalt_value = useRef(0)
   const metal_value = useRef(0)
@@ -270,8 +281,8 @@ export function Part01(props) {
   }
   if(set_views["boxes"].includes(props.counter)) {
     title_positions["Plants"] = [-1.25, +1, +1.2]
-    title_positions["Protists"] = [-1.25, +1, -1]
-    title_positions["Animals"] = [1.25, +1, -1.5]
+    title_positions["Protists"] = [-1.25, +1, 0]
+    title_positions["Animals"] = [1.85, -0.6, -1]
 
   }
 
@@ -286,12 +297,12 @@ export function Part01(props) {
   }
 
   if(set_views["end_view"].includes(props.counter)) {
-    title_positions["Plastics"] =[-0.4, 0.7, 0]
-    title_positions["Metals"] =[-0.4, 0.7, 0]
-    title_positions["Asphalt"] =[-0.4, 0.7, 0]
-    title_positions["Bricks"] =[-0.4, 0.7, 0]
+    title_positions["Plastics"] =[0.3, 0.9, 0]
+    title_positions["Metals"] =[0.4, 0.9, 0]
+    title_positions["Asphalt"] =[0.7,0.9 , 0]
+    title_positions["Bricks"] =[0.8, 0.8, 0]
     title_positions["Plants"] = [-1.35, +1, +1.2]
-    title_positions["Protists"] = [-1, 0, -.2]
+    title_positions["Protists"] = [-1.5, 0, -.2]
     title_positions["Fungi"] = [1.2, 0, 1.2]
 
   }
@@ -300,7 +311,7 @@ export function Part01(props) {
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
       <PerspectiveCamera name="Camera" makeDefault 
-      far={1000} near={0.1} fov={26.369} 
+      far={1000} near={0.1} fov={26.369 +change} 
       position={[0.759, 19.945, 20.304]} rotation={[-0.2, 0, 0]} scale={5.334} 
       />
 
@@ -309,22 +320,35 @@ export function Part01(props) {
         let flat_name = flatten_name(name)
         let currentClass = hiddenClass
         let icon_mat = materials.Icons
-        if(artificialBoxes.includes(name)) {
+        let is_artificial = artificialBoxes.includes(name)
+        if(is_artificial) {
           currentClass = hiddenArtificial
           icon_mat = materials["Material.008"]
         }
 
+        let trans_amount = "0%"
+        if(is_artificial) {
+          trans_amount = "-120%"
+        }
+        icon_mat.toneMapped = false;
         let human_title = name
         if(name == "Humans" && props.counter >= 20 && props.previousCounter.current > 19) {
           human_title = "All Humans"
+          currentClass = currentClass + " all_humans_type"
         } 
         let weight_val = data[name].weight
 
         if(Object.keys(artificial_values.current).includes(name) &&
-        set_views["rising_boxes"].includes(props.counter)){
+          set_views["rising_boxes"].includes(props.counter)){
           weight_val = Math.round(artificial_values.current[name])
         }
 
+        if(props.hovered.includes(name)){
+          currentClass += " hovered_name"
+        }
+        if(highlighted.includes(name)) {
+          currentClass += " highlighted_name"
+        }
         return (
             <mesh name = {flat_name} geometry={nodes[flat_name].geometry} key = {i}
             material = {highlighted.includes(name) ? transp_material : nodes[flat_name].material}
@@ -357,18 +381,24 @@ export function Part01(props) {
             rotation = {nodes[flat_name].rotation}
 
             */}
+            {((!is_artificial || props.counter > 23) || (flat_name == "Cars")) && (
+
             <Html position = {title_positions[flat_name]} 
             scale = {0.4/nodes[flat_name].scale.x}
             style={{
-              transform: 'translate(0%, 0%)'
-
+              transform: 'translate('+ trans_amount + ', 0%)'
             }}
+            onMouseEnter={()=> {console.log("ABC")}}
 
             zIndexRange={[0, 20]}
             className={currentClass}>
                 <h1>{human_title}</h1>
                 
             </Html>
+            )}
+
+
+
 
 
             </mesh>       
@@ -377,6 +407,73 @@ export function Part01(props) {
             
         )
     })}
+
+    {([props.previousCounter.current, props.counter].sort().toString() == [22, 23].toString()
+    ||
+    [props.previousCounter.current, props.counter].sort().toString() == [21, 22].toString()
+    || (props.previousCounter.current == props.counter && [22, 23].includes(props.counter))
+    ) && (
+      <>
+      {props.animationTime.current > 25.8 && (
+        <Html position={[-2, 1, 5]} className={"box_name artifical_name"}>
+          <h1>
+            Plastics
+          </h1>
+        </Html>
+
+      )}
+
+      
+
+      {props.animationTime.current > 25.8 && (
+
+        <Html position={[1.6, 1, 4]} className={"box_name artifical_name"}>
+            <h1>
+              Metals
+          </h1>
+        </Html>
+      )}
+
+
+      {props.animationTime.current > 25.8 && (
+
+        <Html position={[4.6, 1, 2]} className={"box_name artifical_name"}>
+          <h1>
+            Asphalt
+          </h1>
+        </Html>
+      )}
+
+
+      {props.animationTime.current > 25.8 && (
+
+        <Html position={[9, 1.0, -1]} className={"box_name artifical_name"}>
+          <h1>
+            Bricks
+          </h1>
+        </Html>
+      )}
+
+      {props.animationTime.current > 25.8 && (
+        <Html position={[14, 1.0, -3.0]} className={"box_name artifical_name"}>
+          <h1>
+            Aggregates
+          </h1>
+        </Html>
+      )}
+      {props.animationTime.current > 25.8 && (
+
+        <Html position={[20, 1.0, -6.0]} className={"box_name artifical_name"}>
+          <h1>
+            Concrete
+          </h1>
+        </Html>
+      )}
+
+      </>
+
+          )}
+
           <group name="Year" position={[0, 1.05, -5.872]} rotation={[0, Math.PI / 6, 0]} scale={1.711} 
           >
 
@@ -421,6 +518,18 @@ export function Part01(props) {
         <mesh name="Animals_Icon" geometry={nodes.Animals_Icon.geometry} material={materials.Icons} position={[0, 0, -0.018]} />
       </skinnedMesh>
 
+
+      <Html position = {title_positions["Animals"]} 
+            style={{
+              transform: 'translate(0%, 0%)'
+            }}
+            onMouseEnter={()=> {console.log("ABC")}}
+
+            zIndexRange={[0, 20]}
+            className={hiddenClass}>
+                <h1>Animals</h1>
+                
+            </Html>
     </group>
   </group>
   <mesh name="Transparent001" geometry={nodes.Transparent001.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Transparent001.morphTargetDictionary} morphTargetInfluences={nodes.Transparent001.morphTargetInfluences} position={[11.839, -1.79, -5.518]} rotation={[0, 0.488, 0]} scale={5.779} />

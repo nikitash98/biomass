@@ -117,30 +117,50 @@ import './EndGrid.css'
     */}
             
             <Grid >
-                <Grid.Row columns={2} className='papergrid'>
-                    <Grid.Column >
+                <Grid.Row  className='papergrid'>
+                    <Grid.Column width={12}>
                     <h1>
             Learn more
 
             </h1>
-            <Divider/>
-                        <a href="https://www.pnas.org/doi/10.1073/pnas.1711842115">
+            <Divider/>  
+            <Grid>
+                <Grid.Row columns={2}>
+                    <Grid.Column>
+                    <div className='readButton'>
+                        
+                        
+                    <a href="https://www.pnas.org/doi/10.1073/pnas.1711842115">
 
-                            <h2>The biomass distribution on Earth</h2>
-                            Bar-On, Y.M., Phillips R., & Milo, R.
-                            Proceedings of the National Academy of Sciences.
-                        </a>
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/33299177/">
+<h2>The biomass distribution on Earth</h2>
+<Divider/>
+Bar-On, Y.M., Phillips R., & Milo, R.
+Proceedings of the National Academy of Sciences.
+</a>
+</div> 
+
+                    </Grid.Column>
+                    <Grid.Column>
+                    <div className='readButton'>
+
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/33299177/">
                             <h2>
                             Global human-made mass exceeds all living biomass
                             </h2>
+<Divider/>
+
                             Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R. 
                             Nature. 2020
                         </a>
+                        </div>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+                        
+                       
 
                     </Grid.Column>
-                    <Grid.Column >
-                        {/*
+                    <Grid.Column width={4} style = {{position: "relative"}}>
 
                         <h1>Share the site</h1>
             <Divider/>
@@ -167,7 +187,9 @@ import './EndGrid.css'
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.14.5C5.86.5 2.7 5 2.7 8.75c0 2.27.86 4.3 2.7 5.05.3.12.57 0 .66-.33l.27-1.06c.1-.32.06-.44-.2-.73-.52-.62-.86-1.44-.86-2.6 0-3.33 2.5-6.32 6.5-6.32 3.55 0 5.5 2.17 5.5 5.07 0 3.8-1.7 7.02-4.2 7.02-1.37 0-2.4-1.14-2.07-2.54.4-1.68 1.16-3.48 1.16-4.7 0-1.07-.58-1.98-1.78-1.98-1.4 0-2.55 1.47-2.55 3.42 0 1.25.43 2.1.43 2.1l-1.7 7.2c-.5 2.13-.08 4.75-.04 5 .02.17.22.2.3.1.14-.18 1.82-2.26 2.4-4.33.16-.58.93-3.63.93-3.63.45.88 1.8 1.65 3.22 1.65 4.25 0 7.13-3.87 7.13-9.05C20.5 4.15 17.18.5 12.14.5z"/></svg>
                             </div>Share on Pinterest</div>
                         </a>
-                        */}
+                        <div className='share_hider'>
+                            Not yet activated...
+                        </div>
 
                     </Grid.Column >
                 </Grid.Row>

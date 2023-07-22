@@ -7,51 +7,166 @@ import Caption from './Caption';
 import TabExampleBasic from './InfoTabs';
 import slides from '../slides.json'
 import EndGrid from './EndGrid';
+import { useState } from 'react';
 function Overlay(props) {
+    const [viewedBox, setviewedBox] = useState(-1)
     return (
             <>
-            <ClickInfo info = {props.info} setInfoPage = {props.setInfoPage} 
-            hovered = {props.hovered} setHoveringInfo = {props.setHoveringInfo}
-            counter = {props.counter}/>
-            <Grid>
-                <Grid.Row>
-                    <Grid.Column width={6}>
-                        <div className='title' onClick={()=> {
-                            props.setScrubbing(true)
-                            props.setCounter(0);
-                            }
-                            }>
-                            <h1>The Living and the Built</h1>
+            <Grid className='header_grid'>
+                <Grid.Row className='header_row' onMouseLeave = {()=>setviewedBox(-1)}>
+                    <Grid.Column width={5} className='header_grid_title_container' >
+                        <Grid style = {{height: "100%"}}>
+                            <Grid.Row style = {{padding: "0px"}}>
+                                <Grid.Column width={13}>
+                                <Grid>
+
+                                <Grid.Row style = {{padding: "0px"}}>
+
+                                <div className='title' onClick={()=> {
+                                    props.setScrubbing(true)
+                                    props.setCounter(0);
+                                    }
+                                    }>
+                                        <img src = "Icon/title.svg"/>
+                                    {/* 
+                                    <h1>Living & Built</h1>
+
+                                    */}
+                                </div>
+                                </Grid.Row>
+
+                                <Grid.Row columns={3} style = {{padding: "0px", "padding-top": "5px"}}>
+                                <Grid.Column >
+                                    <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
+                                        Info
+                                    </div>
+                                </Grid.Column>
+                                <Grid.Column >
+                                <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
+
+                                    Credits
+                                    </div>
+
+                                </Grid.Column>
+                                <Grid.Column >
+                                <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
+                                    Poster
+                                    </div>
+                                </Grid.Column>
+                            </Grid.Row>
+                            </Grid>
+                            {viewedBox >= 0 && (
+                        <div className = "header_grid_info_box">
+                        <div className = "copyrights_text">
+                                Data from Bar-On, Y.M., Phillips R., & Milo, R. The biomass distribution on Earth.(2018), 
+                            <br/> 
+                                Proceedings of the National Academy of Sciences. <br/>© Ménard and Shtarkman
+                            </div>
+
                         </div>
-                        <br/>
-                    </Grid.Column>
-                    <Grid.Column width={3}>
+
+                        )}
+                                </Grid.Column>
+                            </Grid.Row>
+                            
+                        </Grid>
                         
                     </Grid.Column>
-                    <Grid.Column width={7}>
-                        
-                        <ContentSlider counter = {props.counter} 
+                    <Grid.Column width={11}>
+                    <ContentSlider counter = {props.counter} 
                         setCounter = {props.setCounter}
                         setScrubbing = {props.setScrubbing}
                         />
+
+                    </Grid.Column>
+
+                </Grid.Row>
+                <Grid.Row className='info_row'>
+                <Grid.Column width={1} verticalAlign='middle' >
+                {props.counter != 0 &&
+                    <button className = "click_button" type="button" 
+                    onClick={()=>{
+                        props.setCounter(Math.max(props.counter - 1, 0)); 
+                        props.setPlaying(true);
+                        props.setScrubbing(false);
+                        props.setcounterHit(false);
+                        
+                    }}>
+                        <img src="Icon/Left.svg" ></img>
+                    </button>
+                }
+
+                </Grid.Column>
+
+                <Grid.Column width={14} >
+                {props.counter < 31 && (
+
+                    <Grid  className='internal_grid'>
+
+                    <Grid.Row>
+                        <Grid.Column width={5} style = {{position: "relative"}}>
+                        <ClickInfo info = {props.info} setInfoPage = {props.setInfoPage} 
+            hovered = {props.hovered} setHoveringInfo = {props.setHoveringInfo}
+            counter = {props.counter}/>
+
+                        </Grid.Column>
+                        <Grid.Column width={5} >
+                        </Grid.Column>
+                        <Grid.Column width={5}>
                         <Caption counter = {props.counter} setHovered = {props.setHovered}/>
-                    </Grid.Column>
-                    <Grid.Column width={4}>
 
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={4}>
+                        </Grid.Column>
+                        
+                    </Grid.Row>
+                    <Grid.Row>
+                    </Grid.Row>
+                    </Grid>
+                )} 
 
-
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-
-            {props.counter == 31 && (
+{props.counter == 31 && (
             <EndGrid/>
 
             )}
+                </Grid.Column>
+                <Grid.Column width={1} verticalAlign='middle' >
+                { ((true) || (props.counter != 0 && props.counter != 12)) && props.counter != 1 && props.counter <  Object.keys(slides).length -1 &&
+                        <button className = "click_button" style = {{float: "right"}} type="button" 
+                        onClick={()=>{
+                            props.setCounter(Math.min(props.counter + 1, 31)); 
+                            props.setPlaying(true);
+                            props.setScrubbing(false);
+                            props.setcounterHit(false);
+
+                        }}>
+                            <img src="Icon/Right.svg" ></img>
+                        </button>
+                    }
+
+                </Grid.Column>
+
+                </Grid.Row>
+
+            </Grid>
+                {/*
+
+            <Grid className='overlay_grid'>
+                
+                <Grid.Row>
+
+                    <Grid.Column width ={1}>
+
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                    </Grid.Column>
+                    <Grid.Column width={1}>
+
+                    </Grid.Column>
+                </Grid.Row>
+
+                
+            </Grid>
+                */}
+
 
             <Grid className='slider_container'>
                 <Grid.Row>
@@ -60,7 +175,9 @@ function Overlay(props) {
                     </Grid.Column>
 
                     <Grid.Column width={6}>
+                    {/*
                     <TabExampleBasic/>
+                    */}
 
                     </Grid.Column>
                 </Grid.Row>
@@ -113,38 +230,29 @@ function Overlay(props) {
                 </div>
             )
             */}
-
+            {/*
             <div className='button-set '>
-                {props.counter != 0 &&
-                    <button className = "click_button" type="button" 
-                    onClick={()=>{
-                        props.setCounter(Math.max(props.counter - 1, 0)); 
-                        props.setPlaying(true);
-                        props.setScrubbing(false);
-                        props.setcounterHit(false);
-                        
-                    }}>
-                        <img src="Icon/Left.svg" ></img>
-                    </button>
-                }
                 
-                { ((true) || (props.counter != 0 && props.counter != 12)) && props.counter != 1 && props.counter <  Object.keys(slides).length -1 &&
-                    <button className = "click_button" style = {{float: "right"}} type="button" 
-                    onClick={()=>{
-                        props.setCounter(Math.min(props.counter + 1, 31)); 
-                        props.setPlaying(true);
-                        props.setScrubbing(false);
-                        props.setcounterHit(false);
-
-                    }}>
-                        <img src="Icon/Right.svg" ></img>
-                    </button>
-                }
 
             </div>
+            */}
+
             </>
 
     )
 
 }
 export default Overlay
+
+
+{/*
+                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(0)} >
+                                        Info
+                                    </Grid.Row>
+                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
+                                        Credits
+                                    </Grid.Row>
+                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(2)}>
+                                        Poster
+                                    </Grid.Row>
+                                    */}

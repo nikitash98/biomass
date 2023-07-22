@@ -1,7 +1,7 @@
 {
   "name": "biomass",
   "version": "0.1.0",
-  "homepage": "https://nikitash98.github.io/biomass/",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@react-spring/three": "^9.7.2",

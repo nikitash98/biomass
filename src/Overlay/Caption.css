@@ -2,10 +2,14 @@
 
 .hoverText {
     cursor: pointer;
-    background-color: rgb(219, 219, 219);
-    padding: 3px;
-    border-radius: 5px;
+    background-color: rgb(232, 232, 232);
+    padding: 5px;
+    border: solid 1px var(--border_grey);
+    border-radius: 10px;
     white-space: nowrap;
+    display:inline-block;
+    margin: 2px;
+
   }
   
   .hoverText:hover {
@@ -14,47 +18,71 @@
   }
   #plant_text {
     color: green;
+    border: solid 1px green;
   }
   #arthropod_text{
     color: rgb(201, 34, 34);
+    border: solid 1px rgb(201, 34, 34);
+
   }
   #fish_text {
-    color: rgb(143, 7, 7)
+    color: rgb(143, 7, 7);
+    border: solid 1px rgb(143, 7, 7);
+
   }
   
   #protists_text {
-    color:rgb(227, 154, 231)
+    color:rgb(227, 154, 231);
+    border: solid 1px rgb(227, 154, 231);
+
   }
   
   #fungi_text {
-    color:rgb(189, 152, 118)
+    color:rgb(189, 152, 118);
+    border: solid 1px rgb(189, 152, 118);
+;
   }
   #virus_text {
-    color:rgb(81, 81, 81)
+    color:rgb(81, 81, 81);
+    border: solid 1px rgb(81, 81, 81);
+;
   }
   #animal_text {
-    color:rgb(194, 25, 16)
+    color:rgb(194, 25, 16);
+    border: solid 1px rgb(194, 25, 16);
+
   }
   #metal_text {
-    color:rgb(132, 132, 132)
+    color:rgb(132, 132, 132);
+    border: solid 1px rgb(132, 132, 132);
   }
   #asphalt_text {
     color: rgb(57, 57, 57);
+    border: solid 1px rgb(57, 57, 57);
+
   }
 
   #brick_text {
     color: rgb(179, 88, 75);
+    border: solid 1px rgb(179, 88, 75);
+
   }
   #plastic_text {
     color: rgb(58, 137, 168);
+    border: solid 1px rgb(58, 137, 168);
+
   }
 
   #aggregate_text {
-    color:rgb(76, 93, 99)
+    color:rgb(76, 93, 99);
+    border: solid 1px rgb(76, 93, 99);
+
   }
 
   #concrete_text { 
-    color:rgb(68, 68, 68)
+    color:rgb(68, 68, 68);
+    border: solid 1px rgb(68, 68, 68);
+
   }
   .ContentCaption {
     text-align: left;
@@ -66,8 +94,9 @@
     border-radius: 20px;
   }
   .ContentCaption h3 {
-    font-size: 25pt;
-    line-height: 34pt;
+    font-size: 20pt;
+    font-weight: 100;
+    line-height: 25pt;
     font-family: "aktiv-grotesk", sans-serif;
   }
 
@@ -89,7 +118,7 @@
   }
 
   .extra_info:hover {
-    color: blue;
+    color: var(--hover_blue);
   }
 
   .extra_info:hover + .hidden_info {

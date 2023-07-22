@@ -71,13 +71,13 @@ function getText(sel, setHovered){
         case 8:
             return <div>
                 <h3>
-                <HoverSpan id = "virus_text" hover_id = "Virus" setHovered = {setHovered}>Viruses</HoverSpan> are made up of organic material but are technically not alive. Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
+                <HoverSpan id = "virus_text" hover_id = "Viruses" setHovered = {setHovered}>Viruses</HoverSpan> are made up of organic material but are technically not alive. Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
                 </h3>
             </div>
         case 9:
             return <div>
                 <h3>
-                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA)</HoverSpan>, about 4 billions years ago.
+                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA),</HoverSpan> about 4 billions years ago.
                 </h3> 
             </div>
         case 10:
@@ -220,12 +220,15 @@ function getText(sel, setHovered){
 const Caption = (props) => {
     return (
         <>
+        {/*
         {props.counter < 12 && (
             <div className="caption_divider"></div>
 
         )
 
         }
+        */}
+
 
         <div className="ContentCaption">
             <h3>

@@ -18,28 +18,38 @@ function ClickInfo(props) {
     //if(true){
         return (
             <div className = "ClickInfo">
-                <div className = "header">
+                <div className='ClickInfo_image'>
 
                     <img src={myData[name.current].image}></img>
-                </div>
-                    <div className='content'>
-                        <Grid>
-                            <Grid.Row columns={2}>
-                                <Grid.Column width = {10}>
-                                    <div className='info_title'>
-                                        <h3>{name.current} </h3>
-                                    </div>
-                                </Grid.Column>
-                                <Grid.Column width = {6}>
-                                    <div className='info_value'>
-                                        <h3>{myData[name.current].weight} Gt</h3>
-                                    </div>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    <Divider></Divider>
-                    <p>{myData[name.current].src} </p>
+                    <div className='info_value'>
+                        <h3>{myData[name.current].weight} Gt</h3>
                     </div>
+                    <div className = "ClickInfo_image_overlay">
+                        
+                    </div>
+
+                </div>
+
+                                <div className = "header">
+                <Grid>
+                    <Grid.Row verticalAlign='middle'>
+                        <Grid.Column width = {12}>
+                        <div className='info_title'>
+                            <h3>{name.current} </h3>
+                        </div>
+
+                        </Grid.Column>
+                        <Grid.Column width = {4} style = {{"text-align": "right"}}>
+
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                
+
+                </div>
+                <div className='ClickInfo_content'>
+                    <p>{myData[name.current].src} </p>
+                </div>
 
             </div>
         )

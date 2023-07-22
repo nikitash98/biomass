@@ -11,10 +11,21 @@
     /* Optional: Only If you want to center your slider in the page */
     margin: auto;
     pointer-events: auto;
-
+    top: 25px;
     height: 30px;
   }
-  
+  .tick_label_top {
+    top: -20px;
+    width: 70px;
+    text-align: center;
+    position: relative;
+    transform: translate(-40%, 0%);
+    color:black
+  }
+
+  .selected_tick {
+    color: grey
+  }
   .customSlider-track {
     /* Top value to align your track to the center of your thumb */
     top: -2.5px;
@@ -44,7 +55,11 @@
     background-color: var(--track-color);
   }
   .customSlider-mark:hover {
-    background-color: white;
+    background-color: var(--hover_blue);
+  }
+
+  .customSlider-mark:hover .tick_label_top {
+    color: var(--hover_blue);
   }
   .slider__labels {
     display: flex;
@@ -56,19 +71,20 @@
   }
   
   .slider__labels-label {
-    width: 190px;
-    text-align: center;
+    text-align: left;
     font-size: 12pt;
     font-weight: bold;
     box-sizing: border-box;
     pointer-events: auto;
-    transform: translateX(-50%);
     
   }
 
   .custom_slider_container {
     padding: 0px;
     padding-right: 60px;
+    bottom: 0px;
+    top: 20%;
+    position: relative;
   }
   .lab {
     cursor: pointer;
