@@ -7,9 +7,6 @@ export function TestCamera(props) {
   const { nodes, materials, animations } = useGLTF('/Camera.glb')
   const { actions } = useAnimations(animations, group)
   useEffect(() => {
-    console.log(nodes)
-    console.log(actions)
-    console.log(actions["CameraAction.001"])
     actions["CameraAction.001"].play()
     actions["CameraAction.001"].paused = true;
     actions["CameraAction.001"].time = slides[props.counter]["animationTime"];

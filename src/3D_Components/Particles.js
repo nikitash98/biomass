@@ -66,7 +66,6 @@ const Particles = (props) => {
     }, [])
     let speed_of_particles = 0
     useEffect(() => {
-      console.log("INSIDE EFFECT")
       speed_of_particles = 2.0
 
     }, [props.counter])

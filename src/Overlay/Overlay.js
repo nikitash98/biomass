@@ -1,258 +1,178 @@
-import React from 'react';
-import { Grid} from 'semantic-ui-react'
+import React, { useRef } from 'react';
+import { Grid, Modal, Button, Header, Icon, Divider, Form, Radio } from 'semantic-ui-react'
 import './Overlay.css';
 import ClickInfo from './ClickInfo';
-import ContentSlider from './ContentSlider';
-import Caption from './Caption';
-import TabExampleBasic from './InfoTabs';
 import slides from '../slides.json'
-import EndGrid from './EndGrid';
 import { useState } from 'react';
+import ImageCreditModal from './ImageCreditModal';
+import HeaderGrid from './HeaderGrid';
 function Overlay(props) {
-    const [viewedBox, setviewedBox] = useState(-1)
+
+    const [imageCreditModal, setimageCreditModal] = useState(false)
+    const [rotateModal, setrotateModal] = useState(false)
+    const [headerImage, setHeaderImage] = useState(0)
+    const videoRef = useRef()
+
+
+
+    const handleVideoEnded = () => {
+        videoRef.current.currentTime = 2;
+        videoRef.current.play();
+
+    }
     return (
-            <>
-            <Grid className='header_grid'>
-                <Grid.Row className='header_row' onMouseLeave = {()=>setviewedBox(-1)}>
-                    <Grid.Column width={5} className='header_grid_title_container' >
-                        <Grid style = {{height: "100%"}}>
-                            <Grid.Row style = {{padding: "0px"}}>
-                                <Grid.Column width={13}>
-                                <Grid>
-
-                                <Grid.Row style = {{padding: "0px"}}>
-
-                                <div className='title' onClick={()=> {
-                                    props.setScrubbing(true)
-                                    props.setCounter(0);
-                                    }
-                                    }>
-                                        <img src = "Icon/title.svg"/>
-                                    {/* 
-                                    <h1>Living & Built</h1>
-
-                                    */}
-                                </div>
-                                </Grid.Row>
-
-                                <Grid.Row columns={3} style = {{padding: "0px", "padding-top": "5px"}}>
-                                <Grid.Column >
-                                    <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
-                                        Info
-                                    </div>
-                                </Grid.Column>
-                                <Grid.Column >
-                                <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
-
-                                    Credits
-                                    </div>
-
-                                </Grid.Column>
-                                <Grid.Column >
-                                <div className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
-                                    Poster
-                                    </div>
-                                </Grid.Column>
-                            </Grid.Row>
-                            </Grid>
-                            {viewedBox >= 0 && (
-                        <div className = "header_grid_info_box">
-                        <div className = "copyrights_text">
-                                Data from Bar-On, Y.M., Phillips R., & Milo, R. The biomass distribution on Earth.(2018), 
-                            <br/> 
-                                Proceedings of the National Academy of Sciences. <br/>© Ménard and Shtarkman
-                            </div>
-
-                        </div>
-
-                        )}
-                                </Grid.Column>
-                            </Grid.Row>
-                            
-                        </Grid>
-                        
-                    </Grid.Column>
-                    <Grid.Column width={11}>
-                    <ContentSlider counter = {props.counter} 
-                        setCounter = {props.setCounter}
-                        setScrubbing = {props.setScrubbing}
-                        />
-
-                    </Grid.Column>
-
-                </Grid.Row>
-                <Grid.Row className='info_row'>
-                <Grid.Column width={1} verticalAlign='middle' >
-                {props.counter != 0 &&
-                    <button className = "click_button" type="button" 
-                    onClick={()=>{
-                        props.setCounter(Math.max(props.counter - 1, 0)); 
+        <>
+            {props.counter != 0 &&
+                <button className="click_button small_click_left" type="button"
+                    onClick={() => {
+                        props.setCounter(Math.max(props.counter - 1, 0));
                         props.setPlaying(true);
                         props.setScrubbing(false);
                         props.setcounterHit(false);
-                        
                     }}>
-                        <img src="Icon/Left.svg" ></img>
-                    </button>
-                }
-
-                </Grid.Column>
-
-                <Grid.Column width={14} >
-                {props.counter < 31 && (
-
-                    <Grid  className='internal_grid'>
-
-                    <Grid.Row>
-                        <Grid.Column width={5} style = {{position: "relative"}}>
-                        <ClickInfo info = {props.info} setInfoPage = {props.setInfoPage} 
-            hovered = {props.hovered} setHoveringInfo = {props.setHoveringInfo}
-            counter = {props.counter}/>
-
-                        </Grid.Column>
-                        <Grid.Column width={5} >
-                        </Grid.Column>
-                        <Grid.Column width={5}>
-                        <Caption counter = {props.counter} setHovered = {props.setHovered}/>
-
-                        </Grid.Column>
-                        
-                    </Grid.Row>
-                    <Grid.Row>
-                    </Grid.Row>
-                    </Grid>
-                )} 
-
-{props.counter == 31 && (
-            <EndGrid/>
-
-            )}
-                </Grid.Column>
-                <Grid.Column width={1} verticalAlign='middle' >
-                { ((true) || (props.counter != 0 && props.counter != 12)) && props.counter != 1 && props.counter <  Object.keys(slides).length -1 &&
-                        <button className = "click_button" style = {{float: "right"}} type="button" 
-                        onClick={()=>{
-                            props.setCounter(Math.min(props.counter + 1, 31)); 
-                            props.setPlaying(true);
-                            props.setScrubbing(false);
-                            props.setcounterHit(false);
-
-                        }}>
-                            <img src="Icon/Right.svg" ></img>
-                        </button>
-                    }
-
-                </Grid.Column>
-
-                </Grid.Row>
-
-            </Grid>
-                {/*
-
-            <Grid className='overlay_grid'>
-                
-                <Grid.Row>
-
-                    <Grid.Column width ={1}>
-
-                    </Grid.Column>
-                    <Grid.Column width={14}>
-                    </Grid.Column>
-                    <Grid.Column width={1}>
-
-                    </Grid.Column>
-                </Grid.Row>
-
-                
-            </Grid>
-                */}
+                    <img src="Icon/Left.svg" ></img>
+                </button>
+            }
+            {(props.counter != 0) && ((props.counter != 0 && props.counter != 12)) && props.counter < Object.keys(slides).length - 1 &&
+                <button className="click_button small_click_right" style={{ float: "right" }} type="button"
+                    onClick={() => {
+                        props.setCounter(Math.min(props.counter + 1, 33));
+                        props.setPlaying(true);
+                        props.setScrubbing(false);
+                        props.setcounterHit(false);
+                    }}>
+                    <img src="Icon/Right.svg" ></img>
+                </button>
+            }
 
 
-            <Grid className='slider_container'>
-                <Grid.Row>
-                    <Grid.Column width={10}>
+            <div className='breaking_open'>
+                <div className='breaking_container'>
+                    <div className={(props.counter == 0) ? 'breaking' : 'breaking collapsed_breaking'}>
+                        <div className='breaking_title'>
+                            {/*
 
-                    </Grid.Column>
+                            <img className='logo_icon' src="Icon/Living14.svg" />
+                            */}
 
-                    <Grid.Column width={6}>
-                    {/*
-                    <TabExampleBasic/>
-                    */}
+                        <img className='logo_icon' src = "backdrop/06.png"/>
 
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-            {props.counter == 0 && (
+                        </div>
+                        <button className='new_start_button'
 
-                <div className='start_container'>
-                    <div className = "start_caption">
-                        How much life is there on Earth?
+                            onClick={() => {
+                                props.setCounter(Math.min(props.counter + 1, 32));
+                                props.setPlaying(true);
+                                props.setScrubbing(false);
+                                props.setcounterHit(false);
+                            }}
+
+                        >start</button>
+                        {/*
+                        <img className='backdrop' src="backdrop/05.png" />
+                        */}
+
                     </div>
+
                 </div>
-            )}
+            </div>
+
+            <Modal
+                basic
+                onClose={() => { props.setOpenModal(false); props.setHovered([]) }}
+                onOpen={() => props.setOpenModal(true)}
+                open={props.openModal}
+                size='small'
+            >
+                <Modal.Content>
+                    <ClickInfo info={props.info} setInfoPage={props.setInfoPage}
+                        hovered={props.hovered} setHoveringInfo={props.setHoveringInfo}
+                        counter={props.counter} />
+                </Modal.Content>
+            </Modal>
+
+            <ImageCreditModal
+                setimageCreditModal={setimageCreditModal}
+                imageCreditModal={imageCreditModal}
+            />
+
+            <div className={props.rotatePhoneContainer ? 'rotate_phone_container  ' : 'rotate_phone_container hidden'}>
+                <div className='rotate_phone_header'>
+                    We recommend rotating your device to landscape
+                </div>
+
+                <img className='regular_icon' src="Icon/Rotate_Phone.svg" />
+            </div>
+
+            
+            <HeaderGrid setimageCreditModal = {setimageCreditModal}
+            counter = {props.counter}
+            setCounter = {props.setCounter}
+            setScrubbing = {props.setScrubbing}
+            hovered = {props.hovered}
+            setPlaying = {props.setPlaying}
+            setcounterHit = {props.setcounterHit}
+            counterHit = {props.counterHit}
+            setHovered = {props.setHovered}
+            />
+
             {(props.counter >= 18 && props.counter < 22) && (
                 <>
-                <div className = {(props.counter == 18 && props.counterHit) ? 'chapter_title side_title': 'chapter_title side_title fadeOut'}>
-                    this biomass is the result of 4 billion years of evolution
-                </div>
-                
-                <div className = {(props.counter == 19 && props.counterHit)  ? 'chapter_title': 'chapter_title fadeOut'}>
-                    cars are one of humankind's most successful and global inventions
-
-                </div>
-
-
-                <div className = { (props.counter == 20 && props.counterHit) ? 'chapter_title': 'chapter_title fadeOut'}>
-                    humans are dramatically changing the surface of the earth
-                </div>
-
-
-
-
-                <div className = { (props.counter == 21 && props.counterHit)  ? 'chapter_title': 'chapter_title fadeOut'}>
-                    they have caused the recent rise of the <span className="extra_info_title"> 
-                    <div className="hidden_info_title">
-                    Technomass refers to the aggregate amount of technological infrastructure.
+                    <div className={(props.counter == 18 && props.counterHit) ? 'chapter_title big_caption_type side_title' : 'chapter_title big_caption_type side_title fadeOut'}>
+                        this biomass is the result of <span> 4 billion </span> years of evolution
                     </div>
-                    technomass</span>
 
-                </div>
+                    <div className={(props.counter == 19 && props.counterHit) ? ' big_caption_type chapter_title ' : ' big_caption_type chapter_title fadeOut'}>
+                        cars are one of humankind's most successful and global inventions
+
+                    </div>
+
+                    <div className={(props.counter == 20 && props.counterHit) ? 'chapter_title big_caption_type' : ' big_caption_type chapter_title fadeOut'}>
+                        humans are dramatically changing the surface of the earth
+                    </div>
+
+                    <div className={(props.counter == 21 && props.counterHit) ? ' big_caption_type chapter_title' : 'chapter_title fadeOut'}>
+                        <div style={{ "position": "relative" }}>
+
+                            they have caused the recent rise of the <span className="extra_info_title">
+                                <div className="hidden_info_title">
+                                    <span style={{ color: "black" }}>Technomass </span> refers to the aggregate amount of technological infrastructure.
+                                </div>
+                                technomass</span>
+                        </div>
+                    </div>
                 </>
+            )}
 
-            ) }
-            
-            {/*
-            props.counter >=  22 && props.counter < 23 && (
-                <div className='years'>
-                    <div className = "yearCounter" >
-                        <h1>{(Math.max(Math.min(1900 + Math.round(123 * props.yearPercentage), 2023),1900)).toString()}</h1>
-                    </div>
-                </div>
-            )
-            */}
-            {/*
-            <div className='button-set '>
-                
-
+            <div className={(props.counter == 30 && props.counterHit) ? ' big_caption_type chapter_title chapter_left_align' : ' big_caption_type chapter_title chapter_left_align fadeOut'}>
+                most of the technomass has been created during our lifetime
             </div>
-            */}
 
-            </>
+            <div className={(props.counter == 31 && props.counterHit) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'}>
+                the mass of man-made structures now outweighs the dry-mass of the entire living world.
+            </div>
+            <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'}>
+                the technomass in year {(Math.max(Math.min(1900 + Math.round(123 * props.yearPercentage), 2023), 1900)).toString()}:
+            </div>
+
+            <div className={(props.counter == 1 && props.counterHit) ? "dna_box " : "dna_box hide_overlay"} >
+                <div className="dna_caption big_caption_type">
+                    <video autoPlay muted webkit-playsinline playsinline loop>
+                        <source src="dna/DNA_14.mp4" type="video/mp4" />
+                    </video>
+                    All life on earth started from a chemical soup.
+                    <br />
+                    <br />
+                    These chemical bonds have spawned an enormous diversity of life forms.
+                </div>
+            </div>
+            <div className={(props.counter == 32 && props.counterHit) ? "total_cover " : "total_cover hide_overlay"}>
+            </div>
+
+        </>
 
     )
 
 }
 export default Overlay
 
-
-{/*
-                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(0)} >
-                                        Info
-                                    </Grid.Row>
-                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(1)}>
-                                        Credits
-                                    </Grid.Row>
-                                    <Grid.Row className='title_selector' onMouseEnter = {()=>setviewedBox(2)}>
-                                        Poster
-                                    </Grid.Row>
-                                    */}

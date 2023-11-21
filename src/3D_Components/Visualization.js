@@ -12,11 +12,8 @@ import { Loader } from '@react-three/drei';
 import { Selection, Select, EffectComposer, Outline} from '@react-three/postprocessing'
 import { BlendFunction,KernelSize } from 'postprocessing';
 import { Stats } from '@react-three/drei';
-import { Globe } from '../Items/Globe';
-import Particles from './Particles';
 import { Perf } from 'r3f-perf'
 import { ContactShadows } from '@react-three/drei';
-import { TestCamera } from './TestCamera';
 import * as THREE from "three";
 
 const ThreePointViz = (props) => {
@@ -55,6 +52,7 @@ const ThreePointViz = (props) => {
         
         <Canvas shadows
           gl={{ gammaInput: false, gammaOutput: false }}
+          shadowMap={{ type: THREE.PCFSoftShadowMap }}
           
         > 
         {debug && (
@@ -72,7 +70,8 @@ const ThreePointViz = (props) => {
         {/*
         <ContactShadows opacity={1} scale={50} blur={1} far={10} resolution={256} color="#000000" />
         */}
-
+        {/*
+        */}
         <EffectComposer ref = {composerRef} enabled={true} autoClear={false} stencilBuffer = {true}>
                 <Outline
                     selection={selectionSet} // selection of objects that will be outlined
@@ -88,41 +87,7 @@ const ThreePointViz = (props) => {
                     kernelSize={KernelSize.SMALL} // blur kernel size
                 /> 
         </EffectComposer>        
-        {/*
-        <fog attach="fog" color= {"white"} near={5} far={20}/>
-        */}
-
-        <Suspense fallback={
-            null
-            }>
-
-            
-            { [0, 1, 2, 3].includes(props.counter) && (
-                <group>
-                    <Particles 
-                    previousCounter = {props.previousCounter}
-                    counter = {props.counter}
-                    animationTime = {props.animationTime}
-                    />
-                </group>
-            )}
-            {/*
-            <Html position = {[4, 4, -8]}
-            rotation = {[0, Math.PI/6, 0]}
-            transform>
-                    <div className = "yearCounter" >
-
-                        <h1>{(Math.max(Math.min(1900 + Math.round(123 * props.yearPercentage), 2023),1900)).toString()}</h1>
-                    </div>
-            </Html>
-            */}
-
-            { props.counter < 2 && (
-                    <Globe counter = {props.counter} 
-                    setCounter = {props.setCounter}
-                    setScrubbing = {props.setScrubbing}
-                    />
-            )}
+       
             <group position={[0, 0, 0]}>
                 <Animation 
                 setHovered = {props.setHovered} 
@@ -136,26 +101,28 @@ const ThreePointViz = (props) => {
                 previousCounter = {props.previousCounter}
                 animationTime = {props.animationTime}
                 setcounterHit = {props.setcounterHit}
+                setOpenModal = {props.setOpenModal}
                 />
             </group>
-        </Suspense>
 
         {/*}
-        <OrbitControls/>
 
             */}
         {/*
+        <OrbitControls/>
 
         */}
 
 <directionalLight 
-        position={[4, 5, 5]} 
+        position={[3, 8, 5]} 
         intensity={1} 
-        shadow-mapSize={2048} 
+        shadow-mapSize={4096} 
         shadow-bias={-0.001}
-        shadow-radius = {1000.0}>
-            
-        <orthographicCamera attach="shadow-camera" args={[-20, 20, 20, -20, 0.1, 60]} />
+        shadow-radius = {1000.0}
+        castShadow
+        >
+        <orthographicCamera attach="shadow-camera" args={[-30, 50, 20, -20, 0.01, 60]}
+        />
         </directionalLight>
         {/*
         <directionalLight
@@ -165,16 +132,24 @@ const ThreePointViz = (props) => {
         </directionalLight>
         */}
 
-        <ambientLight intensity={0.3}/>
-    
-
-        <Plane rotation={[ -Math.PI/2,0, -Math.PI/4]} position={[0, 1, 0]} args={[1000, 1000]} >
+        <ambientLight intensity={0.2}/>
+                {/*
             <meshBasicMaterial color="#ffffff"  toneMapped={false} />
+            <meshBasicMaterial color="#ffffff" toneMapped={false}  />
+
+            */}
+        {/*
+        <Plane rotation={[ -Math.PI/2,0, -Math.PI/4]} position={[0, 1.02, 0]} args={[1000, 1000]} receiveShadow  >
+        <meshStandardMaterial attach="material" color="white" toneMapped={false}/>
+
+        <Plane  rotation={[0,0, -Math.PI / 2]} position={[0, 0, -80]} args={[1000, 1000]} receiveShadow >
+        <meshBasicMaterial color="#ffffff" toneMapped={false}  />
+
         </Plane>
 
-        <Plane  rotation={[0,0, -Math.PI / 2]} position={[0, 0, -80]} args={[1000, 1000]}>
-            <meshBasicMaterial color="#ffffff" toneMapped={false}  />
         </Plane>
+
+        */}
 
         </Canvas>
         <Loader />

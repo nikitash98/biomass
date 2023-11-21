@@ -31,7 +31,6 @@ let animationSpeed = 1.0
 
   if([23,24,25].includes(props.counter)) {
     animationSpeed = 1.0
-    console.log("HERE")
   }
 
   useFrame((state, delta)=> {

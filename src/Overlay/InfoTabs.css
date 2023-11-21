@@ -1,3 +1,5 @@
+{/*
+
 .ui.tabular.menu .item {
     max-width: 33.33%;
     min-width: 33.33%;
@@ -28,42 +30,69 @@ ul {
     padding: 0%;
     margin: 0%;
 }
-li {
-    pointer-events: auto;
-    list-style-type: none;  
-    display: inline-block;
-    padding: 10px;
-    font-size: 12pt;
-    color:rgb(142, 142, 142);
-    float: right;
-    padding-left: 10px;
-    padding-right: 10px;
+
+.fit_content {
+    width: fit-content;
+    height: fit-content;
 }
 
 li:hover {
     cursor: pointer;
-    background-color: white
+}
+
+*/}
+
+.tabs {
+    width: fit-content;
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+
+.infoTabs div {
+    pointer-events: auto;
+    list-style-type: none;  
+    display: inline-block;
+    font-size: 12pt;
+    color:var(--border_grey);
+    bottom: 0%;
+    padding: 3px;
+    margin-left: 10px;
+    border-radius: 0px 0px 3px 3px;
+}
+
+
+.hovered_list {
+    background-color: rgb(255, 255, 255);
+    color: var(--hover_blue) !important;
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
 }
 
 .segment {
     text-align: left;
-    font-size: pt;
     padding: 10px;
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     border-radius: 10px;
-    
+    position: absolute;
+    bottom: 100%;
+    max-height: 80vh;
+    right: 0%;
+    z-index: 15;
+    overflow: hidden;
 }
-
-.tabs > * {
+.segment > * {
     pointer-events: auto;
 }
+
+
 
 .download_button {
     padding: 5%;
     margin: 10px;
     display: block;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 1px;
     background-color: rgb(202, 202, 202);
     font-size: 15pt;
     color: black;
@@ -88,7 +117,9 @@ li:hover {
     font-size: 12pt;
     font-weight: 400;
     padding: 5px;
+    border: solid 1px var(--border_grey);
     text-decoration: none;
+    color: black
 }
 .download-row .col:hover{
     background-color: rgb(61, 61, 61);
@@ -107,9 +138,6 @@ li:hover {
     height: 50%;
 }
 
-.poster-download-section .vertical-row {
-    height: 100%;
-}
 
 .dropdown-item:hover .download-hover-section{
     visibility: visible;
@@ -124,9 +152,14 @@ li:hover {
     position: relative;
 }
 
+.segment p {
+    font-family:"aktiv-grotesk", sans-serif;
+
+}
+
 .info {
     font-size: 12pt;
-    font-family: "aktiv-grotesk", sans-serif;
+    font-family:"aktiv-grotesk", sans-serif;
     font-weight: 700;
     text-align: right;
 }
@@ -135,3 +168,65 @@ li:hover {
 }
 
 
+
+.segment .poster-download {
+    height: 33%;
+    width: 100%;
+    display: block;
+}
+    
+.poster-download-section .vertical-row {
+    height: 25%;
+}
+{/*
+
+.segment .poster-download {
+    width: fit-content;
+}
+*/}
+
+.segment .poster-download img {
+    height: 100%;
+    width: auto;
+}
+
+.credit_grid_object {
+    border-top: solid 1px var(--border_grey);
+
+}
+
+.credit_grid_object:hover {
+    background-color: rgb(244, 240, 237);
+}
+
+.imageCredit {
+    color: #4183c4;
+    cursor: pointer;
+}
+
+
+
+.hover_poster_download {
+    height: 33%;
+    background-color: red;
+    width: fit-content;
+}
+
+.hover_poster_download img {
+    width: 100%;
+}
+
+.download_drop_up {
+    height: 85vh;
+}
+.credit_drop_up {
+    min-width: 30vw;
+}
+.download_drop_up .poster-download {
+    height: 30%;
+    width: fit-content;
+}
+
+.download_drop_up_container {
+    position: relative;
+}

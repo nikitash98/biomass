@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.12 public/Part_01.glb
 */
 
 import React, { useRef } from 'react'
-import { useGLTF, useAnimations, Html, Image, Box, PerspectiveCamera, OrthographicCamera} from '@react-three/drei'
+import { useGLTF, useAnimations, Html, Image, Box, PerspectiveCamera, OrthographicCamera } from '@react-three/drei'
 import { playAnimations, setAnimationTime } from '../3D_Components/AnimationUtilities'
 import { useEffect } from 'react'
 import { useFrame, useThree } from 'react-three-fiber'
@@ -20,41 +20,173 @@ export function Part01(props) {
   const { actions } = useAnimations(animations, group)
   const imageRef_one = useRef()
   const imageRef_two = useRef()
+
+  const cameraRef = useRef()
+
+
   let hiddenClass = (props.counter != props.previousCounter.current) ? 'box_name hidden' : "box_name ";
-  
   const hiddenArtificial = "box_name artificial_name"
   const percentage_of_animation_played = useRef(0)
   let highlighted = slides[props.counter]["highlighted"]
   let divRefs = props.divRefs
   let quantities = slides[props.counter]["quantities"]
-  console.log(props.counter)
-  console.log(props.previousCounter.current)
 
-  console.log([props.previousCounter.current, props.counter].sort().toString() == [22, 23].toString())
-  const transp_material = new THREE.MeshStandardMaterial({color: 0x626967, opacity: 0.5, transparent: true})
-
+  const transp_material = new THREE.MeshStandardMaterial({ color: 0xD3D3D3, opacity: 0.3, transparent: true })
   let animationSpeed = 1
-  console.log(props.counter)
-  let click_var = 1.0
-  const camRef = useRef()
-  const invizMaterial = new THREE.MeshStandardMaterial({opacity:0, transparent:true})
+  const invizMaterial = new THREE.MeshStandardMaterial({ opacity: 0, transparent: true })
+  const blueMeshMaterial = new THREE.MeshBasicMaterial({ color: 0x287ed4 })
+  const whiteSimpleMaterial = new THREE.MeshBasicMaterial({ color: 0xfffffff, toneMapped: false })
+  const whiteStandardMaterial = new THREE.MeshStandardMaterial({ color: 0xfffffff, toneMapped: false })
+  const transparentMaterial = new THREE.MeshPhongMaterial({ color: 0xfffffff, opacity: 0.0, transparent: true })
+
   const set_views = {
     "tree": [9],
-    "boxes": [10, 11,12, 13, 14, 15, 16, 17, 18, 19, 20, ],
-    "rising_boxes": [22,23],
-    "end_view": [29,31,32,31,30]
+    "boxes": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,],
+    "rising_boxes": [22, 23],
+    "end_view": [31, 32, 31, 30]
+  }
 
-    }
   const { viewport } = useThree();
 
+  nodes.Animals.geometry.computeVertexNormals()
 
   const handleAnimalHover = (e) => {
-    console.log(e)
     e.stopPropagation()
     document.body.style.cursor = 'pointer'
     props.setHovered(["Animals"])
     props.setSelectionSet(props.divRefs["Animals"])
   }
+
+  if (cameraRef && cameraRef.current) {
+
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+
+    cameraRef.current.aspect = newWidth / newHeight;
+    cameraRef.current.updateProjectionMatrix();
+  }
+
+  // Linear interpolation (LERP) function
+  function lerp(start, end, t) {
+    return (1 - t) * start + t * end;
+  }
+
+  function exponentialLerp2D(points, t) {
+
+    // Ensure t is in the range [0, 1]
+    t = Math.min(1, Math.max(0, t));
+
+    // Validate that there are at least 5 points
+    if (points.length < 5 || points.some(point => point.length !== 2)) {
+      throw new Error('At least 5 2D points are required for exponential interpolation.');
+    }
+
+    // Calculate the segment index and local t within that segment
+    const numSegments = points.length - 4;
+    const segmentIndex = Math.floor(t * numSegments);
+    const localT = (t * numSegments) - segmentIndex;
+    if (t == 1) {
+      return points[4]
+    }
+
+    // Get the 2D points for the current segment
+    const p0 = points[segmentIndex];
+    const p1 = points[segmentIndex + 1];
+    const p2 = points[segmentIndex + 2];
+    const p3 = points[segmentIndex + 3];
+    const p4 = points[segmentIndex + 4];
+
+    // Calculate the exponential lerp value for each dimension (x and y)
+    const lerpedX = (
+      (1 - localT) * (1 - localT) * (1 - localT) * (1 - localT) * p0[0] +
+      4 * (1 - localT) * (1 - localT) * (1 - localT) * localT * p1[0] +
+      6 * (1 - localT) * (1 - localT) * localT * localT * p2[0] +
+      4 * (1 - localT) * localT * localT * localT * p3[0] +
+      localT * localT * localT * localT * p4[0]
+    );
+
+    const lerpedY = (
+      (1 - localT) * (1 - localT) * (1 - localT) * (1 - localT) * p0[1] +
+      4 * (1 - localT) * (1 - localT) * (1 - localT) * localT * p1[1] +
+      6 * (1 - localT) * (1 - localT) * localT * localT * p2[1] +
+      4 * (1 - localT) * localT * localT * localT * p3[1] +
+      localT * localT * localT * localT * p4[1]
+    );
+
+    return [lerpedX, lerpedY];
+  }
+
+
+  function exponentialLerp(t, start, end) {
+    // Ensure t is in the range [0, 1]
+    if (t > 1) {
+      return end;
+    }
+    t = Math.min(1, Math.max(0, t));
+  
+    if (end == start && start == 0) {
+      return 0
+    }
+    if (start == 0) {
+      start = 0.0001
+    }
+    // Calculate the exponential lerp value
+    return start * Math.pow(end / start, t);
+  }
+
+  function exponentialLerpPoints(points, t) {
+    if (t < 40 / 123) {
+      return exponentialLerp(t / (40 / 123), points[0], points[1])
+    } else if (t < 80 / 123) {
+      return exponentialLerp((t - (40 / 123)) / (40 / 123), points[1], points[2])
+    } else if (t < 120 / 123) {
+      return exponentialLerp((t - (80 / 123)) / (40 / 123), points[2], points[3])
+    } else if (t <= 123 / 123) {
+      return exponentialLerp((t - (120 / 123)) / (3 / 123), points[3], points[4])
+    } else {
+      return points[3]
+    }
+  }
+
+
+
+  const concrete_data = [2, 10, 86, 549, 598]; // Add your five 2D points here
+  const aggregates_data = [17, 30, 135, 386, 402]; // Add your five 2D points here
+  const bricks_data = [11, 16, 28, 92, 99]; // Add your five 2D points here
+  const asphalt_data = [0, 1, 22, 65, 65]; // Add your five 2D points here
+  const metals_data = [1, 3, 13, 39, 41]; // Add your five 2D points here
+  const plastics_data = [0, 0, 0.78, 9.5, 10]; // Add your five 2D points here
+
+  // Example list of values
+  const values = [2, 15, 9, 5, 8];
+
+  function lerp_values(values, t) {
+    // Time parameter for interpolation (0 to 1)
+    // Find the indices for the values to interpolate between
+    const startIndex = Math.floor(t * (values.length - 1));
+    const endIndex = Math.ceil(t * (values.length - 1));
+
+    // Calculate the interpolation factor
+    const fraction = (t - startIndex / (values.length - 1)) * (values.length - 1);
+
+    // Perform linear interpolation
+    const interpolatedValue = lerp(values[startIndex], values[endIndex], fraction);
+    return interpolatedValue
+  }
+
+
+
+  let change = (viewport.width / 20.0)
+
+  change = window.innerWidth / 5000
+
+
+  //let change_value = lerp_values(values, change)
+  let change_value = window.innerHeight / window.innerWidth * 14
+  const handleResize = () => {
+    console.log("RESIZE")
+  };
+
 
   const car_offset = 0.0
   let boxes = Object.keys(data)
@@ -62,30 +194,30 @@ export function Part01(props) {
   boxes = boxes.filter(function (box_name) {
     return box_name !== 'Animals';
   });
-  console.log([props.counter, props.previousCounter.current].sort() == [22, 23])
-  console.log([props.counter, props.previousCounter.current].sort())
-  console.log([22,23].toString() === [22,23].toString())
-  let artificialBoxes = ["Cars", "Bricks","Metals","Asphalt","Aggregates", "Concrete", "Plastics"]
+
+  let animal_boxes = ["Wild Birds", "Cnidarians", "Mollusks", "Marine Arthropods", "Fish", "Nematodes", "Annelids", "Arthropods", "Wild Mammals"]
+  let artificialBoxes = ["Cars", "Bricks", "Metals", "Asphalt", "Aggregates", "Concrete", "Plastics"]
+
   let title_positions = {
-    "Annelids": [-0.3, .3, .3],
-    "Arthropods": [-0.3, .3, .3],
+    "Annelids": [0, 0, .45],
+    "Arthropods": [0, .3, .4],
     "Animals": [-.5, 0, 1.2],
     "Plants": [+1.2, +1, +1.2],
-    "LUCA": [-1, -1, 0.9],
-    "Viruses": [-.3, 0.31, 0.3],
-    "Protists": [+.75, 1, .8],
-    "Bacteria": [-2, 2.2, 2.1],
+    "LUCA": [0, -1.2, 0.9],
+    "Viruses": [0, 0.41, 0.4],
+    "Protists": [+.85, 1, .8],
+    "Bacteria": [-2, 2.2, 2.3],
     "Fungi": [1.4, 1, 1.2],
-    "Archaea": [-1, 1, 1],
-    "Cnidarians": [-.3, .3, .32],
-    "Fish": [-.5, .5, -.5],
-    "Humans": [-.2, .4, .2],
-    "Livestock": [-.3, .3, .25],
-    "Marine_Arthropods": [-.5, .7, .5],
-    "Mollusks": [-.3, .5, .3],
-    "Nematodes": [-.3, .1, .2],
-    "Wild_Birds": [0.0, .3, .2],
-    "Wild_Mammals": [-0.2, .2, .2],
+    "Archaea": [-1, 1, 1.1],
+    "Cnidarians": [0, .3, .32],
+    "Fish": [-.6, 0, 0],
+    "Humans": [0, 0, .3],
+    "Livestock": [0, 0, .35],
+    "Marine_Arthropods": [0, 0, .6],
+    "Mollusks": [0, .0, .4],
+    "Nematodes": [0, 0, .25],
+    "Wild_Birds": [0.0, 0, .2],
+    "Wild_Mammals": [0, .2, .2],
     "Concrete": [.5, -.55, .5],
     "Bricks": [.5, -.55, .5],
     "Cars": [.5, -.5, .5],
@@ -96,40 +228,10 @@ export function Part01(props) {
   }
 
 
-  let title_rotations = {
-    "Annelids": [-Math.PI/2, 0, 0 ],
-    "Arthropods": [-Math.PI/2, 0, 0 ],
-    "Animals": [-Math.PI/2, 0, 0 ],
-    "Plants": [-Math.PI/2, 0,Math.PI/2],
-    "LUCA": [0, 0,0],
-    "Viruses": [-Math.PI/2, 0,0],
-    "Protists": [-Math.PI/2, 0,Math.PI/2],
-    "Bacteria": [-Math.PI/2, 0,0],
-    "Fungi": [-Math.PI/2, 0,Math.PI/2],
-    "Archaea": [-Math.PI/2, 0,0],
-    "Cnidarians": [-Math.PI/2, 0, 0 ],
-    "Fish": [-Math.PI/2, 0,-Math.PI/2],
-    "Humans":[-Math.PI/2, 0, 0],
-    "Livestock": [-Math.PI/2, 0,0],
-    "Marine_Arthropods": [-Math.PI/2, 0,0],
-    "Mollusks": [-Math.PI/2, 0,0],
-    "Nematodes": [-Math.PI/2, 0,0],
-    "Wild_Birds": [-Math.PI/2, 0, 0 ],
-    "Wild_Mammals": [-Math.PI/2, 0, 0 ],
-    "Concrete": [0, 0, 0 ],
-    "Bricks": [0, 0, 0 ],
-    "Cars": [0, 0, 0 ],
-    "Metals": [0, 0, 0 ],
-    "Aggregates": [0, 0, 0 ],
-    "Asphalt": [0, 0, 0 ],
-    "Plastics": [0, 0, 0 ],
-
-  }
-
   let weight_positions = {
     "Annelids": [0, 0, -.4],
     "Arthropods": [0, 0, -.4],
-    "Animals": [-1.3, 0, 0],
+    "Animals": [0, 1.6, 0],
     "Plants": [-1.3, 0, 0],
     "LUCA": [0, 1.5, 0],
     "Viruses": [0, 0, -.4],
@@ -141,39 +243,26 @@ export function Part01(props) {
     "Fish": [0.7, 0, 0],
     "Humans": [0, 0, -.4],
     "Livestock": [0, 0, -.4],
-    "Marine_Arthropods":[0, 0, -.6],
-    "Mollusks": [0, 0, -.4] ,
-    "Nematodes":[0, 0, -.4],
+    "Marine_Arthropods": [0, 0, -.6],
+    "Mollusks": [0, 0, -.4],
+    "Nematodes": [0, 0, -.4],
     "Wild_Birds": [0, 0, -.2],
     "Wild_Mammals": [0, 0, -.2],
-    "Concrete": [0, 0.65, 0],
-    "Bricks": [0, 0.65, 0],
+    "Concrete": [0, 0.55, 0],
+    "Bricks": [0, 0.55, 0],
     "Cars": [0, 0.6, 0],
     "Metals": [0, 0.6, 0],
-    "Aggregates":[0, 0.65, 0],
-    "Asphalt": [0, 0.65, 0],
+    "Aggregates": [0, 0.55, 0],
+    "Asphalt": [0, 0.55, 0],
     "Plastics": [0, 0.6, 0]
   }
 
 
   const flatten_name = (entry_name) => {
-    return entry_name.replace(/ /g,"_")
+    return entry_name.replace(/ /g, "_")
   }
 
-
-  let change = (viewport.width/viewport.height)
-
-  if(!change){
-    change = 0
-  } else {
-    change = 10/Math.pow((viewport.width/viewport.height), 3.0)      
-  }
   const quant_value = useRef(0)
-  const asphalt_value = useRef(0)
-  const metal_value = useRef(0)
-  const brick_value = useRef(0)
-  const aggregate_value = useRef(0)
-  const concrete_value = useRef(0)
 
   const artificial_values = useRef({
     "Asphalt": 0,
@@ -186,12 +275,12 @@ export function Part01(props) {
   })
 
   const animal_click = () => {
-    if(set_views["boxes"].includes(props.counter)) {
+    if (set_views["boxes"].includes(props.counter)) {
       props.setScrubbing(false)
       props.setCounter(props.counter + 1)
       props.setcounterHit(false)
     }
-    if(props.counter == 1) {
+    if (props.counter == 1) {
       props.setScrubbing(false)
       props.setcounterHit(false)
       props.setCounter(props.counter + 1)
@@ -203,360 +292,318 @@ export function Part01(props) {
     let end_time = slides[23]["animationTime"]
     let length = end_time - start_time
     let cur_value = value - start_time
-    let perc = cur_value/length
+    let perc = cur_value / length
     return perc
   }
 
   const flatYear = (value) => {
     let perc = rise_percentage(value)
-    return perc//Math.max(Math.min(1900 + Math.round(120 * perc), 2020),1900)
+    return perc
   }
 
-  const exponentialLaw = (a, b, x) => {
-    return a * Math.pow(b, x)
-  }
+
+  //https://elsenaju.eu/Calculator/online-curve-fit.htm
   const e_square_function = (a, b, c, x) => {
     return a * Math.pow(Math.E, b * Math.pow((x + c), 2))
   }
-  useEffect( () =>{
+  useEffect(() => {
     playAnimations(actions)
     setAnimationTime(actions, slides[props.counter]["animationTime"])
   }, [])
 
-  useFrame((state, delta)=> {
+  useFrame((state, delta) => {
+    if (props.previousCounter.current != props.counter) {
+      let anim_length = Math.abs(slides[props.counter]["animationTime"] - slides[props.previousCounter.current]["animationTime"])
+      percentage_of_animation_played.current += animationSpeed / anim_length * delta
 
-   if(props.previousCounter.current != props.counter) {
-    let anim_length = Math.abs(slides[props.counter]["animationTime"] - slides[props.previousCounter.current]["animationTime"])
-    percentage_of_animation_played.current += animationSpeed/anim_length * delta
-    
-    if(props.scrubbing || Math.abs(props.previousCounter.current - props.counter)> 1) {
-      props.animationTime.current = slides[props.counter]["animationTime"]
-      props.previousCounter.current = props.counter
-      props.setcounterHit(true)
+      if (props.scrubbing || Math.abs(props.previousCounter.current - props.counter) > 1) {
+        props.animationTime.current = slides[props.counter]["animationTime"]
+        props.previousCounter.current = props.counter
+        props.setcounterHit(true)
 
-    } else {
-      props.animationTime.current = lerp(slides[props.previousCounter.current]["animationTime"], slides[props.counter]["animationTime"], Math.min(percentage_of_animation_played.current, 1))
+      } else {
+        props.animationTime.current = lerp(slides[props.previousCounter.current]["animationTime"], slides[props.counter]["animationTime"], Math.min(percentage_of_animation_played.current, 1))
+      }
+
+      setAnimationTime(actions, props.animationTime.current)
+
+      if (percentage_of_animation_played.current >= 1.0) {
+        props.previousCounter.current = props.counter
+        percentage_of_animation_played.current = 0
+        hiddenClass = "box_name hidden"
+        props.setcounterHit(true)
+      }
     }
 
-    setAnimationTime(actions, props.animationTime.current)
+    if (imageRef_one.current) {
+      imageRef_one.current.material.opacity = (Math.abs(Math.sin(state.clock.getElapsedTime() * 3))) * 0.4 + 0.6;
 
-    if(percentage_of_animation_played.current >= 1.0) {
-      props.previousCounter.current = props.counter
-      percentage_of_animation_played.current = 0
-      hiddenClass = "box_name hidden" 
-      props.setcounterHit(true)
     }
-   }
+    if (imageRef_two.current) {
+      imageRef_two.current.material.opacity = (Math.abs(Math.sin(state.clock.getElapsedTime() * 3))) * 0.4 + 0.6;
 
-   if (imageRef_one.current) {
-    imageRef_one.current.material.opacity = (Math.abs(Math.sin(state.clock.getElapsedTime() * 3))) * 0.4 + 0.6;
+    }
 
-   }
-   if (imageRef_two.current) {
-    imageRef_two.current.material.opacity = (Math.abs(Math.sin(state.clock.getElapsedTime() * 3))) * 0.4 + 0.6;
-
-   }
-
-    if(set_views["rising_boxes"].includes(props.counter)) {
+    if (set_views["rising_boxes"].includes(props.counter)) {
       props.setYearPercentage(flatYear(props.animationTime.current))
       quant_value.current = rise_percentage(props.animationTime.current)
-      artificial_values.current["Concrete"] = e_square_function(71971.169, -0.149, -8.720, rise_percentage(props.animationTime.current) * 2 * 1.025 + 1)
-      artificial_values.current["Aggregates"] = e_square_function(815.706, -0.227, -4.816, rise_percentage(props.animationTime.current) * 2 * 1.025 + 1)
-      artificial_values.current["Bricks"] = e_square_function(15.258, 0.315, -0.612, rise_percentage(props.animationTime.current) * 2 * 1.025 + 1)
-      artificial_values.current["Metals"] = e_square_function(121.671, -0.184, -5.488, rise_percentage(props.animationTime.current) * 2 * 1.025 + 1)
-      artificial_values.current["Asphalt"] = e_square_function(65.102, -1.004, -3.040, rise_percentage(props.animationTime.current) * 2 * 1.025  + 1)
-      artificial_values.current["Plastics"] = e_square_function(11.000, -1.720, -3.238, rise_percentage(props.animationTime.current) * 2 * 1.025 + 1)
+      artificial_values.current["Concrete"] = exponentialLerpPoints(concrete_data, rise_percentage(props.animationTime.current))
+      artificial_values.current["Aggregates"] = exponentialLerpPoints(aggregates_data, rise_percentage(props.animationTime.current))
+      artificial_values.current["Bricks"] = exponentialLerpPoints(bricks_data, rise_percentage(props.animationTime.current))
+      artificial_values.current["Metals"] = exponentialLerpPoints(metals_data, rise_percentage(props.animationTime.current))
+      artificial_values.current["Asphalt"] = exponentialLerpPoints(asphalt_data, rise_percentage(props.animationTime.current))
+      artificial_values.current["Plastics"] = exponentialLerpPoints(plastics_data, rise_percentage(props.animationTime.current))
 
     }
   })
 
 
-  if(set_views["tree"].includes(props.counter)) {
-    title_positions["Fungi"] = [1.2, 1, 1]
+  if (set_views["tree"].includes(props.counter)) {
+    title_positions["Fungi"] = [1.2, 1, -0.5]
     title_positions["Archaea"] = [-1, 0, 1.2]
-    title_positions["Bacteria"] = [-2, 0, 3.2]
+    title_positions["Bacteria"] = [-2, 0, 2.5]
 
 
 
   }
-  if(set_views["boxes"].includes(props.counter)) {
+  if (set_views["boxes"].includes(props.counter)) {
     title_positions["Plants"] = [-1.25, +1, +1.2]
     title_positions["Protists"] = [-1.25, +1, 0]
     title_positions["Animals"] = [1.85, -0.6, -1]
 
   }
 
-  if(set_views["rising_boxes"].includes(props.counter)) {
-    title_positions["Metals"] =[-0.4, 0.7, 0]
-    title_positions["Asphalt"] =[-0.4, 0.7, 0]
-    title_positions["Bricks"] =[-0.4, 0.7, 0]
-    title_positions["Aggregates"] =[-0.4, 0.7, 0]
-    title_positions["Concrete"] =[-0.3, 0.7, 0]
-    title_positions["Plastics"] =[-0.4, 0.7, 0]
+  if (set_views["rising_boxes"].includes(props.counter)) {
+    title_positions["Metals"] = [-0.4, 0.7, 0]
+    title_positions["Asphalt"] = [-0.4, 0.7, 0]
+    title_positions["Bricks"] = [-0.4, 0.7, 0]
+    title_positions["Aggregates"] = [-0.4, 0.7, 0]
+    title_positions["Concrete"] = [-0.3, 0.7, 0]
+    title_positions["Plastics"] = [-0.4, 0.7, 0]
 
   }
 
-  if(set_views["end_view"].includes(props.counter)) {
-    title_positions["Plastics"] =[0.3, 0.9, 0]
-    title_positions["Metals"] =[0.4, 0.9, 0]
-    title_positions["Asphalt"] =[0.7,0.9 , 0]
-    title_positions["Bricks"] =[0.8, 0.8, 0]
+  if (set_views["end_view"].includes(props.counter)) {
+    title_positions["Plastics"] = [0.4, 0.9, 0]
+    title_positions["Metals"] = [0.4, 0.8, 0]
+    title_positions["Asphalt"] = [0.6, 0.8, 0]
+    title_positions["Bricks"] = [0.8, 0.8, 0]
     title_positions["Plants"] = [-1.35, +1, +1.2]
     title_positions["Protists"] = [-1.5, 0, -.2]
     title_positions["Fungi"] = [1.2, 0, 1.2]
-
+    title_positions["Aggregates"] = [.5, -.50, .5]
+    title_positions["Concrete"] = [.5, -.50, .5]
   }
 
+  let glow_icon_mat = materials.Icons
+  glow_icon_mat.emissive = glow_icon_mat.color
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-      <PerspectiveCamera name="Camera" makeDefault 
-      far={1000} near={0.1} fov={26.369 +change} 
-      position={[0.759, 19.945, 20.304]} rotation={[-0.2, 0, 0]} scale={5.334} 
-      />
+        <PerspectiveCamera name="Camera" makeDefault
+          far={1000} near={0.1}
+          position={[0.759, 19.945, 20.304]} rotation={[-0.2, 0, 0]} scale={5.334}
+          ref={cameraRef}
+          fov={change_value}
+
+        />
+
+        {boxes.map((name, i) => {
+          let flat_name = flatten_name(name)
+          let currentClass = hiddenClass
+          let icon_mat = materials.Icons
+          let is_artificial = artificialBoxes.includes(name)
+          let is_animal = animal_boxes.includes(name)
+
+          if (is_animal) {
+            icon_mat = glow_icon_mat
+          }
+
+          if (is_artificial) {
+            currentClass = hiddenArtificial
+          }
+
+          let trans_amount = "0%"
+
+          if (is_artificial) {
+            trans_amount = "-120%"
+          }
 
 
-    {boxes.map((name, i) => {
-        let flat_name = flatten_name(name)
-        let currentClass = hiddenClass
-        let icon_mat = materials.Icons
-        let is_artificial = artificialBoxes.includes(name)
-        if(is_artificial) {
-          currentClass = hiddenArtificial
-          icon_mat = materials["Material.008"]
-        }
+          let human_title = name.toLowerCase()
+          if (name == "Humans" && props.counter >= 20 && props.previousCounter.current > 19) {
+            human_title = "all humans"
+          }
+          let weight_val = data[name].weight
 
-        let trans_amount = "0%"
-        if(is_artificial) {
-          trans_amount = "-120%"
-        }
-        icon_mat.toneMapped = false;
-        let human_title = name
-        if(name == "Humans" && props.counter >= 20 && props.previousCounter.current > 19) {
-          human_title = "All Humans"
-          currentClass = currentClass + " all_humans_type"
-        } 
-        let weight_val = data[name].weight
+          if (Object.keys(artificial_values.current).includes(name) &&
+            set_views["rising_boxes"].includes(props.counter)) {
+            weight_val = Math.round(artificial_values.current[name])
+          }
 
-        if(Object.keys(artificial_values.current).includes(name) &&
-          set_views["rising_boxes"].includes(props.counter)){
-          weight_val = Math.round(artificial_values.current[name])
-        }
+          if (props.hovered.includes(name)) {
+            currentClass += " hovered_name"
+          }
 
-        if(props.hovered.includes(name)){
-          currentClass += " hovered_name"
-        }
-        if(highlighted.includes(name)) {
-          currentClass += " highlighted_name"
-        }
-        return (
-            <mesh name = {flat_name} geometry={nodes[flat_name].geometry} key = {i}
-            material = {highlighted.includes(name) ? transp_material : nodes[flat_name].material}
-            morphTargetDictionary={false? null:nodes["Metals"].morphTargetDictionary} 
-            morphTargetInfluences={ false? null: nodes["Metals"].morphTargetInfluences} 
-             position = {nodes[flat_name].position}
-            rotation = {nodes[flat_name].rotation}
-             frustumCulled = {false}
-            onPointerOver = {
-              ([props.counter, props.previousCounter.current].sort().toString() == [22, 23].toString())
-              ? null:props.handleHover} onPointerOut = {props.handleUnhover}
-            
-            ref = {ref => divRefs.current[name] = ref} 
+          let currently_highlighted = false
+          if (highlighted.includes(name)) {
+            currentClass += " highlighted_name"
+            currently_highlighted = true
+          }
+          return (
+            <mesh name={flat_name} geometry={nodes[flat_name].geometry} key={i}
+              material={highlighted.includes(name) ? transp_material : nodes[flat_name].material}
+              morphTargetDictionary={false ? null : nodes["Metals"].morphTargetDictionary}
+              morphTargetInfluences={false ? null : nodes["Metals"].morphTargetInfluences}
+              position={nodes[flat_name].position}
+              rotation={nodes[flat_name].rotation}
+              frustumCulled={false}
+              onClick={() => { props.setOpenModal(true); props.setHovered([flat_name]) }}
+              castShadow={!is_animal && !currently_highlighted}
+              receiveShadow
+
+              onPointerOver={
+                (([props.counter, props.previousCounter.current].sort().toString() == [22, 23].toString()) || props.counter == 22)
+                  ? null : props.handleHover} onPointerOut={props.handleUnhover}
+              ref={ref => divRefs.current[name] = ref}
             >
-          <mesh name={flat_name + "_Icon"} geometry={nodes[flat_name + "_Icon"].geometry} material={icon_mat} 
-          position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={nodes[flat_name + "_Icon"].scale} />
-            <Html 
+              <mesh name={flat_name + "_Icon"} geometry={nodes[flat_name + "_Icon"].geometry} material={icon_mat}
+                position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={nodes[flat_name + "_Icon"].scale} />
+
+              {(nodes[flat_name + "_Text"]) && (
+                <mesh name={flat_name + "_Text"} geometry={nodes[flat_name + "_Text"].geometry} material={icon_mat}
+                  position={nodes[flat_name + "_Text"].position} rotation={nodes[flat_name + "_Text"].rotation} scale={nodes[flat_name + "_Text"].scale} />
+
+
+              )}
+              <Html
                 style={{
                   transition: 'all 0.2s',
                   transform: 'translate(-50%, -100%)'
                 }}
+                distanceFactor={10}
                 zIndexRange={[100, 100]}
-                position = {weight_positions[flat_name]}
-                className= {(props.hovered.includes(name) || quantities.includes(name)) ? "box_value" : "box_value hide_box"} 
-                >
+                position={weight_positions[flat_name]}
+                className={(props.hovered.includes(name) || quantities.includes(name)) ? "box_value" : "box_value hide_box"}
+              >
+
                 <h1>{weight_val} Gt </h1>
+              </Html>
+
+              {(is_artificial && (props.counter <= 23 && props.counter > 21)) && (
+                <Html
+                  style={{
+                    transform: 'translate(-50%, -200%)'
+                  }}
+                  position={weight_positions[flat_name]}
+                  className="temporary_title"
+                >
+                  {flat_name.toLowerCase()}
+                </Html>
+              )}
+
+              {(!nodes[flat_name + "_Text"]) && (((!is_artificial || props.counter > 23) || (flat_name == "Cars"))) && (
+
+                <Html position={title_positions[flat_name]}
+                  scale={0.4 / nodes[flat_name].scale.x}
+                  center={true}
+                  distanceFactor={10}
+                  zIndexRange={[0, 20]}
+                  className={currentClass}>
+                  <h1>{human_title}</h1>
+                </Html>
+              )}
+
+            </mesh>
+          )
+        })}
+
+        <group name="2023" position={[-1.568, 0.606, 5.289]} scale={0.177}>
+          <group name="Word" position={[-1.559, -0.045, 0.839]} scale={2.413} >
+          </group>
+          <mesh name="2023_Text" geometry={nodes['2023_Text'].geometry} material={materials.Icons} position={[-1.011, -0.518, 0.679]} rotation={[Math.PI / 2, 0, -Math.PI / 6]} scale={0.832} />
+          <mesh name="Plane002" geometry={nodes.Plane002.geometry} material={blueMeshMaterial} position={[2.284, 0.005, -1.01]} rotation={[Math.PI / 2, 0, 2.653]} scale={[-1.829, -1.937, -0.047]} />
+        </group>
+
+
+        <group name="1900" position={[-1.568, 0.956, 5.289]} scale={0.177}>
+          <group name="Word002" position={[-1.559, -0.045, 0.839]} scale={2.413} >
+          </group>
+          <mesh name="1900_Text" geometry={nodes['1900_Text'].geometry} material={materials.Icons} position={[-1.011, 0.32, 0.679]} rotation={[Math.PI / 2, 0, -Math.PI / 6]} scale={0.832} />
+          <mesh name="Plane004" geometry={nodes.Plane004.geometry} material={blueMeshMaterial} position={[2.284, 0.005, -1.01]} rotation={[Math.PI / 2, 0, 2.653]} scale={[-1.829, -1.937, -0.047]} />
+        </group>
+        <group name="1990" position={[-1.568, 0.895, 5.289]} scale={0.177}>
+          <group name="Word001" position={[-1.559, -0.045, 0.839]} scale={2.413} >
+          </group>
+          <mesh name="1990_Text" geometry={nodes['1990_Text'].geometry} material={materials.Icons} position={[-1.011, 0.369, 0.679]} rotation={[Math.PI / 2, 0, -Math.PI / 6]} scale={0.832} />
+          <mesh name="Plane003" geometry={nodes.Plane003.geometry} material={blueMeshMaterial} position={[2.284, 0.005, -1.01]} rotation={[Math.PI / 2, 0, 2.653]} scale={[-1.901, -2.014, -0.049]} />
+        </group>
+
+
+
+        <group name="Empty" position={[0, 1.148, 0]} scale={1.086}>
+          <group name="Armature" position={[0, -1.057, 0]} scale={0.921}>
+            <primitive object={nodes.Bone} />
+            <primitive object={nodes.Bone001} />
+            <primitive object={nodes.neutral_bone} />
+            <Box position={[0, 0.7, 0]} scale={1.4}
+              onPointerOver={handleAnimalHover}
+              onPointerOut={props.handleUnhover}
+              onClick={animal_click}
+              material={invizMaterial}
+
+            />
+            <Html
+              style={{
+                transition: 'all 0.2s',
+                transform: 'translate(-50%, -100%)'
+              }}
+              distanceFactor={10}
+              zIndexRange={[100, 100]}
+              position={!(props.counter < 30 && props.counter > 9)?weight_positions["Animals"]:[-1, 0.5, -0.5]}
+              className={(props.hovered.includes("Animals")) ? "box_value" : "box_value hide_box"}
+            >
+              <h1>{data["Animals"].weight} Gt </h1>
             </Html>
-
-            {/*
-            rotation = {nodes[flat_name].rotation}
-
-            */}
-            {((!is_artificial || props.counter > 23) || (flat_name == "Cars")) && (
-
-            <Html position = {title_positions[flat_name]} 
-            scale = {0.4/nodes[flat_name].scale.x}
-            style={{
-              transform: 'translate('+ trans_amount + ', 0%)'
-            }}
-            onMouseEnter={()=> {console.log("ABC")}}
-
-            zIndexRange={[0, 20]}
-            className={currentClass}>
-                <h1>{human_title}</h1>
-                
-            </Html>
-            )}
+            <skinnedMesh name="Animals" geometry={nodes.Animals.geometry}
+              material={highlighted.includes("Animals") ? transp_material : materials.Animals}
+              skeleton={nodes.Animals.skeleton}
+              ref={ref => divRefs.current["Animals"] = ref}
+              frustumCulled={false}
+              castShadow = {!highlighted.includes("Animals")}
+            >
+            </skinnedMesh>
+          </group>
+          <mesh name="Animals_Text" geometry={nodes.Animals_Text.geometry} material={materials.Icons} position={[0.525, -0.6717, 0.709]} rotation={[Math.PI / 2, 0, 0]} scale={0.914} />
+        </group>
 
 
+        <mesh name="Plane001" geometry={nodes.Plane001.geometry} material={materials.Tree} position={[1.247, -4.049, 1.436]} rotation={[Math.PI / 2, 0, 0]} scale={[6.678, 3.04, 3.047]} />
+        <mesh name="Plane" geometry={nodes.Plane.geometry} material={materials.Rollout} position={[0.976, -2.488, 9.278]} rotation={[Math.PI / 2, 0, 0]} scale={[0.009, 0.723, 0.075]} />
 
+        <mesh receiveShadow name="Plane005" geometry={nodes.Plane005.geometry} material={whiteStandardMaterial} position={[3.417, 1.011, -2.809]} scale={2564.796} />
+        <mesh name="Biomass_Text" geometry={nodes.Biomass_Text.geometry} material={materials.Icons} position={[4.018, 6.423, -3.633]} rotation={[-Math.PI / 2, 0, 2.934]} scale={3.6} />
+        <mesh name="Technomass_Text" geometry={nodes.Technomass_Text.geometry} material={materials.Icons} position={[9.627, 7.454, -3.633]} rotation={[-Math.PI / 2, 0, -3.012]} scale={3.6} />
+        {artificialBoxes.map((name, i) => {
+          if (name == "Cars") {
+            return <></>
+          } else if (props.counter == 22) {
+            let mesh_name = name + "_Hover"
+            return <mesh name={mesh_name}
+              ref={ref => divRefs.current[mesh_name] = ref}
+              onPointerOver={props.handleHover}
+              onPointerOut={props.handleUnhover}
+              geometry={nodes[mesh_name].geometry}
+              material={transparentMaterial}
+              position={nodes[mesh_name].position}
+              rotation={nodes[mesh_name].rotation}
+              scale={nodes[mesh_name].scale} />
+          }
+        })}
 
-
-            </mesh>       
-            
-
-            
-        )
-    })}
-
-    {([props.previousCounter.current, props.counter].sort().toString() == [22, 23].toString()
-    ||
-    [props.previousCounter.current, props.counter].sort().toString() == [21, 22].toString()
-    || (props.previousCounter.current == props.counter && [22, 23].includes(props.counter))
-    ) && (
-      <>
-      {props.animationTime.current > 25.8 && (
-        <Html position={[-2, 1, 5]} className={"box_name artifical_name"}>
-          <h1>
-            Plastics
-          </h1>
-        </Html>
-
-      )}
-
-      
-
-      {props.animationTime.current > 25.8 && (
-
-        <Html position={[1.6, 1, 4]} className={"box_name artifical_name"}>
-            <h1>
-              Metals
-          </h1>
-        </Html>
-      )}
-
-
-      {props.animationTime.current > 25.8 && (
-
-        <Html position={[4.6, 1, 2]} className={"box_name artifical_name"}>
-          <h1>
-            Asphalt
-          </h1>
-        </Html>
-      )}
-
-
-      {props.animationTime.current > 25.8 && (
-
-        <Html position={[9, 1.0, -1]} className={"box_name artifical_name"}>
-          <h1>
-            Bricks
-          </h1>
-        </Html>
-      )}
-
-      {props.animationTime.current > 25.8 && (
-        <Html position={[14, 1.0, -3.0]} className={"box_name artifical_name"}>
-          <h1>
-            Aggregates
-          </h1>
-        </Html>
-      )}
-      {props.animationTime.current > 25.8 && (
-
-        <Html position={[20, 1.0, -6.0]} className={"box_name artifical_name"}>
-          <h1>
-            Concrete
-          </h1>
-        </Html>
-      )}
-
-      </>
-
-          )}
-
-          <group name="Year" position={[0, 1.05, -5.872]} rotation={[0, Math.PI / 6, 0]} scale={1.711} 
-          >
-
-          <Html position = {[0, 0, 0]}
-            occlude = {true}
-            transform>
-                    <div className = "yearCounter" >
-                    <h1>year {(Math.max(Math.min(1900 + Math.round(123 * flatYear(props.animationTime.current)), 2023),1900)).toString()}</h1>
-                    </div>
-            </Html>
-            
-                </group>
-
-  <group name="Empty" position={[0, 1.148, 0]} scale={1.086}
-  >
-    <group name="Armature" position={[0, -1.057, 0]} scale={0.921}
-    >
-      <primitive object={nodes.Bone} />
-      <primitive object={nodes.Bone001} />
-      <primitive object={nodes.neutral_bone} />
-      <Box position={[0, 0.7, 0]} scale={1.4}
-      onPointerOver={handleAnimalHover}
-      onPointerOut={props.handleUnhover}
-      onClick={animal_click}
-
-      material={invizMaterial}
-      
-      />
-
-      <skinnedMesh name="Animals" geometry={nodes.Animals.geometry} 
-    
-      material={highlighted.includes("Animals") ? transp_material : materials.Animals} 
-      
-      
-      skeleton={nodes.Animals.skeleton}
-          ref = {ref => divRefs.current["Animals"] = ref} 
-          //onPointerOver = {props.handleHover} 
-          //onPointerOver={()=>{console.log("OVER")}}
-          //onPointerOut = {props.handleUnhover}
-          frustumCulled={false}
-          >
-        <mesh name="Animals_Icon" geometry={nodes.Animals_Icon.geometry} material={materials.Icons} position={[0, 0, -0.018]} />
-      </skinnedMesh>
-
-
-      <Html position = {title_positions["Animals"]} 
-            style={{
-              transform: 'translate(0%, 0%)'
-            }}
-            onMouseEnter={()=> {console.log("ABC")}}
-
-            zIndexRange={[0, 20]}
-            className={hiddenClass}>
-                <h1>Animals</h1>
-                
-            </Html>
-    </group>
-  </group>
-  <mesh name="Transparent001" geometry={nodes.Transparent001.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Transparent001.morphTargetDictionary} morphTargetInfluences={nodes.Transparent001.morphTargetInfluences} position={[11.839, -1.79, -5.518]} rotation={[0, 0.488, 0]} scale={5.779} />
-  <mesh name="Trans" geometry={nodes.Trans.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Trans.morphTargetDictionary} morphTargetInfluences={nodes.Trans.morphTargetInfluences} position={[7.069, -0.63, -1.784]} rotation={[0, 0.488, 0]} scale={3.583} />
-  <mesh name="Metals001" geometry={nodes.Metals001.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Metals001.morphTargetDictionary} morphTargetInfluences={nodes.Metals001.morphTargetInfluences} position={[-0.073, -0.12, 2.671]} rotation={[0, 0.488, 0]} scale={[2.692, 2.555, 2.555]} />
-  <mesh name="Plastics001" geometry={nodes.Plastics001.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Plastics001.morphTargetDictionary} morphTargetInfluences={nodes.Plastics001.morphTargetInfluences} position={[-2.585, 0.266, 4.35]} rotation={[0, 0.488, 0]} scale={1.623} />
-  <mesh name="Transparent" geometry={nodes.Transparent.geometry} material={materials.Transparent} position={[18.217, -2.301, -9.382]} rotation={[0, 0.488, 0]} scale={6.499} />
-
-  <mesh name="Trans2" geometry={nodes.Trans2.geometry} material={materials.Transparent} morphTargetDictionary={nodes.Trans2.morphTargetDictionary} morphTargetInfluences={nodes.Trans2.morphTargetInfluences} position={[3.336, -0.551, 0.578]} rotation={[0, 0.488, 0]} scale={3.191} />
-
-  <mesh name="Plane001" geometry={nodes.Plane001.geometry} material={materials.Tree} position={[1.247, -4.049, 1.436]} rotation={[Math.PI / 2, 0, 0]} scale={[6.678, 3.04, 3.047]} />
-  <mesh name="Plane" geometry={nodes.Plane.geometry} material={materials.Rollout} position={[0.976, -2.488, 9.278]} rotation={[Math.PI / 2, 0, 0]} scale={[0.009, 0.723, 0.075]} />
-    {((props.counter == 1 || props.counter == 10) && (props.counter == props.previousCounter.current)) && (
-      <>
-
-      <Image ref={imageRef_one} transparent {...props} position={props.counter == 10 ? [-1.0, 2.0, 10]:[-1.5, 1.5, 0] } scale={1.0} url="Icon/Right_Caret_Outline.svg"/>
-      <Image ref={imageRef_two} transparent {...props} rotation = {[0, 0, Math.PI]} position={props.counter == 10 ? [1.5,2.0, 10]:[1.5, 1.5, 0]} scale={1.0} url="Icon/Right_Caret_Outline.svg"/>
-
-
-
-      </>
-    )}
-    
 
       </group>
     </group>
   )
 }
 
-useGLTF.preload('Part01.glb')

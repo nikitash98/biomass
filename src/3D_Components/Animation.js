@@ -9,16 +9,17 @@ import { Part01 } from '../Items/Part01'
 function Animation(props) {
  
     const handleHover = (e) => {
-        console.log(e)
         e.stopPropagation()
         document.body.style.cursor = 'pointer';
-        props.setHovered([nameFlattening(e.eventObject.name)])
-        props.setSelectionSet(getRefName(e.eventObject.name))
+        //props.setHovered([nameFlattening(e.eventObject.name)])
+        props.setHovered([e.eventObject.name])
+        //props.setSelectionSet(getRefName(e.eventObject.name))
     }
 
     let divRefs = useRef({});
 
     const getRefName = (name) => {
+        
         return divRefs.current[nameFlattening(name)]
       }
     
@@ -33,6 +34,9 @@ function Animation(props) {
         if(entry_name == "Wild_Birds") {
           name = "Wild Birds"
         }
+        if(entry_name.includes("Hover")) {
+          name = entry_name.split("_")[0]
+        }
         return name
       }
 
@@ -44,21 +48,23 @@ function Animation(props) {
     }
 
     if(props.hovered){
+
       props.setSelectionSet(getRefName(props.hovered))
+
     } else {
     }
- 
-      const animal_click = () => {
-        if(props.counter == 11) {
-          props.setCounter(props.counter + 1)
-        }
-    
-        if(props.counter == 1) {
-          props.setCounter(props.counter + 1)
-        }
-        props.setClickableSelectionSet([])
+
+    /*
+    const animal_click = () => {
+      if(props.counter == 11) {
+        props.setCounter(props.counter + 1)
       }
-    
+      if(props.counter == 1) {
+        props.setCounter(props.counter + 1)
+      }
+      props.setClickableSelectionSet([])
+    }
+    */
 
 
   return (
@@ -77,6 +83,8 @@ function Animation(props) {
       previousCounter = {props.previousCounter}
       animationTime = {props.animationTime}
       setcounterHit = {props.setcounterHit}
+      setOpenModal = {props.setOpenModal}
+      nameFlattening = {nameFlattening}
       ></Part01>
     </>
 

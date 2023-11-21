@@ -25,11 +25,10 @@ const panes = [
   </Tab.Pane> },
 ]
 
-const TabExampleBasic = () => {
+const TabExampleBasic = (props) => {
   const [showSegment, setShowSegment] = useState(null);
 
   const handleTabHover = (value) => {
-
     setShowSegment(value);
   }
 
@@ -42,136 +41,166 @@ const TabExampleBasic = () => {
       { showSegment != null &&
 
       <div className='segment' onMouseLeave={handleTabLeave}>
+
           {
-          showSegment == 0 && 
-              <p className='info'>These blocks represent the "dry" weight of each division. <br/>
-              The units are in gigatons of carbon – abbreviated Gt C.</p>
-          }
-          {
-            showSegment == 1 && <p style={{textAlign: "right"}}>
+            showSegment == 1 && 
+            <div className='credit_drop_up'>
 
-            Data from:             <a href = "https://www.pnas.org/doi/10.1073/pnas.1711842115">
-            Bar-On, Y.M., Phillips R., & Milo, R. The biomass distribution on Earth.(2018), 
-            <br/>
+            <p style={{textAlign: "left"}}>
+            <div style={{textAlign: "left"}}>
 
-            Proceedings of the National Academy of Sciences.
-            </a>
-            <br/>
-            <br/>
+            Data from:            
+            </div>
 
-            <a href = "https://www.pnas.org/doi/10.1073/pnas.1711842115">
-            Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R. 
-            Global human-made mass exceeds all living biomass. 
-            <br/>
+              <div className='credit_grid_object'>
 
-            Nature. 2020
-                        </a>
-            
-            <Divider/>
-            Images courtesy of Wikimedia Commons License
-            <Divider/>
-            © <a href="https://menard.pha.jhu.edu/">Ménard</a> and <a href = "https://nikitashtarkman.com/">Shtarkman </a>
+                  <a href = "https://www.pnas.org/doi/10.1073/pnas.1711842115">
+
+                    Bar-On, Y.M., Phillips R., & Milo, R. The biomass distribution on Earth.(2018), 
+                    <br/>
+
+                    Proceedings of the National Academy of Sciences.
+
+                </a>
+                </div>
+              <div className='credit_grid_object'>
+
+                <a href = "https://www.pnas.org/doi/10.1073/pnas.1711842115">
+              Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R. 
+              Global human-made mass exceeds all living biomass. 
+              <br/>
+
+              Nature. 2020
+              </a>  
+
+
+
+
+            </div>
+            <div className='credit_grid_object' style={{"border-bottom": "solid 1px var(--border_grey)" }}> 
+
+              <a href = "https://ourworldindata.org/plastic-pollution">
+              Hannah Ritchie and Max Roser (2018) 
+              "Plastic Pollution". 
+              <br/>
+              Published online at OurWorldInData.org.
+              </a>  
+
+
+
+
+            </div>
+
+
+            <Grid >
+              <Grid.Row columns={2}>
+                <Grid.Column >
+                <div className='imageCredit' onClick={()=> {props.setimageCreditModal(true)}}>Image Credits</div>
+
+                </Grid.Column>
+                <Grid.Column style={{textAlign: "right"}}>
+
+                  © <a href="https://menard.pha.jhu.edu/" target="_blank">Ménard</a> and <a href = "https://nikitashtarkman.com/" target="_blank">Shtarkman </a>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
             </p>
-
+            </div>
           }
 
           {
           showSegment == 2 && 
-              <div>
-<Grid className='endgrid'>
-                <Grid.Row columns={2}>
-                    <Grid.Column >
-                        
+
+              <div className='download_drop_up'>
+
+
                         <div class = "poster-download">
-                            <img src="Posters/Biotech0.jpg" />
+                           <img src="Posters/thumbs/BIO_2K_ALT.png" />
+
                             <div class = "poster-download-section">
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://www.dropbox.com/scl/fi/4dw6zo2pmvl0ecu5qchc8/Biotech0.jpg?dl=1&rlkey=s1bbdkniye3sn0vmcw5v0eukb?dl=1" download target="_blank" rel="noopener noreferrer">download</a>
-                                </div>
-                                {/* 
-
-                                <div class = "row download-row vertical-row">
-                                <a class = "col"  href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-4k.png" download target="_blank" rel="noopener noreferrer">high (4k)</a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/c243ftk5ar00eqrgrm3ot/BIO_2K_ALT.png?rlkey=x13h5qvs61qpauha124an7svu&dl=1" download target="_blank" rel="noopener noreferrer">screen (2k)</a>
                                 </div>
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-8k.png" download target="_blank" rel="noopener noreferrer">very high (8k)</a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/76wbf0pq9dgpuwh7z7mli/BIO_4k_8k.png?rlkey=9zo0c74tc44mm7gn1e9kama55&dl=1" download target="_blank" rel="noopener noreferrer">high res(4k)</a>
                                 </div>
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://www.redbubble.com/i/poster/Map-of-the-Universe-3-zoom-levels-by-scientific-viz/134357219.G7H47" target="_blank" rel="noopener noreferrer">                        
-                                    order a poster
-                                </a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/76wbf0pq9dgpuwh7z7mli/BIO_4k_8k.png?rlkey=9zo0c74tc44mm7gn1e9kama55&dl=1" download target="_blank" rel="noopener noreferrer">print (8k)</a>
                                 </div>
-                                */}
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.redbubble.com/people/scientific-viz/shop" download target="_blank" rel="noopener noreferrer">order a poster</a>
+                                </div>
 
                             </div>
                         </div>
+                        <div class = "poster-download">
 
-                     </Grid.Column>
-                    <Grid.Column >
+                          <img src="Posters/thumbs/TECHO_2k.png" />
+                          <div class = "poster-download-section">
 
+                              <div class = "row download-row vertical-row">
+                              <a class = "col" href="https://www.dropbox.com/scl/fi/z09upomy8yd2tzpvwpctq/TECHO_2k.png?rlkey=4362iu7y0qeodpzm29p8ddlld&dl=1" download target="_blank" rel="noopener noreferrer">download</a>
+                              </div>
+                            
+                              <div class = "row download-row vertical-row">
+                              <a class = "col" href="https://www.dropbox.com/scl/fi/m1fdovybwyl13ou8sqwo2/TECHNO_PRINT.png?rlkey=f2o3vl0na84eqf5uvhvqk92ch&dl=1" download target="_blank" rel="noopener noreferrer">high res(4k)</a>
+                              </div>
+                              <div class = "row download-row vertical-row">
+                              <a class = "col" href="https://www.dropbox.com/scl/fi/m1fdovybwyl13ou8sqwo2/TECHNO_PRINT.png?rlkey=f2o3vl0na84eqf5uvhvqk92ch&dl=1" download target="_blank" rel="noopener noreferrer">print (8k)</a>
+                              </div>
+                              <div class = "row download-row vertical-row">
+                              <a class = "col" href="https://www.redbubble.com/people/scientific-viz/shop" download target="_blank" rel="noopener noreferrer">order a poster</a>
+                              </div>
 
-                    <div class = "poster-download">
+                          </div>
+                          </div>
 
-                            <img src="Posters/Biotech1.jpg" />
+                          <div class = "poster-download">
+
+                          <img src="Posters/thumbs/BIO_TECHNO_2K.png" />
+                            
                             <div class = "poster-download-section">
 
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://www.dropbox.com/scl/fi/d0o2cahrsdwk4oon1pyll/Biotech1.jpg?dl=1&rlkey=7j5pbir30vd7g26clwhtkm0ao" download target="_blank" rel="noopener noreferrer">download</a>
-                                </div>
-                                {/* 
-
-                                <div class = "row download-row vertical-row">
-                                <a class = "col"  href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-4k.png" download target="_blank" rel="noopener noreferrer">high (4k)</a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/e12d1j974jg3leil87lwx/BIO_TECHNO_2K.png?rlkey=7zlslpu6i6xhvrpn0tnvehij3&dl=1" download target="_blank" rel="noopener noreferrer">download</a>
                                 </div>
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://menard.pha.jhu.edu/MapoftheUniverse/Images/Deliverables/Files/MapoftheUniverse-multiscale-8k.png" download target="_blank" rel="noopener noreferrer">very high (8k)</a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/tmyntud56hzbsvhittnvk/BIO_TECHNO_PRINT.png?rlkey=ckrc8tw0njx2qkm6zxsl2181o&dl=1" download target="_blank" rel="noopener noreferrer">high res(4k)</a>
                                 </div>
                                 <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://www.redbubble.com/i/poster/Map-of-the-Universe-3-zoom-levels-by-scientific-viz/134357219.G7H47" target="_blank" rel="noopener noreferrer">                        
-                                    order a poster
-                                </a>
+                                <a class = "col" href="https://www.dropbox.com/scl/fi/tmyntud56hzbsvhittnvk/BIO_TECHNO_PRINT.png?rlkey=ckrc8tw0njx2qkm6zxsl2181o&dl=1" download target="_blank" rel="noopener noreferrer">print (8k)</a>
                                 </div>
-                                */}
+                                <div class = "row download-row vertical-row">
+                                <a class = "col" href="https://www.redbubble.com/people/scientific-viz/shop" download target="_blank" rel="noopener noreferrer">order a poster</a>
+                                </div>
 
                             </div>
-                        </div>
-
-                    </Grid.Column >
-                    <Grid.Column >
+                          </div>
 
 
-                    <div class = "poster-download">
-
-                            <img src="Posters/Biotech4.jpg" />
-                            <div class = "poster-download-section">
-
-                                <div class = "row download-row vertical-row">
-                                <a class = "col" href="https://www.dropbox.com/scl/fi/t7lfvchnm3ybnc0mbec5b/Biotech4.jpg?dl=1&rlkey=wgochfw6varii01dwitnmgnct" download target="_blank" rel="noopener noreferrer">download</a>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+          
               </div>
-                
           }
+
       </div>
       }
+        <div className=' infoTabs ' style={{right: "0%"}}>
+          <div onMouseEnter={() => {handleTabHover(1)}} className={showSegment == 1 ? 'small_aktiv hovered_list' : 'small_aktiv '}> credits</div>
+          <div onMouseEnter={() => {handleTabHover(2)}} className={showSegment == 2 ? 'small_aktiv hovered_list' : 'small_aktiv '}> poster</div>
+        </div>
 
-      <ul>
-      <li onMouseEnter={() => {handleTabHover(1)}} >Credits</li>
+      {/*
+      <ul style={{"position": "relative"}} className='infoTabs'> 
+        <li onMouseEnter={() => {handleTabHover(1)}}  className={showSegment == 1 ? 'small_aktiv hovered_list' : 'small_aktiv '} >credits</li>
 
-
-
-        <li onMouseEnter={() => {handleTabHover(2)}} >Poster</li>
+        <li onMouseEnter={() => {handleTabHover(2)}} className={showSegment == 2 ? 'small_aktiv hovered_list' : 'small_aktiv '}>poster</li>
 
       </ul>
+      */}
 
 
     </div>
     )
-} 
+}   
 
 export default TabExampleBasic

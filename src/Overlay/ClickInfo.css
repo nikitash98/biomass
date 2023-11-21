@@ -1,6 +1,6 @@
 
 .ClickInfo {
-    border-radius: 30px;
+    border-radius: 15px;
   
     z-index: 30;
     background-color: white;
@@ -11,15 +11,22 @@
     
     box-shadow: 0 0 20px 20px #287ed430;
     */
-    box-shadow: 0 0 20px 20px #00000030;
-    border: solid 2px var(--hover_blue);
+    box-shadow: 0 0 20px 20px #00000050;
+    border: solid 2px white;
     width: 100%;
     overflow: hidden;
     position: relative;
+    transition: all 0.2s;
   }
 
 
 
+@media only screen and (max-width: 768px)  {
+.ClickInfo {
+}
+
+
+}
 .ClickInfo > p {
     text-align: left;
     font-size: 10pt;
@@ -47,6 +54,7 @@
 
 
 .ClickInfo_image > img {
+    width: 100%;
 }
 
 .ClickInfo > img {
@@ -70,21 +78,19 @@
     text-align: left;
 }
 
-img {
-    width: 100%;
-}
-p {
+.ClickInfo_content > p {
     text-align: left;
     font-size: 13pt;
     line-height: 15pt !important;
     text-align: left;
-    font-style: italic;
+    font-family: "aktiv-grotesk", sans-serif;
     color: grey;
 }
 
 
 .header {
     text-align: center;
+    padding-top: 10px;    
 }
 .content {
     padding: 10px;
@@ -93,21 +99,15 @@ p {
 .info_value{
     background-color: var(--hover_blue);
     color: white;
-    line-height: 100px;
-    text-align: center;
-    display: flex;
+    text-align:left;
     justify-content: center;
     align-items: center;
     width: fit-content;
     padding: 10px;
-    padding-right: 20px;
-
-    position: absolute;
-    top: -1%;
-    right: -2%;
-
+    border-radius: 5px;
+    margin-right: 20px;
+    float: right;
     /*
-    border-radius: 10px;
 
     box-shadow: 0 0 10px 10px rgba(103, 137, 199, 0.7);
     left:50%;
@@ -123,19 +123,19 @@ p {
 }
 
 .info_title {
-    padding-bottom: 5px;
 }
 .info_title h3 {
 text-align: left;
-font-size: 20pt;
+font-size: 25pt;
 font-family: "aktiv-grotesk", sans-serif;
 padding-left: 20px;
 font-weight: 200;
+color: black;
 }
 
 .info_value h3 {
     font-size: 15pt;
     font-weight: 400;
-font-family: "aktiv-grotesk", sans-serif;
+    font-family: "aktiv-grotesk", sans-serif;
 
 }

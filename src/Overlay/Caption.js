@@ -4,49 +4,38 @@ import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
     return(
-        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered(props.hover_id)}} onPointerOut={()=>{props.setHovered([])}}>{props.children}</span>
+        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered(props.hover_id)}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered(props.hover_id);}}>{props.children}</span>
     )
 }
 
 
-function getText(sel, setHovered){
+function getText(sel, setHovered, openModal){
     switch(sel){
         case 0:
-            return <div>
-                <h3>
-
-                </h3>
-                <h3 className ="start_caption">
-                </h3>
-            </div>
+            return 
         case 1:
-            return <div>
-                <h3>
-                    Let's put all animals into a box.
-                </h3>
-            </div>
-
-
+            return
         case 2:
             return <div>
                 <h3>
-                    These cubes represent the biomass of the six biological kingdoms. They show the <span className="extra_info"> "dry" weight </span>  of each division.
+                    All life on earth is captured in this image. <br/> <br/>
+                    These cubes represent the biomass of the six biological kingdoms. They show the <span className="extra_info"> "wet" weight </span>  of each division.
                     <div className="hidden_info">
                         <Divider/>
-                        Dry weight will provide a precise measurement of biomass eliminating fluctuations caused by water content.
+                        Wet weight is an estimation of the total weight, including water weight.
                     </div>
                 </h3>
             </div>
         case 3:
             return <div>
                 <h3>
-                    Most of the biomass is found in <HoverSpan id = "plant_text" hover_id = "Plants" setHovered = {setHovered}>plants</HoverSpan>. 
+                    Most of the biomass is found in <HoverSpan id = "plant_text" hover_id = "Plants" setHovered = {setHovered} setOpenModal = {openModal}>plants</HoverSpan>. 
                 </h3>
             </div>
         case 4:
             return <div>
                 <h3>
-                <HoverSpan id = "fungi_text" hover_id = "Fungi" setHovered = {setHovered}>Fungi</HoverSpan> and <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered}>animals</HoverSpan>  are heterotrophs: they feed on other living organisms.
+                <HoverSpan id = "fungi_text" hover_id = "Fungi" setHovered = {setHovered} setOpenModal = {openModal}>Fungi</HoverSpan> and <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered} setOpenModal = {openModal}>animals</HoverSpan>  are heterotrophs: they feed on other living organisms.
                 </h3>
             </div>
         case 5:
@@ -58,32 +47,32 @@ function getText(sel, setHovered){
         case 6:
             return <div>
                 <h3>
-                <HoverSpan id = "protists_text" hover_id = "Bacteria" setHovered = {setHovered}>Bacteria</HoverSpan> and  <HoverSpan id = "protists_text" hover_id = "Archaea" setHovered = {setHovered}>archaea</HoverSpan> are micro-organisms most of which are located in deep subsurface environments. 
+                <HoverSpan id = "protists_text" hover_id = "Bacteria" setHovered = {setHovered} setOpenModal = {openModal}>Bacteria</HoverSpan> and  <HoverSpan id = "protists_text" hover_id = "Archaea" setHovered = {setHovered} setOpenModal = {openModal}>archaea</HoverSpan> are micro-organisms most of which are located in deep subsurface environments. 
                 </h3>
             </div>
         case 7:
             return <div>
                 <h3>
-                <HoverSpan id = "protists_text" hover_id = "Protists" setHovered = {setHovered}>Protists</HoverSpan> are micro-organisms found in almost any environment that contains liquid water.
+                <HoverSpan id = "protists_text" hover_id = "Protists" setHovered = {setHovered} setOpenModal = {openModal}>Protists</HoverSpan> are micro-organisms found in almost any environment that contains liquid water.
                 </h3>
             </div>
 
         case 8:
             return <div>
                 <h3>
-                <HoverSpan id = "virus_text" hover_id = "Viruses" setHovered = {setHovered}>Viruses</HoverSpan> are made up of organic material but are technically not alive. Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
+                <HoverSpan id = "virus_text" hover_id = "Viruses" setHovered = {setHovered} setOpenModal = {openModal}>Viruses</HoverSpan> are made up of organic material but are technically not alive. Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
                 </h3>
             </div>
         case 9:
             return <div>
                 <h3>
-                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered}>last universal common ancestor (LUCA),</HoverSpan> about 4 billions years ago.
+                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered} setOpenModal = {openModal}>last universal common ancestor (LUCA),</HoverSpan> about 4 billions years ago.
                 </h3> 
             </div>
         case 10:
             return <div>
                 <h3>
-                <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered}>Animals</HoverSpan> are a diverse Kingdom.
+                <HoverSpan id = "animal_text" hover_id = "Animals" setHovered = {setHovered} setOpenModal = {openModal}>Animals</HoverSpan> are a diverse Kingdom.
                 </h3> 
             </div>
         case 11:
@@ -91,42 +80,31 @@ function getText(sel, setHovered){
                 <h3>
                 Animals are spread out across different environments on the earth.
                 <br/>
-                {/* 
-                <div>
-                    <Divider/>
-                    <a id = "download_button" href = "Posters/Biomass_Poster.png" target="_blank" download>Click to download a poster</a>
-                </div>
-                                <Divider/>
-                <div className="instruction">
-                        Click the Animals container to explore.
-                    </div>
-
-                */}
                 </h3> 
             </div>
         case 12:
             return <div>
                 <h3>
-                    Animals are mainly marine, dominated by  <HoverSpan id = "fish_text" hover_id = "Fish" setHovered = {setHovered}>fish</HoverSpan>, 
-                    and   <HoverSpan id = "fish_text" hover_id = "Marine Arthropods" setHovered = {setHovered}>marine arthropods</HoverSpan>.
+                    Animals are mainly marine, dominated by  <HoverSpan id = "fish_text" hover_id = "Fish" setHovered = {setHovered} setOpenModal = {openModal}>fish</HoverSpan>, 
+                    and   <HoverSpan id = "fish_text" hover_id = "Marine Arthropods" setHovered = {setHovered} setOpenModal = {openModal}>marine arthropods</HoverSpan>.
                 </h3>
             </div>
         case 13:
             return <div>
                 <h3>
-                We then find an abundance of life forms  underground (<HoverSpan id = "fish_text" hover_id = "Nematodes" setHovered = {setHovered}>nematodes</HoverSpan>, <HoverSpan id = "fish_text" hover_id = "Annelids" setHovered = {setHovered}>annelids </HoverSpan> and <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered}>arthropods</HoverSpan>).
+                We then find an abundance of life forms  underground <HoverSpan id = "fish_text" hover_id = "Nematodes" setHovered = {setHovered} setOpenModal = {openModal}>(nematodes</HoverSpan>, <HoverSpan id = "fish_text" hover_id = "Annelids" setHovered = {setHovered} setOpenModal = {openModal}>annelids </HoverSpan> and <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered} setOpenModal = {openModal}>arthropods)</HoverSpan>.
                 </h3>
             </div>
         case 14:
             return <div>
                 <h3>
-                <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered}>Arthropods</HoverSpan> contribute more than three times the amount of biomass  <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>humans</HoverSpan>.
+                <HoverSpan id = "fish_text" hover_id = "Arthropods" setHovered = {setHovered} setOpenModal = {openModal} >Arthropods</HoverSpan> contribute more than three times the amount of biomass  <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered} setOpenModal = {openModal}>humans</HoverSpan>.
                 </h3>
             </div>
         case 15:
             return <div>
                 <h3>
-                <HoverSpan id = "fish_text" hover_id = "Wild Mammals" setHovered = {setHovered}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild Birds" setHovered = {setHovered}>birds</HoverSpan> comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
+                <HoverSpan id = "fish_text" hover_id = "Wild Mammals" setHovered = {setHovered} setOpenModal = {openModal}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild Birds" setHovered = {setHovered} setOpenModal = {openModal}>birds</HoverSpan> comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
                 </h3>
             </div>
         case 16:
@@ -138,17 +116,13 @@ function getText(sel, setHovered){
         case 17:
             return <div>
                 <h3>
-                To generate enough proteins, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
+                To generate enough proteins, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered} setOpenModal = {openModal}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
                 </h3>
             </div>
         case 18:
-            return <div>
-            </div>
+            return 
         case 19:
-            return <div>
-                <h3>
-                </h3>
-            </div>
+
         case 22:
             return <div>
                 <h3>
@@ -165,54 +139,45 @@ function getText(sel, setHovered){
         case 24:
             return <div>
                 <h3>
-                    <HoverSpan id = "plastic_text" hover_id = "Plastics" setHovered = {setHovered}>Plastics</HoverSpan> were developed in the early 1900's and have become a staple material in human production. 
+                    <HoverSpan id = "plastic_text" hover_id = "Plastics" setHovered = {setHovered} setOpenModal = {openModal}>Plastics</HoverSpan> were developed in the early 1900's and have become a staple material in human production. 
                 </h3>
             </div>                       
         case 25:
             return <div>
                 <h3>
-                    Much of human production, including that of cars, uses <HoverSpan id = "metal_text" hover_id = "Metals" setHovered = {setHovered}>Metals</HoverSpan>.
+                    Much of human production, including that of cars, uses <HoverSpan id = "metal_text" hover_id = "Metals" setHovered = {setHovered} setOpenModal = {openModal}>Metals</HoverSpan>.
                 </h3>
             </div>
         case 26:
             return <div>
                 <h3>
-                <HoverSpan id = "asphalt_text" hover_id = "Asphalt" setHovered = {setHovered}>Asphalt</HoverSpan> is the next heaviest artifical material. It is a petroleum based material used to develop roads.
+                <HoverSpan id = "asphalt_text" hover_id = "Asphalt" setHovered = {setHovered} setOpenModal = {openModal}>Asphalt</HoverSpan> is the next heaviest artifical material. It is a petroleum based material used to develop roads.
                 </h3>
             </div>
         case 27:
             return <div>
                 <h3>
-                <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered}>Bricks</HoverSpan> have been used for thousands of years. They now outweigh the human mass by 700%.
+                <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered} setOpenModal = {openModal}>Bricks</HoverSpan> have been used for thousands of years. They now outweigh the human mass by 700%.
                 </h3>
             </div>
         case 28:
             return <div>
                 <h3>
-                <HoverSpan id = "aggregate_text" hover_id = "Aggregates" setHovered = {setHovered}>Aggregates</HoverSpan> are materials used in construction.
+                <HoverSpan id = "aggregate_text" hover_id = "Aggregates" setHovered = {setHovered} setOpenModal = {openModal}>Aggregates</HoverSpan> are materials used in construction.
 
                 </h3>
             </div>
         case 29:
             return <div>
                 <h3>
-                <HoverSpan id = "concrete_text" hover_id = "Concrete" setHovered = {setHovered}>Concrete</HoverSpan> is the second most used substance in the world after water.
+                <HoverSpan id = "concrete_text" hover_id = "Concrete" setHovered = {setHovered} setOpenModal = {openModal}>Concrete</HoverSpan> is the second most used substance in the world after water.
 
                 </h3>
             </div>
         case 30:
-            return <div>
-                <h3>
-                    The mass of man-made structures now outweighs the dry-mass of the entire living world.
-                </h3>
-
-            </div>
+            return
         case 31:
-            return <div>
-                <h3>
-
-                </h3>
-            </div>
+            return 
 }
 
 }
@@ -231,10 +196,7 @@ const Caption = (props) => {
 
 
         <div className="ContentCaption">
-            <h3>
-            {getText(props.counter, props.setHovered)}
-            </h3>
-
+            {getText(props.counter, props.setHovered, props.setOpenModal)}
         </div>
         </>
 
