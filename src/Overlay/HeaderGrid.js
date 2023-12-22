@@ -14,14 +14,18 @@ function HeaderGrid(props) {
     return (
         <Grid className='header_grid'>
             <Grid.Row className='header_row' onMouseLeave={() => setviewedBox(-1)}>
+                
                 <Grid.Column width={8} style={{ height: "100%" }}>
+                    {/*
                     <div className={(props.counter == 0 ? 'title title_collapsed' : 'title ')} onClick={() => {
                         props.setScrubbing(true)
                         props.setCounter(0);
                     }
                     }>
-                        <img className='regular_icon' src="Icon/Living13.svg" />
+                        <img className='page_logo' src="Icon/Living13.svg" />
                     </div>
+                    */}
+
                 </Grid.Column>
                 <Grid.Column width={1}>
                 </Grid.Column>
@@ -69,13 +73,13 @@ function HeaderGrid(props) {
                         </Grid>
                     )}
 
-                    <div className={(props.counter == 32 && props.counterHit) ? "visible_overlay " : "visible_overlay hide_overlay"}>
-                        <EndGrid />
+                    <div className={(props.counter == 32 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
+                        <EndGrid setsourcesModal = {props.setsourcesModal}/>
                     </div>
                     
                 </Grid.Column>
                 <Grid.Column width={1} verticalAlign='middle' className='button_column'>
-                    {((props.counter != 0)) && props.counter < Object.keys(slides).length - 1 &&
+                    {((props.counter != 0)) && (props.counter !=22) && props.counter < Object.keys(slides).length - 1 &&
                         <button className="click_button" style={{ float: "right" }} type="button"
                             onClick={() => {
                                 props.setCounter(Math.min(props.counter + 1, 32));

@@ -230,7 +230,7 @@ export function Part01(props) {
 
   let weight_positions = {
     "Annelids": [0, 0, -.4],
-    "Arthropods": [0, 0, -.4],
+    "Arthropods": [.5, 0, 0],
     "Animals": [0, 1.6, 0],
     "Plants": [-1.3, 0, 0],
     "LUCA": [0, 1.5, 0],
@@ -414,7 +414,7 @@ export function Part01(props) {
           let icon_mat = materials.Icons
           let is_artificial = artificialBoxes.includes(name)
           let is_animal = animal_boxes.includes(name)
-
+          let weight_box = "box_value"
           if (is_animal) {
             icon_mat = glow_icon_mat
           }
@@ -450,6 +450,9 @@ export function Part01(props) {
             currentClass += " highlighted_name"
             currently_highlighted = true
           }
+          if(name == "Arthropods") {
+            weight_box = "box_value left"
+          }
           return (
             <mesh name={flat_name} geometry={nodes[flat_name].geometry} key={i}
               material={highlighted.includes(name) ? transp_material : nodes[flat_name].material}
@@ -461,7 +464,7 @@ export function Part01(props) {
               onClick={() => { props.setOpenModal(true); props.setHovered([flat_name]) }}
               castShadow={!is_animal && !currently_highlighted}
               receiveShadow
-
+              
               onPointerOver={
                 (([props.counter, props.previousCounter.current].sort().toString() == [22, 23].toString()) || props.counter == 22)
                   ? null : props.handleHover} onPointerOut={props.handleUnhover}
@@ -484,21 +487,23 @@ export function Part01(props) {
                 distanceFactor={10}
                 zIndexRange={[100, 100]}
                 position={weight_positions[flat_name]}
-                className={(props.hovered.includes(name) || quantities.includes(name)) ? "box_value" : "box_value hide_box"}
+                className={(props.hovered.includes(flat_name) || quantities.includes(flat_name)) ? weight_box:  weight_box + " hide_box"}
               >
-
                 <h1>{weight_val} Gt </h1>
               </Html>
 
               {(is_artificial && (props.counter <= 23 && props.counter > 21)) && (
                 <Html
                   style={{
-                    transform: 'translate(-50%, -200%)'
+                    transform: 'translate(-50%, -300%)'
                   }}
                   position={weight_positions[flat_name]}
-                  className="temporary_title"
+                  className="box_name temporary_title"
                 >
+                  <h1>
                   {flat_name.toLowerCase()}
+
+                  </h1>
                 </Html>
               )}
 

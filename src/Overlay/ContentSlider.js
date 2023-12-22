@@ -20,8 +20,8 @@ const ContentSlider = (props) => {
     }
     var keys = Object.keys(slides);
     let less_keys = keys.slice(0,-1)
-    let show = [1, 2, 11, 22]
-    let show_two = [1, 2, 11, 22, 32]
+    let show = [1, 2, 11, 22, 31]
+    let show_two = [1, 2, 11, 22, 31, 32]
     let diffs = []
     let mul = 1
     let max_value = keys.length
@@ -82,6 +82,9 @@ const ContentSlider = (props) => {
                             props.className = "customSlider-mark selected_mark"
                             tick_class = "tick_label_top small_aktiv  selected_tick"
                         } 
+                        if(props.key == show.length * mul) {
+                            props.className = "customSlider-mark end_mark"
+                        }
                         return <span {...props}  onMouseEnter={()=>{setSliderHover(props.key)}} onMouseLeave={()=> {setSliderHover(null)}}>
                             <div className={tick_class} >
                                 {slides[show_two[Math.floor(props.key/mul)]]["title"]}

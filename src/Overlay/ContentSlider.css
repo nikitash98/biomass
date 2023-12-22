@@ -19,7 +19,7 @@
     width: 120px;
     text-align: center;
     position: relative;
-    transform: translate(-40%, 0%);
+    transform: translate(-45%, 0%);
     color:black
   }
 
@@ -53,6 +53,11 @@
     background-color: var(--mark-color);
   }
 
+
+  .end_mark {
+    border: solid 2px var(--track-color);
+    background-color: white;
+  }
   .selected_mark{
     background-color: var(--track-color);
   }

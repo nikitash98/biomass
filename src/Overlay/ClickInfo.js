@@ -10,15 +10,16 @@ function ClickInfo(props) {
     let trans =  "translate(-120%, 0)"
     const testRef = useRef("ABC")
     if(props.hovered[0]) {
-
+        
         if(props.hovered[0].includes("Hover")) {
             name.current = [props.hovered[0].split("_")[0]]
         } else if(props.hovered[0].includes("_")) {
             name.current = props.hovered[0].replace("_", " ")
         } else {
-
             name.current = props.hovered
         }
+
+        console.log(props.hovered)
         //name.current = "Humans"
     }
     //

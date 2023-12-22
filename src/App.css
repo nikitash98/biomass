@@ -121,14 +121,12 @@ a:hover{
 
 
 .temporary_title {
-  background-color: var(--border_grey);
-  color: white;
+  background-color: white;
   padding: 8px;
   transform: translate(-50%, -50%);
   font-size: 20pt;
   font-family: "neue-haas-grotesk-text", sans-serif;
   font-weight: 600;
-  border-radius: 5px;
 }
 
 .small_aktiv {
@@ -236,7 +234,6 @@ a:hover{
 
 .box_value {
   transform: translate(-50%, -50%);
-
   width: 70px;
   background-color: var(--hover_blue);
   color: #fff;
@@ -281,7 +278,6 @@ a:hover{
   user-select: none; /* Standard syntax */
 
 }
-
 .box_value:after {
   content: " ";
   position: absolute;
@@ -292,6 +288,21 @@ a:hover{
   border-left: 10px solid transparent;
   border-bottom: none;
 }
+
+.box_value.left::before {
+  content: "";
+  position: absolute;
+  top: 50%;                        
+  margin-top: -10px;                
+  left:-16px;
+  border: solid 9px transparent;
+  border-right-color: var(--hover_blue);
+  z-index: 1;
+}
+.box_value.left::after {
+  visibility: hidden;
+}
+
 .wet_value::after{
   border-top: 15px solid black;
 }
@@ -396,14 +407,14 @@ a:hover{
   position: absolute !important;
   left: 1% !important;
   top: 50%;
-  display: none;
+  display: none !important;
 }
 
 .small_click_right {
   position: absolute !important;
   right: 1% !important;
   top: 50%;
-  display: none;
+  display: none !important;
 
 }
 
@@ -441,10 +452,10 @@ a:hover{
     visibility: hidden;
   }
   .small_click_left {
-    display: block;
+    display: block !important;
   }
   .small_click_right {
-    display: block;
+    display: block !important;
   }
 }
 

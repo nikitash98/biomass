@@ -4,7 +4,7 @@ import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
     return(
-        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered(props.hover_id)}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered(props.hover_id);}}>{props.children}</span>
+        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id])}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered(props.hover_id);}}>{props.children}</span>
     )
 }
 
@@ -86,7 +86,7 @@ function getText(sel, setHovered, openModal){
             return <div>
                 <h3>
                     Animals are mainly marine, dominated by  <HoverSpan id = "fish_text" hover_id = "Fish" setHovered = {setHovered} setOpenModal = {openModal}>fish</HoverSpan>, 
-                    and   <HoverSpan id = "fish_text" hover_id = "Marine Arthropods" setHovered = {setHovered} setOpenModal = {openModal}>marine arthropods</HoverSpan>.
+                    and   <HoverSpan id = "fish_text" hover_id = "Marine_Arthropods" setHovered = {setHovered} setOpenModal = {openModal}>marine arthropods</HoverSpan>.
                 </h3>
             </div>
         case 13:
@@ -104,7 +104,7 @@ function getText(sel, setHovered, openModal){
         case 15:
             return <div>
                 <h3>
-                <HoverSpan id = "fish_text" hover_id = "Wild Mammals" setHovered = {setHovered} setOpenModal = {openModal}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild Birds" setHovered = {setHovered} setOpenModal = {openModal}>birds</HoverSpan> comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
+                <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild Birds" setHovered = {setHovered} setOpenModal = {openModal}>birds</HoverSpan> comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
                 </h3>
             </div>
         case 16:
@@ -125,16 +125,11 @@ function getText(sel, setHovered, openModal){
 
         case 22:
             return <div>
-                <h3>
-                    In creating structures, and cars, humans have created gigatons of artificial materials. 
-                </h3>
+
             </div>
 
         case 23:
             return <div>
-                <h3>
-                    In creating structures, and cars, humans have created gigatons of artificial materials. 
-                </h3>
             </div>
         case 24:
             return <div>

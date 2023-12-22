@@ -11,6 +11,7 @@
   padding: 10px !important;
 }
 .end_section {
+    height: 80vh;
     width: 100%;
     z-index: 10;
     top: 50%;
@@ -19,6 +20,10 @@
     text-align: left;
     pointer-events: auto;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
 }
 .end_section h1 {
     font-family: "larken", sans-serif;
@@ -34,6 +39,15 @@
     font-size: 15pt;
     color: black;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 100%;
+}
+
+
+
 
 .download_button:hover {
     background-color: rgb(161, 189, 196);
@@ -196,6 +210,8 @@
     visibility: hidden;
     background-color: rgba(255, 255, 255, 0.516);
     backdrop-filter: blur(10px);
+    box-sizing: border-box;
+    padding: inherit
 }
 
 @media only screen and (max-width: 768px)  {
@@ -245,11 +261,11 @@
 
 .poster-download {
     position: relative;
-    border: solid 1px var(--border_grey);
     overflow: hidden;
     width: 100%;
     height: auto;
-    display: inline-block;
+    display: block;
+    padding: 20px;
 
 }
 
@@ -284,6 +300,11 @@
   padding: 0px;
   line-height: 0px;
   display: block;
+}
+
+.poster-download-container {
+  position: relative;
+  border: 1px solid var(--border_grey);
 }
 
 

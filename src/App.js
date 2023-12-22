@@ -33,6 +33,25 @@ function App() {
   
   const [openModal, setOpenModal] = React.useState(false)
 
+
+
+  const left_click = () => {
+    setCounter(Math.max(counter - 1, 0));
+    setPlaying(true);
+    setScrubbing(false);
+    setcounterHit(false);
+
+  }
+
+
+  const right_click = () => {
+    setCounter(Math.min(counter + 1, 33));
+    setPlaying(true);
+    setScrubbing(false);
+    setcounterHit(false);
+  }
+
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key == "ArrowRight") {
@@ -103,6 +122,8 @@ function App() {
               openModal={openModal} setOpenModal={setOpenModal}
               rotatePhoneContainer={rotatePhoneContainer}
               redrawState = {redrawState}
+              left_click = {left_click}
+              right_click = {right_click}
             />
           </div>
       </div>
