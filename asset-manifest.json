@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/biomass/static/css/main.5070012b.css",
-    "main.js": "/biomass/static/js/main.199c93ba.js",
+    "main.css": "/biomass/static/css/main.42936d09.css",
+    "main.js": "/biomass/static/js/main.18073c6d.js",
     "static/js/787.cf9fa95f.chunk.js": "/biomass/static/js/787.cf9fa95f.chunk.js",
     "static/media/backdrop.png": "/biomass/static/media/backdrop.9f38489d800fb685d664.png",
     "static/media/brand-icons.svg": "/biomass/static/media/brand-icons.6729d29753e000c17489.svg",
@@ -22,12 +22,12 @@
     "static/media/outline-icons.woff2": "/biomass/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "static/media/logo.svg": "/biomass/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/biomass/index.html",
-    "main.5070012b.css.map": "/biomass/static/css/main.5070012b.css.map",
-    "main.199c93ba.js.map": "/biomass/static/js/main.199c93ba.js.map",
+    "main.42936d09.css.map": "/biomass/static/css/main.42936d09.css.map",
+    "main.18073c6d.js.map": "/biomass/static/js/main.18073c6d.js.map",
     "787.cf9fa95f.chunk.js.map": "/biomass/static/js/787.cf9fa95f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5070012b.css",
-    "static/js/main.199c93ba.js"
+    "static/css/main.42936d09.css",
+    "static/js/main.18073c6d.js"
   ]
 }
