@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Canvas, useFrame} from 'react-three-fiber';
+import { Canvas, useFrame } from 'react-three-fiber';
 import { useRef } from "react";
 
 import ProprietaryCamera from './ProprietaryCamera';
@@ -9,8 +9,8 @@ import Animation from './Animation';
 import { Html, Box, Plane, Float, SoftShadows, CameraControls, OrbitControls, PerspectiveCamera, Mask, useMask } from '@react-three/drei';
 import { Vector3 } from "three";
 import { Loader } from '@react-three/drei';
-import { Selection, Select, EffectComposer, Outline} from '@react-three/postprocessing'
-import { BlendFunction,KernelSize } from 'postprocessing';
+import { Selection, Select, EffectComposer, Outline } from '@react-three/postprocessing'
+import { BlendFunction, KernelSize } from 'postprocessing';
 import { Stats } from '@react-three/drei';
 import { Perf } from 'r3f-perf'
 import { ContactShadows } from '@react-three/drei';
@@ -24,12 +24,12 @@ const ThreePointViz = (props) => {
     const composerRef = useRef()
 
 
-    
+
     const { enabled, ...config } = {
         enabled: true,
         size: 50,
         focus: 0,
-        samples:2
+        samples: 2
     }
 
 
@@ -38,7 +38,7 @@ const ThreePointViz = (props) => {
     }
 
     const cameraControlRef = useRef()
-    
+
     const cameraRef = useRef();
     const meshRef1 = useRef()
 
@@ -47,114 +47,78 @@ const ThreePointViz = (props) => {
     const [clickableSelectionSet, setClickableSelectionSet] = useState([])
     const debug = false
 
+
     return (
         <>
-        
-        <Canvas shadows
-          gl={{ gammaInput: false, gammaOutput: false }}
-          shadowMap={{ type: THREE.PCFSoftShadowMap }}
-          
-        > 
-        {debug && (
-            <>
-            <Perf
-            minimal={false}
-            matrixUpdate
-            deepAnalyze
-            overClock
-                />
-            <Stats/>
-            </>
-        )}
-        
-        {/*
-        <ContactShadows opacity={1} scale={50} blur={1} far={10} resolution={256} color="#000000" />
-        */}
-        {/*
-        */}
-        <EffectComposer ref = {composerRef} enabled={true} autoClear={false} stencilBuffer = {true}>
-                <Outline
-                    selection={selectionSet} // selection of objects that will be outlined
-                    selectionLayer={10} // selection layer
-                    blendFunction={BlendFunction.ALPHA} // set this to BlendFunction.ALPHA for dark outlines
-                    patternTexture={null} // a pattern texture
-                    edgeStrength={8.5} // the edge strength
-                    pulseSpeed={0.0} // a pulse speed. A value of zero disables the pulse effect
-                    hiddenEdgeColor={0x287ed4}  
-                    visibleEdgeColor={0x287ed4}
-                    blur={false} // whether the outline should be blurred
-                    xRay={true} // indicates whether X-Ray outlines are enabled
-                    kernelSize={KernelSize.SMALL} // blur kernel size
-                /> 
-        </EffectComposer>        
-       
-            <group position={[0, 0, 0]}>
-                <Animation 
-                setHovered = {props.setHovered} 
-                hovered = {props.hovered} 
-                setInfoPage = {props.setInfoPage} 
-                setCounter = {props.setCounter} counter = {props.counter}
-                setSelectionSet = {setSelectionSet}
-                setYearPercentage = {props.setYearPercentage} 
-                scrubbing = {props.scrubbing}
-                setScrubbing = {props.setScrubbing}
-                previousCounter = {props.previousCounter}
-                animationTime = {props.animationTime}
-                setcounterHit = {props.setcounterHit}
-                setOpenModal = {props.setOpenModal}
-                />
-            </group>
 
-        {/*}
+            <Canvas concurrent shadows
+                gl={{ gammaInput: false, gammaOutput: false }}
+                shadowMap={{ type: THREE.PCFSoftShadowMap }}
+            >
+                <color attach={"background"} args={["#E6E6E6"]} />
+                {debug && (
+                    <>
+                        <Perf
+                            minimal={false}
+                            matrixUpdate
+                            deepAnalyze
+                            overClock
+                        />
+                        <Stats />
+                    </>
+                )}
+                <EffectComposer ref={composerRef} enabled={true} autoClear={false} stencilBuffer={true}>
+                    <Outline
+                        selection={selectionSet} // selection of objects that will be outlined
+                        selectionLayer={10} // selection layer
+                        blendFunction={BlendFunction.ALPHA} // set this to BlendFunction.ALPHA for dark outlines
+                        patternTexture={null} // a pattern texture
+                        edgeStrength={8.5} // the edge strength
+                        pulseSpeed={0.0} // a pulse speed. A value of zero disables the pulse effect
+                        hiddenEdgeColor={0x287ed4}
+                        visibleEdgeColor={0x287ed4}
+                        blur={false} // whether the outline should be blurred
+                        xRay={true} // indicates whether X-Ray outlines are enabled
+                        kernelSize={KernelSize.SMALL} // blur kernel size
+                    />
+                </EffectComposer>
+                <group position={[0, 0, 0]}>
+                    <Animation
+                        setHovered={props.setHovered}
+                        hovered={props.hovered}
+                        setInfoPage={props.setInfoPage}
+                        setCounter={props.setCounter} counter={props.counter}
+                        setSelectionSet={setSelectionSet}
+                        setYearPercentage={props.setYearPercentage}
+                        scrubbing={props.scrubbing}
+                        setScrubbing={props.setScrubbing}
+                        previousCounter={props.previousCounter}
+                        animationTime={props.animationTime}
+                        setcounterHit={props.setcounterHit}
+                        counterHit = {props.counterHit}
+                        setOpenModal={props.setOpenModal}
+                        setLoaded3D={props.setLoaded3D}
+                    />
+                </group>
 
-            */}
-        {/*
-        <OrbitControls/>
+                <directionalLight
+                    position={[3, 8, 5]}
+                    intensity={1}
+                    shadow-mapSize={4096}
+                    shadow-bias={-0.001}
+                    shadow-radius={1000.0}
+                    castShadow
+                >
+                    <orthographicCamera attach="shadow-camera" args={[-30, 50, 20, -20, 0.01, 60]}
+                    />
+                </directionalLight>
+                <ambientLight intensity={0.2} />
 
-        */}
 
-<directionalLight 
-        position={[3, 8, 5]} 
-        intensity={1} 
-        shadow-mapSize={4096} 
-        shadow-bias={-0.001}
-        shadow-radius = {1000.0}
-        castShadow
-        >
-        <orthographicCamera attach="shadow-camera" args={[-30, 50, 20, -20, 0.01, 60]}
-        />
-        </directionalLight>
-        {/*
-        <directionalLight
-        position={[0, 3, 5]} 
-        intensity={0.3} 
-        >
-        </directionalLight>
-        */}
+            </Canvas>
+            <Loader />
 
-        <ambientLight intensity={0.2}/>
-                {/*
-            <meshBasicMaterial color="#ffffff"  toneMapped={false} />
-            <meshBasicMaterial color="#ffffff" toneMapped={false}  />
-
-            */}
-        {/*
-        <Plane rotation={[ -Math.PI/2,0, -Math.PI/4]} position={[0, 1.02, 0]} args={[1000, 1000]} receiveShadow  >
-        <meshStandardMaterial attach="material" color="white" toneMapped={false}/>
-
-        <Plane  rotation={[0,0, -Math.PI / 2]} position={[0, 0, -80]} args={[1000, 1000]} receiveShadow >
-        <meshBasicMaterial color="#ffffff" toneMapped={false}  />
-
-        </Plane>
-
-        </Plane>
-
-        */}
-
-        </Canvas>
-        <Loader />
-
-		</>
+        </>
     )
 
 }

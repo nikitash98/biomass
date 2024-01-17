@@ -77,10 +77,10 @@ const ContentSlider = (props) => {
                     value={convertCounter(props.counter, show, mul)}
                     onAfterChange={handleSliderClick}
                     renderMark={(props) => {
-                        let tick_class = "tick_label_top small_aktiv"
+                        let tick_class = "tick_label_top small_type"
                         if(Math.floor(props.key/mul > Math.floor(convertCounter(val, show, mul)/mul))) {
                             props.className = "customSlider-mark selected_mark"
-                            tick_class = "tick_label_top small_aktiv  selected_tick"
+                            tick_class = "tick_label_top small_type  selected_tick"
                         } 
                         if(props.key == show.length * mul) {
                             props.className = "customSlider-mark end_mark"

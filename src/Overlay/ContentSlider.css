@@ -1,7 +1,7 @@
 :root {
     --main-color: rgb(0, 0, 0);
     --main-color-hover: rgb(104, 117, 217, 0.2);
-    --track-color: #e3e3e3;
+    --track-color: var(--border_grey);
     --mark-color: #010101;
 
   }
@@ -24,7 +24,8 @@
   }
 
   .selected_tick {
-    color: white
+    color: rgba(255, 255, 255, 0);
+    
   }
 
   .customSlider-track {

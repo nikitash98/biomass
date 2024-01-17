@@ -6,6 +6,7 @@ import TabExampleBasic from './InfoTabs';
 import slides from '../slides.json'
 import EndGrid from './EndGrid';
 import ClickInfo from './ClickInfo';
+import './HeaderGrid.css';
 
 import { Grid } from 'semantic-ui-react';
 function HeaderGrid(props) {
@@ -16,16 +17,6 @@ function HeaderGrid(props) {
             <Grid.Row className='header_row' onMouseLeave={() => setviewedBox(-1)}>
                 
                 <Grid.Column width={8} style={{ height: "100%" }}>
-                    {/*
-                    <div className={(props.counter == 0 ? 'title title_collapsed' : 'title ')} onClick={() => {
-                        props.setScrubbing(true)
-                        props.setCounter(0);
-                    }
-                    }>
-                        <img className='page_logo' src="Icon/Living13.svg" />
-                    </div>
-                    */}
-
                 </Grid.Column>
                 <Grid.Column width={1}>
                 </Grid.Column>

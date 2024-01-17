@@ -9,11 +9,15 @@ import { Part01 } from '../Items/Part01'
 function Animation(props) {
  
     const handleHover = (e) => {
+        if(props.counterHit) {
+
         e.stopPropagation()
         document.body.style.cursor = 'pointer';
         //props.setHovered([nameFlattening(e.eventObject.name)])
         props.setHovered([e.eventObject.name])
         //props.setSelectionSet(getRefName(e.eventObject.name))
+      }
+
     }
 
     let divRefs = useRef({});
@@ -85,6 +89,7 @@ function Animation(props) {
       setcounterHit = {props.setcounterHit}
       setOpenModal = {props.setOpenModal}
       nameFlattening = {nameFlattening}
+      setLoaded3D = {props.setLoaded3D}
       ></Part01>
     </>
 

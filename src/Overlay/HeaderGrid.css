@@ -1,0 +1,7 @@
+.overlay_credit {
+    text-align: left;
+    color: var(--border_grey);
+    position: absolute;
+    bottom: 0;
+    pointer-events: auto;
+  }

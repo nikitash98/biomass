@@ -1,46 +1,9 @@
-{/*
 
-.ui.tabular.menu .item {
-    max-width: 33.33%;
-    min-width: 33.33%;
-    padding: 0%;
-    border: none;
-}
-.ui.tabular.menu .item:hover {
-    color: red !important;
-}
-.ui.tabular.menu .active.item{
-    padding: 0%;
-    border: none;
 
-}
-
-.ui.tabular.menu .item:hover {
-    color: white
-
-}
-
-.ui.tabular.menu+.attached.segment{
-    border: none;
-    display: none;
-}
-
-ul {
-    width: 100%;
-    padding: 0%;
-    margin: 0%;
-}
-
-.fit_content {
-    width: fit-content;
-    height: fit-content;
-}
-
-li:hover {
-    cursor: pointer;
-}
-
-*/}
+.copyrights_text {
+    font-size: 9pt;
+    text-align: left;
+  }
 
 .tabs {
     width: fit-content;
@@ -80,6 +43,7 @@ li:hover {
     right: 0%;
     z-index: 15;
     overflow: hidden;
+    pointer-events: auto;
 }
 .segment > * {
     pointer-events: auto;
@@ -191,7 +155,6 @@ li:hover {
 }
 
 .credit_grid_object {
-    border-top: solid 1px var(--border_grey);
 
 }
 

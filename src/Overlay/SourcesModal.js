@@ -10,9 +10,10 @@ function SourcesModal(props) {
     >
     <Modal.Content>
         <div className = "imageCreditContent">
-            <h1>
-                Learn more
-            </h1>
+            <div className='small_type'>
+                learn more
+            </div>
+            <Divider/>
             <Grid divided>
                 <Grid.Row columns={3}>
                     <Grid.Column>

@@ -1,43 +1,13 @@
-/*
-Neue Haas Grotesk Display Pro 45 Light
-font-family: "neue-haas-grotesk-display", sans-serif;
-font-weight:  ;
-font-style: normal;
-Neue Haas Grotesk Display Pro 46 Light Italic
-font-family: "neue-haas-grotesk-display", sans-serif;
-font-weight: 400;
-font-style: italic;
-Neue Haas Grotesk Display Pro 75 Bold
-font-family: "neue-haas-grotesk-display", sans-serif;
-font-weight: 700;
-font-style: normal;
-Neue Haas Grotesk Display Pro 76 Bold Italic
-font-family: "neue-haas-grotesk-display", sans-serif;
-font-weight: 700;
-font-style: italic;
-Neue Haas Grotesk Text Pro 55 Roman
-font-family: "neue-haas-grotesk-text", sans-serif;
-font-weight: 400;
-font-style: normal;
-Neue Haas Grotesk Text Pro 56 Italic
-font-family: "neue-haas-grotesk-text", sans-serif;
-font-weight: 400;
-font-style: italic;
-Neue Haas Grotesk Text Pro 75 Bold
-font-family: "neue-haas-grotesk-text", sans-serif;
-font-weight: 700;
-font-style: normal;
-Neue Haas Grotesk Text Pro 76 Bold Italic
-font-family: "neue-haas-grotesk-text", sans-serif;
-font-weight: 700;
-font-style: italic;
-*/
 
 :root {
   --hover_blue: #287ed4;
   --border_grey: #999da0;
-}
-
+  --background-color: #E6E6E6;
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
 .App {
   text-align: center;
 }
@@ -47,11 +17,6 @@ font-style: italic;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -69,8 +34,8 @@ font-style: italic;
 }
 a:hover{
   color:rgb(0, 0, 255) !important;
-
 }
+
 .HoverInfo {
   position: absolute;
   top: 20%;
@@ -85,345 +50,41 @@ a:hover{
   color: var(--hover_blue);
 }
 
-
-
-
-
-#download_button {
-  background-color: rgb(205, 205, 205);
-  padding: 10px;
-  border-radius: 10px;
-  width: 100%;
-}
-
-#download_button:hover {
-  background-color: rgb(255, 255, 255);
-
-}
-.title >h1 {
-  font-size: 40pt;
-  font-family: "neue-haas-grotesk-text", sans-serif;
-  padding: 10px;
-}
-
-.box_name > h1 {
-  font-size: 20pt;
-  font-family: "neue-haas-grotesk-text", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-    white-space: nowrap;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
-
-
-
-
-.temporary_title {
-  background-color: white;
-  padding: 8px;
-  transform: translate(-50%, -50%);
-  font-size: 20pt;
-  font-family: "neue-haas-grotesk-text", sans-serif;
-  font-weight: 600;
-}
-
-.small_aktiv {
-  font-family: "neue-haas-grotesk-text", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-    font-size: 12pt;
- }
-
- .tiny_aktiv {
-  font-family: "neue-haas-grotesk-text", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-    font-size: 8pt;
-
- }
-
-
- 
-.hovered_name {
-  color: var(--hover_blue);
-
-}
-
-.highlighted_name {
-  color: grey;
-
-}
-
-.all_humans_type {
-  color: red !important;
-  font-weight: 300;
-  border: solid 1px red;
-  text-align: center !important;
-
-}
-
-
-.artificial_name{
-  transform: translate(-120%, 0%);
-  text-align: right;
-}
-
-.artificial_name h1 {
-
-}
-
-.unhighlighted > h1{
-  color: rgb(113, 113, 113)
-}
-
-.box_name {
-  padding: 2px;
-  z-index: -5;
-  border-radius: 5px;
-  /* border: solid 0.5px rgb(196, 196, 196); 
-  background-color: rgba(231, 231, 231, 0.176);
-  box-shadow: 0 0 3px 3px rgba(231, 231, 231, 0.176);
-  */
-  transition: opacity 0.3s;
-  font-weight: 400 !important;
-
-}
-
-.three_header {
-  color: black;
-  font-size: 15pt;
-  width: fit-content;
-  width: 300px;
-
-}
-.three_header > h1 {
-  font-size: 15pt;
-  text-align: left;
-}
-.three_header > p {
-  font-size: 8pt;
-  text-align: left;
-}
-
 .hidden{ 
   opacity: 0;
   transition: opacity 0.3s;
-  /*transition: opacity 0.3s linear 2s; */
 }
 
-.start_caption {
+
+.loading_container {
   position: absolute;
-  top: 0%;
-  left: 0%;
-}
-/*
-.box_value>h1 {
-  font-size: 12pt;
-  background-color:white;
-  font-family: "aktiv-grotesk", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  white-space: nowrap;
-  padding: 5px;
-  border-radius: 5px;
-  text-align: center;
-}
-*/
-
-.box_value {
-  transform: translate(-50%, -50%);
-  width: 70px;
-  background-color: var(--hover_blue);
-  color: #fff;
-  padding: 1px;
-  opacity: 1;
-  position: relative;
-  float: left;
-  z-index: 12;
-  position: absolute;
-  pointer-events: none;
-  text-align: center;
-  border-radius: 3px;
-}
-
-
-
-.hide_box {
-  opacity: 0;
-
-}
-
-
-.wet_value {
-  background-color: black;
-
-}
-
-.unbroken_span {
-  white-space: nowrap;
-}
-
-.box_value >h1 {
-  font-size: 9pt;
-  font-family: "aktiv-grotesk", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  white-space: nowrap;
-  padding: 5px;
-  border-radius: 5px;
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-
-}
-.box_value:after {
-  content: " ";
-  position: absolute;
-  right: 25px;
-  bottom: -9px;
-  border-top: 10px solid var(--hover_blue);
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  border-bottom: none;
-}
-
-.box_value.left::before {
-  content: "";
-  position: absolute;
-  top: 50%;                        
-  margin-top: -10px;                
-  left:-16px;
-  border: solid 9px transparent;
-  border-right-color: var(--hover_blue);
-  z-index: 1;
-}
-.box_value.left::after {
-  visibility: hidden;
-}
-
-.wet_value::after{
-  border-top: 15px solid black;
-}
-.openBoxButton {
-  background-color: rgb(206, 206, 206);
-  width: 200px;
-  padding: 15pt;
-  border-radius: 5px;
-  font-weight: 800;
-
-  font-size: 15pt;
-  color:black;
-  font-family: "aktiv-grotesk", sans-serif;
-  cursor: pointer;
-
-}
-.openBoxButton:hover {
-  background-color: #61dafb;
-}
-.openBoxButton:hover::before{
-  border-right-color: #61dafb;
-}
-
-.openBoxButton:before {
-  content: ' ';
-  height: 0;
-  position: absolute;
-  width: 0;
-  left: -37px;
-  border: 20px solid transparent;
-  border-right-color: rgb(206, 206, 206);
-  top: 12px;
-}
-
-.click_info_box {
-  width: 300px;
-  font-size: 20pt;
-  transform: translate(-50%, 0%);
-}
-
-.year_tick {
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 5px;
-  padding: 5px;
-  color: var(--hover_blue);
-  backdrop-filter: blur(20px);
-  font-size: 15pt;
-  font-family: "neue-haas-grotesk-display", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-
-.year_ticsk:after {
-  left: -20px;
   top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(58, 188, 61, 0);
-  border-right:30px solid rgb(255, 255, 255, 0.5); 
-  border-width: 10px;
-  margin-top: -10px;
-}
-
-.rotate_phone_container {
-  position: absolute;
-  top: 77%;
   left: 50%;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.6);
-  width: 50%;
+  z-index: 100;
   transform: translate(-50%, -50%);
-  visibility:hidden;
-
-  border-radius: 20px;
-  backdrop-filter: blur(5px);
-  
+}
+.loading_icon {
+  width: 50px;
+  -webkit-animation:spin 4s linear infinite;
+  -moz-animation:spin 4s linear infinite;
+  animation:spin 4s linear infinite;
 }
 
-.rotate_phone_container img {
-  -webkit-animation:spin 1s linear infinite alternate;
-  -moz-animation:spin 1s linear infinite alternate;
-  animation:spin 1s linear infinite alternate;
-  height: 70%;
-  width: 90pt;
+@-moz-keyframes spin { 
+  100% { -moz-transform: rotate(360deg); } 
 }
-
-.rotate_phone_header {
-  font-family: "neue-haas-grotesk-display", sans-serif;
-  font-weight:  800;
-  font-style: normal;
-  font-size: 20pt;
-  padding: 20px;
+@-webkit-keyframes spin { 
+  100% { -webkit-transform: rotate(360deg); } 
 }
-
-.small_click_left {
-  position: absolute !important;
-  left: 1% !important;
-  top: 50%;
-  display: none !important;
-}
-
-.small_click_right {
-  position: absolute !important;
-  right: 1% !important;
-  top: 50%;
-  display: none !important;
-
-}
-
-@media screen {
-
+@keyframes spin { 
+  100% { 
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg); 
+  } 
 }
 
 
-
+/*
 @media only screen and (max-width: 600px) {
   .box_name > h1 {
     font-size: 5pt;
@@ -470,21 +131,43 @@ a:hover{
 
 @media only screen and (min-width: 1200px) {
   .box_name > h1 {
-    font-size: 12pt;
-
+    font-size: 16pt;
   }
 }
-@-moz-keyframes spin { 
-  100% { -moz-transform: rotate(90deg); } 
+*/
 
-100% { -moz-transform: rotate(90deg); } 
-}
-@-webkit-keyframes spin { 
-100% { -webkit-transform: rotate(90deg); } 
-}
-@keyframes spin { 
-100% { 
-    -webkit-transform: rotate(90deg); 
-    transform:rotate(90deg); 
-} 
-}
+
+/*
+Neue Haas Grotesk Display Pro 45 Light
+font-family: "neue-haas-grotesk-display", sans-serif;
+font-weight:  ;
+font-style: normal;
+Neue Haas Grotesk Display Pro 46 Light Italic
+font-family: "neue-haas-grotesk-display", sans-serif;
+font-weight: 400;
+font-style: italic;
+Neue Haas Grotesk Display Pro 75 Bold
+font-family: "neue-haas-grotesk-display", sans-serif;
+font-weight: 700;
+font-style: normal;
+Neue Haas Grotesk Display Pro 76 Bold Italic
+font-family: "neue-haas-grotesk-display", sans-serif;
+font-weight: 700;
+font-style: italic;
+Neue Haas Grotesk Text Pro 55 Roman
+font-family: "neue-haas-grotesk-text", sans-serif;
+font-weight: 400;
+font-style: normal;
+Neue Haas Grotesk Text Pro 56 Italic
+font-family: "neue-haas-grotesk-text", sans-serif;
+font-weight: 400;
+font-style: italic;
+Neue Haas Grotesk Text Pro 75 Bold
+font-family: "neue-haas-grotesk-text", sans-serif;
+font-weight: 700;
+font-style: normal;
+Neue Haas Grotesk Text Pro 76 Bold Italic
+font-family: "neue-haas-grotesk-text", sans-serif;
+font-weight: 700;
+font-style: italic;
+*/

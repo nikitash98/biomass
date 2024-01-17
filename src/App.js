@@ -4,48 +4,49 @@ import Visualization from './3D_Components/Visualization';
 import HoverInfo from './HoverInfo';
 import React, { useEffect } from 'react';
 import Overlay from './Overlay/Overlay';
-import { Suspense, useRef } from 'react';
+import { Suspense, useRef, useState} from 'react';
 import { applyProps } from 'react-three-fiber';
-
+import './type.css'
 function App() {
-  const [counter, setCounter] = React.useState(0)
-  const previousCounter = React.useRef(0)
-  const animationTime = useRef(0)
+  const [counter, setCounter] = React.useState(0);
+  const previousCounter = React.useRef(0);
+  const animationTime = useRef(0);
 
-  const [rotatePhoneContainer, setrotatePhoneContainer] = React.useState(true)
+  const [rotatePhoneContainer, setrotatePhoneContainer] = React.useState(true);
 
 
-  const [info, setInfo] = React.useState(null)
-  const [info_page, setInfoPage] = React.useState(null)
-  const [playing, setPlaying] = React.useState(false)
-  const [scrubbing, setScrubbing] = React.useState(false)
-  const [hovered, setHovered] = React.useState([null])
-  const [yearPercentage, setYearPercentage] = React.useState(0)
-  const [counterHit, setcounterHit] = React.useState(false)
-  const [redrawState, setRedrawState] = React.useState(0)
+  const [info, setInfo] = useState(null);
+  const [info_page, setInfoPage] = useState(null);
+  const [playing, setPlaying] = useState(false);
+  const [scrubbing, setScrubbing] = useState(false);
+  const [hovered, setHovered] = useState([null]);
+  const [yearPercentage, setYearPercentage] = useState(0);
+  const [counterHit, setcounterHit] = useState(false);
+  const [redrawState, setRedrawState] = useState(0);
+
+  const [loaded3D, setLoaded3D] = useState(false);
+
   const handleResize = () => {
-    console.log("RESIZING");
     setRedrawState(window.innerHeight)
+    
     if (window.innerWidth < 800) {
       setrotatePhoneContainer(true);
     }
-};
-  
+  };
   const [openModal, setOpenModal] = React.useState(false)
 
 
 
   const left_click = () => {
-    setCounter(Math.max(counter - 1, 0));
+    setCounter(counter => Math.max(counter - 1, 0));
     setPlaying(true);
     setScrubbing(false);
     setcounterHit(false);
 
   }
 
-
   const right_click = () => {
-    setCounter(Math.min(counter + 1, 33));
+    setCounter(counter => Math.min(counter + 1, 33));
     setPlaying(true);
     setScrubbing(false);
     setcounterHit(false);
@@ -55,18 +56,11 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key == "ArrowRight") {
-        setCounter(counter => Math.min(counter + 1, 31))
-        setPlaying(true);
-        setScrubbing(false);
-        setcounterHit(false);
-
+        right_click()
       }
-      if (e.key == "ArrowLeft") {
-        setCounter(counter => Math.max(counter - 1, 0))
-        setPlaying(true);
-        setScrubbing(false);
-        setcounterHit(false);
 
+      if (e.key == "ArrowLeft") {
+        left_click()
       }
     }
     window.addEventListener('resize', handleResize)
@@ -81,18 +75,22 @@ function App() {
     }
 
   }, [])
-  
+
 
   return (
     <div className="App" onClick={() => { setrotatePhoneContainer(false); }}>
       <div className="game_container">
-          <div className="vis-container">
-            <Suspense fallback = {
-              <div>
-                LOADING
-              </div>
-            }>
+        <Suspense fallback={
 
+          <div className='loading_container'>
+            <div className='big_caption_type'>
+            </div>
+            <br />
+            <img className='loading_icon' src='Icon/Loading_Icon.svg' />
+          </div>
+
+        }>
+          <div className="vis-container">
             <Visualization
               animationTime={animationTime}
               hovered={hovered} setHovered={setHovered}
@@ -102,30 +100,34 @@ function App() {
               scrubbing={scrubbing} setScrubbing={setScrubbing}
               setYearPercentage={setYearPercentage} yearPercentage={yearPercentage}
               setcounterHit={setcounterHit}
+              counterHit = {counterHit}
               setOpenModal={setOpenModal}
+              setLoaded3D = {setLoaded3D}
             />
-          </Suspense>
 
           </div>
-          
-          <div className='game_overlay'>
-            <Overlay
-              counterHit={counterHit} setcounterHit={setcounterHit}
-              setPlaying={setPlaying}
-              setCounter={setCounter}
-              animationTime={animationTime}
-              counter={counter}
-              info={info_page} setInfoPage={setInfoPage}
-              hovered={hovered} setHovered={setHovered}
-              yearPercentage={yearPercentage}
-              setScrubbing={setScrubbing}
-              openModal={openModal} setOpenModal={setOpenModal}
-              rotatePhoneContainer={rotatePhoneContainer}
-              redrawState = {redrawState}
-              left_click = {left_click}
-              right_click = {right_click}
-            />
-          </div>
+        </Suspense>
+
+        <div className='game_overlay'>
+          <Overlay
+            counterHit={counterHit} setcounterHit={setcounterHit}
+            setPlaying={setPlaying}
+            setCounter={setCounter}
+            animationTime={animationTime}
+            counter={counter}
+            info={info_page} setInfoPage={setInfoPage}
+            hovered={hovered} setHovered={setHovered}
+            yearPercentage={yearPercentage}
+            setScrubbing={setScrubbing}
+            openModal={openModal} setOpenModal={setOpenModal}
+            rotatePhoneContainer={rotatePhoneContainer}
+            redrawState={redrawState}
+            left_click={left_click}
+            right_click={right_click}
+            loaded3D = {loaded3D}
+          />
+        </div>
+
       </div>
     </div>
   );

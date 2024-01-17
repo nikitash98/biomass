@@ -1,6 +1,6 @@
 import {React, useRef} from 'react';
 
-import { Modal } from 'semantic-ui-react';
+import { Divider, Modal } from 'semantic-ui-react';
 function ImageCreditModal(props) {
     return (
         <Modal
@@ -12,10 +12,12 @@ function ImageCreditModal(props) {
                 >
                 <Modal.Content>
                 <div className = "imageCreditContent">
-                <h1>
-                    Image credits
-                    </h1>
-                <ul>
+                    <div className='small_type'>
+                        image credits
+                    </div>
+                    <Divider/>
+                
+                <ul style={{"padding-inline-start": "0px"}}>
                         <li>
                             <a href = "https://pxhere.com/en/photo/1581887">Plants</a>
                         </li>
