@@ -33,7 +33,6 @@ export function Part01(props) {
   let quantities = slides[props.counter]["quantities"]
 
 
-  console.log(quantities)
   const transp_material = new THREE.MeshStandardMaterial({ color: 0xD3D3D3, opacity: 0.3, transparent: true })
   let animationSpeed = 1
   const invizMaterial = new THREE.MeshStandardMaterial({ opacity: 0, transparent: true })
@@ -187,12 +186,10 @@ export function Part01(props) {
 
   change = window.innerWidth / 5000
 
-  console.log(props.animationTime.current)
 
   //let change_value = lerp_values(values, change)
   let change_value = window.innerHeight / window.innerWidth * 14
   const handleResize = () => {
-    console.log("RESIZE")
   };
 
 
@@ -221,7 +218,7 @@ export function Part01(props) {
     "Fish": [-.6, 0, 0],
     "Humans": [0, 0, .3],
     "Livestock": [0, 0, .35],
-    "Marine_Arthropods": [.2, 0, .6],
+    "Marine_Arthropods": [.4, 0, .6],
     "Mollusks": [0, .0, .4],
     "Nematodes": [0, 0, .25],
     "Wild_Birds": [0.0, 0, .2],
@@ -470,7 +467,6 @@ export function Part01(props) {
           if(flat_name == "LUCA") {
             human_title = "LUCA"
           } 
-          console.log(flat_name)
 
           return (
             <mesh name={flat_name} geometry={nodes[flat_name].geometry} key={i}

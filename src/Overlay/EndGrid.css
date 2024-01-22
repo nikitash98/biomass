@@ -16,7 +16,6 @@
     z-index: 10;
     top: 50%;
     transform: translate(0, -50%);
-
     text-align: left;
     pointer-events: auto;
     position: absolute;
@@ -25,10 +24,107 @@
     align-items: center;
   
 }
+
+.credit_box {
+  position: absolute;
+  z-index: 10;
+  left: 0%;
+  transform: translate(-50%, 0%);
+  top: 100%;
+  width: 50vw;
+  z-index: 10;
+  opacity: 0;
+}
+.credit_box a{
+  font-size: 12pt;
+  line-height: 14pt !important;
+  text-align: left;
+}
+
+
+#learnmore:hover .credit_box {
+  opacity: 1;
+}
+
 .end_section h1 {
     font-family: "larken", sans-serif;
+}
+.sharing_box {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translate(-50%, 0%);
+  z-index: 10;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  min-width: 20vw;
+  opacity: 0;
+}
+
+#share:hover .sharing_box {
+  visibility: auto;
+  opacity: 1;
+}
+
+.poster_box {
+  width: 30vw;
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  opacity: 0 ;
+  z-index: 10;
+  background-color: white;
+  transform: translate(-50%,0%);
+  padding: 20px;
+  border-radius: 20px;
+  color: var(--border_grey);
+}
+
+#poster:hover .poster_box {
+  opacity: 1;
+}
+.sharing_box:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  bottom: -20px;
+  border-top: 20px solid white;
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-bottom: none;
+}
+
+.poster_box:after{
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  bottom: -20px;
+  border-top: 20px solid white;
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-bottom: none;
 
 }
+
+
+.sharing_box a {
+  display: inline-block;
+  margin: 5px;
+}
+
+.sharing_box a:hover img{
+  filter: invert(41%) sepia(46%) saturate(1773%) hue-rotate(182deg) brightness(93%) contrast(79%);
+}
+
+.sharing_box a img{
+  width: 35px;
+  filter: invert(63%) sepia(11%) saturate(105%) hue-rotate(163deg) brightness(97%) contrast(88%);
+
+}
+ 
 .download_button {
     padding: 5%;
     margin: 10px;
@@ -42,11 +138,14 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
   height: 100%;
+  margin: auto;
 }
 
-
+.poster_container {
+  margin: 25px;
+}
 
 
 .download_button:hover {
@@ -149,15 +248,6 @@
 .readButton:hover a {
   color: var(--hover_blue)
 }
-.download-row .col {
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    text-decoration: none;
-    color: black;
-
-}
 
 
 .download-row .col:hover{
@@ -181,49 +271,11 @@
     margin-bottom: 10px;
 }
 
-.paper_section{
-    height: 100%;
-    width: 100px;
-}
 
 
-
-.paper_section img{
-    width: auto;
-    height: 100%;
-}
-
-
-
-
-.poster-download-section {
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-    background-color: rgba(255, 255, 255, 0.516);
-    backdrop-filter: blur(10px);
-    box-sizing: border-box;
-    padding: inherit
-}
 
 @media only screen and (max-width: 768px)  {
-  .endgrid .poster-download {
-    height: 50%;
-    width: auto;
-  }
-  .poster-download-container {
-    width: 100%;
-    text-align: center;
-
-  }
-  .endgrid .poster-download img{
-    height: 100%;
-    width: auto;
-  }
+ 
 
   .end_section {
     padding: 0%;
@@ -242,82 +294,30 @@
   .readButton .ui.divider {
     margin: 0% !important;
   }
-}
+  .wrapper {
+    grid-template-columns:auto;
+    width: 60vw;
 
-.poster-download:hover .poster-download-section{
-    visibility: visible;
-}
-
-
-.poster-download img {
-  width: 100%;
-  display: block;
-}
-
-
-.poster-download {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-    display: block;
-    padding: 20px;
-
-}
-
-
-.half {
-    height: 50%;
-    width: 100%;
-}
-
-
-.third_col {
-  width: 33.33%;
-  height: 100%;
-  display: inline-block;
-}
-.two_third_col {
-  width: 66.66%;
-  height: 100%;
-  display: inline-block;
-
-}
-
-
-
-.test {
-  border: 1px solid black;
-}
-.test img {
-  width: 100%;
-  border: 1px solid red;
-  margin: 0px;
-  padding: 0px;
-  line-height: 0px;
-  display: block;
-}
-
-.poster-download-container {
-  position: relative;
-  border: 1px solid var(--border_grey);
-}
-
-
-@media only screen and (max-width: 728px)  {
-  .third_col {
-    width: 100%;
-    height: 20vh;
+    max-height: 60vh;
+  }
+  .sharing_box{
+    width: 50vw;
   }
 
-  .poster-download img {
-    height: 25vh;
-    width: auto;
-  }
-  .poster-download{
-    width: fit-content;
-  }
-  .two_third_col {
-    width: 100%;
-  }
+
 }
+
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+  .wrapper {
+    grid-template-columns:auto;
+    width: 40vw ;
+    
+  }
+
+  .sharing_box{
+    width: 50vw;
+  }
+
+
+}
+

@@ -5,11 +5,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: fill-available;
   height: -webkit-fill-available;
+  width: fill-available;
+  width: -webkit-fill-available;
+
 }
 
 #root {
   height: fill-available;
   height: -webkit-fill-available;
+  width: fill-available;
+  width: -webkit-fill-available;
 
 }
 code {
@@ -23,12 +28,17 @@ canvas{
 .App {
   height: fill-available;
   height: -webkit-fill-available;
+  width: fill-available;
+  width: -webkit-fill-available;
 
 }
 
 html { 
   height: fill-available;
   height: -webkit-fill-available;
+  width: fill-available;
+  width: -webkit-fill-available;
+
 
 }
 .game_container {

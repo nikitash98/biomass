@@ -3,7 +3,6 @@ import data from "../slides.json"
 import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
-    console.log(props.hover_id)
     return(
         <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id])}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered(props.hover_id);}}>{props.children}</span>
     )

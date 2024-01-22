@@ -87,12 +87,12 @@ function HeaderGrid(props) {
 
             <Grid.Row className='bottom_row'>
                 <Grid.Column width={8} style={{ "padding": "0px" }}>
-                    <div className='overlay_credit tiny_aktiv'>
+                    <div className='overlay_credit small_type'>
                         © <a href="https://menard.pha.jhu.edu/" target="_blank">Ménard</a> and <a href="https://nikitashtarkman.com/" target="_blank">Shtarkman </a>
                     </div>
                 </Grid.Column>
                 <Grid.Column width={8} style={{ "padding": "0px" }}>
-                    <TabExampleBasic setimageCreditModal={props.setimageCreditModal} />
+                    <TabExampleBasic setimageCreditModal={props.setimageCreditModal} setsourcesModal = {props.setsourcesModal} />
                 </Grid.Column>
 
             </Grid.Row>

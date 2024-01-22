@@ -4,7 +4,7 @@ import Visualization from './3D_Components/Visualization';
 import HoverInfo from './HoverInfo';
 import React, { useEffect } from 'react';
 import Overlay from './Overlay/Overlay';
-import { Suspense, useRef, useState} from 'react';
+import { Suspense, useRef, useState } from 'react';
 import { applyProps } from 'react-three-fiber';
 import './type.css'
 function App() {
@@ -12,7 +12,7 @@ function App() {
   const previousCounter = React.useRef(0);
   const animationTime = useRef(0);
 
-  const [rotatePhoneContainer, setrotatePhoneContainer] = React.useState(true);
+  const [rotatePhoneContainer, setrotatePhoneContainer] = React.useState(false);
 
 
   const [info, setInfo] = useState(null);
@@ -28,9 +28,14 @@ function App() {
 
   const handleResize = () => {
     setRedrawState(window.innerHeight)
-    
-    if (window.innerWidth < 800) {
+    console.log("RESIZING")
+    if (window.innerWidth < 500) {
+      console.log("SMALL")
+
       setrotatePhoneContainer(true);
+    } else {
+      setrotatePhoneContainer(false);
+
     }
   };
   const [openModal, setOpenModal] = React.useState(false)
@@ -78,58 +83,51 @@ function App() {
 
 
   return (
-    <div className="App" onClick={() => { setrotatePhoneContainer(false); }}>
-      <div className="game_container">
-        <Suspense fallback={
 
-          <div className='loading_container'>
-            <div className='big_caption_type'>
+      <div className="App" onClick={() => { setrotatePhoneContainer(false); }}>
+        <div className="game_container">
+          <Suspense >
+            <div className="vis-container">
+              <Visualization
+                animationTime={animationTime}
+                hovered={hovered} setHovered={setHovered}
+                setInfo={setInfo} setInfoPage={setInfoPage}
+                counter={counter} setCounter={setCounter}
+                previousCounter={previousCounter}
+                scrubbing={scrubbing} setScrubbing={setScrubbing}
+                setYearPercentage={setYearPercentage} yearPercentage={yearPercentage}
+                setcounterHit={setcounterHit}
+                counterHit={counterHit}
+                setOpenModal={setOpenModal}
+                setLoaded3D={setLoaded3D}
+              />
+
             </div>
-            <br />
-            <img className='loading_icon' src='Icon/Loading_Icon.svg' />
-          </div>
+          </Suspense>
 
-        }>
-          <div className="vis-container">
-            <Visualization
+          <div className='game_overlay'>
+            <Overlay
+              counterHit={counterHit} setcounterHit={setcounterHit}
+              setPlaying={setPlaying}
+              setCounter={setCounter}
               animationTime={animationTime}
+              counter={counter}
+              info={info_page} setInfoPage={setInfoPage}
               hovered={hovered} setHovered={setHovered}
-              setInfo={setInfo} setInfoPage={setInfoPage}
-              counter={counter} setCounter={setCounter}
-              previousCounter={previousCounter}
-              scrubbing={scrubbing} setScrubbing={setScrubbing}
-              setYearPercentage={setYearPercentage} yearPercentage={yearPercentage}
-              setcounterHit={setcounterHit}
-              counterHit = {counterHit}
-              setOpenModal={setOpenModal}
-              setLoaded3D = {setLoaded3D}
+              yearPercentage={yearPercentage}
+              setScrubbing={setScrubbing}
+              openModal={openModal} setOpenModal={setOpenModal}
+              rotatePhoneContainer={rotatePhoneContainer}
+              redrawState={redrawState}
+              left_click={left_click}
+              right_click={right_click}
+              loaded3D={loaded3D}
             />
-
           </div>
-        </Suspense>
 
-        <div className='game_overlay'>
-          <Overlay
-            counterHit={counterHit} setcounterHit={setcounterHit}
-            setPlaying={setPlaying}
-            setCounter={setCounter}
-            animationTime={animationTime}
-            counter={counter}
-            info={info_page} setInfoPage={setInfoPage}
-            hovered={hovered} setHovered={setHovered}
-            yearPercentage={yearPercentage}
-            setScrubbing={setScrubbing}
-            openModal={openModal} setOpenModal={setOpenModal}
-            rotatePhoneContainer={rotatePhoneContainer}
-            redrawState={redrawState}
-            left_click={left_click}
-            right_click={right_click}
-            loaded3D = {loaded3D}
-          />
         </div>
-
       </div>
-    </div>
+
   );
 }
 
