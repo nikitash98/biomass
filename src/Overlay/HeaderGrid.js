@@ -13,9 +13,9 @@ function HeaderGrid(props) {
     const [viewedBox, setviewedBox] = useState(-1)
 
     return (
+        <>
         <Grid className='header_grid'>
             <Grid.Row className='header_row' onMouseLeave={() => setviewedBox(-1)}>
-                
                 <Grid.Column width={8} style={{ height: "100%" }}>
                 </Grid.Column>
                 <Grid.Column width={1}>
@@ -41,13 +41,12 @@ function HeaderGrid(props) {
                         </button>
                     }
                 </Grid.Column>
-                <Grid.Column width={14} style={{ height: "100%", padding: "0%" }}>
+                <Grid.Column width={14} style={{ height: "100%", padding: "0%" }} >
                     {props.counter < 31 && (
                         <Grid className='internal_grid'>
-
                             <Grid.Row>
                                 <Grid.Column width={5} style={{ position: "relative" }}>
-                                    <div className={props.hovered[0] ? "" : "hidden"}>
+                                    <div className={props.hovered[0] ? "clickInfoContainer" : "clickInfoContainer hidden"}>
                                         <ClickInfo info={props.info} setInfoPage={props.setInfoPage}
                                             hovered={props.hovered} setHoveringInfo={props.setHoveringInfo}
                                             counter={props.counter} />
@@ -56,18 +55,14 @@ function HeaderGrid(props) {
                                 <Grid.Column width={4} >
                                 </Grid.Column>
                                 <Grid.Column width={7}>
-                                    <Caption counter={props.counter} setHovered={props.setHovered} setOpenModal={props.setOpenModal} />
-
+                                    <Caption counter={props.counter} setHovered={props.setHovered} setOpenModal={props.setOpenModal}/>
                                 </Grid.Column>
-
                             </Grid.Row>
                         </Grid>
                     )}
-
                     <div className={(props.counter == 32 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
                         <EndGrid setsourcesModal = {props.setsourcesModal}/>
                     </div>
-                    
                 </Grid.Column>
                 <Grid.Column width={1} verticalAlign='middle' className='button_column'>
                     {((props.counter != 0)) && (props.counter !=22) && props.counter < Object.keys(slides).length - 1 &&
@@ -84,7 +79,6 @@ function HeaderGrid(props) {
                 </Grid.Column>
             </Grid.Row>
 
-
             <Grid.Row className='bottom_row'>
                 <Grid.Column width={8} style={{ "padding": "0px" }}>
                     <div className='overlay_credit small_type'>
@@ -94,10 +88,20 @@ function HeaderGrid(props) {
                 <Grid.Column width={8} style={{ "padding": "0px" }}>
                     <TabExampleBasic setimageCreditModal={props.setimageCreditModal} setsourcesModal = {props.setsourcesModal} />
                 </Grid.Column>
-
             </Grid.Row>
-
         </Grid>
+
+        <div className='mobile_grid'>
+            <Caption counter={props.counter} setHovered={props.setHovered} setOpenModal={props.setOpenModal}/>
+        </div>
+
+        {/*
+        <div className='mobile_bottom_caption'>
+            <Caption counter={props.counter} setHovered={props.setHovered} setOpenModal={props.setOpenModal}/>
+        </div>
+        */}
+
+        </>
 
     )
 

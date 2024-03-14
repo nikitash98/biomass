@@ -134,7 +134,7 @@
     color: black;
     border: 1px solid black;
     font-size: 20pt !important;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     pointer-events: auto;
     position: relative;
@@ -167,7 +167,7 @@
   .click_button {
     position: relative;
     z-index: 5;
-    width: 50px;
+    width: 40px;
     aspect-ratio : 1 / 1;
     pointer-events: auto; 
     border: 1px solid var(--border_grey);
@@ -179,7 +179,15 @@
     justify-content: center;
     align-items: center;
   }
+
+  .play_button {
+    margin-left: 5px;
+  }
   
+  .play_button img {
+    width: 70%;
+  }
+
   .click_button:hover {
     transition: all .1s;
     border: 1px solid var(--hover_blue)
@@ -303,7 +311,7 @@
       display: none;
     }
     .new_start_button {
-      top: 70%;
+      top: 90% ;
     }
   }
 
@@ -367,16 +375,18 @@
 
 .small_click_left {
   position: absolute !important;
-  left: 1% !important;
+  left: 5% !important;
   top: 50%;
   display: none !important;
+  transform: translate(0, -50%);
 }
 
 .small_click_right {
   position: absolute !important;
-  right: 1% !important;
+  right: 5% !important;
   top: 50%;
   display: none !important;
+  transform: translate(0, -50%);
 
 }
 
@@ -425,6 +435,16 @@
     border-radius: 20px;
     padding: 20px;
   }
+
+  @media only screen and (max-width: 900px)  and (orientation: portrait){
+    .chapter_title {
+      width: 100% !important;
+      left: 0% !important;
+      transform: translate(0%, 0%);
+      top: 20% !important;
+      padding: 10px !important;
+    }
+  }
   .full_logo {
     position: relative;
     width: 100%;
@@ -460,6 +480,10 @@
   .full_logo img {
     display: block;
     max-height: 100%;
+  }
+
+  .play_button_container {
+    display: inline-block;
   }
 
   .chapter_year_counter {
@@ -549,6 +573,10 @@
      transition: width 0.3s 0.3s, height 0.3s 0.3s, opacity 0.3s;
 
 }
+.regularFadeIn {
+  opacity:1;
+  transition: opacity 0.5s 0.5s;
+}
 .fadeIn{
      opacity:1;
      width:100px;
@@ -624,32 +652,6 @@
 }
 
 
-.big_type {
-  position: absolute;
-  height: fit-content;
-}
-
-.big_type2 { 
-  position: absolute;
-  height: 40%;
-  overflow: hidden;
-}
-
-.big_type2 img {
-  z-index: 10; 
-  position: relative;
-  height: 100%;
-  width: auto
-}
-.big_type2  video{
-  
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  z-index: -5;
-  width: 100%;
-
-}
 
 
 
@@ -877,7 +879,7 @@
 .basicfadeOut {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 1s, opacity 0.3s linear;
+  transition: opacity 0.3s linear;
 }
 
 .year_slider {
@@ -894,6 +896,9 @@
 }
 
 
+
+
+
 @media only screen and (max-width: 900px){
   .title_container {
     top: 30%;
@@ -905,9 +910,13 @@
   }
   .small_click_left {
     display: block !important;
+    top: 65%;
   }
   .small_click_right {
     display: block !important;
+    top: 65%;
+
+
   }
    .icon_container {
     max-width: 80%;
@@ -917,8 +926,31 @@
     max-width: 80%;
   }
 
+  .logo_moved_position {
+    width: 150px;
+  }
 
+  #netonly {
+    transform: translate(105%, -15%);
+
+  }
+  .button_container {
+    top: 90%;
+  }
+  .icon_container {
+    max-width: 80%;
+  }
+
+  .dna_box video {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 }
+
+
+
+
+
 
 
 @media only screen and (min-width: 900px) and (max-width: 1200px){
@@ -937,3 +969,39 @@
 
 
 
+@media only screen and (max-height: 500px) { 
+
+  .logo_moved_position {
+    width: 150px;
+  }
+
+  .logo_moved_position .icon_container {
+    max-width: 80%; 
+    transition: all 0.6s;
+
+  }
+
+  #subtitle {
+    margin-top: 4px;
+  }
+
+  .logo_container {
+    max-width: 100%;
+    transition: all 0.6s;
+
+  }
+
+  .icon_container {
+    max-width: 40%;
+  }
+  .button_container {
+    top: 90%;
+  }
+  .ui.tiny.modal {
+    width: 80% !important;
+  }
+
+  .chapter_title {
+    padding: 10px;
+  }
+}

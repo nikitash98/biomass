@@ -9,25 +9,15 @@ import HeaderGrid from './HeaderGrid';
 import SourcesModal from './SourcesModal';
 function Overlay(props) {
     const [imageCreditModal, setimageCreditModal] = useState(false);
-    const videoRef = useRef();
-
-    let scrollYearsRef = useRef(null);
-
     const [sourcesModal, setsourcesModal] = useState(false)
 
-    let [height, setHeight] = useState(null);
-
-
-    const years = [...Array(124).keys()].reverse()
-
-    useEffect(() => {
-    })
     let calculated_year_value = Math.trunc(1900 + Math.min(Math.max(props.yearPercentage * 123, 0.0), 123))
 
+    let risePosition = 60;
 
-
-
-
+    if(window.innerHeight < 500) {
+        risePosition = 50;
+    }
     return (
         <>
             <div className={(props.counter == 0) ? "logo_container" : 'logo_container logo_moved_position'} >
@@ -36,15 +26,12 @@ function Overlay(props) {
                         <div style={{"position": "relative"}}>
                         <img src="Icon/biocubes_only.svg"  />
                         <img id = "netonly" src = "Icon/net_only.svg"/>
-
-                        </div>
-
+                    </div>
                         {(props.counter == 0) && (
                             <>
                                 <img id = "subtitle" src='Icon/subtitle.svg' />
                             </>
                         )}
-
                     </div>
                 </div>
             </div>
@@ -61,10 +48,10 @@ function Overlay(props) {
                             </>
 
                         ): (
-                            <>
+                            <span style={{"white-space": "nowrap"}}>
                                 click to start <img src="Icon/Right.svg" ></img>
 
-                            </>
+                            </span>
                         )}
                     </button>
                 </div>
@@ -79,7 +66,7 @@ function Overlay(props) {
                 </button>
             }
 
-            {(props.counter != 0) && props.counter < Object.keys(slides).length - 1 &&
+            {(props.counter != 0) && (props.counter !=22) && props.counter < Object.keys(slides).length - 1 &&
                 <button className="click_button small_click_right" style={{ float: "right" }} type="button"
                     onClick={() => {
                         props.right_click()
@@ -97,11 +84,11 @@ function Overlay(props) {
                 onClose={() => { props.setOpenModal(false); props.setHovered([]) }}
                 onOpen={() => props.setOpenModal(true)}
                 open={props.openModal}
-                size='small'
+                size='tiny'
             >
                 <Modal.Content>
                     <ClickInfo info={props.info} setInfoPage={props.setInfoPage}
-                        hovered={props.hovered} setHoveringInfo={props.setHoveringInfo}
+                         setHoveringInfo={props.setHoveringInfo} hovered = {props.hovered}
                         counter={props.counter} />
                 </Modal.Content>
             </Modal>
@@ -119,21 +106,6 @@ function Overlay(props) {
 
 
 
-            {/*
-            <div className={props.rotatePhoneContainer ? 'rotate_phone_container  ' : 'rotate_phone_container hidden'}>
-                <div className='rotate_phone_header'>
-                    rotate your device
-                </div>
-                <img className='regular_icon' src="Icon/Rotate_Phone.svg" />
-            </div>
-            <div className='rotate_phone_container'>
-                TEST
-                <div className='rotate_phone_header'>
-                    rotate your device
-                </div>
-                <img className='regular_icon' src="Icon/Rotate_Phone.svg" />
-            </div>
-            */}
             {props.rotatePhoneContainer && (
                 <div className='rotate_phone_container'>
                     <p>
@@ -143,19 +115,8 @@ function Overlay(props) {
 
                         We recommend you view on a monitor or tablet.
                     </p>
-                    {/*
-                    <img className='regular_icon' src="Icon/Rotate_Phone.svg" />
-                    <div className='rotate_phone_header'>
-                        rotate your device
-                    </div>
-                                        */}
-
                 </div>
-
             )}
-
-
-
 
             <HeaderGrid setimageCreditModal={setimageCreditModal}
                 counter={props.counter}
@@ -188,7 +149,7 @@ function Overlay(props) {
                         <div style={{ "position": "relative", "height": "100%", "width": "100%"}}>
                             <div id='top_part'>
                                 let's return to the year 1900<br />
-                                the population was 1.6 billion
+                                when the population was 1.6 billion
                             </div>
                             <div id='bottom_part'>
                                 let's see the rise of the <span className="extra_info_title">
@@ -211,21 +172,29 @@ function Overlay(props) {
                 <br />
                 the mass of the living world
             </div>
-            <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: 60 - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
+            <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: risePosition - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
                 the technomass in year {calculated_year_value}
-                {(props.counter == 22 && props.counterHit) && (
-                    <div style={{ "display": "inline-block" }}>
-                        <button className='click_button'
+                
+                <div className = {((props.counter == 22) && props.counterHit) ? 'play_button_container regularFadeIn' : 'play_button_container fadeOut'} >
+                        <button className='click_button play_button'
                             onClick={() => {
                                 props.right_click()
                             }}>
                             <img src="Icon/play.svg" ></img>
                         </button>
                     </div>
-                )}
-            </div>
-            <div id="test_id">
 
+                {/*(props.counter == 22 && props.counterHit) && (
+                    <div style={{ "display": "inline-block" }}>
+                        <button className='click_button play_button'
+                            onClick={() => {
+                                props.right_click()
+                            }}>
+                            <img src="Icon/play.svg" ></img>
+                        </button>
+                    </div>
+                    style={{ "display": "inline-block" }}
+                        )*/}
             </div>
 
             <div className={(props.counter == 1 && props.counterHit) ? "dna_box basicfadeIn" : "dna_box basicfadeOut"} >
@@ -248,4 +217,3 @@ function Overlay(props) {
 
 }
 export default Overlay
-

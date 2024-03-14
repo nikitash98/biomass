@@ -7,6 +7,14 @@ import Overlay from './Overlay/Overlay';
 import { Suspense, useRef, useState } from 'react';
 import { applyProps } from 'react-three-fiber';
 import './type.css'
+import { AppContext } from './AppContext';
+
+function TestComponent () {
+  useEffect(()=>{
+    console.log("TEST COMPONENT RERENDER")
+  })
+  return <h1>TEST COMPONENT</h1>
+}
 function App() {
   const [counter, setCounter] = React.useState(0);
   const previousCounter = React.useRef(0);
@@ -30,12 +38,9 @@ function App() {
     setRedrawState(window.innerHeight)
     console.log("RESIZING")
     if (window.innerWidth < 500) {
-      console.log("SMALL")
-
       setrotatePhoneContainer(true);
     } else {
       setrotatePhoneContainer(false);
-
     }
   };
   const [openModal, setOpenModal] = React.useState(false)
@@ -59,6 +64,14 @@ function App() {
 
 
   useEffect(() => {
+
+    document.ontouchstart = function(e){ 
+      e.preventDefault(); 
+    }
+  
+    if (window.innerWidth < 500) {
+      setrotatePhoneContainer(true);
+    }
     const handleKeyDown = (e) => {
       if (e.key == "ArrowRight") {
         right_click()
@@ -82,10 +95,12 @@ function App() {
   }, [])
 
 
+
   return (
 
       <div className="App" onClick={() => { setrotatePhoneContainer(false); }}>
         <div className="game_container">
+          <AppContext.Provider value = {{counter, setCounter, hovered, setHovered}}>
           <Suspense >
             <div className="vis-container">
               <Visualization
@@ -110,10 +125,10 @@ function App() {
               counterHit={counterHit} setcounterHit={setcounterHit}
               setPlaying={setPlaying}
               setCounter={setCounter}
-              animationTime={animationTime}
+              animationTime={animationTime} 
+              hovered = {hovered} setHovered={setHovered}
               counter={counter}
               info={info_page} setInfoPage={setInfoPage}
-              hovered={hovered} setHovered={setHovered}
               yearPercentage={yearPercentage}
               setScrubbing={setScrubbing}
               openModal={openModal} setOpenModal={setOpenModal}
@@ -123,8 +138,9 @@ function App() {
               right_click={right_click}
               loaded3D={loaded3D}
             />
+            
           </div>
-
+          </AppContext.Provider>
         </div>
       </div>
 

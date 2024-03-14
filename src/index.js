@@ -4,10 +4,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css'
 import './index.css';
+import ReactGA from "react-ga4";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const injectGA = () => {
+  console.log("TESTGA");
   if (typeof window == 'undefined') {
     return;
   }
@@ -20,13 +22,11 @@ const injectGA = () => {
   gtag('config', 'G-BRCY2C9YJX');
 };
 
+ReactGA.initialize("G-BRCY2C9YJX")
 root.render(
   <React.StrictMode>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BRCY2C9YJX">
-    </script>
-    <script>
-      {injectGA}
-    </script>
+        <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover"/>
+
     <App />
   </React.StrictMode>
 );

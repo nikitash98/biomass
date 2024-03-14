@@ -13,9 +13,10 @@ function Animation(props) {
 
         e.stopPropagation()
         document.body.style.cursor = 'pointer';
-        //props.setHovered([nameFlattening(e.eventObject.name)])
-        props.setHovered([e.eventObject.name])
-        //props.setSelectionSet(getRefName(e.eventObject.name))
+        if(!props.hovered.includes(e.eventObject.name)) {
+          props.setHovered([e.eventObject.name])
+
+        }
       }
 
     }
@@ -52,23 +53,9 @@ function Animation(props) {
     }
 
     if(props.hovered){
-
       props.setSelectionSet(getRefName(props.hovered))
-
     } else {
     }
-
-    /*
-    const animal_click = () => {
-      if(props.counter == 11) {
-        props.setCounter(props.counter + 1)
-      }
-      if(props.counter == 1) {
-        props.setCounter(props.counter + 1)
-      }
-      props.setClickableSelectionSet([])
-    }
-    */
 
 
   return (

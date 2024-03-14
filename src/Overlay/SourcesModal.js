@@ -27,7 +27,7 @@ function SourcesModal(props) {
 
                     </Grid.Column>
                     <Grid.Column>
-                        <a href="https://pubmed.ncbi.nlm.nih.gov/33299177/" target ="_blank">
+                        <a href="https://fisherp.mit.edu/wp-content/uploads/2021/01/s41586-020-3010-5.pdf" target ="_blank">
                             Global human-made mass exceeds all living biomass
                             <br/>
                             Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R.

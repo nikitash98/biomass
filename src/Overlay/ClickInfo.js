@@ -1,5 +1,5 @@
-import {React, useRef} from 'react';
-import { Grid, Button, Icon, Divider} from 'semantic-ui-react'
+import { React, useRef, useContext } from 'react';
+import { Grid, Button, Icon, Divider } from 'semantic-ui-react'
 import { Vector3 } from 'three';
 import myData from './data.json';
 import './ClickInfo.css';
@@ -7,60 +7,113 @@ import './ClickInfo.css';
 function ClickInfo(props) {
     const name = useRef("Humans")
     const position = useRef(new Vector3(0, 0, 0))
-    let trans =  "translate(-120%, 0)"
+    let trans = "translate(-120%, 0)"
     const testRef = useRef("ABC")
-
-    if(props.hovered[0]) {
-        if(props.hovered[0].includes("_")) {
+    let title_name = ""
+    console.log(props.hovered[0])
+    if (props.hovered[0]) {
+        if (props.hovered[0].includes("_")) {
             name.current = props.hovered[0].replace("_", " ")
         } else {
             name.current = props.hovered
         }
-        console.log(props.hovered)
-        //name.current = "Humans"
     }
+    if (name.current.includes("Hover")) {
+        name.current = name.current.split(" ")[0]
+    }
+    if (name.current) {
+        title_name = name.current;
+        title_name = title_name.toString().toLowerCase();
+    }
+
     //
     //if(true){
-    if(name.current) {
+    if (name.current) {
         return (
-            <div className = {props.hovered[0] ? "ClickInfo" : "ClickInfo"}>
-                <div className='ClickInfo_image'>
+            <div className={props.hovered[0] ? "ClickInfo" : "ClickInfo"}>
+                <div className='clickInfo_desktop'>
 
-                    <img src={myData[name.current].image}></img>
-                    
-                    <div className = "ClickInfo_image_overlay">
-                        
-                    </div>
+                    <div className='ClickInfo_image'>
 
-                </div>
-
-                <div className = "header">
-                <Grid style = {{"padding-bottom": "10px"}}>
-                    <Grid.Row verticalAlign='bottom'>
-                        <Grid.Column width = {10}>
-                        <div className='info_title'>
+                        <img src={myData[name.current].image}></img>
+                        <div className = "ClickInfo_image_overlay">
                             
-                            <h3>
-                            {name.current} 
-                            </h3>
                         </div>
 
-                        </Grid.Column>
-                        <Grid.Column width = {6} style = {{"text-align": "right"}}>
-                        <div className='info_value'>
-                        <h3>{myData[name.current].weight} Gt</h3>
                     </div>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-                
 
+                    <div className = "header">
+                    <Grid style = {{"padding-bottom": "10px"}}>
+                        <Grid.Row verticalAlign='bottom'>
+                            <Grid.Column width = {10}>
+                            <div className='info_title'>
+                                
+                                <h3>
+                                {title_name} 
+                                </h3>
+                            </div>
+
+                            </Grid.Column>
+                            <Grid.Column width = {6} style = {{"text-align": "right"}}>
+                            <div className='info_value'>
+                            <h3>{myData[name.current].weight} Gt</h3>
+                        </div>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                    
+
+                    </div>
+                    <div className='ClickInfo_content'>
+                        <p>{myData[name.current].src} </p>
+                    </div>
                 </div>
-                <div className='ClickInfo_content'>
-                    <p>{myData[name.current].src} </p>
+
+                <div className='clickInfo_mobile'>
+
+                    <Grid>
+                        <Grid.Row>
+                            <Grid.Column width={8} className='clickInfo_mobile_image'>
+                                <img src={myData[name.current].image}></img>
+                                <div className = "ClickInfo_image_overlay">
+                            
+                                <div style={{"position": "relative", "width": "100%", "height": "100%"}}>
+                                    <div className='info_value'>
+                                        <h3>{myData[name.current].weight} Gt</h3>
+                                    </div>
+                                </div>
+
+                                </div>
+
+                            </Grid.Column>
+                            <Grid.Column width={8}>
+                                <div className="header">
+                                    <Grid style={{ "padding-bottom": "10px", "color":"black", "text-align": "left" }}>
+                                        <Grid.Row verticalAlign='bottom'>
+                                            <Grid.Column width={10}>
+                                                <div className='info_title'>
+                                                    <div className='big_caption_type'>
+                                                        {title_name}
+                                                    </div>
+                                                </div>
+
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                    </Grid>
+
+
+                                </div>
+                                <div className='ClickInfo_content'>
+                                    <p>{myData[name.current].src} </p>
+                                </div>
+                            </Grid.Column>
+
+                        </Grid.Row>
+                    </Grid>
                 </div>
 
             </div>
+            
         )
     }
 

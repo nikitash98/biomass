@@ -10,6 +10,35 @@
 .share_buttons {
   padding: 10px !important;
 }
+
+.sharingLine {
+  white-space: nowrap ;
+
+}
+.sharingLine a{
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom; /* Align to the bottom of the line */
+  position:relative;
+  height: 35px;
+  width: 35px;
+  margin-left: 20px;
+
+}
+.sharingLine img{
+  bottom: 0%;
+  left: 0%;
+  filter: invert(63%) sepia(11%) saturate(105%) hue-rotate(163deg) brightness(97%) contrast(88%);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.sharingLine img:hover{
+  filter: invert(41%) sepia(46%) saturate(1773%) hue-rotate(182deg) brightness(93%) contrast(79%);
+}
+
+
 .end_section {
     height: 80vh;
     width: 100%;
@@ -34,6 +63,7 @@
   width: 50vw;
   z-index: 10;
   opacity: 0;
+  display: none;
 }
 .credit_box a{
   font-size: 12pt;
@@ -44,6 +74,8 @@
 
 #learnmore:hover .credit_box {
   opacity: 1;
+  display: block;
+
 }
 
 .end_section h1 {
@@ -60,11 +92,14 @@
   border-radius: 20px;
   min-width: 20vw;
   opacity: 0;
+  display: none;
 }
 
 #share:hover .sharing_box {
   visibility: auto;
   opacity: 1;
+  display: block;
+
 }
 
 .poster_box {
@@ -79,10 +114,15 @@
   padding: 20px;
   border-radius: 20px;
   color: var(--border_grey);
+  display: none;
+  cursor:default;
+
 }
 
 #poster:hover .poster_box {
   opacity: 1;
+  display: block;
+
 }
 .sharing_box:after {
   content: " ";
@@ -122,7 +162,6 @@
 .sharing_box a img{
   width: 35px;
   filter: invert(63%) sepia(11%) saturate(105%) hue-rotate(163deg) brightness(97%) contrast(88%);
-
 }
  
 .download_button {
@@ -276,7 +315,10 @@
 
 @media only screen and (max-width: 768px)  {
  
-
+  .sharingLine img{
+    width: 25px;
+    margin-left: 10px;
+  }
   .end_section {
     padding: 0%;
   }
@@ -303,11 +345,13 @@
   .sharing_box{
     width: 50vw;
   }
-
+  .sharingLine img {
+    width: 25px;
+  }
 
 }
 
-@media only screen and (min-width: 768px) and (max-width: 900px) {
+@media only screen and (orientation: portrait) and (min-width: 768px) and (max-width: 900px) {
   .wrapper {
     grid-template-columns:auto;
     width: 40vw ;
@@ -317,7 +361,20 @@
   .sharing_box{
     width: 50vw;
   }
-
-
 }
 
+@media only screen and (orientation: landscape) and (max-height: 500px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  .sharingLine a {
+    margin-left: 5px;
+  }
+  .sharingLine img {
+    width: 25px;
+  }
+  .poster_container{
+    margin: 10px;
+  }
+}

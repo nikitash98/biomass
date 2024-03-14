@@ -189,6 +189,18 @@ export function Part01(props) {
 
   //let change_value = lerp_values(values, change)
   let change_value = window.innerHeight / window.innerWidth * 14
+  if(window.innerWidth < 900) {
+    change_value = window.innerHeight / window.innerWidth * 17
+  }
+
+  if(window.innerHeight < 600) {
+    change_value = window.innerHeight / window.innerWidth * 19
+  }
+
+  if(window.innerHeight/window.innerWidth < 0.3) {
+    change_value = window.innerHeight / window.innerWidth * 30
+  }
+
   const handleResize = () => {
   };
 
@@ -279,17 +291,10 @@ export function Part01(props) {
 
   })
 
-  const animal_click = () => {
-    if (set_views["boxes"].includes(props.counter)) {
-      props.setScrubbing(false)
-      props.setCounter(props.counter + 1)
-      props.setcounterHit(false)
-    }
-    if (props.counter == 1) {
-      props.setScrubbing(false)
-      props.setcounterHit(false)
-      props.setCounter(props.counter + 1)
-    }
+  const animal_click = (e) => {
+    props.setOpenModal(true); 
+    props.setHovered(["Animals"]);
+    e.stopPropagation();
   }
 
   const rise_percentage = (value) => {
@@ -430,7 +435,7 @@ export function Part01(props) {
           }
 
           let trans_amount = "0%"
-
+          let luca_box = true;
           if (is_artificial) {
             trans_amount = "-120%"
           }
@@ -465,8 +470,27 @@ export function Part01(props) {
           }
 
           if(flat_name == "LUCA") {
-            human_title = "LUCA"
+            human_title = "LUCA";
+            if(props.counter < 9) {
+              luca_box = false;
+            }
+
           } 
+          let scaleIconScalar = 1.;
+          let scaleTextScalar = 1;
+          console.log(flat_name);
+          const iconVector = new THREE.Vector3(nodes[flat_name + "_Icon"].scale.x * scaleIconScalar, 
+            nodes[flat_name + "_Icon"].scale.y * scaleIconScalar, 
+              nodes[flat_name + "_Icon"].scale.z * scaleIconScalar);
+          console.log(nodes[flat_name + "_Text"])
+          let textVector;
+          if((nodes[flat_name + "_Text"])) {
+            textVector = new THREE.Vector3(nodes[flat_name + "_Text"].scale.x * scaleTextScalar, 
+            nodes[flat_name + "_Text"].scale.y * scaleTextScalar, 
+            nodes[flat_name + "_Text"].scale.z * scaleTextScalar);
+          }
+
+
 
           return (
             <mesh name={flat_name} geometry={nodes[flat_name].geometry} key={i}
@@ -476,23 +500,21 @@ export function Part01(props) {
               position={nodes[flat_name].position}
               rotation={nodes[flat_name].rotation}
               frustumCulled={false}
-              onClick={() => { props.setOpenModal(true); props.setHovered([flat_name]) }}
+              onClick={(e) => { props.setOpenModal(true); props.setHovered([flat_name]);e.stopPropagation();}}
               castShadow={!is_animal && !currently_highlighted}
               receiveShadow
 
-              onPointerOver={
+              onPointerMove={
                 (([props.counter, props.previousCounter.current].sort().toString() == [22, 23].toString()) || props.counter == 22)
                   ? null : props.handleHover} onPointerOut={props.handleUnhover}
               ref={ref => divRefs.current[name] = ref}
             >
               <mesh name={flat_name + "_Icon"} geometry={nodes[flat_name + "_Icon"].geometry} material={icon_mat}
-                position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={nodes[flat_name + "_Icon"].scale} />
+                position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={iconVector} />
 
               {(nodes[flat_name + "_Text"]) && (
                 <mesh name={flat_name + "_Text"} geometry={nodes[flat_name + "_Text"].geometry} material={icon_mat}
-                  position={nodes[flat_name + "_Text"].position} rotation={nodes[flat_name + "_Text"].rotation} scale={nodes[flat_name + "_Text"].scale} />
-
-
+                  position={nodes[flat_name + "_Text"].position} rotation={nodes[flat_name + "_Text"].rotation} scale={textVector} />
               )}
               {props.counter != 22 && (
 
@@ -510,7 +532,7 @@ export function Part01(props) {
               </Html>
               )}
 
-              {(!nodes[flat_name + "_Text"]) && (((!is_artificial || props.counter > 23) || (flat_name == "Cars"))) && (
+              {(!nodes[flat_name + "_Text"]) && (((!is_artificial || props.counter > 23) || (flat_name == "Cars"))) && (props.counter>5) && (luca_box) && (
                 <Html position={title_positions[flat_name]}
                   scale={0.4 / nodes[flat_name].scale.x}
                   center={true}

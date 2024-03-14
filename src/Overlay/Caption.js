@@ -4,7 +4,7 @@ import { Grid, Divider, Button, Icon} from 'semantic-ui-react'
 import "./Caption.css"
 const HoverSpan = (props) => {
     return(
-        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id])}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered(props.hover_id);}}>{props.children}</span>
+        <span id={props.id} className="hoverText" onPointerOver={() => {props.setHovered([props.hover_id])}} onPointerOut={()=>{props.setHovered([])}} onClick={() => {props.setOpenModal(true); props.setHovered([props.hover_id]);}}>{props.children}</span>
     )
 }
 
@@ -25,7 +25,7 @@ function getText(sel, setHovered, openModal){
                     Click or hover on them for more details.
                     <div className="hidden_info">
                         <Divider/>
-                        This is estimation of the total weight - dry mass and water weight.
+                        The values are estimates of the dry weight (that is, excluding water)
                     </div>
                 </p>
             </div>
@@ -107,19 +107,19 @@ function getText(sel, setHovered, openModal){
         case 15:
             return <div>
                 <p>
-                <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild_Birds" setHovered = {setHovered} setOpenModal = {openModal}>birds</HoverSpan> comprise only a tiny fraction, smaller than 1%, of the animal biomass. 
+                <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>Wild mammals</HoverSpan> and   <HoverSpan id = "fish_text" hover_id = "Wild_Birds" setHovered = {setHovered} setOpenModal = {openModal}>birds</HoverSpan> comprise only a tiny fraction, less than 1%, of the animal biomass. 
                 </p>
             </div>
         case 16:
             return <div>
                 <p>
-                Today, <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered}>humans</HoverSpan> weigh about 10 times more than all <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered}>wild mammals</HoverSpan>. 
+                Today, <HoverSpan id = "fish_text" hover_id = "Humans" setHovered = {setHovered} setOpenModal = {openModal}>humans</HoverSpan> weigh about 10 times more than all <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>wild mammals</HoverSpan>. 
                 </p>
             </div>
         case 17:
             return <div>
                 <p>
-                To generate enough proteins, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered} setOpenModal = {openModal}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
+                To generate enough protein, humans have created <HoverSpan id = "fish_text" hover_id = "Livestock" setHovered = {setHovered} setOpenModal = {openModal}>livestock</HoverSpan>  that now weighs almost twice the entire world population.
                 </p>
             </div>
         case 18:

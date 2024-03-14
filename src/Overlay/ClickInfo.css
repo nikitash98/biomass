@@ -19,19 +19,40 @@
     transition: all 0.2s;
   }
 
-
-
-@media only screen and (max-width: 768px)  {
-.ClickInfo {
+.clickInfo_mobile {
+    display: none;
 }
 
 
+@media only screen and (max-width: 900px) and (orientation: landscape)  {
+    .clickInfo_desktop{
+        display: none;
+    }
+    .clickInfo_mobile{
+        display: block;
+    }
+
+    .ClickInfo_content {
+        padding: 0px !important;
+    }
+
+    .info_value {
+        position: absolute;
+        right: 5%;
+        bottom: 10%;
+    }
 }
-.ClickInfo > p {
+
+.clickInfo_mobile_image  img{
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+
+}
+.ClickInfo  p {
     text-align: left;
-    font-size: 10pt;
     white-space: pre-line;
-    
+    color: var(--border_grey);
 }
 
 .ClickInfo_image {
@@ -78,14 +99,6 @@
     text-align: left;
 }
 
-.ClickInfo_content > p {
-    text-align: left;
-    font-size: 13pt;
-    line-height: 15pt !important;
-    text-align: left;
-    font-family: "aktiv-grotesk", sans-serif;
-    color: grey;
-}
 
 
 .header {
