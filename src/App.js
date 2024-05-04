@@ -11,7 +11,6 @@ import { AppContext } from './AppContext';
 
 function TestComponent () {
   useEffect(()=>{
-    console.log("TEST COMPONENT RERENDER")
   })
   return <h1>TEST COMPONENT</h1>
 }
@@ -36,7 +35,6 @@ function App() {
 
   const handleResize = () => {
     setRedrawState(window.innerHeight)
-    console.log("RESIZING")
     if (window.innerWidth < 500) {
       setrotatePhoneContainer(true);
     } else {
@@ -60,6 +58,7 @@ function App() {
     setPlaying(true);
     setScrubbing(false);
     setcounterHit(false);
+    console.log("ABC")
   }
 
 

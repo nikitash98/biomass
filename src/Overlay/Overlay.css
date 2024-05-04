@@ -118,7 +118,6 @@
   }
 
   .button_container {
-    position: absolute;
     top: 60%;
     left: 50%;
     text-align: center;
@@ -127,7 +126,6 @@
   
   .new_start_button {
     padding: 10px;
-    transform: translate(-50%, -50%);
     padding-left: 20px;
     padding-right: 20px;
     width: fit-content;
@@ -179,13 +177,19 @@
     justify-content: center;
     align-items: center;
   }
-
+  .click_button img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+  }
   .play_button {
     margin-left: 5px;
+    margin-bottom: 8px;
   }
-  
   .play_button img {
-    width: 70%;
+    width: 15px;
   }
 
   .click_button:hover {
@@ -484,6 +488,7 @@
 
   .play_button_container {
     display: inline-block;
+    vertical-align: middle;
   }
 
   .chapter_year_counter {
@@ -662,7 +667,9 @@
   top: 50%;
   left: -10%;
   transform: translate(0, -60%);
+  /*
   background-image: url("./backdrop.png");
+  */
   background-position: 'center';
   background-size:  100% auto;
   box-shadow: 0 0 20px 20px white inset;
@@ -904,17 +911,21 @@
     top: 30%;
     width: 80%;
   }
-
+  .hidden_info_title {
+    font-size: 12pt;
+    padding: 5px;
+    line-height: 15pt;
+  }
   .bottom_drop {
     bottom: 10% !important;
   }
   .small_click_left {
     display: block !important;
-    top: 65%;
+    top: 70%;
   }
   .small_click_right {
     display: block !important;
-    top: 65%;
+    top: 70%;
 
 
   }
@@ -999,6 +1010,7 @@
   }
   .ui.tiny.modal {
     width: 80% !important;
+    max-height: 100vh !important;
   }
 
   .chapter_title {

@@ -35,7 +35,6 @@ canvas{
 }
 
 html { 
-  height: 100vh;
   height: fill-available;
   height: -webkit-fill-available;
   width: fill-available;
@@ -44,7 +43,6 @@ html {
 
 }
 .game_container {
-  min-height: 100vh;
   min-height: fill-available;
   min-height: -webkit-fill-available;
   position: relative;

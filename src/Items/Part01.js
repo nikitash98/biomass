@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.12 public/Part_01.glb
 */
 
 import React, { useRef } from 'react'
-import { useGLTF, useAnimations, Html, Image, Box, PerspectiveCamera, OrthographicCamera } from '@react-three/drei'
+import { useGLTF, useAnimations, Html, Image, Box, PerspectiveCamera, OrthographicCamera, Bounds } from '@react-three/drei'
 import { playAnimations, setAnimationTime } from '../3D_Components/AnimationUtilities'
 import { useEffect } from 'react'
 import { useFrame, useThree } from 'react-three-fiber'
@@ -67,7 +67,6 @@ export function Part01(props) {
 
     const newWidth = window.innerWidth;
     const newHeight = window.innerHeight;
-
     cameraRef.current.aspect = newWidth / newHeight;
     cameraRef.current.updateProjectionMatrix();
   }
@@ -188,18 +187,43 @@ export function Part01(props) {
 
 
   //let change_value = lerp_values(values, change)
+
+  /*
   let change_value = window.innerHeight / window.innerWidth * 14
   if(window.innerWidth < 900) {
     change_value = window.innerHeight / window.innerWidth * 17
   }
 
+  
+
+
+
   if(window.innerHeight < 600) {
-    change_value = window.innerHeight / window.innerWidth * 19
+    technicalsOffset = 0;
+    change_value = window.innerHeight / window.innerWidth * 15
   }
 
   if(window.innerHeight/window.innerWidth < 0.3) {
     change_value = window.innerHeight / window.innerWidth * 30
   }
+
+  */
+  let technicalsOffset = 50;
+
+  let change_value = 7;
+
+  //Chaning the FOV based on zoom
+
+  if(window.innerHeight/window.innerWidth > 0.7) {
+    change_value += window.innerHeight/window.innerWidth * 6.0;
+  }
+
+  let zoomvalue = 1.0;
+  if(window.innerHeight < 500) {
+    change_value -= 0.5;
+  }
+
+
 
   const handleResize = () => {
   };
@@ -311,6 +335,13 @@ export function Part01(props) {
     return perc
   }
 
+
+  const clickBox = (e, box_name) => {
+      props.setOpenModal(true);
+     props.setHovered([box_name]);
+     console.log(box_name)
+     e.stopPropagation();
+  }
 
   //https://elsenaju.eu/Calculator/online-curve-fit.htm
   const e_square_function = (a, b, c, x) => {
@@ -478,11 +509,9 @@ export function Part01(props) {
           } 
           let scaleIconScalar = 1.;
           let scaleTextScalar = 1;
-          console.log(flat_name);
           const iconVector = new THREE.Vector3(nodes[flat_name + "_Icon"].scale.x * scaleIconScalar, 
             nodes[flat_name + "_Icon"].scale.y * scaleIconScalar, 
               nodes[flat_name + "_Icon"].scale.z * scaleIconScalar);
-          console.log(nodes[flat_name + "_Text"])
           let textVector;
           if((nodes[flat_name + "_Text"])) {
             textVector = new THREE.Vector3(nodes[flat_name + "_Text"].scale.x * scaleTextScalar, 
@@ -500,7 +529,7 @@ export function Part01(props) {
               position={nodes[flat_name].position}
               rotation={nodes[flat_name].rotation}
               frustumCulled={false}
-              onClick={(e) => { props.setOpenModal(true); props.setHovered([flat_name]);e.stopPropagation();}}
+              onClick={(e) => {clickBox(e, flat_name)}}
               castShadow={!is_animal && !currently_highlighted}
               receiveShadow
 
@@ -547,13 +576,14 @@ export function Part01(props) {
           )
         })}
 
+
         {
-((props.counter <= 23 && props.counter > 21)) && (
+        ((props.counter <= 23 && props.counter > 21)) && (
         <>
         {true && (
           <Html
             style={{
-              transform: 'translate(-50%, 50%)'
+              transform: 'translate(-50%, ' + technicalsOffset + '%)'
             }}
             distanceFactor={10}
 
@@ -570,7 +600,7 @@ export function Part01(props) {
         {true && (
           <Html
             style={{
-              transform: 'translate(50%, 50%)'
+              transform: 'translate(50%, '+ technicalsOffset +'%)'
             }}
             distanceFactor={10}
 
@@ -586,7 +616,7 @@ export function Part01(props) {
         { true && (
           <Html
             style={{
-              transform: 'translate(20%, 50%)'
+              transform: 'translate(20%, ' + technicalsOffset + '%)'
             }}
             distanceFactor={10}
 
@@ -603,7 +633,7 @@ export function Part01(props) {
         {true && (
           <Html
             style={{
-              transform: 'translate(50%, 50%)'
+              transform: 'translate(50%, ' + technicalsOffset + '%)'
             }}
             distanceFactor={10}
 
@@ -620,7 +650,7 @@ export function Part01(props) {
         {true && (
           <Html
             style={{
-              transform: 'translate(50%, 50%)'
+              transform: 'translate(50%, ' + technicalsOffset + '%)'
             }}
             distanceFactor={10}
 
@@ -637,7 +667,7 @@ export function Part01(props) {
         {true && (
           <Html
             style={{
-              transform: 'translate(100%, 50%)'
+              transform: 'translate(100%, ' + technicalsOffset + '%)'
             }}
             distanceFactor={10}
 
@@ -654,7 +684,7 @@ export function Part01(props) {
         {true && (
           <Html
             style={{
-              transform: 'translate(-50%, 50%)'
+              transform: 'translate(-50%, ' + technicalsOffset +  '%)'
             }}
             distanceFactor={10}
 

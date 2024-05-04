@@ -213,10 +213,15 @@
 
 @media only screen and (max-height: 500px) {
   .box_name > h1 {
-    font-size: 8pt ;
+    font-size: 7pt ;
+  }
+
+  .box_name {
+    transform: translate(100%, 100%);
+
   }
   .box_value > h1 {
-    font-size: 10pt;
+    font-size: 7pt;
     padding: 2px;
     min-height: 0;
     padding-left: 4px;
@@ -237,7 +242,6 @@
 
   .box_value.left::before {
     border: solid 5px transparent;
-
   }
 
 }

@@ -22,7 +22,8 @@ function getText(sel, setHovered, openModal){
                     These cubes represent the <span className="extra_info">biomass</span> of the six biological kingdoms.
                     <br/>
                     <br/>
-                    Click or hover on them for more details.
+                    <span id = "clickorhover"> 
+                    Click or hover on them for more details.</span>
                     <div className="hidden_info">
                         <Divider/>
                         The values are estimates of the dry weight (that is, excluding water)
@@ -63,13 +64,14 @@ function getText(sel, setHovered, openModal){
         case 8:
             return <div>
                 <p>
-                <HoverSpan id = "virus_text" hover_id = "Viruses" setHovered = {setHovered} setOpenModal = {openModal}>Viruses</HoverSpan> are made up of organic material but are technically not alive. Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
+                <HoverSpan id = "virus_text" hover_id = "Viruses" setHovered = {setHovered} setOpenModal = {openModal}>Viruses</HoverSpan> are made up of organic material but are technically not alive. <span id = "clickorhover"> Being tiny, they are abundant in many environments, despite having a small contribution to the total biomass.
+                    </span>
                 </p>
             </div>
         case 9:
             return <div>
                 <p>
-                All forms of life originated from the <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered} setOpenModal = {openModal}>Last Universal Common Ancestor (LUCA)</HoverSpan> about <span className="nowrap">4 billion</span> years ago.
+                All forms of life originated from the Last Universal Common Ancestor <HoverSpan id = "virus_text" hover_id = "LUCA" setHovered = {setHovered} setOpenModal = {openModal}> (LUCA)</HoverSpan> about <span className="nowrap">4 billion</span> years ago.
                 </p> 
             </div>
         case 10:

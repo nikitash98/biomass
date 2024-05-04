@@ -6,7 +6,6 @@ import ReactGA from "react-ga4";
 import PosterDownload from './PosterDownload';
 function EndGrid(props) {
     const handletwitterClick = () => {
-        console.log("twitter click")
         ReactGA.event({
             category: 'Sharing',
             action: 'Twitter Share',
@@ -50,13 +49,9 @@ function EndGrid(props) {
         <div className='end_section'>
             <div className='interior_section' style={{ "textAlign": "center" }}>
                 <div className='big_caption_type'>
-                    share this information, get a poster | 
-                 
-
-                     <span className='sharingLine'>
-                        
+                    <span className='sharingLine'>
                         <a href="https://twitter.com/share?url=https://biocubes.net/&text=biocubes" target='_blank' onClick={handletwitterClick}>
-                          
+                        
                             <img src="Icon/twitter.svg" />
                         </a>
 
@@ -69,22 +64,54 @@ function EndGrid(props) {
                         </a>
 
                         <a href="https://www.linkedin.com/shareArticle?url=https://biocubes.net/&title=Biocubes&summary=An%20inventory%20of%20biomass%20and%20technomass&source=https://biocubes.net/" target='_blank' onClick={handlelinkedinClick}>
-                            <img src="Icon/linkedin.svg" />
+                            <img src="Icon/linkedin.svg" /> 
                         </a>
 
                         <a href="mailto:?subject=biocubes&body=https://biocubes.net/" target='_blank' onClick={handleEmailClick}>
                             <img src="Icon/mail_02.svg" />
                         </a>
                     </span>
-
+                    <span className='sharingText'>  share or get a poster </span>
                 </div>
 
 
-                <div>
+                    <div className='poster-wrapper'>
+                        <div className='column_part'>
+
+                            <div className='poster_container top_container'>
+                                <div className='top_container_helper' >
+                                    <div className='poster_download_helper'>
+                                        <PosterDownload poster="bioPoster" />     
+                                    </div>
+
+                                </div>
+                            </div>
+
+                                <div className='poster_container bottom_container'>
+                                    <div className='poster_download_helper'>
+
+                                    <PosterDownload poster="technoPoster" />
+                                    </div>
+                                </div>
+
+                        </div>
+                        <div className='big_poster_container' >
+                            <div className='poster_container big_poster'>
+                            <div className='poster_download_helper'>
+
+                                <PosterDownload poster="bioTechnoPoster" />
+                                </div>
+                            </div>
+                        </div>
+                        {/*
+
+                        */}
+
+                    </div>
+                    {/*
                     <div className="wrapper">
                         <div>
                             <div className='poster_container'>
-
                                 <PosterDownload poster="bioPoster" />
                             </div>
 
@@ -96,10 +123,10 @@ function EndGrid(props) {
                             <PosterDownload poster="bioTechnoPoster" />
                         </div>
                     </div>
+                    */}
 
                 </div>
 
-            </div>
 
 
         </div>

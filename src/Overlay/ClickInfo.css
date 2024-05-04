@@ -17,6 +17,7 @@
     overflow: hidden;
     position: relative;
     transition: all 0.2s;
+    max-height: 100%;
   }
 
 .clickInfo_mobile {
@@ -48,6 +49,10 @@
     width: auto;
     object-fit: cover;
 
+}
+
+.clickInfo_mobile_image {
+    height: 300px;
 }
 .ClickInfo  p {
     text-align: left;

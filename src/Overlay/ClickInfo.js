@@ -10,8 +10,9 @@ function ClickInfo(props) {
     let trans = "translate(-120%, 0)"
     const testRef = useRef("ABC")
     let title_name = ""
-    console.log(props.hovered[0])
+    
     if (props.hovered[0]) {
+        console.log("hov: " + props.hovered[0])
         if (props.hovered[0].includes("_")) {
             name.current = props.hovered[0].replace("_", " ")
         } else {
@@ -21,11 +22,13 @@ function ClickInfo(props) {
     if (name.current.includes("Hover")) {
         name.current = name.current.split(" ")[0]
     }
+
+
     if (name.current) {
         title_name = name.current;
         title_name = title_name.toString().toLowerCase();
     }
-
+    console.log(name.current)
     //
     //if(true){
     if (name.current) {

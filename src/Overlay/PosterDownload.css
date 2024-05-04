@@ -2,11 +2,8 @@
 .poster-download {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  height: auto;
   display: block;
   border: 1px solid var(--border_grey);
-
 }
 
 
@@ -68,5 +65,15 @@
 @media only screen and (max-width: 728px)  {
   .poster-download{
     width: fit-content;
+  }
+}
+
+
+@media screen and (orientation: portrait) {
+  .poster-download {
+    height: 100%;
+  }
+  .poster-download img {
+    max-height: 100%;
   }
 }

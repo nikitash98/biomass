@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ImageCreditModal from './ImageCreditModal';
 import HeaderGrid from './HeaderGrid';
 import SourcesModal from './SourcesModal';
+import ClickModal from "./ClickModal"
 function Overlay(props) {
     const [imageCreditModal, setimageCreditModal] = useState(false);
     const [sourcesModal, setsourcesModal] = useState(false)
@@ -22,41 +23,43 @@ function Overlay(props) {
         <>
             <div className={(props.counter == 0) ? "logo_container" : 'logo_container logo_moved_position'} >
                 <div style={{ "position": "relative", "height": "100%" }}>
-                    <div className='icon_container' onClick={() => { props.setCounter(0) }}>
-                        <div style={{"position": "relative"}}>
+                    <div className='icon_container' >
+                        <div style={{"position": "relative"}} onClick={() => { props.setCounter(0) }}>
                         <img src="Icon/biocubes_only.svg"  />
                         <img id = "netonly" src = "Icon/net_only.svg"/>
                     </div>
-                        {(props.counter == 0) && (
-                            <>
-                                <img id = "subtitle" src='Icon/subtitle.svg' />
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
+                    {(props.counter == 0) && (
+                        <>
+                            <img id = "subtitle" src='Icon/subtitle.svg' />
+                        </>
+                    )}
 
-            {(props.counter == 0) && (
-                <div className='button_container'>
-                    <button className='new_start_button big_caption_type'
-                        onClick={() => {
-                            props.right_click()
-                        }}>
-                        {(!props.loaded3D) ? (
-                            <>
-                                loading <img className='loading_icon' src='Icon/Loading_Icon.svg' />
-                            </>
+                    {(props.counter == 0) && (
+                    <div className='button_container'>
+                        <button className='new_start_button big_caption_type'
+                            onClick={() => {
+                                props.right_click();
+                                console.log("CLIcKING!")
+                            }}>
+                            {(!props.loaded3D) ? (
+                                <>
+                                    loading <img className='loading_icon' src='Icon/Loading_Icon.svg' />
+                                </>
+                            ): (
+                                <span style={{"white-space": "nowrap"}}>
+                                    click to start <img src="Icon/Right.svg" ></img>
 
-                        ): (
-                            <span style={{"white-space": "nowrap"}}>
-                                click to start <img src="Icon/Right.svg" ></img>
-
-                            </span>
-                        )}
+                                </span>
+                            )}
                     </button>
                 </div>
 
             )}
+                    </div>
+                </div>
+            </div>
+
+
             {props.counter != 0 &&
                 <button className="click_button small_click_left" type="button"
                     onClick={() => {
@@ -77,8 +80,17 @@ function Overlay(props) {
 
 
             <div className={(props.counter == 0) ? 'breaking_title basicfadeIn' : 'breaking_title basicfadeOut'}>
-                <img className='bottom_drop' src="backdrop/20.png" />
+                <img className='bottom_drop' src="backdrop/23.png" />
             </div>
+            {/*
+            <ClickModal
+            info={props.info} setInfoPage={props.setInfoPage}
+            setHoveringInfo={props.setHoveringInfo} hovered = {props.hovered}
+           counter={props.counter}
+            />
+
+            */}
+
             <Modal
                 basic
                 onClose={() => { props.setOpenModal(false); props.setHovered([]) }}

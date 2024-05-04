@@ -135,8 +135,10 @@
   }
   .hidden_info {
     display: none;
-    
-    
+  }
+
+  #clickorhover {
+    display: auto;
   }
 
   @media only screen and (max-width: 900px)  {
@@ -149,6 +151,10 @@
   @media only screen and (max-height: 500px)  {
     .ContentCaption {
       padding: 5px
+    }
+
+    #clickorhover {
+      display: none;
     }
   }
 

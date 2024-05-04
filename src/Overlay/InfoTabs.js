@@ -34,7 +34,6 @@ const TabExampleBasic = (props) => {
 
             <div className='download_drop_up'>
               <div className='poster_container'>
-
                 <PosterDownload poster = "bioPoster"/>
               </div>
               <div className='poster_container'>

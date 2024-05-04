@@ -13,15 +13,19 @@
 
 .sharingLine {
   white-space: nowrap ;
-
+  vertical-align: middle; /* Align to the bottom of the line */
+  padding: 10px;
+  border-radius: 10px;
 }
 .sharingLine a{
   position: relative;
   display: inline-block;
-  vertical-align: bottom; /* Align to the bottom of the line */
   position:relative;
   height: 35px;
   width: 35px;
+}
+
+.sharingLine a:not(:first-child) {
   margin-left: 20px;
 
 }
@@ -40,15 +44,17 @@
 
 
 .end_section {
-    height: 80vh;
+    height: 100%;
     width: 100%;
     z-index: 10;
-    top: 50%;
-    transform: translate(0, -50%);
     text-align: left;
     pointer-events: auto;
     position: absolute;
     display: flex;
+    top: 50%;
+    transform: translate(0, -50%);
+
+
     justify-content: center;
     align-items: center;
   
@@ -102,6 +108,17 @@
 
 }
 
+.interior_section {
+  width: 100%;
+  height: 80%;
+}
+
+.poster-wrapper {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 1fr 2fr;
+}
 .poster_box {
   width: 30vw;
   position: absolute;
@@ -182,10 +199,38 @@
   margin: auto;
 }
 
-.poster_container {
-  margin: 25px;
+.top_container {
+  display: flex;
+  flex-direction: column;
 }
 
+.top_container_helper {
+  margin-top : auto;
+}
+
+.poster_download_helper {
+  padding: 10px;
+}
+.column_part .poster_container {
+  height: 50%;
+  width: 100%;
+}
+.column_part {
+  height: 100%;
+}
+
+.big_poster {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.new_poster_download { 
+  height: 100%;
+  background-color: blue;
+} 
 
 .download_button:hover {
     background-color: rgb(161, 189, 196);
@@ -265,7 +310,11 @@
     margin: 0%;
 }
 
-
+.sharingText {
+  white-space: initial;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+}
 .readButton {
   
   padding: 20px;
@@ -313,6 +362,7 @@
 
 
 
+
 @media only screen and (max-width: 768px)  {
  
   .sharingLine img{
@@ -351,6 +401,54 @@
 
 }
 
+  
+
+@media screen and (orientation: landscape) and (min-aspect-ratio: 4/2) {
+  .poster-wrapper{
+  }
+}
+
+
+@media screen and (orientation: portrait) {
+  .poster-wrapper {
+    grid-template-columns: auto;
+  }
+
+  .column_part {
+    height: 66%;
+  }
+  .poster-wrapper {
+    display: block;
+  }
+  .top_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+  .bottom_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .top_container_helper {
+    height: 100%;
+  }
+  .big_poster_container {
+    height: 33%;
+  }
+
+  .poster_download_helper {
+    height: 100%;
+  }
+  .sharingText {
+    display: block;
+  }
+
+}
+
 @media only screen and (orientation: portrait) and (min-width: 768px) and (max-width: 900px) {
   .wrapper {
     grid-template-columns:auto;
@@ -374,7 +472,8 @@
   .sharingLine img {
     width: 25px;
   }
-  .poster_container{
-    margin: 10px;
+
+  .sharingText {
+    display: none;
   }
 }

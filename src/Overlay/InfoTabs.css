@@ -48,6 +48,10 @@
 }
 
 
+.segment .poster-download {
+    height: 100%;
+}
+
 
 .download_button {
     padding: 5%;
@@ -132,7 +136,7 @@
 
 
 .segment .poster-download {
-    height: 33%;
+    height: 100%;
     width: 100%;
     display: block;
 }
@@ -181,10 +185,12 @@
     padding: 10px ;
 
 }
+/*
 .poster_container .poster-download {
     width: 100%;
     height: 100%;
 }
+*/
 
 .download_drop_up_container {
     position: relative;

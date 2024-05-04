@@ -9,7 +9,6 @@ import ReactGA from "react-ga4";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const injectGA = () => {
-  console.log("TESTGA");
   if (typeof window == 'undefined') {
     return;
   }
