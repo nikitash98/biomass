@@ -30,7 +30,7 @@ function Overlay(props) {
                     </div>
                     {(props.counter == 0) && (
                         <>
-                            <img id = "subtitle" src='Icon/subtitle.svg' />
+                            <img id = "subtitle" src='Icon/subtitle2.svg' />
                         </>
                     )}
 
@@ -80,7 +80,7 @@ function Overlay(props) {
 
 
             <div className={(props.counter == 0) ? 'breaking_title basicfadeIn' : 'breaking_title basicfadeOut'}>
-                <img className='bottom_drop' src="backdrop/23.png" />
+                <img className='bottom_drop' src="backdrop/24.png" />
             </div>
             {/*
             <ClickModal
@@ -216,7 +216,7 @@ function Overlay(props) {
                     <video autoPlay muted webkit-playsinline playsinline loop playsInline webkit-playsInline>
                         <source src="dna/DNA_14.mp4" type="video/mp4" />
                     </video>
-                    these chemical bonds have spawned <br /> an enormous diversity of life forms
+                   <span className='nowrap'>  after billions of years, it has turned into a diversity</span> <br/> of <span className = "emphasis">biological</span> and <span className="emphasis">technological</span> forms. 
                 </div>
             </div>
 
