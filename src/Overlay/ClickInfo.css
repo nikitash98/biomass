@@ -24,26 +24,6 @@
     display: none;
 }
 
-
-@media only screen and (max-width: 900px) and (orientation: landscape)  {
-    .clickInfo_desktop{
-        display: none;
-    }
-    .clickInfo_mobile{
-        display: block;
-    }
-
-    .ClickInfo_content {
-        padding: 0px !important;
-    }
-
-    .info_value {
-        position: absolute;
-        right: 5%;
-        bottom: 10%;
-    }
-}
-
 .clickInfo_mobile_image  img{
     height: 100%;
     width: auto;
@@ -76,6 +56,11 @@
     padding-left:  20px;
     padding-right:  20px;
     padding-bottom: 20px;
+}
+
+.ClickInfo_content p{ 
+    line-height: 1.2;
+
 }
 
 
@@ -126,11 +111,17 @@
     margin-right: 20px;
     float: right;
     white-space: nowrap;
+    line-height: 1;
+
     /*
 
     box-shadow: 0 0 10px 10px rgba(103, 137, 199, 0.7);
     left:50%;
     transform: translate(-50%, 0);
+    line-height: 0.8;
+    text-align: center;
+display:table-cell;
+vertical-align:middle;
 
     */
 
@@ -143,18 +134,57 @@
 
 .info_title {
 }
-.info_title h3 {
+.info_title {
 text-align: left;
 font-size: 25pt;
 font-family: "aktiv-grotesk", sans-serif;
 padding-left: 20px;
 font-weight: 200;
 color: black;
+line-height: 1;
+
+text-align: center;
+display:table-cell;
+vertical-align:middle;
+
+
 }
 
-.info_value h3 {
+.info_value {
+
+}
+
+.info_value span {
     font-size: 15pt;
     font-weight: 400;
     font-family: "aktiv-grotesk", sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
 
 }
+
+
+
+@media only screen and (max-width: 900px) and (orientation: landscape)  {
+    .clickInfo_desktop{
+        display: none;
+    }
+    .clickInfo_mobile{
+        display: block;
+    }
+
+    .ClickInfo_content {
+        padding: 0px !important;
+    }
+
+    .info_value {
+        position: absolute;
+        right: 5%;
+        bottom: 10%;
+    }
+    .info_title {
+        padding: 0px;
+    }
+}
+    

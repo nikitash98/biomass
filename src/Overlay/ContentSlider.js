@@ -21,7 +21,7 @@ const ContentSlider = (props) => {
     var keys = Object.keys(slides);
     let less_keys = keys.slice(0,-1)
     let show = [1, 2, 11, 22, 31]
-    let show_two = [1, 2, 11, 22, 31, 32]
+    let show_two = [1, 2, 11, 22, 31, 33]
     let diffs = []
     let mul = 1
     let max_value = keys.length

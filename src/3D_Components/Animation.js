@@ -10,12 +10,10 @@ function Animation(props) {
  
     const handleHover = (e) => {
         if(props.counterHit) {
-
         e.stopPropagation()
         document.body.style.cursor = 'pointer';
         if(!props.hovered.includes(e.eventObject.name)) {
           props.setHovered([e.eventObject.name])
-
         }
       }
 

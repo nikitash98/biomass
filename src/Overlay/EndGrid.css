@@ -27,7 +27,6 @@
 
 .sharingLine a:not(:first-child) {
   margin-left: 20px;
-
 }
 .sharingLine img{
   bottom: 0%;
@@ -370,6 +369,7 @@
     margin-left: 10px;
   }
   .end_section {
+    top: 40%;
     padding: 0%;
   }
   .readButton h2 {
@@ -405,6 +405,29 @@
 
 @media screen and (orientation: landscape) and (min-aspect-ratio: 4/2) {
   .poster-wrapper{
+    width: 100%;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .column_part {
+    display: contents;
+  }
+  .poster_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .top_container_helper{
+    margin: 0%;
+  }
+
+  .column_part .poster_container {
+    height: 100%;
+  }
+  .big_poster_container {
+    display: contents;
   }
 }
 
@@ -461,6 +484,15 @@
   }
 }
 
+@media screen and (orientation: landscape) and (max-width: 768px) {
+
+  .poster-wrapper {
+    width: 80%;
+    margin: auto;
+  }
+  
+}
+
 @media only screen and (orientation: landscape) and (max-height: 500px) {
   .wrapper {
     width: 80%;
@@ -474,6 +506,10 @@
   }
 
   .sharingText {
-    display: none;
   }
+
+  .sharingLine a:not(:first-child) {
+    margin-left: 5px;
+  }
+  
 }

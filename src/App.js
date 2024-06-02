@@ -54,13 +54,13 @@ function App() {
   }
 
   const right_click = () => {
-    setCounter(counter => Math.min(counter + 1, 33));
+    setCounter(counter => Math.min(counter + 1, 34));
     setPlaying(true);
     setScrubbing(false);
     setcounterHit(false);
     console.log("ABC")
   }
-
+  console.log(counter)
 
   useEffect(() => {
 

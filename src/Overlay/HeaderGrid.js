@@ -31,12 +31,7 @@ function HeaderGrid(props) {
                 <Grid.Column width={1} verticalAlign='middle' className='button_column'>
                     {props.counter != 0 &&
                         <button className="click_button" type="button"
-                            onClick={() => {
-                                props.setCounter(Math.max(props.counter - 1, 0));
-                                props.setPlaying(true);
-                                props.setScrubbing(false);
-                                props.setcounterHit(false);
-                            }}>
+                            onClick={()=> {props.left_click()}}>
                             <img src="Icon/Left.svg" ></img>
                         </button>
                     }
@@ -60,19 +55,14 @@ function HeaderGrid(props) {
                             </Grid.Row>
                         </Grid>
                     )}
-                    <div className={(props.counter == 32 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
+                    <div className={(props.counter == 33 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
                         <EndGrid setsourcesModal = {props.setsourcesModal}/>
                     </div>
                 </Grid.Column>
                 <Grid.Column width={1} verticalAlign='middle' className='button_column'>
                     {((props.counter != 0)) && (props.counter !=22) && props.counter < Object.keys(slides).length - 1 &&
                         <button className="click_button" style={{ float: "right" }} type="button"
-                            onClick={() => {
-                                props.setCounter(Math.min(props.counter + 1, 32));
-                                props.setPlaying(true);
-                                props.setScrubbing(false);
-                                props.setcounterHit(false);
-                            }}>
+                            onClick={()=> {props.right_click()}}>
                             <img src="Icon/Right.svg" ></img>
                         </button>
                     }

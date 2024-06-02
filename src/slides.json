@@ -4,10 +4,9 @@
     "cameraPosition": [0, 12.71172, 30],
     "lookPosition": [0,  12.71172, 0],
     "highlighted": [],
-    "animationTime": 0.0,
+    "animationTime": 0.5,
     "quantities": [],
     "fov": 7
-
 
 },
 {
@@ -15,7 +14,7 @@
     "cameraPosition": [6, 3, 20],
     "lookPosition": [1,  4, 0],
     "highlighted": [],
-    "animationTime": 0.6,
+    "animationTime": 1.1,
     "quantities": [],
     "fov": 7
 
@@ -358,11 +357,21 @@
 
 },
 {
+    "title": "words",
+    "cameraPosition": [6.43317, 1.71172, 10],
+    "lookPosition": [6.39286,  3.35505, 1],
+    "highlighted": ["Wild Birds", "Cnidarians", "Mollusks", "Marine Arthropods", "Fish", "Nematodes", "Annelids", "Arthropods", "Wild Mammals"],
+    "animationTime": 58.1,
+    "quantities": [],
+    "fov": 20
+
+},
+{
     "title": "posters",
     "cameraPosition": [6.43317, 8.71172, 23],
     "lookPosition": [7.39286,  12.35505, 1],
     "highlighted": ["Wild Birds", "Cnidarians", "Mollusks", "Marine Arthropods", "Fish", "Nematodes", "Annelids", "Arthropods", "Wild Mammals"],
-    "animationTime": 58.1,
+    "animationTime": 58.5,
     "quantities": [],
     "fov": 20
 

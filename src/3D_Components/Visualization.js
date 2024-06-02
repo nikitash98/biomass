@@ -101,6 +101,7 @@ const ThreePointViz = (props) => {
                     />
                 </group>
 
+
                 <directionalLight
                     position={[3, 8, 5]}
                     intensity={1}
@@ -122,7 +123,6 @@ const ThreePointViz = (props) => {
     )
 
 }
-
 
 
 

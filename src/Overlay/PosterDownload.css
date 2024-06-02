@@ -34,6 +34,7 @@
 .poster-download img {
     width: 100%;
     display: block;
+    max-height: 80vh;
   }
   
   .download-row .col {
@@ -48,6 +49,7 @@
 
 .vertical-row a {
   color: black !important;
+  text-decoration: none !important; 
 }
 
 .vertical-row a:hover {
@@ -75,5 +77,14 @@
   }
   .poster-download img {
     max-height: 100%;
+    width: auto;
   }
+
+  .top_container_helper{
+    display: contents;
+  }
+  .top_container {
+    flex-direction: initial !important;
+  }
+
 }

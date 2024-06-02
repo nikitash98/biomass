@@ -14,10 +14,10 @@ function Overlay(props) {
 
     let calculated_year_value = Math.trunc(1900 + Math.min(Math.max(props.yearPercentage * 123, 0.0), 123))
 
-    let risePosition = 60;
+    let risePosition = 50;
 
     if(window.innerHeight < 500) {
-        risePosition = 50;
+        risePosition = 40;
     }
     return (
         <>
@@ -25,7 +25,7 @@ function Overlay(props) {
                 <div style={{ "position": "relative", "height": "100%" }}>
                     <div className='icon_container' >
                         <div style={{"position": "relative"}} onClick={() => { props.setCounter(0) }}>
-                        <img src="Icon/biocubes_only.svg"  />
+                        <img src="Icon/biocubes_only_2.svg"  />
                         <img id = "netonly" src = "Icon/net_only.svg"/>
                     </div>
                     {(props.counter == 0) && (
@@ -39,15 +39,14 @@ function Overlay(props) {
                         <button className='new_start_button big_caption_type'
                             onClick={() => {
                                 props.right_click();
-                                console.log("CLIcKING!")
                             }}>
                             {(!props.loaded3D) ? (
                                 <>
-                                    loading <img className='loading_icon' src='Icon/Loading_Icon.svg' />
+                                    loading <img className='loading_icon' src='Icon/Loading_02.svg' />
                                 </>
                             ): (
                                 <span style={{"white-space": "nowrap"}}>
-                                    click to start <img src="Icon/Right.svg" ></img>
+                                    start <img src="Icon/Right.svg" ></img>
 
                                 </span>
                             )}
@@ -59,6 +58,11 @@ function Overlay(props) {
                 </div>
             </div>
 
+
+            <div className={(!props.loaded3D) ? 'hidingContainer basicfadeIn' : 'hidingContainer slowerFadeOut'}>
+                <img className='bottom_drop_2' src="backdrop/25.png" />
+
+            </div>
 
             {props.counter != 0 &&
                 <button className="click_button small_click_left" type="button"
@@ -78,10 +82,13 @@ function Overlay(props) {
                 </button>
             }
 
-
-            <div className={(props.counter == 0) ? 'breaking_title basicfadeIn' : 'breaking_title basicfadeOut'}>
+            {/*
+            <div className={!(props.loaded3D) ? 'breaking_title basicfadeIn' : 'breaking_title basicfadeOut'}>
                 <img className='bottom_drop' src="backdrop/24.png" />
+                
             </div>
+            */}
+            
             {/*
             <ClickModal
             info={props.info} setInfoPage={props.setInfoPage}
@@ -119,15 +126,20 @@ function Overlay(props) {
 
 
             {props.rotatePhoneContainer && (
-                <div className='rotate_phone_container'>
-                    <p>
-                        This website is designed for larger screens. 
-                        <br/>
-                        <br/>
-
-                        We recommend you view on a monitor or tablet.
-                    </p>
+                <div className='rotate_phone_back_container'>
+                    <div className='rotate_phone_container'>
+                        <p>
+                            We recommend you rotate your device, or use a larger screen. 
+                            <br/>
+                            <br/>
+                            <img src='Icon/Rotate_Phone.svg'/>
+                            <br/>
+                            <br/>
+                            <button>Close</button>
+                        </p>
+                    </div>
                 </div>
+
             )}
 
             <HeaderGrid setimageCreditModal={setimageCreditModal}
@@ -141,12 +153,16 @@ function Overlay(props) {
                 setHovered={props.setHovered}
                 setOpenModal={props.setOpenModal}
                 setsourcesModal={setsourcesModal}
+                right_click = {props.right_click}
+                left_click = {props.left_click}
+
             />
 
             {(props.counter >= 18 && props.counter < 22) && (
                 <>
                     <div className={(props.counter == 18 && props.counterHit) ? 'chapter_title big_caption_type side_title' : 'chapter_title big_caption_type side_title fadeOut'}>
-                        the biomass is the result of <br /> <span className='nowrap'> 4 billion </span> years of evolution
+                        <span className='preferredLine'> the biomass is the result of </span> 
+                        <span className='preferredLine'> <span className='nowrap'> 4 billion </span> years of evolution </span>
                     </div>
 
                     <div className={(props.counter == 19 && props.counterHit) ? ' big_caption_type chapter_title ' : ' big_caption_type chapter_title fadeOut'}>
@@ -154,19 +170,22 @@ function Overlay(props) {
                     </div>
 
                     <div className={(props.counter == 20 && props.counterHit) ? 'chapter_title big_caption_type' : ' big_caption_type chapter_title fadeOut'}>
-                        humans are dramatically changing<br /> the surface of the Earth
+                        
+                    <span className='preferredLine'> humans are dramatically changing </span> <br/><span className='preferredLine'> the surface of the Earth </span> 
                     </div>
 
                     <div id="lets_return" className={(props.counter == 21 && props.counterHit) ? ' big_caption_type chapter_title' : ' big_caption_type chapter_title fadeOut'}>
                         <div style={{ "position": "relative", "height": "100%", "width": "100%"}}>
                             <div id='top_part'>
-                                let's return to the year 1900<br />
-                                when the population was 1.6 billion
+                                <span className='preferredLine'> let's return to the year 1900 </span> 
+                                <br/>
+                                <span className='preferredLine'> when the population was 1.6 billion </span> 
+
                             </div>
                             <div id='bottom_part'>
-                                let's see the rise of the <span className="extra_info_title">
+                                to watch the rise of the <span className="extra_info_title">
                                     technomass</span>
-                                <div className="hidden_info_title">
+                                <div className="hidden_info_title small_type" >
                                     Technomass refers to the aggregate amount of technological infrastructure.
                                 </div>
                             </div>
@@ -176,18 +195,20 @@ function Overlay(props) {
             )}
 
             <div className={(props.counter == 30 && props.counterHit) ? ' big_caption_type chapter_title chapter_left_align' : ' big_caption_type chapter_title chapter_left_align fadeOut'}>
-                most of the technomass has <br /> been created during our lifetime
+            <span className='preferredLine'>most of the technomass has </span>
+            <br/>
+            <span className='preferredLine'>been created during our lifetime </span>
             </div>
 
-            <div className={(props.counter == 31 && props.counterHit) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'}>
-                man-made structures now outweigh
-                <br />
-                the mass of the living world
+            <div className={(props.counter == 32 && props.counterHit) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'}>
+                <span className='preferredLine'>man-made structures now outweigh </span>
+                <br/>
+                <span className='preferredLine'>the mass of the living world</span>
             </div>
             <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: risePosition - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
                 the technomass in year {calculated_year_value}
                 
-                <div className = {((props.counter == 22) && props.counterHit) ? 'play_button_container regularFadeIn' : 'play_button_container fadeOut'} >
+                <div className = {((props.counter == 22) && props.counterHit) ? 'play_button_container regularFadeIn' : 'play_button_container basicFadeOut'} >
                         <button className='click_button play_button'
                             onClick={() => {
                                 props.right_click()
@@ -195,18 +216,6 @@ function Overlay(props) {
                             <img src="Icon/play.svg" ></img>
                         </button>
                     </div>
-
-                {/*(props.counter == 22 && props.counterHit) && (
-                    <div style={{ "display": "inline-block" }}>
-                        <button className='click_button play_button'
-                            onClick={() => {
-                                props.right_click()
-                            }}>
-                            <img src="Icon/play.svg" ></img>
-                        </button>
-                    </div>
-                    style={{ "display": "inline-block" }}
-                        )*/}
             </div>
 
             <div className={(props.counter == 1 && props.counterHit) ? "dna_box basicfadeIn" : "dna_box basicfadeOut"} >
@@ -216,11 +225,17 @@ function Overlay(props) {
                     <video autoPlay muted webkit-playsinline playsinline loop playsInline webkit-playsInline>
                         <source src="dna/DNA_14.mp4" type="video/mp4" />
                     </video>
-                   <span className='nowrap'>  after billions of years, it has turned into a diversity</span> <br/> of <span className = "emphasis">biological</span> and <span className="emphasis">technological</span> forms. 
+                    <span className='preferredLine'>after billions of years, it has turned into a diversity</span>
+                    <span className='preferredLine'> of <span className = "emphasis">biological</span> and <span className="emphasis">technological</span> forms. </span>
+
+                {/*
+                   <span className='nowrap'>after billions of years, it has turned into a diversity</span> <br/> of <span className = "emphasis">biological</span> and <span className="emphasis">technological</span> forms. 
+                */}
+
                 </div>
             </div>
 
-            <div className={(props.counter == 32 && props.counterHit) ? "total_cover " : "total_cover hide_overlay"}>
+            <div className={(props.counter == 33 && props.counterHit) ? "total_cover " : "total_cover hide_overlay"}>
             </div>
 
         </>

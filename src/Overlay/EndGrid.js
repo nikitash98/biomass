@@ -50,24 +50,24 @@ function EndGrid(props) {
             <div className='interior_section' style={{ "textAlign": "center" }}>
                 <div className='big_caption_type'>
                     <span className='sharingLine'>
-                        <a href="https://twitter.com/share?url=https://biocubes.net/&text=biocubes" target='_blank' onClick={handletwitterClick}>
+                        <a href="https://twitter.com/share?url=https://biocubes.net/&text=the%20story%20of%20the%20living%20and%20the%20built%0A" target='_blank' onClick={handletwitterClick}>
                         
                             <img src="Icon/twitter.svg" />
                         </a>
 
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://biocubes.net/" target='_blank' onClick={handlefacebookClick}>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://biocubes.net/&quote=Check%20out%20this%20amazing%20website!" target='_blank' onClick={handlefacebookClick}>
                             <img src="Icon/facebook.svg" />
                         </a>
 
-                        <a href="https://reddit.com/submit?url=https://biocubes.net/&title=<An%20inventory%20of%20biomass%20and%20technomass>" target='_blank' onClick={handleredditClick}>
+                        <a href="https://reddit.com/submit?url=https://biocubes.net/&title=the%20story%20of%20the%20living%20and%20the%20built>" target='_blank' onClick={handleredditClick}>
                             <img src="Icon/reddit.svg" />
                         </a>
 
-                        <a href="https://www.linkedin.com/shareArticle?url=https://biocubes.net/&title=Biocubes&summary=An%20inventory%20of%20biomass%20and%20technomass&source=https://biocubes.net/" target='_blank' onClick={handlelinkedinClick}>
+                        <a href="https://www.linkedin.com/shareArticle?url=https://biocubes.net/&title=Biocubes&summary=the%20story%20of%20the%20living%20and%20the%20built&source=https://biocubes.net/" target='_blank' onClick={handlelinkedinClick}>
                             <img src="Icon/linkedin.svg" /> 
                         </a>
 
-                        <a href="mailto:?subject=biocubes&body=https://biocubes.net/" target='_blank' onClick={handleEmailClick}>
+                        <a href="mailto:?subject=Check%20out%20biocubes.net&body=the%20story%20of%20the%20living%20and%20the%20built%0Ahttps://biocubes.net/" target='_blank' onClick={handleEmailClick}>
                             <img src="Icon/mail_02.svg" />
                         </a>
                     </span>
@@ -77,7 +77,6 @@ function EndGrid(props) {
 
                     <div className='poster-wrapper'>
                         <div className='column_part'>
-
                             <div className='poster_container top_container'>
                                 <div className='top_container_helper' >
                                     <div className='poster_download_helper'>
@@ -93,7 +92,6 @@ function EndGrid(props) {
                                     <PosterDownload poster="technoPoster" />
                                     </div>
                                 </div>
-
                         </div>
                         <div className='big_poster_container' >
                             <div className='poster_container big_poster'>

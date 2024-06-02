@@ -88,9 +88,9 @@
     text-align: left;
     pointer-events: auto;
     padding-right: 30px;
-    padding: 20px;
+    padding: 10px;
     backdrop-filter: blur(10px);
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .ContentCaption:empty {
     display: none;

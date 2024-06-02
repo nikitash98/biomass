@@ -127,15 +127,10 @@ function getText(sel, setHovered, openModal){
         case 18:
             return 
         case 19:
-
         case 22:
-            return <div>
-
-            </div>
-
+            return 
         case 23:
-            return <div>
-            </div>
+            return 
         case 24:
             return <div>
                 <p>

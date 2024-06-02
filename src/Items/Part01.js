@@ -208,7 +208,7 @@ export function Part01(props) {
   }
 
   */
-  let technicalsOffset = 50;
+  let technicalsOffset = 0;
 
   let change_value = 7;
 
@@ -221,6 +221,10 @@ export function Part01(props) {
   let zoomvalue = 1.0;
   if(window.innerHeight < 500) {
     change_value -= 0.5;
+  }
+
+  if(window.innerWidth < 900) {
+    change_value += 0.5;
   }
 
 
@@ -318,6 +322,7 @@ export function Part01(props) {
   const animal_click = (e) => {
     props.setOpenModal(true); 
     props.setHovered(["Animals"]);
+
     e.stopPropagation();
   }
 
@@ -337,10 +342,9 @@ export function Part01(props) {
 
 
   const clickBox = (e, box_name) => {
-      props.setOpenModal(true);
-     props.setHovered([box_name]);
-     console.log(box_name)
-     e.stopPropagation();
+    props.setOpenModal(true);
+    props.setHovered([box_name]);
+    e.stopPropagation();
   }
 
   //https://elsenaju.eu/Calculator/online-curve-fit.htm
@@ -349,8 +353,10 @@ export function Part01(props) {
   }
   useEffect(() => {
     playAnimations(actions)
-    setAnimationTime(actions, slides[props.counter]["animationTime"])
+
     props.setLoaded3D(true);
+    setAnimationTime(actions, slides[props.counter]["animationTime"])
+
   }, [])
 
   useFrame((state, delta) => {
@@ -507,8 +513,11 @@ export function Part01(props) {
             }
 
           } 
+
+
           let scaleIconScalar = 1.;
           let scaleTextScalar = 1;
+          /*
           const iconVector = new THREE.Vector3(nodes[flat_name + "_Icon"].scale.x * scaleIconScalar, 
             nodes[flat_name + "_Icon"].scale.y * scaleIconScalar, 
               nodes[flat_name + "_Icon"].scale.z * scaleIconScalar);
@@ -519,13 +528,18 @@ export function Part01(props) {
             nodes[flat_name + "_Text"].scale.z * scaleTextScalar);
           }
 
+          */
 
 
           return (
+
+            <>
             <mesh name={flat_name} geometry={nodes[flat_name].geometry} key={i}
               material={highlighted.includes(name) ? transp_material : nodes[flat_name].material}
-              morphTargetDictionary={false ? null : nodes["Metals"].morphTargetDictionary}
-              morphTargetInfluences={false ? null : nodes["Metals"].morphTargetInfluences}
+
+              morphTargetDictionary={false ? null : nodes[flat_name].morphTargetDictionary}
+              morphTargetInfluences={false ? null : nodes[flat_name].morphTargetInfluences}
+              
               position={nodes[flat_name].position}
               rotation={nodes[flat_name].rotation}
               frustumCulled={false}
@@ -539,14 +553,17 @@ export function Part01(props) {
               ref={ref => divRefs.current[name] = ref}
             >
               <mesh name={flat_name + "_Icon"} geometry={nodes[flat_name + "_Icon"].geometry} material={icon_mat}
-                position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={iconVector} />
+                position={nodes[flat_name + "_Icon"].position} rotation={nodes[flat_name + "_Icon"].rotation} scale={nodes[flat_name + "_Icon"].scale} />
 
               {(nodes[flat_name + "_Text"]) && (
                 <mesh name={flat_name + "_Text"} geometry={nodes[flat_name + "_Text"].geometry} material={icon_mat}
-                  position={nodes[flat_name + "_Text"].position} rotation={nodes[flat_name + "_Text"].rotation} scale={textVector} />
+                  position={nodes[flat_name + "_Text"].position} rotation={nodes[flat_name + "_Text"].rotation} scale={nodes[flat_name + "_Text"].scale} />
               )}
-              {props.counter != 22 && (
 
+              <group>
+
+              {props.counter != 22 && (
+                
               <Html
                 style={{
                   transition: 'all 0.2s',
@@ -560,19 +577,37 @@ export function Part01(props) {
                 <h1>{weight_val} Gt </h1>
               </Html>
               )}
+              </group>
 
-              {(!nodes[flat_name + "_Text"]) && (((!is_artificial || props.counter > 23) || (flat_name == "Cars"))) && (props.counter>5) && (luca_box) && (
+              <group>
+                {(!nodes[flat_name + "_Text"]) && (((!is_artificial || props.counter > 23) || (flat_name == "Cars"))) && (props.counter>5) && (luca_box) && (
+                <>
                 <Html position={title_positions[flat_name]}
                   scale={0.4 / nodes[flat_name].scale.x}
+                  style={{"pointerEvents": "none"}}
                   center={true}
                   distanceFactor={10}
                   zIndexRange={[0, 20]}
                   className={currentClass}>
                   <h1>{human_title}</h1>
                 </Html>
+                {console.log(flat_name)}
+                </>
+
               )}
 
+              </group>
+
+
+
+
             </mesh>
+
+
+            
+
+            </>
+
           )
         })}
 
@@ -587,8 +622,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[3, 1, 13.3094]}
-            className={(props.animationTime.current > 26.5) ? "box_name ": "box_name hidden"}
+            position={[3, 1, 13.8094]}
+            className={(props.animationTime.current > 26.5) ? "box_name extra_technicals": "box_name extra_technicals hidden"}
           >
             <h1>
               plastics
@@ -604,8 +639,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[3.98992, 1, 10.6868]}
-            className={(props.animationTime.current > 27)? "box_name ": "box_name hidden"}
+            position={[3.98992, 1, 12.0868]}
+            className={(props.animationTime.current > 27)? "box_name extra_technicals": "box_name extra_technicals hidden"}
           >
             <h1>
               metals
@@ -620,8 +655,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[6.2824, 1, 6.81034]}
-            className={(props.animationTime.current > 27.3)? "box_name ": "box_name hidden"}
+            position={[6.2824, 1, 7.81034]}
+            className={(props.animationTime.current > 27.3)? "box_name extra_technicals ": "box_name extra_technicals hidden"}
           >
             <h1>
               asphalt
@@ -637,8 +672,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[8.62164, 1, 2.52896]}
-            className={(props.animationTime.current > 28.0) ? "box_name ": "box_name hidden"}
+            position={[8.62164, 1, 4.52896]}
+            className={(props.animationTime.current > 28.0) ? "box_name extra_technicals": "box_name extra_technicals hidden"}
           >
             <h1>
               bricks
@@ -654,8 +689,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[11.2608, 1, -3.11226]}
-            className={(props.animationTime.current > 28.2)? "box_name ": "box_name hidden"}
+            position={[11.2608, 1, -0.11226]}
+            className={(props.animationTime.current > 28.2)? "box_name  extra_technicals": "box_name extra_technicals hidden"}
           >
             <h1>
               aggregates
@@ -671,8 +706,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[15.391, 1, -10.2317]}
-            className={(props.animationTime.current > 29.2)? "box_name ": "box_name hidden"}
+            position={[15.391, 1, -7.2317]}
+            className={(props.animationTime.current > 29.2)? "box_name extra_technicals ": "box_name extra_technicals hidden"}
           >
             <h1>
               concrete
@@ -688,8 +723,8 @@ export function Part01(props) {
             }}
             distanceFactor={10}
 
-            position={[8.25977, 1, 15]}
-            className={(props.animationTime.current > 29.8) ? "box_name ": "box_name hidden"}
+            position={[8.25977, 1.0, 17]}
+            className={(props.animationTime.current > 29.8) ? "box_name extra_technicals ": "box_name extra_technicals hidden"}
           >
             <h1>
               all humans

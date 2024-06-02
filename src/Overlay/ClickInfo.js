@@ -51,15 +51,17 @@ function ClickInfo(props) {
                             <Grid.Column width = {10}>
                             <div className='info_title'>
                                 
-                                <h3>
                                 {title_name} 
-                                </h3>
                             </div>
 
                             </Grid.Column>
                             <Grid.Column width = {6} style = {{"text-align": "right"}}>
                             <div className='info_value'>
-                            <h3>{myData[name.current].weight} Gt</h3>
+                                <span>
+
+                                    {myData[name.current].weight} Gt
+                                </span>
+
                         </div>
                             </Grid.Column>
                         </Grid.Row>
@@ -82,7 +84,7 @@ function ClickInfo(props) {
                             
                                 <div style={{"position": "relative", "width": "100%", "height": "100%"}}>
                                     <div className='info_value'>
-                                        <h3>{myData[name.current].weight} Gt</h3>
+                                        {myData[name.current].weight} Gt
                                     </div>
                                 </div>
 
