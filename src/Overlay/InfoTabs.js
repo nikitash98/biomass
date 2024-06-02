@@ -24,6 +24,8 @@ const TabExampleBasic = (props) => {
             <div className='credit_drop_up small_type' >
               <div style={{"text-wrap": "nowrap"}}>
               designed by <a href="https://menard.pha.jhu.edu/" target="_blank">Ménard</a> & <a href="https://nikitashtarkman.com/" target="_blank">Shtarkman </a>
+              <br/>
+              Johns Hopkins University
               </div>
               <div style={{"text-wrap": "nowrap"}}>
               <span className='small_type link_type' onClick={() => { props.setimageCreditModal(true) }}>image credits</span> | <span className='small_type link_type' onClick={() => { props.setsourcesModal(true) }}>data credits</span>
