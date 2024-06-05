@@ -37,15 +37,28 @@
   }
 
 
+  .frontCover {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+  }
 
   #subtitle {
     margin-top: 5px;
-    opacity: 0.5;
   }
 
   .preferredLine { 
     display: inline-block;
   }
+
+  .bl {
+    backdrop-filter: blur(10px);
+    padding: 10px;
+  }
+
   .logo_container {
     position: absolute;
     top: 15%;
@@ -543,11 +556,45 @@
 
   }
   .end_chapter {
-    text-align: center;
+    text-align: left;
+    left: 3%;
+    top: 10%;
+    transform: translate(0%, -00%);
+    width: fit-content;
+    transition: all 1.0s ease;  /* Smooth transition */
+    backdrop-filter: blur(0px);
+    font-size: 12pt;
+  }
+
+  .centeredSentence {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: fit-content;
+
+  }
+
+  .extraline {
+    height: 0px;
+    color: var(--hover_blue);
+    position: absolute;
+  }
+
+  .extralineabs {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    color: var(--hover_blue);
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    transition: all 1.0s ease !important;  /* Smooth transition */
+
+  }
+
+
+  .shareEnd {
+    top: 7%;
+    left: 50%;
+    transition: all 1.0s ease;  /* Smooth transition */
 
   }
 
@@ -997,7 +1044,13 @@
 
   }
 
-  
+  .end_chapter {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(5px);
+
+  }
   .nowrap {
     text-wrap: wrap;
   }
@@ -1053,6 +1106,14 @@
 
 
 @media only screen and (max-height: 500px) { 
+
+  .end_chapter {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(5px);
+
+  }
 
   .logo_moved_position {
     width: 150px;

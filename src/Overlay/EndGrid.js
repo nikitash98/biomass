@@ -71,7 +71,10 @@ function EndGrid(props) {
                             <img src="Icon/mail_02.svg" />
                         </a>
                     </span>
-                    <span className='sharingText'>  share or get a poster </span>
+                    {/*
+                    <span className='sharingText'> get a poster </span>
+                    */}
+
                 </div>
 
 

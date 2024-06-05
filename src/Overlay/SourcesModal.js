@@ -18,32 +18,31 @@ function SourcesModal(props) {
                 <Grid.Row columns={3}>
                     <Grid.Column>
                         <a href="https://www.pnas.org/doi/10.1073/pnas.1711842115" target ="_blank">
-                            The biomass distribution on Earth
+                            The biomass distribution on Earth,
                             <br/>
-                            Bar-On, Y.M., Phillips R., & Milo, R.
+                            Bar-On Y.M, Phillips R, Milo R
                             <br/>
-                            Proceedings of the National Academy of Sciences.
+                            Proceedings of the National Academy of Sciences. (2018)
                         </a>
 
                     </Grid.Column>
                     <Grid.Column>
                         <a href="https://fisherp.mit.edu/wp-content/uploads/2021/01/s41586-020-3010-5.pdf" target ="_blank">
-                            Global human-made mass exceeds all living biomass
+                            Global human-made mass exceeds all living biomass,
                             <br/>
-                            Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R.
+                            Elhacham E, Ben-Uri L, Grozovski J, Bar-On YM, Milo R
                             <br/>
-                            Nature. 2020
+                            Nature. (2020)
                         </a>
 
                     </Grid.Column>
                     <Grid.Column>
                         <a href="https://ourworldindata.org/plastic-pollution" target ="_blank">
-                            Hannah Ritchie and Max Roser (2018)
+                            Plastic Pollution
                             <br/>
-
-                            "Plastic Pollution".
+                             Ritchie H and Roser M
                             <br/>
-                            Published online at OurWorldInData.org.
+                            OurWorldInData.org. (2018)
                         </a>
 
                     </Grid.Column>

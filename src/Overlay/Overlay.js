@@ -30,7 +30,7 @@ function Overlay(props) {
                     </div>
                     {(props.counter == 0) && (
                         <>
-                            <img id = "subtitle" src='Icon/subtitle2.svg' />
+                            <img id = "subtitle" src='Icon/subtitle3.svg' />
                         </>
                     )}
 
@@ -200,11 +200,40 @@ function Overlay(props) {
             <span className='preferredLine'>been created during our lifetime </span>
             </div>
 
-            <div className={(props.counter == 32 && props.counterHit) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'}>
+            <div className={`${((props.counter == 32 || props.counter == 33) ) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'} ${(props.counter>=33) ? "centeredSentence":""}`}>
                 <span className='preferredLine'>man-made structures now outweigh </span>
                 <br/>
                 <span className='preferredLine'>the mass of the living world</span>
+                {/*
+                    <div className={(props.counter == 33 && props.counterHit) ? ' extraline basicfadeIn' : 'extraline  basicfadeOut'}>
+                        <br/>
+                        <span className='preferredLine'>share this information </span>
+                    </div>
+                */}
+
             </div>
+
+
+            <div className={`${(props.counter == 33 || props.counter == 34) ? 'big_caption_type extralineabs basicfadeIn' : 'big_caption_type  extralineabs basicfadeOut'} ${((props.counter==34) ? "shareEnd": "" )}` }>
+                <br/>
+                <span className='preferredLine'>share this information </span> <span className={(props.counter == 34) ? 'sharingText abc abc_wide basicfadeIn' : 'sharingText abc basicfadeOut'}>  and get a poster </span>
+
+            </div>
+
+
+
+
+            {/*
+
+
+&& props.counterHit
+            <div className={(props.counter == 33 && props.counterHit) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'}>
+                <span className='preferredLine'>share this information </span>
+                <br/>
+
+            </div>
+            */}
+
             <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: risePosition - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
                 the technomass in year {calculated_year_value}
                 
@@ -237,6 +266,10 @@ function Overlay(props) {
 
             <div className={(props.counter == 33 && props.counterHit) ? "total_cover " : "total_cover hide_overlay"}>
             </div>
+            {(props.counter == 0) && (
+                <div className='frontCover'></div>
+            )
+            }
 
         </>
 

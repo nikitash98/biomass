@@ -31,14 +31,23 @@
 .sharingLine img{
   bottom: 0%;
   left: 0%;
+  /*
   filter: invert(63%) sepia(11%) saturate(105%) hue-rotate(163deg) brightness(97%) contrast(88%);
+
+  */
   height: 100%;
   width: 100%;
   position: absolute;
+  filter: invert(41%) sepia(46%) saturate(1773%) hue-rotate(182deg) brightness(93%) contrast(79%);
+
 }
 
 .sharingLine img:hover{
+  /*
   filter: invert(41%) sepia(46%) saturate(1773%) hue-rotate(182deg) brightness(93%) contrast(79%);
+
+  */
+  filter: none;
 }
 
 
@@ -135,6 +144,18 @@
 
 }
 
+
+.abc {
+  width: 0px;
+  display: inline-block;
+  white-space: nowrap;
+
+}
+
+.abc_wide {
+  width: auto;
+  
+}
 #poster:hover .poster_box {
   opacity: 1;
   display: block;

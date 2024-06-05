@@ -55,7 +55,7 @@ function HeaderGrid(props) {
                             </Grid.Row>
                         </Grid>
                     )}
-                    <div className={(props.counter == 33 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
+                    <div className={(props.counter == 34 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
                         <EndGrid setsourcesModal = {props.setsourcesModal}/>
                     </div>
                 </Grid.Column>
