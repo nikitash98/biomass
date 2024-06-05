@@ -7,7 +7,9 @@ import { useState } from 'react';
 import ImageCreditModal from './ImageCreditModal';
 import HeaderGrid from './HeaderGrid';
 import SourcesModal from './SourcesModal';
-import ClickModal from "./ClickModal"
+import ClickModal from "./ClickModal";
+import ReactGA from "react-ga4";
+
 function Overlay(props) {
     const [imageCreditModal, setimageCreditModal] = useState(false);
     const [sourcesModal, setsourcesModal] = useState(false)
@@ -19,6 +21,50 @@ function Overlay(props) {
     if(window.innerHeight < 500) {
         risePosition = 40;
     }
+
+
+
+    
+    const handletwitterClick = () => {
+        ReactGA.event({
+            category: 'Sharing',
+            action: 'Twitter Share',
+            label: 'Twitter Share button clicked.'
+          });
+
+    }
+
+    const handlelinkedinClick = () => {
+        ReactGA.event({
+            category: 'Sharing',
+            action: 'LinkedIn Share',
+            label: 'LinkedIn Share button clicked.'
+          });
+    }
+
+    const handlefacebookClick = () => {
+        ReactGA.event({
+            category: 'Sharing',
+            action: 'Facebook Share',
+            label: 'Facebook Share button clicked.'
+          });
+    }
+    const handleEmailClick = () => {
+        ReactGA.event({
+            category: 'Sharing',
+            action: 'Email Share',
+            label: 'Email Share button clicked.'
+          });
+    }
+    const handleredditClick = () => {
+        ReactGA.event({
+            category: 'Sharing',
+            action: 'Reddit Share',
+            label: 'Reddit Share button clicked.'
+          });
+    }
+
+
     return (
         <>
             <div className={(props.counter == 0) ? "logo_container" : 'logo_container logo_moved_position'} >
@@ -129,7 +175,7 @@ function Overlay(props) {
                 <div className='rotate_phone_back_container'>
                     <div className='rotate_phone_container'>
                         <p>
-                            We recommend you rotate your device, or use a larger screen. 
+                            We recommend rotating your device, or using a larger screen. 
                             <br/>
                             <br/>
                             <img src='Icon/Rotate_Phone.svg'/>
@@ -201,7 +247,7 @@ function Overlay(props) {
             </div>
 
             <div className={`${((props.counter == 32 || props.counter == 33) ) ? ' big_caption_type chapter_title end_chapter' : ' big_caption_type chapter_title end_chapter fadeOut'} ${(props.counter>=33) ? "centeredSentence":""}`}>
-                <span className='preferredLine'>man-made structures now outweigh </span>
+                <span className='preferredLine nowrap'>man-made structures now outweigh </span>
                 <br/>
                 <span className='preferredLine'>the mass of the living world</span>
                 {/*
@@ -216,7 +262,35 @@ function Overlay(props) {
 
             <div className={`${(props.counter == 33 || props.counter == 34) ? 'big_caption_type extralineabs basicfadeIn' : 'big_caption_type  extralineabs basicfadeOut'} ${((props.counter==34) ? "shareEnd": "" )}` }>
                 <br/>
-                <span className='preferredLine'>share this information </span> <span className={(props.counter == 34) ? 'sharingText abc abc_wide basicfadeIn' : 'sharingText abc basicfadeOut'}>  and get a poster </span>
+                <span className='preferredLine'>share this information </span> 
+                <br/>
+                
+
+                <span className='sharingLine'>
+                    <a href="https://twitter.com/share?url=https://biocubes.net/&text=the%20story%20of%20the%20living%20and%20the%20built%0A" target='_blank' onClick={handletwitterClick}>
+                    
+                        <img src="Icon/twitter.svg" />
+                    </a>
+
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://biocubes.net/&quote=Check%20out%20this%20amazing%20website!" target='_blank' onClick={handlefacebookClick}>
+                        <img src="Icon/facebook.svg" />
+                    </a>
+
+                    <a href="https://reddit.com/submit?url=https://biocubes.net/&title=the%20story%20of%20the%20living%20and%20the%20built>" target='_blank' onClick={handleredditClick}>
+                        <img src="Icon/reddit.svg" />
+                    </a>
+
+                    <a href="https://www.linkedin.com/shareArticle?url=https://biocubes.net/&title=Biocubes&summary=the%20story%20of%20the%20living%20and%20the%20built&source=https://biocubes.net/" target='_blank' onClick={handlelinkedinClick}>
+                        <img src="Icon/linkedin.svg" /> 
+                    </a>
+
+                    <a href="mailto:?subject=Check%20out%20biocubes.net&body=the%20story%20of%20the%20living%20and%20the%20built%0Ahttps://biocubes.net/" target='_blank' onClick={handleEmailClick}>
+                        <img src="Icon/mail_02.svg" />
+                    </a>
+                </span>
+                {/*
+                <span className={(props.counter == 34) ? 'sharingText abc abc_wide basicfadeIn' : 'sharingText abc basicfadeOut'}>  and get a poster </span>
+                */}
 
             </div>
 
@@ -234,10 +308,10 @@ function Overlay(props) {
             </div>
             */}
 
-            <div className={(props.counter == 22 || props.counter == 23) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: risePosition - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
+            <div className={((props.counter == 22 || props.counter == 23) ) ? ' big_caption_type chapter_title  chapter_year_counter' : ' big_caption_type chapter_title chapter_year_counter fadeOut'} style={{ top: risePosition - (Math.max(props.yearPercentage, 0) ** 2 * 100) * 0.3 + "%" }}>
                 the technomass in year {calculated_year_value}
-                
-                <div className = {((props.counter == 22) && props.counterHit) ? 'play_button_container regularFadeIn' : 'play_button_container basicFadeOut'} >
+
+                <div className = {((props.counter == 22) && props.counterHit) ? 'play_button_container' : 'play_button_container fadeOut'} >
                         <button className='click_button play_button'
                             onClick={() => {
                                 props.right_click()

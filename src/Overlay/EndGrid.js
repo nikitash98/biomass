@@ -49,6 +49,7 @@ function EndGrid(props) {
         <div className='end_section'>
             <div className='interior_section' style={{ "textAlign": "center" }}>
                 <div className='big_caption_type'>
+                    {/*
                     <span className='sharingLine'>
                         <a href="https://twitter.com/share?url=https://biocubes.net/&text=the%20story%20of%20the%20living%20and%20the%20built%0A" target='_blank' onClick={handletwitterClick}>
                         
@@ -71,14 +72,15 @@ function EndGrid(props) {
                             <img src="Icon/mail_02.svg" />
                         </a>
                     </span>
-                    {/*
-                    <span className='sharingText'> get a poster </span>
                     */}
 
                 </div>
 
 
                     <div className='poster-wrapper'>
+                        <div className='poster_caption big_caption_type poster_not_line'>
+                            get a poster
+                        </div>
                         <div className='column_part'>
                             <div className='poster_container top_container'>
                                 <div className='top_container_helper' >
@@ -90,7 +92,13 @@ function EndGrid(props) {
                             </div>
 
                                 <div className='poster_container bottom_container'>
-                                    <div className='poster_download_helper'>
+
+
+                                    <div className='poster_download_helper poster_extra_caption'>
+
+                                    <div className='poster_caption big_caption_type line_poster_caption'>
+                                        get a poster
+                                    </div>
 
                                     <PosterDownload poster="technoPoster" />
                                     </div>

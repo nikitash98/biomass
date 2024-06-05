@@ -37,7 +37,7 @@ function HeaderGrid(props) {
                     }
                 </Grid.Column>
                 <Grid.Column width={14} style={{ height: "100%", padding: "0%" }} >
-                    {props.counter < 31 && (
+                    {props.counter < 33 && (
                         <Grid className='internal_grid'>
                             <Grid.Row>
                                 <Grid.Column width={5} style={{ position: "relative" }}>
