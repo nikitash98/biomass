@@ -262,7 +262,7 @@ function Overlay(props) {
 
             <div className={`${(props.counter == 33 || props.counter == 34) ? 'big_caption_type extralineabs basicfadeIn' : 'big_caption_type  extralineabs basicfadeOut'} ${((props.counter==34) ? "shareEnd": "" )}` }>
                 <br/>
-                <span className='preferredLine'>share this information </span> 
+                <span className='preferredLine'>share this story </span> 
                 <br/>
                 
 

@@ -24,6 +24,13 @@ function SourcesModal(props) {
                             <br/>
                             Proceedings of the National Academy of Sciences. (2018)
                         </a>
+                        <br/>
+                        <br/>
+                        <span style={{"color" : "var(--border_grey"}}>
+
+                        We consider the dry mass to be roughly twice the carbon mass estimate.
+                        </span>
+
 
                     </Grid.Column>
                     <Grid.Column>

@@ -55,8 +55,8 @@ function HeaderGrid(props) {
                             </Grid.Row>
                         </Grid>
                     )}
-                    <div className={(props.counter == 34 && props.counterHit) ? "basicfadeIn " : "basicfadeOut"}>
-                        <EndGrid setsourcesModal = {props.setsourcesModal}/>
+                    <div className={(props.counter == 34 ) ? "basicfadeIn " : "basicfadeOut"}>
+                        <EndGrid setsourcesModal = {props.setsourcesModal} setimageCreditModal={props.setimageCreditModal}/>
                     </div>
                 </Grid.Column>
                 <Grid.Column width={1} verticalAlign='middle' className='button_column'>

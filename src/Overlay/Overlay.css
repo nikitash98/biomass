@@ -571,9 +571,8 @@
 
   .centeredSentence {
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
-    color: black;
   }
 
   .extraline {
@@ -585,7 +584,7 @@
   .extralineabs {
     position: absolute;
     left: 50%;
-    top: 60%;
+    top: 58%;
     color: var(--hover_blue);
     white-space: nowrap;
     transform: translate(-50%, -50%);
@@ -595,7 +594,7 @@
 
 
   .shareEnd {
-    top: 10%;
+    top: 12%;
     left: 50%;
     transition: all 1.0s ease;  /* Smooth transition */
 
@@ -943,7 +942,7 @@
   backdrop-filter: blur(20px);
   transition: all 1s;
   visibility: visible;
-  background-color: rgba(255, 255, 255, 0.542);
+  background-color: rgba(255, 255, 255, 0.347);
 }
 
 .hide_overlay  {
@@ -1043,8 +1042,14 @@
     width: 60px;
     display: block !important;
     top: 80%;
+  }
 
+  .extralineabs {
+    top: 70%;
+  }
 
+  .shareEnd {
+    top: 12%;
   }
 
   .end_chapter {
@@ -1052,7 +1057,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     backdrop-filter: blur(5px);
-    color: black;
+    background-color: rgba(255, 255, 255, 0.6);
 
   }
   .nowrap {
@@ -1108,12 +1113,15 @@
 }
 
 
+@media screen and (max-height:300px) {
+  
+}
 
 @media only screen and (max-height: 500px) { 
 
   .end_chapter {
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
     backdrop-filter: blur(5px);
 

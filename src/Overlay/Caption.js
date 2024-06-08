@@ -152,7 +152,7 @@ function getText(sel, setHovered, openModal){
         case 27:
             return <div>
                 <p>
-                <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered} setOpenModal = {openModal}>Bricks</HoverSpan> have been used for thousands of years. They now outweigh the human mass by 700%.
+                <HoverSpan id = "brick_text" hover_id = "Bricks" setHovered = {setHovered} setOpenModal = {openModal}>Bricks</HoverSpan> have been used for thousands of years. Their mass is now 825 times the mass of all humans.
                 </p>
             </div>
         case 28:

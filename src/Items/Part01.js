@@ -591,7 +591,6 @@ export function Part01(props) {
                   className={currentClass}>
                   <h1>{human_title}</h1>
                 </Html>
-                {console.log(flat_name)}
                 </>
 
               )}

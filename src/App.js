@@ -58,9 +58,7 @@ function App() {
     setPlaying(true);
     setScrubbing(false);
     setcounterHit(false);
-    console.log("ABC")
   }
-  console.log(counter)
 
   useEffect(() => {
 

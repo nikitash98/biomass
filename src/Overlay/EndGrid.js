@@ -49,31 +49,6 @@ function EndGrid(props) {
         <div className='end_section'>
             <div className='interior_section' style={{ "textAlign": "center" }}>
                 <div className='big_caption_type'>
-                    {/*
-                    <span className='sharingLine'>
-                        <a href="https://twitter.com/share?url=https://biocubes.net/&text=the%20story%20of%20the%20living%20and%20the%20built%0A" target='_blank' onClick={handletwitterClick}>
-                        
-                            <img src="Icon/twitter.svg" />
-                        </a>
-
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://biocubes.net/&quote=Check%20out%20this%20amazing%20website!" target='_blank' onClick={handlefacebookClick}>
-                            <img src="Icon/facebook.svg" />
-                        </a>
-
-                        <a href="https://reddit.com/submit?url=https://biocubes.net/&title=the%20story%20of%20the%20living%20and%20the%20built>" target='_blank' onClick={handleredditClick}>
-                            <img src="Icon/reddit.svg" />
-                        </a>
-
-                        <a href="https://www.linkedin.com/shareArticle?url=https://biocubes.net/&title=Biocubes&summary=the%20story%20of%20the%20living%20and%20the%20built&source=https://biocubes.net/" target='_blank' onClick={handlelinkedinClick}>
-                            <img src="Icon/linkedin.svg" /> 
-                        </a>
-
-                        <a href="mailto:?subject=Check%20out%20biocubes.net&body=the%20story%20of%20the%20living%20and%20the%20built%0Ahttps://biocubes.net/" target='_blank' onClick={handleEmailClick}>
-                            <img src="Icon/mail_02.svg" />
-                        </a>
-                    </span>
-                    */}
-
                 </div>
 
 
@@ -112,31 +87,20 @@ function EndGrid(props) {
                                 </div>
                             </div>
                         </div>
-                        {/*
-
-                        */}
 
                     </div>
-                    {/*
-                    <div className="wrapper">
-                        <div>
-                            <div className='poster_container'>
-                                <PosterDownload poster="bioPoster" />
-                            </div>
 
-                            <div className='poster_container'>
-                                <PosterDownload poster="technoPoster" />
-                            </div>
-                        </div>
-                        <div className='poster_container'>
-                            <PosterDownload poster="bioTechnoPoster" />
-                        </div>
-                    </div>
-                    */}
 
                 </div>
+                <div className='end_credit small_type'>
+                    © <a href="https://menard.pha.jhu.edu/" target="_blank">Ménard</a> and <a href="https://nikitashtarkman.com/" target="_blank">Shtarkman </a>
+                </div>
 
-
+                <div className='end_credit_dropup small_type' >
+                    <div style={{"text-wrap": "nowrap"}}>
+                        <span className='small_type link_type' onClick={() => { props.setimageCreditModal(true) }}>image credits</span> | <span className='small_type link_type' onClick={() => { props.setsourcesModal(true) }}>data credits</span>
+                    </div>
+                </div>
 
         </div>
 
