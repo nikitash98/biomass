@@ -4,6 +4,8 @@ import { Vector3 } from 'three';
 import myData from './data.json';
 import './ClickInfo.css';
 
+import { useTranslation } from 'react-i18next';
+
 function ClickInfo(props) {
     const name = useRef("Humans")
     const position = useRef(new Vector3(0, 0, 0))
@@ -11,6 +13,9 @@ function ClickInfo(props) {
     const testRef = useRef("ABC")
     let title_name = ""
     
+
+    const { t, i18n} = useTranslation();
+
     if (props.hovered[0]) {
         if (props.hovered[0].includes("_")) {
             name.current = props.hovered[0].replace("_", " ")
@@ -27,8 +32,19 @@ function ClickInfo(props) {
         title_name = name.current;
         title_name = title_name.toString().toLowerCase();
     }
+
+    console.log(i18n.language)
     //
     //if(true){
+
+    let lang = i18n.language;
+
+    let languageSource = "src";
+    if(lang != "en") {
+        languageSource += lang;
+    }
+
+    
     if (name.current) {
         return (
             <div className={props.hovered[0] ? "ClickInfo" : "ClickInfo"}>
@@ -49,7 +65,7 @@ function ClickInfo(props) {
                             <Grid.Column width = {10}>
                             <div className='info_title'>
                                 
-                                {title_name} 
+                                {t(title_name)} 
                             </div>
 
                             </Grid.Column>
@@ -68,7 +84,8 @@ function ClickInfo(props) {
 
                     </div>
                     <div className='ClickInfo_content'>
-                        <p>{myData[name.current].src} </p>
+
+                        <p>{myData[name.current][languageSource]} </p>
                     </div>
                 </div>
 

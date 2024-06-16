@@ -23,7 +23,11 @@
 
 }
 .poster-download-section .vertical-row {
+  /*
   height: 33.33%;
+  */
+
+  height: 100%;
 }
 
 

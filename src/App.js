@@ -8,7 +8,6 @@ import { Suspense, useRef, useState } from 'react';
 import { applyProps } from 'react-three-fiber';
 import './type.css'
 import { AppContext } from './AppContext';
-
 function TestComponent () {
   useEffect(()=>{
   })

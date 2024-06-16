@@ -1,0 +1,28 @@
+{
+    "bioPoster": {
+        "image": "Posters/thumbs/bio_thumb.jpg",
+        "posters": [
+            {"title": "2k (screen)", "url": "https://www.dropbox.com/scl/fi/aeiwy6v9gq3f4hinfzhnc/bio_2k.png?rlkey=k16hhuozgvrtr1d0p23o91pe8&dl=1"},
+            {"title": "4k (high)", "url": "https://www.dropbox.com/scl/fi/lqcdf8c9hyx6ihh5hbqyn/bio_4k.png?rlkey=daz67s8h9xyqetngfbegzfpyr&dl=1"},
+            {"title": "8k (print)", "url": "https://www.dropbox.com/scl/fi/nggoemwdmwx2lr0zks4gt/bio_8k.png?rlkey=2ns9tmxhg7obmwfeq1ulbaxt5&dl=1"}
+        ]   
+
+    },
+    "technoPoster": {
+        "image": "Posters/thumbs/techno_thumb.jpg",
+        "posters": [
+            {"title": "2k (screen)", "url": "https://www.dropbox.com/scl/fi/mtquem2bds2ixoiwl6gnt/techno_2k.png?rlkey=8jrookqsb5zm4p1usvo2g4xvs&dl=1"},
+            {"title": "4k (high)", "url": "https://www.dropbox.com/scl/fi/b60qu4011up8lplwktdzf/techno_4k.png?rlkey=jj9qvo0umagyydy3nhblwr1th&dl=1"},
+            {"title": "8k (print)", "url": "https://www.dropbox.com/scl/fi/ewestyfgo77ql1oyiub8o/techno_8k.png?rlkey=t6jfi3a03u39kq8o1r1apy426&dl=1"}
+        ]   
+     },
+     "bioTechnoPoster": {
+        "image": "Posters/thumbs/bio_techno_thumb.jpg",
+        "posters": [
+            {"title": "2k (screen)", "url": "https://www.dropbox.com/scl/fi/e12d1j974jg3leil87lwx/bio_techno_2k.png?rlkey=7zlslpu6i6xhvrpn0tnvehij3&dl=1"},
+            {"title": "4k (high)", "url": "https://www.dropbox.com/scl/fi/dpanv7sbd5luwmd91u48v/bio_techno_4k.png?rlkey=0w5qdonz1ej9qe730cb7x0kp7&dl=1"},
+            {"title": "8k (print)", "url": "https://www.dropbox.com/scl/fi/r1ex75141wcfcvyi8vg7p/bio_techno_8k.png?rlkey=nlbz4z05uokpvk8y6layrcu5r&dl=1"}
+        ]   
+     }
+
+}

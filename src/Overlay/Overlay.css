@@ -36,6 +36,35 @@
 
   }
 
+  /*
+  style={{position: "absolute", "left": "50%", "top": "50%", "pointerEvents": "auto", "zIndex": "10"}}
+  */
+  .languageSelector {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    top: -65%;
+    font-size: 18pt;
+    color: var(--border_grey)
+  }
+  .languageSelector> * {
+    pointer-events: auto;
+  }
+
+  .languageSelectorSpan {
+    cursor: pointer;
+    color: var(--border_grey);
+  }
+
+  .languageSelector span:hover {
+    color: var(--hover_blue);
+    cursor: pointer;
+  }
+
+  .checkedSpan {
+    color: rgb(66, 66, 66);
+  }
+
 
   .frontCover {
     position: absolute;
@@ -428,7 +457,7 @@
 
 .small_click_left {
   position: absolute !important;
-  left: 5% !important;
+  left: 3% !important;
   top: 50%;
   display: none !important;
   transform: translate(0, -50%);
@@ -436,7 +465,7 @@
 
 .small_click_right {
   position: absolute !important;
-  right: 5% !important;
+  right: 3% !important;
   top: 50%;
   display: none !important;
   transform: translate(0, -50%);
@@ -1025,6 +1054,7 @@
     top: 30%;
     width: 80%;
   }
+
   .hidden_info_title {
     font-size: 12pt;
     padding: 5px;
@@ -1036,12 +1066,12 @@
   .small_click_left {
     display: block !important;
     width: 60px;
-    top: 80%;
+    top: 85%;
   }
   .small_click_right {
     width: 60px;
     display: block !important;
-    top: 80%;
+    top: 85%;
   }
 
   .extralineabs {
@@ -1089,6 +1119,10 @@
   .dna_box video {
     margin-top: 15px;
     margin-bottom: 15px;
+  }
+
+  .languageSelector {
+    top: -85%;
   }
 }
 

@@ -4,7 +4,11 @@ import './Overlay.css';
 import './EndGrid.css'
 import ReactGA from "react-ga4";
 import PosterDownload from './PosterDownload';
+import { useTranslation } from 'react-i18next';
 function EndGrid(props) {
+
+    const { t } = useTranslation();
+
     const handletwitterClick = () => {
         ReactGA.event({
             category: 'Sharing',
@@ -54,7 +58,7 @@ function EndGrid(props) {
 
                     <div className='poster-wrapper'>
                         <div className='poster_caption big_caption_type poster_not_line'>
-                            get a poster
+                            {t("get a poster")}
                         </div>
                         <div className='column_part'>
                             <div className='poster_container top_container'>
