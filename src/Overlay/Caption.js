@@ -124,7 +124,7 @@ function GetText(sel, setHovered, openModal){
         case 15:
             return <div>
                 <p>
-                <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>{capitalizeFirstLetter(t("wild mammals"))}</HoverSpan> {t("annelids")} <HoverSpan id = "fish_text" hover_id = "Wild_Birds" setHovered = {setHovered} setOpenModal = {openModal}>{t("birds")}</HoverSpan> {t("captions.14")}
+                <HoverSpan id = "fish_text" hover_id = "Wild_Mammals" setHovered = {setHovered} setOpenModal = {openModal}>{capitalizeFirstLetter(t("wild mammals"))}</HoverSpan> {t("and")} <HoverSpan id = "fish_text" hover_id = "Wild_Birds" setHovered = {setHovered} setOpenModal = {openModal}>{t("birds")}</HoverSpan> {t("captions.14")}
                 </p>
             </div>
         case 16:
