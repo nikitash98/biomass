@@ -5,17 +5,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: fill-available;
   height: -webkit-fill-available;
+  height: -moz-available; /* For Firefox */
+
   width: fill-available;
   width: -webkit-fill-available;
   background-color: var(--background-color);
+  width: -moz-available; /* For Firefox */
+  height: 100%;
 
 }
 
 #root {
   height: fill-available;
   height: -webkit-fill-available;
+  height: -moz-available; /* For Firefox */
+
   width: fill-available;
   width: -webkit-fill-available;
+  width: -moz-available; /* For Firefox */
+  height: 100%;
+
 
 }
 code {
@@ -29,27 +38,38 @@ canvas{
 .App {
   height: fill-available;
   height: -webkit-fill-available;
+  height: -moz-available; /* For Firefox */
+
   width: fill-available;
   width: -webkit-fill-available;
+  width: -moz-available; /* For Firefox */
+  height: 100%;
 
 }
 
 html { 
   height: fill-available;
   height: -webkit-fill-available;
+  height: -moz-available; /* For Firefox */
+
   width: fill-available;
   width: -webkit-fill-available;
+  height: 100vh; /* Full viewport height */
 
 
 }
 .game_container {
   min-height: fill-available;
   min-height: -webkit-fill-available;
+  min-width: -moz-available; /* For Firefox */
+
   position: relative;
   padding: 16px;
   box-sizing: border-box;
   overflow: hidden;
   padding: 0px;
+  height: 100%;
+
 }
 .vis-container {
   position: absolute;

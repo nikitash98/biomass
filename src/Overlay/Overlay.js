@@ -18,7 +18,7 @@ function Overlay(props) {
     const [imageCreditModal, setimageCreditModal] = useState(false);
     const [sourcesModal, setsourcesModal] = useState(false)
 
-    let calculated_year_value = Math.trunc(1900 + Math.min(Math.max(props.yearPercentage * 123, 0.0), 123))
+    let calculated_year_value = Math.trunc(1900 + Math.min(Math.max(props.yearPercentage * 124, 0.0), 124))
 
     let risePosition = 50;
 

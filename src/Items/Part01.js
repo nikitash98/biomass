@@ -76,91 +76,20 @@ export function Part01(props) {
     return (1 - t) * start + t * end;
   }
 
-  function exponentialLerp2D(points, t) {
 
+  const concrete_params = [2.1868682129138843, 0.04607402973315096, -1.7510212289049325]
+  const aggregates_params =[16.102906182547525, 0.026611052590854785, -5.639723428339764]
+  const bricks_params = [0.7977367180011439, 0.03849356686948318, 11.057630794550573]
+  const asphalt_params = [3.401280365679252, 0.025256487370533168, -5.211861251509707]
+  const metals_params = [1.5950296696156498, 0.026858758090328606, -0.9958300345607234]
+  const plastics_params = [0.019426848678435926, 0.052480617412522995, -0.39384483589087593]
+
+  function exponentialLerpParams(params, t) {
     // Ensure t is in the range [0, 1]
+
     t = Math.min(1, Math.max(0, t));
-
-    // Validate that there are at least 5 points
-    if (points.length < 5 || points.some(point => point.length !== 2)) {
-      throw new Error('At least 5 2D points are required for exponential interpolation.');
-    }
-
-    // Calculate the segment index and local t within that segment
-    const numSegments = points.length - 4;
-    const segmentIndex = Math.floor(t * numSegments);
-    const localT = (t * numSegments) - segmentIndex;
-    if (t == 1) {
-      return points[4]
-    }
-
-    // Get the 2D points for the current segment
-    const p0 = points[segmentIndex];
-    const p1 = points[segmentIndex + 1];
-    const p2 = points[segmentIndex + 2];
-    const p3 = points[segmentIndex + 3];
-    const p4 = points[segmentIndex + 4];
-
-    // Calculate the exponential lerp value for each dimension (x and y)
-    const lerpedX = (
-      (1 - localT) * (1 - localT) * (1 - localT) * (1 - localT) * p0[0] +
-      4 * (1 - localT) * (1 - localT) * (1 - localT) * localT * p1[0] +
-      6 * (1 - localT) * (1 - localT) * localT * localT * p2[0] +
-      4 * (1 - localT) * localT * localT * localT * p3[0] +
-      localT * localT * localT * localT * p4[0]
-    );
-
-    const lerpedY = (
-      (1 - localT) * (1 - localT) * (1 - localT) * (1 - localT) * p0[1] +
-      4 * (1 - localT) * (1 - localT) * (1 - localT) * localT * p1[1] +
-      6 * (1 - localT) * (1 - localT) * localT * localT * p2[1] +
-      4 * (1 - localT) * localT * localT * localT * p3[1] +
-      localT * localT * localT * localT * p4[1]
-    );
-
-    return [lerpedX, lerpedY];
+    return Math.max(params[0] * Math.exp(params[1] * (t * 124)) + params[2], 0)
   }
-
-
-  function exponentialLerp(t, start, end) {
-    // Ensure t is in the range [0, 1]
-    if (t > 1) {
-      return end;
-    }
-    t = Math.min(1, Math.max(0, t));
-
-    if (end == start && start == 0) {
-      return 0
-    }
-    if (start == 0) {
-      start = 0.0001
-    }
-    // Calculate the exponential lerp value
-    return start * Math.pow(end / start, t);
-  }
-
-  function exponentialLerpPoints(points, t) {
-    if (t < 40 / 123) {
-      return exponentialLerp(t / (40 / 123), points[0], points[1])
-    } else if (t < 80 / 123) {
-      return exponentialLerp((t - (40 / 123)) / (40 / 123), points[1], points[2])
-    } else if (t < 120 / 123) {
-      return exponentialLerp((t - (80 / 123)) / (40 / 123), points[2], points[3])
-    } else if (t <= 123 / 123) {
-      return exponentialLerp((t - (120 / 123)) / (3 / 123), points[3], points[4])
-    } else {
-      return points[3]
-    }
-  }
-
-
-
-  const concrete_data = [2, 10, 86, 549, 598]; // Add your five 2D points here
-  const aggregates_data = [17, 30, 135, 386, 402]; // Add your five 2D points here
-  const bricks_data = [11, 16, 28, 92, 99]; // Add your five 2D points here
-  const asphalt_data = [0, 1, 22, 65, 65]; // Add your five 2D points here
-  const metals_data = [1, 3, 13, 39, 41]; // Add your five 2D points here
-  const plastics_data = [0, 0, 0.78, 9.5, 10]; // Add your five 2D points here
 
   // Example list of values
   const values = [2, 15, 9, 5, 8];
@@ -186,28 +115,6 @@ export function Part01(props) {
   change = window.innerWidth / 5000
 
 
-  //let change_value = lerp_values(values, change)
-
-  /*
-  let change_value = window.innerHeight / window.innerWidth * 14
-  if(window.innerWidth < 900) {
-    change_value = window.innerHeight / window.innerWidth * 17
-  }
-
-  
-
-
-
-  if(window.innerHeight < 600) {
-    technicalsOffset = 0;
-    change_value = window.innerHeight / window.innerWidth * 15
-  }
-
-  if(window.innerHeight/window.innerWidth < 0.3) {
-    change_value = window.innerHeight / window.innerWidth * 30
-  }
-
-  */
   let technicalsOffset = 0;
 
   let change_value = 7;
@@ -395,12 +302,13 @@ export function Part01(props) {
     if (set_views["rising_boxes"].includes(props.counter)) {
       props.setYearPercentage(flatYear(props.animationTime.current))
       quant_value.current = rise_percentage(props.animationTime.current)
-      artificial_values.current["Concrete"] = exponentialLerpPoints(concrete_data, rise_percentage(props.animationTime.current))
-      artificial_values.current["Aggregates"] = exponentialLerpPoints(aggregates_data, rise_percentage(props.animationTime.current))
-      artificial_values.current["Bricks"] = exponentialLerpPoints(bricks_data, rise_percentage(props.animationTime.current))
-      artificial_values.current["Metals"] = exponentialLerpPoints(metals_data, rise_percentage(props.animationTime.current))
-      artificial_values.current["Asphalt"] = exponentialLerpPoints(asphalt_data, rise_percentage(props.animationTime.current))
-      artificial_values.current["Plastics"] = exponentialLerpPoints(plastics_data, rise_percentage(props.animationTime.current))
+
+      artificial_values.current["Concrete"] = exponentialLerpParams(concrete_params, rise_percentage(props.animationTime.current))
+      artificial_values.current["Aggregates"] = exponentialLerpParams(aggregates_params, rise_percentage(props.animationTime.current))
+      artificial_values.current["Bricks"] = exponentialLerpParams(bricks_params, rise_percentage(props.animationTime.current))
+      artificial_values.current["Metals"] = exponentialLerpParams(metals_params, rise_percentage(props.animationTime.current))
+      artificial_values.current["Asphalt"] = exponentialLerpParams(asphalt_params, rise_percentage(props.animationTime.current))
+      artificial_values.current["Plastics"] = exponentialLerpParams(plastics_params, rise_percentage(props.animationTime.current))
 
     }
   })
@@ -513,23 +421,6 @@ export function Part01(props) {
             }
 
           } 
-
-
-          let scaleIconScalar = 1.;
-          let scaleTextScalar = 1;
-          /*
-          const iconVector = new THREE.Vector3(nodes[flat_name + "_Icon"].scale.x * scaleIconScalar, 
-            nodes[flat_name + "_Icon"].scale.y * scaleIconScalar, 
-              nodes[flat_name + "_Icon"].scale.z * scaleIconScalar);
-          let textVector;
-          if((nodes[flat_name + "_Text"])) {
-            textVector = new THREE.Vector3(nodes[flat_name + "_Text"].scale.x * scaleTextScalar, 
-            nodes[flat_name + "_Text"].scale.y * scaleTextScalar, 
-            nodes[flat_name + "_Text"].scale.z * scaleTextScalar);
-          }
-
-          */
-
 
           return (
 

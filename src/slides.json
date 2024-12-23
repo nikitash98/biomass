@@ -146,7 +146,7 @@
     "title": "marine",
     "cameraPosition": [3.43317, 4.51172, 28],
     "lookPosition": [3.29286,  4.75505, 1],
-    "highlighted": [ "Wild Birds", "Wild Mammals", "Humans","Livestock", "Nematodes", "Annelids", "Arthropods", "Animals", "Fungi", "Plants",  "Bacteria", "Archaea", "Protists", "Viruses"],
+    "highlighted": [ "Wild Birds", "Wild Mammals", "Humans","Livestock", "Nematodes", "Annelids", "Arthropods",  "Fungi", "Plants",  "Bacteria", "Archaea", "Protists", "Viruses"],
     "animationTime": 15.6,
     "quantities": [],
     "fov": 20
