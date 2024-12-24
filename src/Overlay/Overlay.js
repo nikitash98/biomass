@@ -118,7 +118,7 @@ function Overlay(props) {
 
 
             <div className={(!props.loaded3D) ? 'hidingContainer basicfadeIn' : 'hidingContainer slowerFadeOut'}>
-                <img className='bottom_drop_2' src="backdrop/25.png" />
+                <img className='bottom_drop_2' src="https://menard.pha.jhu.edu/Biocubes/25.png" />
 
             </div>
 
