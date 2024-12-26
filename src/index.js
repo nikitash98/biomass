@@ -22,6 +22,15 @@ const injectGA = () => {
   gtag('config', 'G-BRCY2C9YJX');
 };
 
+
+const appHeight = () => {
+  console.log("APP HEIGHT SET")
+  const doc = document.documentElement
+  doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', appHeight)
+appHeight()
+
 ReactGA.initialize("G-BRCY2C9YJX")
 root.render(
   <React.StrictMode>

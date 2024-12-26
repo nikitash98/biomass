@@ -45,6 +45,7 @@
     transform: translate(-50%, 0%);
     top: -65%;
     font-size: 18pt;
+    white-space: nowrap;
     color: var(--border_grey)
   }
   .languageSelector> * {
