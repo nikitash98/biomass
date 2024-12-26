@@ -18,7 +18,7 @@ import './3d.css'
 export function Part01(props) {
   const group = useRef()
   //const { nodes, materials, animations } = useGLTF('https://corsproxy.io/?url=https://menard.pha.jhu.edu/Biocubes/Part01.glb')
-  const { nodes, materials, animations } = useGLTF('/api/Part01.glb')
+  const { nodes, materials, animations } = useGLTF('https://biomasshosting.pages.dev/Part01.glb')
 
   const { actions } = useAnimations(animations, group)
   const imageRef_one = useRef()
