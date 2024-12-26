@@ -118,8 +118,7 @@ function Overlay(props) {
 
 
             <div className={(!props.loaded3D) ? 'hidingContainer basicfadeIn' : 'hidingContainer slowerFadeOut'}>
-                <img className='bottom_drop_2' src="https://menard.pha.jhu.edu/Biocubes/25.png" />
-
+                <img className='bottom_drop_2' src="backdrop/Front_Loading_Backdrop.jpg" />
             </div>
 
             {props.counter != 0 &&
@@ -298,7 +297,7 @@ function Overlay(props) {
                     {t("headers.dna.start")}
                     <br />
                     <video autoPlay muted webkit-playsinline playsinline loop playsInline webkit-playsInline>
-                        <source src="dna/DNA_14.mp4" type="video/mp4" />
+                        <source src="dna/DNA.mp4" type="video/mp4" />
                     </video>
                     <span className='preferredLine'>
                     {t("headers.dna.line2")}</span>

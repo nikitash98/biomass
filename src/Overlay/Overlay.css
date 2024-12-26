@@ -749,14 +749,17 @@
 }
 
 .dna_box video {
+  
   width: 60%;
   height: 100%;
   margin: auto;
   display: block;
   position: relative;
-  object-fit: cover;
+  object-fit: fill;
   z-index: -5;
   left: 0;
+  clip-path: inset(2px 2px);
+
   top: 0;
   margin-top: 50px;
   margin-bottom: 50px;

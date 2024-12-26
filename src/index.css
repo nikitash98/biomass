@@ -12,6 +12,7 @@ body {
   background-color: var(--background-color);
   width: -moz-available; /* For Firefox */
   height: 100%;
+  height: 100vh;
 
 }
 
@@ -24,6 +25,7 @@ body {
   width: -webkit-fill-available;
   width: -moz-available; /* For Firefox */
   height: 100%;
+  height: 100vh;
 
 
 }
@@ -44,6 +46,7 @@ canvas{
   width: -webkit-fill-available;
   width: -moz-available; /* For Firefox */
   height: 100%;
+  height: 100vh;
 
 }
 

@@ -21,7 +21,7 @@
 
     },
     "Animals": {
-      "image": "images/Animals.jpg",
+      "image": "images/basic/Animals.jpg",
       "src": "Animals are multicellular, eukaryotic organisms in the biological kingdom Animalia. With few exceptions, animals consume organic material, breathe oxygen, are able to move, can reproduce sexually, and grow from a hollow sphere of cells, the blastula, during embryonic development.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
       "value": 2.6,
@@ -128,7 +128,7 @@
 
     },
     "Livestock": {
-      "image": "images/Livestock.jpg",
+      "image": "images/basic/Livestock.jpg",
       "src": "Livestock are the domesticated animals raised in an agricultural setting to provide labor and produce diversified products for consumption such as meat, eggs, milk, fur, leather, and wool. ",
       "link": "https://en.wikipedia.org/wiki/Archaea",
       "value": 0.1,
@@ -140,7 +140,7 @@
 
     },
     "Humans": {
-      "image": "images/new/Humans.png",
+      "image": "images/basic/Humans.jpg",
       "src": "Humans are the most common and widespread species of primate in the great ape family Hominidae, and also the most common species of primate overall. Humans are broadly characterized by their bipedalism and high intelligence.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
       "value": 0.06,
@@ -152,7 +152,7 @@
 
     },
     "Fish": {
-      "image": "images/Fish.jpg",
+      "image": "images/basic/Fish.jpg",
       "src": "Fish are aquatic, craniate, gill-bearing animals that lack limbs with digits. Included in this definition are the living hagfish, lampreys, and cartilaginous and bony fish as well as various extinct related groups.",
       "link": "https://en.wikipedia.org/wiki/Archaea",
       "value": 0.7,
@@ -209,7 +209,7 @@
   },
    
   "LUCA": {
-    "image": "images/new/LUCA.png",
+    "image": "images/basic/LUCA.jpg",
     "src": "The last universal common ancestor (LUCA) or universal most recent common ancestor (UMRCA) is the most recent population from which all organisms now living on Earth share common descent—the most recent common ancestor of all current life on Earth.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
@@ -221,7 +221,7 @@
   },
 
   "Cars": {
-    "image": "images/Cars.jpg",
+    "image": "images/basic/Cars.jpg",
     "src": "A car or automobile is a motor vehicle with wheels. Most definitions of cars say that they run primarily on roads, seat one to eight people, have four wheels, and mainly transport people, not cargo.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
@@ -233,7 +233,7 @@
 
   },
   "Concrete": {
-    "image": "images/Concrete.jpg",
+    "image": "images/basic/Concrete.jpg",
     "src": "Concrete is a composite material composed of fine and coarse aggregate bonded together with a fluid cement (cement paste) that hardens (cures) over time. Concrete is the second-most-used substance in the world after water, and is the most widely used building material.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
@@ -245,7 +245,7 @@
 
   },
   "Asphalt": {
-    "image": "images/Asphalt.jpg",
+    "image": "images/basic/Asphalt.jpg",
     "src": "Asphalt concrete is a composite material commonly used to surface roads, parking lots, airports, and the core of embankment dams. Asphalt mixtures have been used in pavement construction since the beginning of the twentieth century.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
@@ -258,12 +258,11 @@
 
   },
   "Aggregates": {
-    "image": "images/Aggregate.jpg",
+    "image": "images/basic/Aggregate.jpg",
     "src": "Construction aggregate, or simply aggregate, is a broad category of coarse- to medium-grained particulate material used in construction, including sand, gravel, crushed stone, slag, recycled concrete and geosynthetic aggregates. Aggregates are the most mined materials in the world. ",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "oldweight": 386,
-    "weight": 402,
+    "weight": 431,
     "srces": "Los agregados de construcción, o simplemente agregados, son una amplia categoría de materiales particulados de grano grueso a medio utilizados en la construcción, que incluyen arena, grava, piedra triturada, escoria, concreto reciclado y agregados geosintéticos. Los agregados son los materiales más extraídos en el mundo.",
     "srcfr": "Les granulats de construction, ou simplement les granulats, constituent une vaste catégorie de matériaux particulaires à gros à moyen grains utilisés dans la construction, y compris le sable, le gravier, la pierre concassée, le laitier, le béton recyclé et les granulats géosynthétiques. Les granulats sont les matériaux les plus extraits au monde.",
     "srczh": "建筑骨料，或简称骨料，是用于建筑的粗至中粒颗粒材料的广泛类别，包括沙子、砾石、碎石、矿渣、再生混凝土和土工合成材料。骨料是世界上开采最多的材料。"
@@ -271,11 +270,10 @@
 
   },
   "Metals": {
-    "image": "images/metals.jpg",
+    "image": "images/basic/metals.jpg",
     "src": "A metal (from Ancient Greek μέταλλον métallon 'mine, quarry, metal') is a material that, when freshly prepared, polished, or fractured, shows a lustrous appearance, and conducts electricity and heat relatively well. Metals are typically ductile (can be drawn into wires) and malleable (they can be hammered into thin sheets). These properties are the result of the metallic bond between the atoms or molecules of the metal.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "oldweight": 39,
     "weight": 44,
     "srces": "Un metal (del griego antiguo μέταλλον métallon 'mina, cantera, metal') es un material que, cuando se prepara, se pule o se fractura recién, muestra una apariencia lustrosa y conduce la electricidad y el calor relativamente bien. Los metales son típicamente dúctiles (se pueden estirar en alambres) y maleables (se pueden martillar en láminas delgadas). Estas propiedades son el resultado del enlace metálico entre los átomos o moléculas del metal.",
     "srcfr": "Un métal (du grec ancien μέταλλον métallon 'mine, carrière, métal') est un matériau qui, lorsqu'il est fraîchement préparé, poli ou fracturé, présente une apparence brillante et conduit relativement bien l'électricité et la chaleur. Les métaux sont généralement ductiles (peuvent être tirés en fils) et malléables (peuvent être martelés en feuilles minces). Ces propriétés sont le résultat de la liaison métallique entre les atomes ou les molécules du métal.",
@@ -286,11 +284,10 @@
   },
 
   "Bricks": {
-    "image": "images/brick.jpg",
+    "image": "images/basic/brick.jpg",
     "src": "A brick is a type of construction material used to build walls, pavements and other elements in masonry construction. Properly, the term brick denotes a unit primarily composed of clay, but is now also used informally to denote units made of other materials or other chemically cured construction blocks.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",
-    "oldweight": 92,
     "weight": 105,
     "srces": "Un ladrillo es un tipo de material de construcción utilizado para construir paredes, pavimentos y otros elementos en la construcción de mampostería. Apropiadamente, el término ladrillo denota una unidad compuesta principalmente de arcilla, pero ahora también se usa informalmente para denotar unidades hechas de otros materiales u otros bloques de construcción curados químicamente.",
     "srcfr": "Une brique est un type de matériau de construction utilisé pour construire des murs, des trottoirs et d'autres éléments dans la construction en maçonnerie. À proprement parler, le terme brique désigne une unité composée principalement d'argile, mais il est maintenant également utilisé de manière informelle pour désigner des unités fabriquées à partir d'autres matériaux ou d'autres blocs de construction durcis chimiquement.",
@@ -299,7 +296,7 @@
   },
 
   "Plastics": {
-    "image": "images/Plastics.jpg",
+    "image": "images/basic/Plastics.jpg",
     "src": "Plastics are a wide range of synthetic or semi-synthetic materials that use polymers as a main ingredient. Their plasticity makes it possible for plastics to be moulded, extruded or pressed into solid objects of various shapes.",
     "link": "https://en.wikipedia.org/wiki/Last_universal_common_ancestor",
     "value": "?",

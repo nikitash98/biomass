@@ -103,7 +103,7 @@ const ThreePointViz = (props) => {
 
 
                 <directionalLight
-                    position={[3, 8, 5]}
+                    position={[4, 8, 5]}
                     intensity={1}
                     shadow-mapSize={4096}
                     shadow-bias={-0.001}
