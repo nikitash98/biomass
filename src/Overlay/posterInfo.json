@@ -2,20 +2,20 @@
     "bioPoster": {
         "image": "Posters/thumbs/bio_thumb.jpg",
         "posters": [
-            {"title": "download", "url": "https://www.dropbox.com/scl/fi/aeiwy6v9gq3f4hinfzhnc/bio_2k.png?rlkey=k16hhuozgvrtr1d0p23o91pe8&dl=1"}
+            {"title": "download", "url": "Posters/downloads/Bio_Final.png"}
         ]   
 
     },
     "technoPoster": {
         "image": "Posters/thumbs/techno_thumb.jpg",
         "posters": [
-            {"title": "download", "url": "https://www.dropbox.com/scl/fi/mtquem2bds2ixoiwl6gnt/techno_2k.png?rlkey=8jrookqsb5zm4p1usvo2g4xvs&dl=1"}
+            {"title": "download", "url": "Posters/downloads/Techno_Final.png"}
         ]   
      },
      "bioTechnoPoster": {
         "image": "Posters/thumbs/bio_techno_thumb.jpg",
         "posters": [
-            {"title": "download", "url": "https://www.dropbox.com/scl/fi/e12d1j974jg3leil87lwx/bio_techno_2k.png?rlkey=7zlslpu6i6xhvrpn0tnvehij3&dl=1"}
+            {"title": "download", "url": "Posters/downloads/BioTechno_Final.png"}
         ]   
      }
 }

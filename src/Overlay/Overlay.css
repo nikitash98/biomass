@@ -36,6 +36,12 @@
 
   }
 
+  .icon_container img {
+    -webkit-filter: drop-shadow(0px 0px 0px #222);
+    filter: drop-shadow(0px 0px 50px #ffffff);
+  
+  }
+
   /*
   style={{position: "absolute", "left": "50%", "top": "50%", "pointerEvents": "auto", "zIndex": "10"}}
   */
@@ -99,6 +105,7 @@
     transition: all 0.6s;
     z-index: 5;
     transition: all 0.6s;
+
     
   }
 
@@ -106,6 +113,8 @@
     max-width: 55%;
     height: 100%;
     margin: 0 auto;
+    padding: 10px;
+
   }
 
   .logo_container .full_logo {
@@ -625,7 +634,6 @@
 
   .shareEnd {
     top: 12%;
-    left: 50%;
     transition: all 1.0s ease;  /* Smooth transition */
 
   }
@@ -1100,6 +1108,7 @@
    .icon_container {
     max-width: 70%;
   }
+
 
   .logo_container .full_logo {
     max-width: 80%;

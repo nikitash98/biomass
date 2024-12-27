@@ -4,6 +4,7 @@ import { Vector3 } from 'three';
 import myData from './data.json';
 import './ClickInfo.css';
 
+import { publicURL } from '../constants';
 import { useTranslation } from 'react-i18next';
 
 function ClickInfo(props) {
@@ -52,7 +53,7 @@ function ClickInfo(props) {
 
                     <div className='ClickInfo_image'>
 
-                        <img src={myData[name.current].image}></img>
+                        <img src={publicURL + myData[name.current].image}></img>
                         <div className = "ClickInfo_image_overlay">
                             
                         </div>

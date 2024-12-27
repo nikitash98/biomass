@@ -14,6 +14,12 @@ function SourcesModal(props) {
                 learn more
             </div>
             <Divider/>
+            <span style={{"color" : "var(--border_grey"}}>
+
+            all rights reserved
+            </span>
+            <Divider/>
+
             <Grid divided>
                 <Grid.Row columns={3}>
                     <Grid.Column>

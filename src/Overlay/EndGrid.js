@@ -53,47 +53,66 @@ function EndGrid(props) {
         <div className='end_section'>
             <div className='interior_section' style={{ "textAlign": "center" }}>
                 <div className='big_caption_type'>
+
                 </div>
+
 
 
                     <div className='poster-wrapper'>
                         <div className='poster_caption big_caption_type poster_not_line'>
                             {t("get a poster")}
                         </div>
+                        
                         <div className='column_part'>
                             <div className='poster_container top_container'>
                                 <div className='top_container_helper' >
                                     <div className='poster_download_helper'>
                                         <PosterDownload poster="bioPoster" />     
                                     </div>
-
                                 </div>
                             </div>
-
-                                <div className='poster_container bottom_container'>
-
-
-                                    <div className='poster_download_helper poster_extra_caption'>
-
+                            <div className='poster_container bottom_container'>
+                                <div className='poster_download_helper poster_extra_caption'>
                                     <div className='poster_caption big_caption_type line_poster_caption'>
                                         get a poster
                                     </div>
-
                                     <PosterDownload poster="technoPoster" />
-                                    </div>
                                 </div>
+                            </div>
                         </div>
+
                         <div className='big_poster_container' >
                             <div className='poster_container big_poster'>
-                            <div className='poster_download_helper'>
-
-                                <PosterDownload poster="bioTechnoPoster" />
+                                <div className='poster_download_helper'>
+                                    <PosterDownload poster="bioTechnoPoster" />
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
+                {/*
+
+                    <div class="container">
+
+                    
+                    <div class="left">
+                        <div className='poster_container_flex'>
+                            <PosterDownload poster="bioPoster" />     
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="right__red">
+                        <PosterDownload poster="bioPoster" />     
+                        </div>
+                        <div class="right__blue">
+                        <PosterDownload poster="bioPoster" />     
+
+                        </div>
+                    </div>
+                </div>
+
+                */}
 
                 </div>
                 <div className='end_credit small_type'>

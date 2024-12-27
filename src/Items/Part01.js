@@ -11,6 +11,7 @@ import { useFrame, useThree } from 'react-three-fiber'
 import slides from "../slides.json"
 import { lerp } from 'three/src/math/MathUtils'
 import data from '../Overlay/data.json';
+import { publicURL } from '../constants'
 import * as THREE from 'three'
 import './3d.css'
 
@@ -18,7 +19,7 @@ import './3d.css'
 export function Part01(props) {
   const group = useRef()
   //const { nodes, materials, animations } = useGLTF('https://corsproxy.io/?url=https://menard.pha.jhu.edu/Biocubes/Part01.glb')
-  const { nodes, materials, animations } = useGLTF('Part01.glb')
+  const { nodes, materials, animations } = useGLTF(publicURL + 'Part01.glb')
 
   const { actions } = useAnimations(animations, group)
   const imageRef_one = useRef()

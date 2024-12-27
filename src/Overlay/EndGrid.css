@@ -14,8 +14,8 @@
 .sharingLine {
   white-space: nowrap ;
   vertical-align: middle; /* Align to the bottom of the line */
-  padding: 10px;
   border-radius: 10px;
+  line-height: 20pt;
 }
 .sharingLine a{
   position: relative;
@@ -53,14 +53,16 @@
 
 .end_section {
     height: 100%;
-    width: 100%;
+    width: 95%;
     z-index: 10;
+
     text-align: left;
     pointer-events: auto;
     position: absolute;
     display: flex;
-    top: 60%;
-    transform: translate(0, -50%);
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     pointer-events: none;
     justify-content: center;
@@ -119,12 +121,13 @@
 .interior_section {
   width: 100%;
   height: 80%;
+  aspect-ratio: 1 / 1;
+
 }
 
 .poster_caption {
   position: absolute;
   left: 50%;
-  top: 0%;
   text-align: center;
   transform: translate(-50%, -100%);
 }
@@ -394,6 +397,8 @@
 }
 
 
+
+
 .end_credit {
   position: absolute;
   left: 0%;
@@ -419,6 +424,7 @@
   }
   .end_section {
     top: 58%;
+    width: 100%;
     padding: 0%;
   }
   .readButton h2 {
@@ -477,6 +483,9 @@
 
   .line_poster_caption {
     display:block;
+    transform: translate(-50%, -100%);
+    left: 50%;
+
   }
   .poster_not_line {
     display: none;
