@@ -11,6 +11,7 @@ import ClickModal from "./ClickModal";
 import ReactGA from "react-ga4";
 import { useTranslation } from 'react-i18next'
 import LanguageSelector from './LanguageSelector';
+import { publicURL } from '../constants';
 function Overlay(props) {
 
     const { t } = useTranslation();
@@ -297,7 +298,7 @@ function Overlay(props) {
                     {t("headers.dna.start")}
                     <br />
                     <video autoPlay muted webkit-playsinline playsinline loop playsInline webkit-playsInline>
-                        <source src="dna/DNA.mp4" type="video/mp4" />
+                        <source src= {publicURL + "dna/DNA.mp4"} type="video/mp4" />
                     </video>
                     <span className='preferredLine'>
                     {t("headers.dna.line2")}</span>

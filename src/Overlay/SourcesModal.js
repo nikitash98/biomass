@@ -16,8 +16,8 @@ function SourcesModal(props) {
             <Divider/>
             <span style={{"color" : "var(--border_grey"}}>
 
-            all rights reserved
-            </span>
+            © Ménard & Shtarkman. All Rights Reserved
+                        </span>
             <Divider/>
 
             <Grid divided>

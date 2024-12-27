@@ -95,7 +95,7 @@ function ClickInfo(props) {
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={8} className='clickInfo_mobile_image'>
-                                <img src={myData[name.current].image}></img>
+                                <img src={publicURL + myData[name.current].image}></img>
                                 <div className = "ClickInfo_image_overlay">
                             
                                 <div style={{"position": "relative", "width": "100%", "height": "100%"}}>
