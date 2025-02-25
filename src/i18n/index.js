@@ -5,6 +5,7 @@ import translationsInEng from '../locales/en/translation.json';
 import translationsInSpanish from '../locales/es/translation.json';
 import translationsInFrench from "../locales/fr/translation.json";
 import translationsInChinese from "../locales/zh/translation.json";
+import translationsInPortuguese from "../locales/por/translation.json";
 
 // the translations
 const resources = {
@@ -19,6 +20,9 @@ const resources = {
   },
   zh: {
     translation: translationsInChinese
+  },
+  por: {
+    translation: translationsInPortuguese
   }
 };
 

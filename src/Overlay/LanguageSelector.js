@@ -29,6 +29,10 @@ const LanguageSelector = () => {
                 <span className={selectedLanguage == "zh" ? "languageSelectorSpan checkedSpan" :"languageSelectorSpan"} onClick={() => {chooseLanguageVal("zh")}}>
                     中文
                 </span>
+                |
+                <span className={selectedLanguage == "por" ? "languageSelectorSpan checkedSpan" :"languageSelectorSpan"} onClick={() => {chooseLanguageVal("por")}}>
+                    por
+                </span>
 
             </div>
         </>
